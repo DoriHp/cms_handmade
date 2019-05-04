@@ -14,10 +14,26 @@ header{
 	}
 }
 
-#div_button{
+#div_button, #div_form{
   position: relative;
   margin-top: 20px;
   font-weight: 900;
+  	form{
+  		padding: 0;
+  		.comp{
+  			display: none;
+        padding-left: 15px;
+        padding-right: 15px;
+  		}
+  		#adding_reply{
+  			margin-top: 10px !important;
+  			margin-bottom: 10px !important;
+  		}
+  		#adding_trigger{
+  			padding-left: 15px;
+  			padding-right: 15px;
+  		}
+  	}
 }
 
 #div_table{

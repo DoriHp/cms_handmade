@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<title>Bot CMS - add script</title>
+	<meta charset="utf-8">	
+	<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
+	<meta name="theme-color" content="#574E4E">
+	<meta name="msapplication-TileColor" content="#574E4E">
+	<meta name="msapplication-navbutton-color" content="#574E4E">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#574E4E">
+	<link rel="shortcut icon" href="image.jpg">
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+	<header>
+		<h1 class="display-4">BotkitCMS</h1>
+	</header>
+	<div class="container">
+		<div class="row" id='div_button'>
+			<div class="btn-group" role="group" aria-label="Button">
+				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
+				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add'">Thêm script</button>
+				<button type="button" class="btn btn-secondary btn-warning">Hướng dẫn</button>
+			</div>
+		</div>
+		<div class="row" id="div_form">
+			<form class="col-12 border-info" method="POST">
+				<div class="form-group row">
+					<label for="inputCommand" class="col-sm-2 form-control-label">Lệnh điều khiển</label>
+					<div class="col-sm-10">
+						<input type="text" name="command" class="form-control" id="inputCommand" placeholder="Command">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputDescription" class="col-sm-2 form-control-label">Mô tả</label>
+					<div class="col-sm-10">
+						<input type="text" name="description" class="form-control" id="inputDescription" placeholder="Description">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputID" class="col-sm-2 form-control-label">Script ID</label>
+					<div class="col-sm-10">
+						<input type="text" name="id" class="form-control" id="inputID" placeholder="ID">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputName" class="col-sm-2 form-control-label">Tên script</label>
+					<div class="col-sm-10">
+						<input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+					</div>
+				</div>
+				<div class="form-group" id="trigger_area">
+				  	<div class="form-group row" id="original1">
+				  		<label class="col-2">Triggers</label>
+				  		<label class="col-2">Trigger type</label>
+						<div class="form-group col-3">
+				    	<select name="type0" class="form-control">
+					        <option value="string" selected>Chuỗi kí tự</option>
+					        <option value="regexp">Regular Expression</option>
+					    </select>
+					  	</div>
+					  	<label class="col-1">Trigger</label>
+					  	<div class="form-group col-4">
+					    	<input type="text" name="trigger0" class="form-control" placeholder="Trigger">
+					  	</div>
+				  	</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputVariables" class="col-2">Biến dữ liệu</label>
+					<div class="form-group col-10">
+				    	<input type="text" name="variables" class="form-control" id="inputVariables" placeholder="Variables">
+				  	</div>
+				</div>
+				<div class="form-group row">
+					<label for="inputTopic" class="col-2">Chủ đề</label>
+					<div class="form-group col-10">
+				    	<input type="text" name="topic" class="form-control" id="inputTopic" placeholder="Topic">
+				  	</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2">Định dạng script</label>
+					<div class="col-sm-10">
+						<div class="radio">
+							<label>
+								<input class="key" type="radio" name="script" data-key="1" id="gridRadios1" value="text">
+								Chuỗi kí tự thông thường
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input class="key" type="radio" name="script" data-key="2" id="gridRadios2" value="facebook_template">
+								Facebook template
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input class="key" type="radio" name="script" data-key="3" id="gridRadios3" value="question">
+								Câu hỏi
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row comp" data-key="1">
+					<label for="inputReply" class="col-2">Câu đối thoại</label>
+					<div class="form-group col-10">
+				    	<input type="text" name="reply_text0" class="form-control" id="inputReply" placeholder="Reply">
+				  	</div>
+				</div>
+				<div class="form-group row comp" data-key="2">
+					<label for="inputReply" class="col-2">Facebook_template</label>
+					<div class="form-group col-10">
+				    	<input type="text" name="text0" class="form-control" id="inputReply" placeholder="Reply">
+				  	</div>
+				</div>
+				<div class="form-group row comp" data-key="3">
+					<div class="form-group row">
+						<label for="inputTextBefore" class="col-2">Lời mở đầu</label>
+						<div class="form-group col-10">
+					    	<input type="text" name="text_before0" class="form-control" id="inputTextBefore" placeholder="Text before">
+					  	</div>
+					</div>	
+					<label for="inputQuestion" class="col-4"><i class="fas fa-question-circle"></i> Câu hỏi</label>
+					<label for="inputQuickReplies" class="col-4"><i class="fab fa-replyd"></i> Câu trả lời nhanh</label>
+					<label for="inputPayload" class="col-3"><i class="fab fa-replyd"></i> Payload </label>
+					<div class="form-group row" >
+						<div class="form-group col-4">
+					    	<input type="text" name="question" class="form-control" id="inputQuestion" placeholder="Question">
+					  	</div>
+					  	<div class="form-group col-8" id="replies_area">
+					  		<div class="form-group col-12 row" id="reply1">
+					  			<div class="form-group col-6">
+					  			<input type="text" name="quick_reply0" class="form-control reply" id="inputQuickReplies" placeholder="Option1">
+					  		</div>
+					  		<div class="form-group col-6">
+					    		<input type="text" name="payload0" class="form-control payload" id="inputPayload" placeholder="Payload for option1">
+					  		</div>
+					  		</div>
+					  	</div>
+					</div>
+					<div class="form-group row">
+					  	<label for="inputNextQSID" class="col-2">ID câu hỏi kế tiếp</label>
+					  	<div class="form-group col-4">
+					    	<input type="text" name="id_next_question" class="form-control" id="inputNextQSID" placeholder="Next question ID">
+					  	</div>
+					  	<label for="inputTextAfter" class="col-2">Lời kết thúc và cảm ơn</label>
+					  	<div class="form-group col-4">
+					    	<input type="text" name="text_after0" class="form-control" id="inputTextAfter" placeholder="Text after">
+					  	</div>
+					</div>	
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-12">
+						<button type="button" class="btn btn-success float-right">OK</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+		    
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+		        
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+		    
+		    // Return null if not found
+		    return null;
+		}
+
+		const cookie = getCookie('result')
+
+		function execInfo(cookie){
+			const info = JSON.parse(cookie)
+			// document.getElementsByTagName('input').forEach(input =>{
+			// 	input.readOnly = "true"
+			// })
+			document.getElementById('inputCommand').value = (info.command)?info.command:'N/A'
+			document.getElementById('inputDescription').value = (info.description)?info.description:'N/A'
+			document.getElementById('inputID').value = info.id
+
+			var triggers_length = info.triggers.length
+			if(triggers_length != 1){
+				var trigger_area = document.getElementById('trigger_area')
+				var original1 = document.getElementById('original1')
+				for(let i = 1; i < triggers_length; i++){
+					let newNode = original1.cloneNode(true)
+					newNode.id = `original${i + 1}`
+					trigger_area.appendChild(newNode)
+					let labels = document.querySelectorAll(`#original${i + 1} label`)
+		  			labels.forEach(label => label.innerHTML = "")
+				}
+			}
+
+			info.triggers.map((value, index)=>{
+				let select = document.querySelector(`#original${index + 1} select`)
+				select.name = `type${index + 1}`
+
+				select.value = value.fromType
+
+				let input = document.querySelector(`#original${index + 1} input`)
+				input.value = value.pattern
+
+			})
+
+		}
+
+		execInfo(cookie)
+	</script>
+</body>
+</html>

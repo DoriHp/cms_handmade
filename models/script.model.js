@@ -9,43 +9,18 @@ var scriptSchema = new mongoose.Schema({
     name : String, 
     triggers : [
         {
-            type : String, 
+            fromType : String, 
             pattern : String
         }
     ], 
     variables : [String], 
-    script : [
-        {
-            topic : String, 
-            script : [
-                {
-                    text : [String],
-                    fb_attachment: {
-                        template_type: String,
-                        elements: [
-                            {
-                                title: String,
-                                subtitle: String,
-                                image_url: String,
-                                button: [
-                                    {
-                                        type: String,
-                                        title: String,
-                                        url: String,
-                                        webview_height_ratio: String,
-                                        payload: String
-                                    }                                
-                                ]
-                            }
-                        ],
-                        action: String
-                    },
-                }
-            ]
-        }
-    ]
+    scripts: {type: mongoose.Schema.Types.Mixed},
+    id_next_question: String
 })
+
+
 
 var Script = mongoose.model('Script', scriptSchema, 'scripts')
 
 module.exports = Script
+

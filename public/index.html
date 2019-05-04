@@ -3,7 +3,7 @@
 <head>
 	<title>Bot CMS</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="style.css">	
+	<link rel="stylesheet" type="text/css" href="/style.css">	
 	<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
 	<meta name="theme-color" content="#574E4E">
 	<meta name="msapplication-TileColor" content="#574E4E">
@@ -25,8 +25,8 @@
 	<div class="container">
 		<div class="row" id='div_button'>
 			<div class="btn-group" role="group" aria-label="Button">
-				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='http://localhost:5000'">Danh sách</button>
-				<button type="button" class="btn btn-secondary btn-toolbar">Thêm script</button>
+				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
+				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add'">Thêm script</button>
 				<button type="button" class="btn btn-secondary btn-warning">Hướng dẫn</button>
 			</div>
 		</div>
@@ -48,6 +48,7 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		// location.hash = "main"
 		(function(){
 			axios.get('/script',{
 				headers:{
