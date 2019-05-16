@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-	<title>Bot CMS - script properties</title>
+	<title>Chi tiết</title>
 	<meta charset="utf-8">	
 	<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
 	<meta name="theme-color" content="#574E4E">
@@ -107,42 +107,6 @@
 				    	<input type="text" name="text0" class="form-control" id="inputReply" placeholder="Reply">
 				  	</div>
 				</div>
-				<div class="form-group row comp" data-key="2">
-					<div class="form-group row">
-						<label for="inputTextBefore" class="col-2">Lời mở đầu</label>
-						<div class="form-group col-10">
-					    	<input type="text" name="text_before0" class="form-control" id="inputTextBefore" placeholder="Text before">
-					  	</div>
-					</div>	
-					<label for="inputQuestion" class="col-4"><i class="fas fa-question-circle"></i> Câu hỏi</label>
-					<label for="inputQuickReplies" class="col-4"><i class="fab fa-replyd"></i> Câu trả lời nhanh</label>
-					<label for="inputPayload" class="col-3"><i class="fab fa-replyd"></i> Payload </label>
-					<div class="form-group row" >
-						<div class="form-group col-4">
-					    	<input type="text" name="question" class="form-control" id="inputQuestion" placeholder="Question">
-					  	</div>
-					  	<div class="form-group col-8" id="replies_area">
-					  		<div class="form-group col-12 row" id="reply1">
-					  			<div class="form-group col-6">
-					  			<input type="text" name="quick_reply0" class="form-control reply" id="inputQuickReplies" placeholder="Option1">
-					  		</div>
-					  		<div class="form-group col-6">
-					    		<input type="text" name="payload0" class="form-control payload" id="inputPayload" placeholder="Payload for option1">
-					  		</div>
-					  		</div>
-					  	</div>
-					</div>
-					<div class="form-group row">
-					  	<label for="inputNextQSID" class="col-2">ID câu hỏi kế tiếp</label>
-					  	<div class="form-group col-4">
-					    	<input type="text" name="id_next_question" class="form-control" id="inputNextQSID" placeholder="Next question ID">
-					  	</div>
-					  	<label for="inputTextAfter" class="col-2">Lời kết thúc và cảm ơn</label>
-					  	<div class="form-group col-4">
-					    	<input type="text" name="text_after0" class="form-control" id="inputTextAfter" placeholder="Text after">
-					  	</div>
-					</div>	
-				</div>
 				<div class="form-group row">
 					<div class="col-sm-12">
 						<button type="button" class="btn btn-success float-right">OK</button>
@@ -151,6 +115,99 @@
 			</form>
 		</div>
 	</div>
-	<script type="text/javascript" src="/js/display.properties.js"></script>
+	<script type="text/javascript">
+		const comps = Array.from(document.querySelectorAll('.comp'))
+		comps.forEach(comp => comp.style.display = 'none')
+		function getCookie(name) {
+		    // Split cookie string and get all individual name=value pairs in an array
+		    var cookieArr = document.cookie.split(";");
+		    
+		    // Loop through the array elements
+		    for(var i = 0; i < cookieArr.length; i++) {
+		        var cookiePair = cookieArr[i].split("=");
+		        
+		        /* Removing whitespace at the beginning of the cookie name
+		        and compare it with the given string */
+		        if(name == cookiePair[0].trim()) {
+		            // Decode the cookie value and return
+		            return decodeURIComponent(cookiePair[1]);
+		        }
+		    }
+		    
+		    // Return null if not found
+		    return null;
+		}
+
+		function display(num){
+			//dựa vào data-key để hiển thị div chứa định dạng tương ứng
+			comps.forEach(comp => comp.style.display = 'none')
+		    const selected = document.querySelector(`div[data-key="${num}"]`)
+		    selected.style.display = 'block'
+		}
+
+		const cookie = getCookie('result')
+
+		function execInfo(cookie){
+			const info = JSON.parse(cookie)
+			console.log(info)
+			// document.getElementsByTagName('input').forEach(input =>{
+			// 	input.readOnly = "true"
+			// })
+			document.getElementById('inputCommand').value = (info.command)?info.command:'N/A'
+			document.getElementById('inputDescription').value = (info.description)?info.description:'N/A'
+			document.getElementById('inputID').value = info.id
+
+			//hiển thị danh sách triggers
+			var triggers_length = info.triggers.length
+			if(triggers_length != 1){
+				var trigger_area = document.getElementById('trigger_area')
+				var original1 = document.getElementById('original1')
+				for(let i = 1; i < triggers_length; i++){
+					let newNode = original1.cloneNode(true)
+					newNode.id = `original${i + 1}`
+					trigger_area.appendChild(newNode)
+					let labels = document.querySelectorAll(`#original${i + 1} label`)
+		  			labels.forEach(label => label.innerHTML = "")
+				}
+			}
+
+			document.getElementById('inputName').value = (info.name)?info.name:'N/A'
+			let variables = (info.variables.length != 0)?info.variables.join(', ').replace(/[{}]/g, ''):'N/A'
+			document.getElementById('inputVariables').value = variables
+
+			info.triggers.map((value, index)=>{
+				let select = document.querySelector(`#original${index + 1} select`)
+				select.name = `type${index + 1}`
+
+				select.value = value.fromType
+
+				let input = document.querySelector(`#original${index + 1} input`)
+				input.value = value.pattern
+
+			})
+
+			//lựa chọn hiển thị định dạng script
+			var select_type_script = document.getElementsByClassName('key')
+			if(type_of_script(info.scripts) == true){
+				select_type_script[1].checked = true
+				display(2)
+			}else{
+				select_type_script[0].checked = true
+				display(1)
+			}
+		}
+
+		function type_of_script(input){
+			if(typeof(input) == 'array'){
+				input.forEach(ele, type_of_script(ele))
+			}else if(typeof(input) == 'object'){
+				if('question' in input) return true
+			}
+
+			return false
+		}
+
+		execInfo(cookie)
+	</script>
 </body>
 </html>

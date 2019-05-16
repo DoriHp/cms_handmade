@@ -3,13 +3,13 @@
 <head>
 	<title>Bot CMS</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="/style.css">	
+	<link rel="stylesheet" type="text/css" href="/css/style.css">	
 	<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
 	<meta name="theme-color" content="#574E4E">
 	<meta name="msapplication-TileColor" content="#574E4E">
 	<meta name="msapplication-navbutton-color" content="#574E4E">
 	<meta name="apple-mobile-web-app-status-bar-style" content="#574E4E">
-	<link rel="shortcut icon" href="image.jpg">
+	<link rel="shortcut icon" href="/image/image.jpg">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script type="text/javascript" scr="script.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
@@ -32,7 +32,7 @@
 		</div>
 		<div class="row">
 			<div id='div_table' class="col-12">
-				<table class="table table-responsive table-inverse, table-bordered" id='table_body'>
+				<table class="table table-striped table-bordered table-sm" id='table_body' cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Command</th>
@@ -56,12 +56,12 @@
 					}
 				}).then(function(response){
 					var a = JSON.stringify(response.data)
-					console.log(a)
 					showOut(a)
 				}).catch(function(error){
 					console.log(error)
 				})
-			})()
+		})()
+
 		function showOut(items){
 			var table_body = document.getElementById('table_body')
 			var a = JSON.parse(items)
@@ -79,9 +79,16 @@
 				cell2.innerHTML = (i.id == undefined)?"N/A":i.id
 				cell3.innerHTML = (i.name == undefined)?"N/A":i.name
 
+				row.addEventListener('click', getProperties)
+
 				index++
 				
 			}
+		}
+
+		function getProperties(e){
+			var id = this.querySelectorAll("*")[2].innerHTML.trim()
+			window.open('http://localhost:5000/script/properties/' + encodeURIComponent(id), '_blank')
 		}
 	</script>
 </body>

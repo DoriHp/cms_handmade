@@ -6,6 +6,7 @@ var port = 5000
 var md5 = require('md5')
 var mongoose = require('mongoose')
 var cookieParser = require('cookie-parser')
+var path = require('path')
 require('dotenv').config()
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
@@ -17,6 +18,9 @@ app.use(bodyParser.urlencoded({
 	extended : true
 }))
 app.use(timeout(10000))
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 function haltOnTimedout(req, res, next){
   if (!req.timedout) next();
