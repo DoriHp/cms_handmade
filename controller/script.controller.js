@@ -27,24 +27,16 @@ module.exports.getProperties = async function(req, res){
 	var id = decodeURIComponent(req.params.id)
 	var result = await Script.findOne({id : id}).lean()
 	if(result){
-		result = JSON.stringify(result)
-		res.cookie('result', result, { expires: new Date(Date.now() + 5000)})
-		//res.status(200).sendFile(__basedir + '/public/properties.html')
 		res.status(200)
-		if(type_of_script(result) == true){
-			res.render('properties', {quick_replies: result.scripts.question.quick_replies})
-		}
+		res.sendFile(__basedir + '/public/add_script_2.html')
+		// if(result.type == 'question'){
+		// 	res.render('properties', {
+		// 		id : result.id,
+		// 		triggers: result.triggers,
+		// 		question: result.script.question
+		// 	})
+		// }
 	}else{
 		res.status(500)
 	}
-}
-
-function type_of_script(input){
-	if(typeof(input) == 'array'){
-		input.forEach(ele, type_of_script(ele))
-	}else if(typeof(input) == 'object'){
-		if('question' in input) return true
-	}
-
-	return false
 }

@@ -27,7 +27,7 @@
 			<div class="btn-group" role="group" aria-label="Button">
 				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
 				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add'">Thêm script</button>
-				<button type="button" class="btn btn-secondary btn-warning">Hướng dẫn</button>
+				<button type="button" class="btn btn-secondary btn-warning" onclick="window.location.href='/broadcast'">Tin nhắn hàng loạt</button>
 			</div>
 		</div>
 		<div class="row">
@@ -35,10 +35,10 @@
 				<table class="table table-striped table-bordered table-sm" id='table_body' cellspacing="0" width="100%">
 					<thead>
 						<tr>
-							<th>Command</th>
+							<th>Script ID</th>
 							<th>Description</th>
-							<th>ID</th>
-							<th>Name</th>
+							<th>Intent</th>
+							<th>Script type</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -74,10 +74,10 @@
 				var cell2 = row.insertCell(2)
 				var cell3 = row.insertCell(3)
 				
-				cell0.innerHTML = (i.command == undefined)?"N/A":i.command
+				cell0.innerHTML = (i.id == undefined)?"N/A":i.id
 				cell1.innerHTML = (i.description == undefined)?"N/A":i.description
-				cell2.innerHTML = (i.id == undefined)?"N/A":i.id
-				cell3.innerHTML = (i.name == undefined)?"N/A":i.name
+				cell2.innerHTML = (i.type == undefined)?"N/A":i.type
+				cell3.innerHTML = (i.script.type == undefined)?"N/A":i.script.type
 
 				row.addEventListener('click', getProperties)
 
@@ -87,7 +87,7 @@
 		}
 
 		function getProperties(e){
-			var id = this.querySelectorAll("*")[2].innerHTML.trim()
+			var id = this.querySelectorAll("*")[0].innerHTML.trim()
 			window.open('http://localhost:5000/script/properties/' + encodeURIComponent(id), '_blank')
 		}
 	</script>

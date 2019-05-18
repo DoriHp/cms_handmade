@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(timeout(10000))
 
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
 function haltOnTimedout(req, res, next){

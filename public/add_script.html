@@ -27,7 +27,7 @@
 			<div class="btn-group" role="group" aria-label="Button">
 				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
 				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add'">Thêm script</button>
-				<button type="button" class="btn btn-secondary btn-warning">Hướng dẫn</button>
+				<button type="button" class="btn btn-secondary btn-warning" onclick="window.location.href='/broadcast'">Tin nhắn hàng loạt</button>
 			</div>
 		</div>
 		<div class="row" id="div_form">
@@ -36,29 +36,6 @@
 					<label for="inputID" class="col-sm-2 form-control-label"> ID </label>
 					<div class="col-sm-10">
 						<input type="text" name="id" class="form-control" id="inputID" placeholder="ID" required>
-					</div>
-				</div>
-				<div class="form-group row" id="div_select_intent_of_script">
-					<label for="select_intent" class="col-2">Mục đích</label>
-					<div class="col-4">
-						<select name="intent" class="form-control" id="select_intent">
-					        <option value="question">Đặt câu hỏi, khảo sát</option>
-					        <option value="response">Phản hồi tin nhắn người dùng</option>
-			    		</select>
-					</div>
-					<label for="select_num_of_script" class="col-2">Số lượng script</label>
-					<div class="col-4">
-						<select name="num_of_script" class="form-control" id="select_num_of_script">
-					        <option value="1">1</option>
-					        <option value="2">2</option>
-					        <option value="3">3</option>
-			    		</select>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="inputDescription" class="col-sm-2 form-control-label"> Mô tả </label>
-					<div class="col-sm-10">
-						<input type="text" name="description" class="form-control" id="inputDescription" placeholder="Description">
 					</div>
 				</div>
 				<!-- Trigger -->
@@ -90,25 +67,21 @@
 				    	<input type="text" name="variables" class="form-control" id="inputVariables" placeholder='Variables (eg: "var1, var2")'>
 				  	</div>
 				</div>
-				<!-- Response mapping -->
-				<div class="form-group row" id="response_mapping_area">
-					<label for="inputQuestion" class="col-2"><i class="fas fa-reply-all"></i></i> Response mapping</label>
-					<label for="inputQuickReplies" class="col-5"><i class="fas fa-comment-dots"></i> Câu trả lời của người dùng </label>
-					<label for="inputPayload" class="col-3"><i class="fas fa-arrow-alt-circle-right"></i> ID script tiếp theo </label>
-					<div class="form-group col-12" style="padding-left: 0; padding-right: 0">
-					  	<div class="form-group col-10 float-right" id="response_area">
-					  		<div class="form-group col-12 row" id="res_mapping1" style="padding-right: 0">
-					  			<div class="form-group col-6">
-						  			<input type="text" name="res_mapping0" class="form-control res_mapping" id="inputResMapping" placeholder="Response from customer">
-						  		</div>
-						  		<div class="form-group col-6" style="padding-right: 0">
-						    		<input type="text" name="res_payload0" class="form-control res_payload" id="inputResPayload" placeholder="Payload for response">
-						  		</div>
-					  		</div>
-					  		<div class="form-group row" id="adding_res_mapping">
-					  			<button type="button" class="btn btn-outline-secondary col-12 form-control" onclick="add_res_mapping()">Thêm response mapping</button>
-					  		</div>
-					  	</div>
+				<div class="form-group row" id="div_select_intent_of_script">
+					<label for="select_intent" class="col-2">Mục đích</label>
+					<div class="col-4">
+						<select name="intent" class="form-control" id="select_intent">
+					        <option value="question">Đặt câu hỏi, khảo sát</option>
+					        <option value="response">Phản hồi tin nhắn người dùng</option>
+			    		</select>
+					</div>
+					<label for="select_num_of_script" class="col-2">Số lượng script</label>
+					<div class="col-4">
+						<select name="num_of_script" class="form-control" id="select_num_of_script">
+					        <option value="1">1</option>
+					        <option value="2">2</option>
+					        <option value="3">3</option>
+			    		</select>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -182,11 +155,11 @@
 				<!-- thông tin facebook template -->
 				<div class="form-group row comp" data-key="3">
 					
-					<div class="form-group row col-12">
+					<div class="form-group row col-12" style="padding-right: 0">
 						<label for="fb_template_type" class="col-2">Định dạng mẫu</label>
 						<div class="col-10">
 							<select name="fb_template_type" class="form-control" id="fb_template_type">
-								<option hidden disabled selected value> -- select an option -- </option>
+								<option disabled selected value> -- select an option -- </option>
 						        <option value="generic">Mẫu chung (generic)</option>
 						        <option value="button">Mẫu nút (button)</option>
 						        <option value="media">Mẫu phương tiện (media)</option>
@@ -194,53 +167,55 @@
 						</div>
 					</div>
 				<!-- Generic type -->
-					<div class="form-group row fb_tpl_type col-12" data-type="generic">
-						<div class="form-group row col-12">
+					<div class="form-group row fb_tpl_type col-12" data-type="generic" style="padding-right: 0">
+						<div class="form-group row col-12" style="padding-right: 0">
 							<label for="inputTitle_generic" class="col-2 form-control-label"> Tiêu đề </label>
-							<div class="col-10">
-								<input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title" required>
+							<div class="col-10" style="padding-right: 0">
+								<input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title" style="padding-right: 0">
 							</div>
 						</div>
-						<div class="form-group row col-12">
+						<div class="form-group row col-12" style="padding-right: 0">
 							<label for="inputSubtitle_generic" class="col-sm-2 form-control-label"> Phụ đề </label>
-							<div class="col-10">
+							<div class="col-10" style="padding-right: 0">
 								<input type="text" name="subtitle_generic" class="form-control" id="inputSubtitle_generic" placeholder="Subtitle">
 							</div>
 						</div>
-						<div class="form-group row col-12">
+						<div class="form-group row col-12" style="padding-right: 0">
 							<label for="inputImageURL_generic" class="col-2 form-control-label"> Đường dẫn tới hình ảnh </label>
-							<div class="col-10">
+							<div class="col-10" style="padding-right: 0">
 								<input type="text" name="image_url_generic" class="form-control" id="inputImageURL_generic" placeholder="Image URL">
 							</div>
 						</div>
-						<div class="form-group row col-12">
+						<div class="form-group row col-12" style="padding-right: 0">
 							<label class="col-2 form-control-label"> Hành động mặc định </label>
 							<label for="inputDefault_URL_generic" class="col-2 form-control-label"> Đường dẫn mặc định </label>
 							<input type="text" name="default_URL_generic" class="col-8 form-control" placeholder="Default URL to open">
 						</div>
-						<div class="form-group row col-12">
+						<div class="form-group row col-12" style="padding-right: 0">
 							<label for="num_of_button" class="col-2 form-control-label"> Số lượng các nút </label>
-							<select name="num_of_button" class="form-control col-1 num_of_button">
+							<div class="form-group col-1" style="padding-right: 0">
+								<select name="num_of_button" class="form-control num_of_button">
 						        <option value="1" selected>1</option>
 						        <option value="2">2</option>
 						        <option value="3">3</option>
 				    		</select>
+							</div>
 							<label class="col-3 form-control-label" style="text-align: center;"> Loại nút </label>
 				    		<label class="col-3 form-control-label" style="text-align: center;"> URL | Payload</label>
-				    		<label class="col-3 form-control-label" style="text-align: center;"> Tiêu đề nút</label>
+				    		<label class="col-3 form-control-label"> Tiêu đề nút</label>
 						</div>
-						<div class="form-group row generic_tpl_button col-12" id="generic_button_1">
+						<div class="form-group row generic_tpl_button col-12" id="generic_button_1" style="padding-right: 0">
 							<div class="form-group col-2"></div>
 							<label class="col-2 form-control-label"> Button 1 </label>
-				    		<div class="form-group row col-8">
-				    			<select name="style_of_button_1_generic" class="form-control col-4">
+				    		<div class="form-group row col-8" style="padding-right: 0">
+				    			<select name="style_of_button_1_generic" class="form-control col-4" style="padding-right: 0">
 							        <option value="web_url" selected>Nút URL</option>
 							        <option value="payload">Nút đăng lại</option>
 					    		</select>
-				   				<div class="col-4">
+				   				<div class="form-group col-4" style="padding-right: 0">
 									<input type="text" name="URL_button_1_generic" class="form-control" placeholder=" URL | payload ">
 								</div>
-								<div class="col-4">
+								<div class="form-group col-4" style="padding-right: 0">
 									<input type="text" name="title_button_1_generic" class="form-control" placeholder="Title to display">
 								</div>
 				    		</div>
@@ -311,6 +286,27 @@
 					    	<input type="text" name="ID_next_script" class="form-control" id="inputID_next_script" placeholder="Next script's ID">
 					  	</div>
 					</div>			
+				</div>
+				<!-- Response mapping -->
+				<div class="form-group row" id="response_mapping_area">
+					<label for="inputQuestion" class="col-2"><i class="fas fa-reply-all"></i></i> Response mapping</label>
+					<label for="inputQuickReplies" class="col-5"><i class="fas fa-comment-dots"></i> Câu trả lời của người dùng </label>
+					<label for="inputPayload" class="col-3"><i class="fas fa-arrow-alt-circle-right"></i> ID script tiếp theo </label>
+					<div class="form-group col-12" style="padding-left: 0; padding-right: 0">
+					  	<div class="form-group col-10 float-right" id="response_area">
+					  		<div class="form-group col-12 row" id="res_mapping1" style="padding-right: 0">
+					  			<div class="form-group col-6">
+						  			<input type="text" name="res_mapping0" class="form-control res_mapping" id="inputResMapping" placeholder="Response from customer">
+						  		</div>
+						  		<div class="form-group col-6" style="padding-right: 0">
+						    		<input type="text" name="res_payload0" class="form-control res_payload" id="inputResPayload" placeholder="Payload for response">
+						  		</div>
+					  		</div>
+					  		<div class="form-group row" id="adding_res_mapping">
+					  			<button type="button" class="btn btn-outline-secondary col-12 form-control" onclick="add_res_mapping()">Thêm response mapping</button>
+					  		</div>
+					  	</div>
+					</div>
 				</div>
 				<div class="form-group row">
 					<div class="col-12">

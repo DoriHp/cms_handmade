@@ -1,5 +1,4 @@
 var mongoose = require('mongoose')
-var ObjectId =  mongoose.Schema.Types.ObjectId
 
 var triggerSchema = new mongoose.Schema({
     _id : false,
@@ -14,7 +13,7 @@ var responseSchema = new mongoose.Schema({
 })
 
 var scriptSchema = new mongoose.Schema({ 
-    _id : ObjectId, 
+    _id : mongoose.Schema.Types.ObjectId, 
     command : String, 
     description : String, 
     type: String,
@@ -22,9 +21,11 @@ var scriptSchema = new mongoose.Schema({
     name : String, 
     triggers : [triggerSchema], 
     variables : [String], 
-    script: {type: mongoose.Schema.Types.Mixed},
+    script: mongoose.Schema.Types.Mixed,
     next_script: String,
-    response_mapping: [responseSchema]
+    response_mapping: [responseSchema],
+    intent: String,
+    entities: [String]
 })
 
 

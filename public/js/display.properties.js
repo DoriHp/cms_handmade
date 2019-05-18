@@ -17,7 +17,7 @@ function getCookie(name) {
     }
     
     // Return null if not found
-    return null;
+    return null
 }
 
 function display(num){
@@ -35,10 +35,17 @@ function execInfo(cookie){
 	// document.getElementsByTagName('input').forEach(input =>{
 	// 	input.readOnly = "true"
 	// })
-	document.getElementById('inputCommand').value = (info.command)?info.command:'N/A'
+	document.getElementById('inputID').value = (info.ID)?info.ID:'N/A'
 	document.getElementById('inputDescription').value = (info.description)?info.description:'N/A'
-	document.getElementById('inputID').value = info.id
+	document.getElementById('select_intent').value = info.style
+	//
 
+	if(typeof(info.script) == 'array'){
+		document.getElementById('select_num_of_script').value = info.script.length
+		document.getElementById('select_num_of_script').style.display = 'none'
+	}else{
+		document.getElementById('select_num_of_script').value = 1
+	}
 	//hiển thị danh sách triggers
 	var triggers_length = info.triggers.length
 	if(triggers_length != 1){
@@ -53,7 +60,6 @@ function execInfo(cookie){
 		}
 	}
 
-	document.getElementById('inputName').value = (info.name)?info.name:'N/A'
 	let variables = (info.variables.length != 0)?info.variables.join(', ').replace(/[{}]/g, ''):'N/A'
 	document.getElementById('inputVariables').value = variables
 
@@ -68,25 +74,86 @@ function execInfo(cookie){
 
 	})
 
+
 	//lựa chọn hiển thị định dạng script
 	var select_type_script = document.getElementsByClassName('key')
-	if(type_of_script(info.scripts) == true){
-		select_type_script[1].checked = true
-		display(2)
-	}else{
-		select_type_script[0].checked = true
-		display(1)
+	switch (info.script.type) {
+		case 'text':
+			select_type_script[0].checked = true
+			display(1)
+			// statements_1
+			break;
+		case 'question':
+			select_type_script[1].checked = true
+			display(2)
+			// statements_1
+			break;
+		case 'template':
+			select_type_script[2].checked = true
+			display(3)
+			// statements_1
+			break;
+		case 'image':
+			select_type_script[3].checked = true
+			display(4)
+			// statements_1
+			break;
+		default:
+			// statements_def
+			break;
 	}
 }
 
-function type_of_script(input){
-	if(typeof(input) == 'array'){
-		input.forEach(ele, type_of_script(ele))
-	}else if(typeof(input) == 'object'){
-		if('question' in input) return true
-	}
-
-	return false
+//starting from info.script
+function exec_text(data){
+	document.getElementById('inputReply').value = data.question 
 }
+//starting from info.script.attachment.payload
+function exec_fb_template(data){
+	var fb_template_type = document.getElementById("fb_template_type").value
+	switch () {
+		case 'generic':
+			// statements_1
+			fb_template_type.value = 'generic'
+			let contents document.querySelectorAll('#div[data-key]=3 div div div input')
+			let element = data.elements[0]
+			contents[0].value = (element.title !== "")?element.title:'N/A'
+			contents[1].value = (element.subtitle !== "")?element.subtitle:'N/A'
+			contents[2].value = (element.image_url !== "")?element.subtitle:'N/A'
+			contents[3].value = (element.default_action.url !== "")?element.default_action.url
+			
+			break;
+		default:
+			// statements_def
+			break;
+	}
+}
+
+function add_tpl_button(){
+	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+	var arr_length = Array.from(buttons).length
+	console.log(arr_length)
+	if(buttons.length < num){
+			for(let i = buttons.length; i != num; i++){
+				var newNode = buttons[0].cloneNode(true)
+				newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
+				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
+				let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
+				label.innerHTML = `Button ${i + 1}`
+				let child_URL = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+				child_URL.name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
+				let child_title = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+				child_title.name = `title_button_${i + 1}_${fb_tpl_type_selected}`
+			}
+	}else if(buttons.length > num){
+		var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
+		while(document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`).length != num){
+			let re_define = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+			parent.removeChild(re_define[re_define.length - 1])
+		}
+	}
+}
+
+
 
 execInfo(cookie)

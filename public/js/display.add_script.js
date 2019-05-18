@@ -1,7 +1,9 @@
 const comps = Array.from(document.querySelectorAll('.comp'))
 comps.forEach(comp => comp.style.display = 'none')
+comps[2].style.display = 'block'
 const fb_tpl_type = Array.from(document.querySelectorAll('.fb_tpl_type'))
 fb_tpl_type.forEach(comp => comp.style.display = 'none')
+fb_tpl_type[1].style.display = 'block'
 var fb_tpl_type_selected = 'generic'
 const num_of_script = document.querySelector('#select_num_of_script')
 num_of_script.disabled = true
@@ -63,19 +65,6 @@ function add_tpl_button(e){
 	}
 }
 
-//thay đổi loại nút
-
-// function add_event_type_of_button(){
-// 	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button div select`)
-// 	buttons.forEach(button => button.addEventListener('change', edit_type_of_button)
-// }
-
-// function edit_type_of_button(e){
-// 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
-// 	var num = elem.value || elem.options[elem.selectedIndex].value
-// }
-
-// thêm trigger cho script
 function add_trigger(){
 	console.log('Test button')
 	var trigger_area = document.getElementById('trigger_area')

@@ -1,7 +1,7 @@
 function exec_text(data, output){
 
 	output.type = 'text'
-	output.content = data.text_content
+	output.question = data.text_content
 	return output
 }
 
@@ -50,7 +50,7 @@ function exec_fb_template(data, output){
 			element.image_url = data.image_url_generic
 			element.default_action = {}
 			element.default_action.type = 'web_url'
-			element.default_action.default_action.url = data.default_URL_generic
+			element.default_action.url = data.default_URL_generic
 			element.default_action.messenger_extensions = 'false'
 			element.default_action.webview_height_ratio = 'FULL'
 			element.buttons = []
@@ -83,8 +83,8 @@ function exec_fb_template(data, output){
 			
 			break;
 
-		return output
 	}
+		return output
 }
 
 function submitData(){
@@ -98,8 +98,9 @@ function submitData(){
 	  	data[pair[0]] = pair[1]
 	}
 
+	console.log(data)
+
 	submit_data.id = data.id
-	submit_data.description = data.description
 		//tao array cua trigger
 	var array_triggers = [];
 	for(i = 0; typeof data[`type${i}`] !== 'undefined'; i++){
@@ -143,6 +144,7 @@ function submitData(){
 	    submit_data.response_mapping.push(res_mapping)
 	}
 
+	console.log(submit_data)
 	// submit dữ liệu
 	axios.post('/script/add',{
 		headers: {
