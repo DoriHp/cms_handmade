@@ -44,9 +44,9 @@ function showTab(n, pre=false) {
   const script_num_label = document.getElementById('script_num_label')
   script_num_label.innerHTML = `Script ${n + 1}`
   // ... and run a function that displays the correct step indicator:
-  // if(pre == true){
-  //   display_pre_tab(currentTab)
-  // }
+  if(pre == true){
+    display_pre_tab(currentTab)
+  }
   fixStepIndicator(n)
 }
 //fix submit event
@@ -55,7 +55,10 @@ function nextPrev(n) {
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
   saving_script(currentTab)
-  if (n == 1 && !validateForm()) return false;
+  if (n == 1 && !validateForm()) {
+    alert("Bạn phải nhập đầy đủ dữ liệu để tiếp tục!")
+    return false;
+  }
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
@@ -65,12 +68,8 @@ function nextPrev(n) {
     //...the form gets submitted:
     submit()
   }
-  if(n == -1){
-    showTab(currentTab, pre=true)
-  }else{
-    showTab(currentTab)
-  }
   initiation()
+  showTab(currentTab, pre=true)
 }
 
 function validateForm() {
@@ -121,7 +120,7 @@ function exec_image(data, output){
 function exec_fb_template(data, output){
   output.type = 'template'
   output.attachment = {}
-  output.attachment.type = 'template'
+  output.attachment.type = data.script
   output.attachment.payload = {}
   output.attachment.payload.template_type = data.fb_template_type
 
@@ -184,7 +183,7 @@ function saving_script(n){
     case 'text':
       save = exec_text(data, save)
       break;
-    case 'fb_template':
+    case 'template':
       save = exec_fb_template(data, save)
       break;
     case 'image':
@@ -212,8 +211,8 @@ function submit(){
   submit_data.id = data.id
     //tao array cua trigger
   var array_triggers = [];
-  for(i = 0; typeof data[`type${i}`] !== 'undefined'; i++){
-      array_triggers.push({type: data[`type${i}`], pattern: data[`trigger${i}`] })
+  for(i = 0; typeof data[`trigger${i}`] !== 'undefined'; i++){
+      array_triggers.push(data[`trigger${i}`])
   }
   submit_data.triggers = array_triggers
   var vars = data.variables.split('')
@@ -243,51 +242,70 @@ function submit(){
   location.reload()
 }
 
-// function display_pre_tab(n){
-//   var data = window.localStorage.getItem(`script${n}`)
-//   data = JSON.parse(data)
-//   switch (data.script) {
-//     case "text":
-//       display_text(data)
-//       // statements_1
-//       break;
-//     case "template":
-//       display_fb_template(data.attachment.payload)
-//       break;
-//     case "image":
-//       // statements_1
-//       display_image(data)
-//       break;
-//     default:
-//       // statements_def
-//       break;
-//   }
-//   var selected = document.querySelector(`div[data-key="${data_key}"]`)
-//   selected.style.display = 'block'
-// }
+function display_pre_tab(n){
+  var data = window.localStorage.getItem(`script${currentTab}`)
+  data = JSON.parse(data)
+  if(data != undefined){
+    var keys = document.getElementsByClassName("key")
+    console.log(data.type)
+    if(data.type){
+      var data_key = 0
+      switch (data.type) {
+        case "text":
+          display_text(data)
+          data_key = 1
+          // statements_1
+          break;
+        case "template":
+          display_fb_template(data.attachment.payload)
+          data_key = 2
+          break;
+        case "image":
+          // statements_1
+          display_image(data)
+          data_key = 3
+          break;
+        default:
+          // statements_def
+          break;
+      }
+      for(let i = 0; i < keys.length; i++){
+        if(keys[i].value == data.type)
+          keys[i].checked = true
+        else{
+          keys[i].checked = false
+        }
+      }
+      var selected = document.querySelector(`div[data-key="${data_key}"]`)
+      selected.style.display = 'block'
+    }
+  }
+}
 
-// function display_text(data){
-//   document.getElementById('inputReply').value = data.response
-// }
+function display_text(data){
+  document.getElementById('inputReply').value = data.response
+}
 
 //starting from script.attachment.payload
-// function display_fb_template(data){
-//   document.getElementById('fb_template_type').value = data.template_type
-//   var selected = document.querySelector(`div[data-type="${data_type}"]`)
-//   selected.style.display = 'block'
-//   // switch (data.template_type) {
-//   //   case "generic":
-//   //     document.getElementById()
-//   //     break;
-//   //   default:
-//   //     // statements_def
-//   //     break;
-//   // }
-// }
+function display_fb_template(data){
+  document.getElementById('fb_template_type').value = data.template_type
+  switch (data.template_type) {
+    case "generic":
+      break;
+    case "button":
+      break
+    case "media":
+    default:
+      // statements_def
+    break;
+  }
+  var selected = document.querySelector(`div[data-type="${data.template_type}"]`)
+  selected.style.display = 'block'
+}
 
-// function display_image(data){
-//   document.getElementById('inputImageURL').value = data.image_url
-// }
+function display_image(data){
+  document.getElementById('inputImageURL').value = data.image_url
+}
 
 const num_script_selecter = document.getElementById("select_num_of_script")
 num_script_selecter.addEventListener('change', add_more_script)

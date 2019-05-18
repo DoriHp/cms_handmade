@@ -7,7 +7,14 @@ module.exports.index = async (req, res) => {
 }
 
 module.exports.addScript = (req, res) => {
-	res.sendFile(__basedir + '/public/add_script.html')
+	var intent = req.params.intent
+	if(intent == "question"){
+		res.status(200)
+		res.sendFile(__basedir + '/public/add_script.html')
+	}else{
+		res.status(200)
+		res.sendFile(__basedir + '/public/add_script_2.html')
+	}
 }
 
 module.exports.saveNewScript = (req, res) => {

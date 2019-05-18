@@ -135,11 +135,9 @@ function change_num_of_script(e){
 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
 	var type = elem.value || elem.options[elem.selectedIndex].value
 	var div_of_intent = document.querySelector('#div_select_intent_of_script div')
-	if(type == 'question'){
-		num_of_script.disabled = true
-		response_mapping_area.forEach(ele => ele.disabled = false)
-	}else{
-		num_of_script.disabled = false
-		response_mapping_area.forEach(ele => ele.disabled = true)
+	if(type !== 'question'){
+		window.open('/script/add/response', '_self')
 	}
 }
+
+

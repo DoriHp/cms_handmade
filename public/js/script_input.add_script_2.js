@@ -6,6 +6,7 @@ function initiation(){
 	var fb_tpl_type_selected = 'generic'
 	const num_of_script = document.querySelector('#select_num_of_script')
 	const intent = document.querySelector('#select_intent')
+	intent.addEventListener('change', change_num_of_script)
 	function display(e){
 		comps.forEach(comp => comp.style.display = 'none')
 		fb_tpl_type.forEach(comp => comp.style.display = 'none')
@@ -82,6 +83,15 @@ function initiation(){
 		let input = document.querySelector(`#original${count+1} input`)
 		input.name = `trigger${count - 1}`
 	}
+	function change_num_of_script(e){
+		var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
+		var type = elem.value || elem.options[elem.selectedIndex].value
+		var div_of_intent = document.querySelector('#div_select_intent_of_script div')
+		if(type == 'question'){
+			window.open('/script/add/question', '_self')
+		}
+	}
+
 }
 
 initiation()

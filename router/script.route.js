@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser')
 
 router.get('/', controller.index)
 
-router.get('/add', controller.addScript)
+router.get('/add/:intent', controller.addScript)
 
 router.post('/add', controller.saveNewScript)
 
