@@ -5,24 +5,6 @@ function exec_text(data, output){
 	return output
 }
 
-function exec_question(data, output){	
-
-	if(data.question_type == 'quick_reply'){
-		output.type = 'quick_reply'
-		output.question = {}
-		output.question.text = data.question
-		output.question.quick_replies = []
-		for(i = 0; typeof data[`quick_reply${i}`] !== 'undefined'; i++ ){
-			output.question.quick_replies.push({content_type: 'text', title : data[`quick_reply${i}`], payload: data[`payload${i}`]})
-		}
-	}else{
-		output.type = 'text'
-		output.question = data.question
-	}
-
-	return output
-}
-
 function exec_image(data, output){
 	output.type = 'image'
 	output.attachment = {}
@@ -110,7 +92,7 @@ function submitData(){
 	var vars = data.variables.split('')
 	vars.forEach(variable => '{{' + variable + '}}')
 	submit_data.variables = vars
-	submit_data.type = data.intent
+	submit_data.type = data.type
 	submit_data.script = {}
 	switch (data.script) {
 		case 'text':

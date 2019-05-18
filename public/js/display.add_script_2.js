@@ -63,8 +63,7 @@ function nextPrev(n) {
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
     //...the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
+    submit()
   }
   if(n == -1){
     showTab(currentTab, pre=true)
@@ -199,6 +198,49 @@ function saving_script(n){
   if(checked != undefined || checked != save){
     window.localStorage.setItem(`script${n}`, save)
   }
+}
+
+function submit(){
+  alert('sending')
+  var submit_data = {}
+  var formData = new FormData(document.querySelector('form'))
+
+  var data = {}
+  for (var pair of formData.entries()) {
+      data[pair[0]] = pair[1]
+  }
+  submit_data.id = data.id
+    //tao array cua trigger
+  var array_triggers = [];
+  for(i = 0; typeof data[`type${i}`] !== 'undefined'; i++){
+      array_triggers.push({type: data[`type${i}`], pattern: data[`trigger${i}`] })
+  }
+  submit_data.triggers = array_triggers
+  var vars = data.variables.split('')
+  vars.forEach(variable => '{{' + variable + '}}')
+  submit_data.variables = vars
+  submit_data.type = data.type
+  submit_data.script = []
+  for(let i = 0; window.localStorage.getItem(`script${i}`)!= undefined; i++){
+    submit_data.script.push(JSON.parse(window.localStorage.getItem(`script${i}`)))
+  }
+
+  axios.post('/script/add',{
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: JSON.stringify(submit_data)
+  }).then(function(response){
+    if(response.status == 200){
+      alert("Lưu script thành công!")
+    }else{
+      alert("Lưu script thất bại!")
+    }
+  }).catch(function(error){
+    console.log(error)
+  })
+
+  location.reload()
 }
 
 // function display_pre_tab(n){
