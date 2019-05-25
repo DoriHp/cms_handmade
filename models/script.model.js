@@ -25,7 +25,8 @@ var scriptSchema = new mongoose.Schema({
     next_script: String,
     response_mapping: [responseSchema],
     intent: String,
-    entities: [String]
+    entities: [String],
+    versionKey: false
 })
 
 

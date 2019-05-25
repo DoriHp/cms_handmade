@@ -38,14 +38,14 @@
 						<input type="text" name="id" class="form-control" id="inputID" placeholder="ID">
 					</div>
 				</div>
-				<div class="form-group row">
+			  	<div class="form-group row">
 			  		<label for="inputTriggers" class="col-2 form-control-label">Triggers</label>
 					<div class="form-group col-10">
 				    	<input type="text" name="triggers" class="form-control" id="inputTriggers" placeholder='Triggers'>
 				  	</div>
 			  	</div>
 				<div class="form-group row">
-					<label for="inputVariables" class="col-2 form-control-label">Biến dữ liệu</label>
+					<label for="inputVariables" class="col-2">Biến dữ liệu</label>
 					<div class="form-group col-10">
 				    	<input type="text" name="variables" class="form-control" id="inputVariables" placeholder='Variables (eg: "var1, var2")'>
 				  	</div>
@@ -54,7 +54,7 @@
 					<label for="select_intent" class="col-2">Mục đích</label>
 					<div class="col-4">
 						<select name="intent" class="form-control" id="select_intent">
-					        <option value="question">Đặt câu hỏi, khảo sát</option>
+					        <option value="question" disabled hidden>Đặt câu hỏi, khảo sát</option>
 					        <option value="response" selected>Phản hồi tin nhắn người dùng</option>
 			    		</select>
 					</div>
@@ -188,25 +188,31 @@
 									<input type="text" name="title_button" class="form-control" id="inputText_button" placeholder="Title" required>
 								</div>
 							</div>
-							<div class="form-group row col-12">
-								<label for="num_of_button" class="col-2 form-control-label"> Số lượng các nút </label>
-								<div class="col-1">
+	 						<div class="form-group row col-12" style="padding-right: 0">
+									<label for="num_of_button" class="col-2 form-control-label"> Số lượng các nút </label>
+								<div class="form-group col-1" style="padding-right: 0">
 									<select name="num_of_button" class="form-control num_of_button">
 								        <option value="1" selected>1</option>
 								        <option value="2">2</option>
 								        <option value="3">3</option>
 						    		</select>
 								</div>
-					    		<label class="col-4 offset-1 form-control-label"> URL </label>
-					    		<label class="col-4 form-control-label"> Tiêu đề nút</label>
+								<label class="col-3 form-control-label" style="text-align: center;"> Loại nút </label>
+					    		<label class="col-3 form-control-label" style="text-align: center;"> URL | Payload</label>
+					    		<label class="col-3 form-control-label"> Tiêu đề nút</label>
 							</div>
-							<div class="form-group row button_tpl_button col-12" id="button_button_1">
-								<label class="col-2 offset-2 form-control-label"> Button 1 </label>
+							<div class="form-group row button_tpl_button col-12" id="button_button_1" style="padding-right: 0">
+								<div class="form-group col-2"></div>
+								<label class="col-2 form-control-label"> Button 1 </label>
 					    		<div class="form-group row col-8" style="padding-right: 0">
-					   				<div class="col-6" style="padding-left: 0">
-										<input type="text" name="URL_button_1_button" class="form-control" placeholder="URL to open">
+					    			<select name="style_of_button_1_button" class="form-control col-4" style="padding-right: 0">
+								        <option value="web_url" selected>Nút URL</option>
+								        <option value="payload">Nút đăng lại</option>
+						    		</select>
+					   				<div class="form-group col-4" style="padding-right: 0">
+										<input type="text" name="URL_button_1_button" class="form-control" placeholder=" URL | payload ">
 									</div>
-									<div class="col-6" style="padding-right: 0">
+									<div class="form-group col-4" style="padding-right: 0">
 										<input type="text" name="title_button_1_button" class="form-control" placeholder="Title to display">
 									</div>
 					    		</div>
@@ -243,8 +249,9 @@
 				<div class="form-group col-2 offset-5" style="text-align:center;margin-top:40px;" id='step_count'>
 				  <span class="step"></span>
 				</div>
-				<div class="form-group col-3 offset-9" style="overflow:auto;">
+				<div class="form-group col-4 offset-8" style="overflow:auto;">
 				  <div style="float:right;">
+				  	<button class="btn btn-danger" type="button" onclick="del_script()">Xóa script</button>
 				    <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Quay lại</button>
 				    <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Kế tiếp</button>
 				  </div>
@@ -257,7 +264,7 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script type="text/javascript" src="/js/submit.add_script_2.js"></script>
-	<script type="text/javascript" src="/js/display.add_script_2.js"></script>
+	<script type="text/javascript" src="/js/submit.properties_2.js"></script>
+	<script type="text/javascript" src="/js/display.properties_2.js"></script>
 </body>
 </html

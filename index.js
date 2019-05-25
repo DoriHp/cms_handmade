@@ -7,11 +7,13 @@ var md5 = require('md5')
 var mongoose = require('mongoose')
 var cookieParser = require('cookie-parser')
 var path = require('path')
+
 require('dotenv').config()
 
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
 
 var scriptRoute = require('./router/script.route.js')
+var authRoute = require('./router/scritp.route.js')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -39,4 +41,5 @@ app.listen(port, () => {
 })
 
 app.use('/script', scriptRoute)
+app.use('/auth', authRoute)
 app.use(haltOnTimedout)

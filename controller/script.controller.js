@@ -32,18 +32,28 @@ module.exports.saveNewScript = (req, res) => {
 module.exports.getProperties = async function(req, res){
 
 	var id = decodeURIComponent(req.params.id)
+	console.log(id)
 	var result = await Script.findOne({id : id}).lean()
+	var response = JSON.stringify(result)
 	if(result){
-		res.status(200)
-		res.sendFile(__basedir + '/public/add_script_2.html')
-		// if(result.type == 'question'){
-		// 	res.render('properties', {
-		// 		id : result.id,
-		// 		triggers: result.triggers,
-		// 		question: result.script.question
-		// 	})
-		// }
+		res.cookie("info" ,response)
+		if(result.type == 'question'){
+			res.status(200).sendFile(__basedir + '/public/properties.html')
+		}else{
+			res.status(200).sendFile(__basedir + '/public/properties_2.html')
+		}
 	}else{
 		res.status(500)
 	}
+}
+
+module.exports.delScript = function(req, res){
+	
+	Script.findOneAndRemove({'_id' : req.params._id}, { useFindAndModify: false }, function(err, result){
+		if(err){
+			res.status(500).end()
+		}else{
+			res.status(200).end()
+		}
+	})
 }

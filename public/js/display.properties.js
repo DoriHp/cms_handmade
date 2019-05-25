@@ -1,5 +1,3 @@
-const comps = Array.from(document.querySelectorAll('.comp'))
-comps.forEach(comp => comp.style.display = 'none')
 function getCookie(name) {
     // Split cookie string and get all individual name=value pairs in an array
     var cookieArr = document.cookie.split(";");
@@ -20,140 +18,399 @@ function getCookie(name) {
     return null
 }
 
-function display(num){
-	//dựa vào data-key để hiển thị div chứa định dạng tương ứng
-	comps.forEach(comp => comp.style.display = 'none')
-    const selected = document.querySelector(`div[data-key="${num}"]`)
-    selected.style.display = 'block'
+const cookie = getCookie('info')
+
+const info = JSON.parse(cookie)
+// var info = {
+//   "id": "q 1.1",
+//     "type": "question",
+//     "triggers":
+//     [
+//       "trigger1",
+//       "trigger2",
+//       "trigger3"
+//     ],
+//     "variables":
+//     [
+//       "{{var1}}",
+//       "{{var2}}"  
+//     ],
+//     "script": 
+//     {
+//         "type": "quick_reply",
+//         "question":
+//         {
+//             "text": "{{title}} có cần tư vấn trực tiếp không?",
+//             "quick_replies":
+//             [
+//               {
+//                 "content_type": "text",
+//                 "title": "Có",
+//                 "payload": "q 1.1.1"
+//               },
+//               {
+//                 "content_type": "text",
+//                   "title": "Không",
+//                   "payload": "q 1.1.2"
+//               }
+//             ]
+//         }
+//     },      
+//     "response_mapping":[
+//         {
+//           "responses": 
+//           [
+//             "Ok",
+//             "Đồng ý"
+//           ],
+//           "next_script": "q 1.1.1"
+//         },
+//         {
+//           "responses": 
+//           [
+//               "No",
+//               "Đừng"
+//           ],
+//           "next_script": "q 1.1.2"
+//         }
+//     ]
+// }
+const comps = Array.from(document.querySelectorAll('.comp'))
+comps.forEach(comp => comp.style.display = 'none')
+const fb_tpl_type = Array.from(document.querySelectorAll('.fb_tpl_type'))
+fb_tpl_type.forEach(comp => comp.style.display = 'none')
+var fb_tpl_type_selected = 'generic'
+
+function display(e){
+  comps.forEach(comp => comp.style.display = 'none')
+  fb_tpl_type.forEach(comp => comp.style.display = 'none')
+  var data_key = e.target.getAttribute('data-key')
+  var selected = document.querySelector(`div[data-key="${data_key}"]`)
+  selected.style.display = 'block'
 }
 
-const cookie = getCookie('result')
+function display_fb_tpl(e){
+	fb_tpl_type.forEach(comp => comp.style.display = 'none')
+	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this);
+	var data_type = elem.value || elem.options[elem.selectedIndex].value;
+	fb_tpl_type_selected = data_type
+	var selected = document.querySelector(`div[data-type="${data_type}"]`)
+	selected.style.display = 'block'
+	if(data_type == 'generic'){
+	  remove_extra_button('generic')
+	}
+}
 
-function execInfo(cookie){
-	const info = JSON.parse(cookie)
-	console.log(info)
-	// document.getElementsByTagName('input').forEach(input =>{
-	// 	input.readOnly = "true"
-	// })
-	document.getElementById('inputID').value = (info.ID)?info.ID:'N/A'
-	document.getElementById('inputDescription').value = (info.description)?info.description:'N/A'
-	document.getElementById('select_intent').value = info.style
+const keys = Array.from(document.querySelectorAll('.key'))
+keys.forEach(key => key.checked = false)
+keys.forEach(key => key.addEventListener('click', display))
+const fb_type_selection = document.getElementById('fb_template_type')
+const default_option = document.createElement("option")
+default_option.text = "--select an option--"
+default_option.selected = true
+default_option.hidden = true
+default_option.disable = true
+fb_type_selection.add(default_option) 
+fb_type_selection.addEventListener('change', display_fb_tpl)
+
+const num_of_button = document.querySelectorAll('.num_of_button')
+num_of_button.forEach(num => num.addEventListener('change', add_tpl_button))
+
+// thêm button cho template
+function add_tpl_button(e){
+	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
+	var num = elem.value || elem.options[elem.selectedIndex].value
+	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+	if(buttons.length < num){
+	    for(let i = buttons.length; i != num; i++){
+	      var newNode = buttons[0].cloneNode(true)
+	      newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
+	      document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
+	      let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
+	      label.innerHTML = `Button ${i + 1}`
+	      let select = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div select`)
+	      select.name = `style_of_button_${i + 1}_${fb_tpl_type_selected}`
+	      let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+	      child[0].placeholder = 'URL | Payload'
+	      child[0].value = ""
+	      child[0].name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
+	      child[1].placeholder = 'Title to display'
+	      child[1].value = ""
+	      child[1].name = `title_button_${i + 1}_${fb_tpl_type_selected}`
+	    }
+	}else if(buttons.length > num){
+	  var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
+	  while(document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`).length != num){
+	    let re_define = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+	    parent.removeChild(re_define[re_define.length - 1])
+    }
+  }
+}
+
+
+function execInfo(){
+	
+	document.getElementById('inputID').value = (info.id)?info.id:'N/A'
+	document.getElementById('inputTriggers').value = info.triggers.join(', ')
 	//
 
-	if(typeof(info.script) == 'array'){
-		document.getElementById('select_num_of_script').value = info.script.length
-		document.getElementById('select_num_of_script').style.display = 'none'
-	}else{
-		document.getElementById('select_num_of_script').value = 1
-	}
-	//hiển thị danh sách triggers
-	var triggers_length = info.triggers.length
-	if(triggers_length != 1){
-		var trigger_area = document.getElementById('trigger_area')
-		var original1 = document.getElementById('original1')
-		for(let i = 1; i < triggers_length; i++){
-			let newNode = original1.cloneNode(true)
-			newNode.id = `original${i + 1}`
-			trigger_area.appendChild(newNode)
-			let labels = document.querySelectorAll(`#original${i + 1} label`)
-  			labels.forEach(label => label.innerHTML = "")
-		}
-	}
-
-	let variables = (info.variables.length != 0)?info.variables.join(', ').replace(/[{}]/g, ''):'N/A'
-	document.getElementById('inputVariables').value = variables
-
-	info.triggers.map((value, index)=>{
-		let select = document.querySelector(`#original${index + 1} select`)
-		select.name = `type${index + 1}`
-
-		select.value = value.fromType
-
-		let input = document.querySelector(`#original${index + 1} input`)
-		input.value = value.pattern
-
-	})
-
-
-	//lựa chọn hiển thị định dạng script
-	var select_type_script = document.getElementsByClassName('key')
-	switch (info.script.type) {
-		case 'text':
-			select_type_script[0].checked = true
-			display(1)
-			// statements_1
-			break;
-		case 'question':
-			select_type_script[1].checked = true
-			display(2)
-			// statements_1
-			break;
-		case 'template':
-			select_type_script[2].checked = true
-			display(3)
-			// statements_1
-			break;
-		case 'image':
-			select_type_script[3].checked = true
-			display(4)
-			// statements_1
-			break;
-		default:
-			// statements_def
-			break;
-	}
+	var vars = []
+  	info.variables.forEach(function(variable){
+      let reg = new RegExp(/\W/g)
+      vars.push(variable.replace(reg, ""))
+  	})
+	document.getElementById('inputVariables').value = vars.join(', ')
+	if(info != undefined){
+	    var keys = document.getElementsByClassName("key")
+	    if(info.script.type){
+	      switch (info.script.type) {
+	        case "text":
+	          document.querySelector(`div[data-key="1"]`).style.display = 'block'
+	          display_text(info.script)
+	          // statements_1
+	          break;
+	       	case "quick_reply":
+	          document.querySelector(`div[data-key="2"]`).style.display = 'block'
+	          display_question(info)
+	          break;        
+	        case "template":
+	          document.querySelector(`div[data-key="3"]`).style.display = 'block'
+	          display_fb_template(info.script.attachment.payload)
+	          break;
+	        case "image":
+	          document.querySelector(`div[data-key="4"]`).style.display = 'block'
+	          display_image(info)
+	          break;
+	        default:
+	          // statements_def
+	          break;
+	      }
+	      for(let i = 0; i < keys.length; i++){
+	        if(keys[i].value == info.script.type)
+	          keys[i].checked = true
+	        else{
+	          keys[i].checked = false
+	        }
+	      }
+	    }
+	  }
 }
 
-//starting from info.script
-function exec_text(data){
-	document.getElementById('inputReply').value = data.question 
-}
-//starting from info.script.attachment.payload
-function exec_fb_template(data){
-	var fb_template_type = document.getElementById("fb_template_type").value
-	switch () {
-		case 'generic':
-			// statements_1
-			fb_template_type.value = 'generic'
-			let contents document.querySelectorAll('#div[data-key]=3 div div div input')
-			let element = data.elements[0]
-			contents[0].value = (element.title !== "")?element.title:'N/A'
-			contents[1].value = (element.subtitle !== "")?element.subtitle:'N/A'
-			contents[2].value = (element.image_url !== "")?element.subtitle:'N/A'
-			contents[3].value = (element.default_action.url !== "")?element.default_action.url
-			
-			break;
-		default:
-			// statements_def
-			break;
-	}
+function display_text(data){
+  document.getElementById('inputReply').value = data.question
+  document.getElementById('inputID_next_script').value = data.next_script
 }
 
-function add_tpl_button(){
-	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
-	var arr_length = Array.from(buttons).length
-	console.log(arr_length)
-	if(buttons.length < num){
-			for(let i = buttons.length; i != num; i++){
-				var newNode = buttons[0].cloneNode(true)
-				newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
-				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
-				let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
-				label.innerHTML = `Button ${i + 1}`
-				let child_URL = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
-				child_URL.name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
-				let child_title = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
-				child_title.name = `title_button_${i + 1}_${fb_tpl_type_selected}`
-			}
-	}else if(buttons.length > num){
-		var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
-		while(document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`).length != num){
-			let re_define = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
-			parent.removeChild(re_define[re_define.length - 1])
-		}
-	}
+//starting from script.question
+function display_question(data){
+  document.getElementById('inputQuestion').value = data.script.question.text
+  while(document.getElementsByClassName('reply').length != data.script.question.quick_replies.length) add_quick_reply()
+  for(let i = 0; i < data.script.question.quick_replies.length; i++){
+    var child = document.querySelectorAll(`#reply${i + 1} div input`)
+    child[0].value = data.script.question.quick_replies[i].title
+    child[1].value = data.script.question.quick_replies[i].payload
+  }
+}
+
+(function display_response_mapping(){
+  while(document.getElementsByClassName('res_mapping').length != info.response_mapping.length) add_res_mapping()
+  for(let i = 0; i < info.response_mapping.length; i++){
+    var child = document.querySelectorAll(`#res_mapping${i + 1} div input`)
+    child[0].value = info.response_mapping[i].responses.join(', ')
+    child[1].value = info.response_mapping[i].next_script
+  }
+})()
+
+function display_del_button(del_button, add_button, display = true){
+  if(display == true){
+    del_button.classList.add('col-4')
+    del_button.style.display = 'block'
+    add_button.classList.remove('col-12')
+    add_button.classList.add('col-8')
+  }else{
+    del_button.classList.remove('col-4')
+    del_button.style.display = 'none'
+    add_button.classList.remove('col-8')
+    add_button.classList.add('col-12')
+  }
+}
+
+//thêm quick_reply cho question
+function add_quick_reply(){
+  var node_before = document.getElementById('adding_reply')
+  var replies_area = document.getElementById('replies_area')
+  var buttons = replies_area.querySelectorAll('div button')
+  var reply1 = document.getElementById('reply1') 
+  var newNode = reply1.cloneNode(true)
+  var c = replies_area.children;
+  var count = 0
+  for(var i = 0; i < c.length; ++i){
+    if(c[i].tagName == "DIV")
+      count++;
+  }
+  newNode.id = `reply${count}`
+  replies_area.insertBefore(newNode ,node_before)
+  if(count > 1){
+    display_del_button(buttons[0], buttons[1])
+  }
+  let child = document.querySelectorAll(`#reply${count} div input`)
+  child[0].placeholder = 'Option'
+  child[0].value = ""
+  child[0].name = `quick_reply${count - 1}`
+  child[1].name = `payload${count - 1}`
+  child[1].placeholder = 'Payload for option'
+  child[1].value = ""
+}
+
+function del_quick_reply(){
+  var replies_area = document.getElementById('replies_area')
+  var buttons = replies_area.querySelectorAll('div button')
+  var c = replies_area.children;
+  var count = 0
+  for(var i = 0; i < c.length; ++i){
+    if(c[i].tagName == "DIV")
+      count++;
+  }
+  let last = document.getElementById(`reply${count - 1}`)
+  last.parentNode.removeChild(last)
+  count--
+  if(count == 2){
+    display_del_button(buttons[0], buttons[1], false)
+  }
+}
+
+function add_res_mapping(){
+  var node_before = document.getElementById('adding_res_mapping')
+  var response_area = document.getElementById('response_area')
+  var buttons = response_area.querySelectorAll('div button')
+  var res_mapping1 = document.getElementById('res_mapping1') 
+  var newNode = res_mapping1.cloneNode(true)
+  var child = response_area.getElementsByClassName('res_mapping')
+  var count = child.length
+  if(child.length == 1){
+    display_del_button(buttons[0], buttons[1])
+  }
+  newNode.id = `res_mapping${count + 1}`
+  response_area.insertBefore(newNode ,node_before)
+  let res_mapping = document.querySelectorAll(`#res_mapping${count + 1} div input`)
+  res_mapping[0].name = `res_mapping${count + 1}`
+  res_mapping[0].placeholder = `Response from customer`
+  res_mapping[1].name = `res_payload${count + 1}`
+  res_mapping[1].placeholder = 'Payload for response'
+}
+
+function del_res_mapping(){
+  var response_area = document.getElementById('response_area')
+  var buttons = response_area.querySelectorAll('div button')
+  var c = response_area.children;
+  var count = 0
+  for(var i = 0; i < c.length; ++i){
+    if(c[i].tagName == "DIV")
+      count++;
+  }
+  let last = document.getElementById(`res_mapping${count - 1}`)
+  last.parentNode.removeChild(last)
+  count--
+  if(count == 2){
+    display_del_button(buttons[0], buttons[1], false)
+  }
+}
+
+//starting from script.attachment.payload
+function display_fb_template(data){
+  document.getElementById('fb_template_type').value = data.template_type
+  switch (data.template_type) {
+    case "generic":
+      document.getElementById("inputTitle_generic").value = data.elements[0].title
+      document.getElementById("inputSubtitle_generic").value = data.elements[0].subtitle
+      document.getElementById("inputImageURL_generic").value = data.elements[0].image_url
+      document.getElementById("inputDefault_URL_generic").value = data.elements[0].default_action.url
+      var num_of_button = document.querySelector('div[data-type=generic] div div .num_of_button')
+      num_of_button.value = data.elements[0].buttons.length
+      add_full_button('generic')
+      for(let i = 1; i <= 3; i++){
+        if(data.elements[0].buttons[i - 1]){
+          var button = document.getElementById(`generic_button_${i}`)
+          var child = button.querySelectorAll(`div div input`)
+          var set_type = button.querySelector(`div select`)
+          if(data.elements[0].buttons[i - 1].type == "web_url"){
+            set_type.value = "web_url"
+            child[0].value = data.elements[0].buttons[i - 1].url
+            child[1].value = data.elements[0].buttons[i - 1].title
+          }else{
+            set_type.value = "payload"
+            child[0].value = data.elements[0].buttons[i - 1].payload
+            child[1].value = data.elements[0].buttons[i - 1].title
+          } 
+        }else{
+          var button = document.getElementById(`generic_button_${i}`)
+          button.parentNode.removeChild(button)
+        }
+      }
+      break;
+    case "button":
+      document.getElementById("inputText_button").value = data.text
+      add_full_button('button')
+      var num_of_button = document.querySelector('div[data-type=button] div div .num_of_button')
+          num_of_button.value = data.buttons.length
+      for(let i = 1; i <= 3; i++){
+        if(data.buttons[i - 1]){
+          var button = document.getElementById(`button_button_${i}`)
+          var child = button.querySelectorAll(`div div input`)
+          var set_type = button.querySelector(`div select`)
+          if(data.buttons[i - 1].type == "web_url"){
+            set_type.value = "web_url"
+            child[0].value = data.buttons[i - 1].url
+            child[1].value = data.buttons[i - 1].title
+          }else{
+            set_type.value = "payload"
+            child[0].value = data.buttons[i - 1].payload
+            child[1].value = data.buttons[i - 1].title
+          } 
+        }else{
+          console.log(i)
+          var button = document.getElementById(`button_button_${i}`)
+          button.parentNode.removeChild(button)
+        }
+      }
+      break
+    case "media":
+      document.getElementById("inputImageURL_media").value = data.url
+      break
+    default:
+      // statements_def
+    break;
+  }
+  var selected = document.querySelector(`div[data-type="${data.template_type}"]`)
+  selected.style.display = 'block'
+}
+
+function display_image(data){
+  document.getElementById('inputImageURL').value = data.attachment.payload.url
+  document.getElementById('inputID_next_script').value = data.next_script
+}
+
+function add_full_button(fb_tpl_type_selected){
+  var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+  if(buttons.length < 3){
+    for(let i = buttons.length; i + 1 <= 3; i++){
+      var newNode = buttons[0].cloneNode(true)
+      newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
+      document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
+      let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
+      label.innerHTML = `Button ${i + 1}`
+      let select = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div select`)
+      select.name = `style_of_button_${i + 1}_${fb_tpl_type_selected}`
+      let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+      child[0].placeholder = 'URL | Payload'
+      child[0].value = ""
+      child[0].name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
+      child[1].placeholder = 'Title to display'
+      child[1].value = ""
+      child[1].name = `title_button_${i + 1}_${fb_tpl_type_selected}`
+    }
+  }
 }
 
 
-
-execInfo(cookie)
+execInfo(info)

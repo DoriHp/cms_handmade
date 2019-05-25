@@ -12,4 +12,6 @@ router.post('/add', controller.saveNewScript)
 
 router.get('/properties/:id', controller.getProperties)
 
+router.delete('/delete/:_id', controller.delScript)
+
 module.exports = router

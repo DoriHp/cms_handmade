@@ -24,20 +24,21 @@
 	</header>
 	<div class="container">
 		<div class="row" id='div_button'>
-			<div class="btn-group" role="group" aria-label="Button">
+			<div class="btn-group" role="group" aria-label="Button" style="padding-left: 0">
 				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
 				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add/question'">Thêm script</button>
 				<button type="button" class="btn btn-secondary btn-warning" onclick="window.location.href='/broadcast'">Tin nhắn hàng loạt</button>
 			</div>
 		</div>
+		<!-- <button type="button" class="btn btn-outline-info float-right"><i class="fas fa-sync-alt"></i>Refresh</button> -->
 		<div class="row">
 			<div id='div_table' class="col-12">
 				<table class="table table-striped table-bordered table-sm" id='table_body' cellspacing="0" width="100%">
 					<thead>
 						<tr>
 							<th>Script ID</th>
-							<th>Description</th>
 							<th>Intent</th>
+							<th>Trigger</th>
 							<th>Script type</th>
 						</tr>
 					</thead>
@@ -75,10 +76,18 @@
 				var cell3 = row.insertCell(3)
 				
 				cell0.innerHTML = (i.id == undefined)?"N/A":i.id
-				cell1.innerHTML = (i.description == undefined)?"N/A":i.description
-				cell2.innerHTML = (i.type == undefined)?"N/A":i.type
-				cell3.innerHTML = (i.script.type == undefined)?"N/A":i.script.type
-
+				cell1.innerHTML = (i.type == undefined)?"N/A":i.type
+				cell2.innerHTML = (i.trigger == undefined)?"N/A":i.trigger.join(', ')
+				console.log(i)
+				if(!Array.isArray(i.script)){
+					cell3.innerHTML = (i.script.type == undefined)?"N/A":i.script.type
+				}else{
+					var str = []
+					for(let j of i.script){
+						str.push(j.type)
+					}	
+					cell3.innerHTML = str.join(', ')
+				}
 				row.addEventListener('click', getProperties)
 
 				index++
@@ -88,7 +97,7 @@
 
 		function getProperties(e){
 			var id = this.querySelectorAll("*")[0].innerHTML.trim()
-			window.open('http://localhost:5000/script/properties/' + encodeURIComponent(id), '_blank')
+			window.open('/script/properties/' + encodeURIComponent(id), '_blank')
 		}
 	</script>
 </body>

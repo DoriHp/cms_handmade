@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif; }
+
+#div_form {
+  position: relative;
+  margin: 20vh auto;
+  height: auto; }
+  #div_form h3 {
+    margin-bottom: 5rem;
+    font-weight: bold; }
+  #div_form .row {
+    margin-bottom: 2rem; }
+  #div_form label {
+    font-weight: bold; }
+  #div_form input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #02C5FD;
+    background: linear-gradient(to bottom, #fff 96%, #02C5FD 4%);
+    background-size: 100% 100%;
+    background-position: -400px 0;
+    background-repeat: no-repeat;
+    transition: all 0.5s linear; }
+  #div_form input:focus {
+    box-shadow: none;
+    background-position: 0 0; }
+  #div_form button {
+    margin-top: 3rem; }
+
+input.invalid {
+  background: #ffdddd; }
+
+.tab {
+  display: none; }
+
+.step.active {
+  opacity: 1; }
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #4CAF50; }
+
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5; }
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #989595 -moz-use-text-color #989595;
+  border-style: dashed none;
+  border-width: 1px 0;
+  margin: 18px 0; }
+
+/*# sourceMappingURL=style.css.map */

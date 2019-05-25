@@ -1,9 +1,32 @@
 window.localStorage.clear()
+
+function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null
+}
+
+var cookie = getCookie('info')
+const info = JSON.parse(cookie)
+
 var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-function add_more_script(e){
-  var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
-  var num = elem.value || elem.options[elem.selectedIndex].value
+// showTab(currentTab); // Display the current tab
+function add_more_script(){
+  var num = info.script.length
   var tabs= document.getElementsByClassName('tab')
   if(tabs.length < num){
     for(let i = tabs.length; i != num; i++ ){
@@ -23,8 +46,10 @@ function add_more_script(e){
       document.getElementById("step_count").removeChild(steps[steps.length - 1])
     }
   }
-  showTab(currentTab)
 }
+
+add_more_script()
+showTab(currentTab, pre=true)
 
 function showTab(n, pre=false) {
   // This function will display the specified tab of the form ...
@@ -49,6 +74,7 @@ function showTab(n, pre=false) {
   }
   fixStepIndicator(n)
 }
+
 //fix submit event
  function nextPrev(n) {
   // This function will figure out which tab to display
@@ -74,7 +100,7 @@ function showTab(n, pre=false) {
 
 function validateForm() {
   // This function deals with validation of the form fields
-  var x, y, i, valid = false;
+  var x, y, i, valid = true;
   x = document.getElementsByClassName("tab")
   keys = document.querySelectorAll(".key")
   // A loop that checks every input field in the current tab:
@@ -188,48 +214,6 @@ function initiation(){
   }
 }
 
-function add_trigger(){
-  var trigger_area = document.getElementById('trigger_area')
-  var buttons = trigger_area.querySelectorAll('div div button')
-  var c = trigger_area.children
-  var count = 0
-  for(var i = 0; i < c.length; ++i){
-    if(c[i].tagName == "DIV")
-      count++
-  }
-  if(count > 1){
-    display_del_button(buttons[0], buttons[1])
-  }
-  var node_before = document.getElementById('adding_trigger')
-  var original1 = document.getElementById('original1')
-  var newNode = original1.cloneNode(true)
-  newNode.id = `original${count}`
-  trigger_area.insertBefore(newNode, node_before)
-  let labels = trigger_area.querySelectorAll(`#original${count} label`)
-  labels.forEach(label => label.innerHTML = "")
-  let input = trigger_area.querySelector(`#original${count} input`)
-  input.name = `trigger${count - 1}`
-  input.placeholder = 'Trigger'
-  input.value = ""
-}
-
-function del_trigger(){
-  var trigger_area = document.getElementById('trigger_area')
-  var buttons = trigger_area.querySelectorAll('div button')
-  var c = trigger_area.children
-  var count = 0
-  for(var i = 0; i < c.length; ++i){
-    if(c[i].tagName == "DIV")
-      count++
-  }
-  var last = document.getElementById(`original${count - 1}`)
-  last.parentNode.removeChild(last)
-  count--
-  if(count == 2){
-    display_del_button(buttons[0], buttons[1], false)
-  }
-}
-
 function display_del_button(del_button, add_button, display = true){
   if(display == true){
     del_button.classList.add('col-4')
@@ -244,4 +228,18 @@ function display_del_button(del_button, add_button, display = true){
   }
 }
 
-initiation()
+function display_info(){
+  document.getElementById('inputID').value = info.id
+  document.getElementById('inputTriggers').value = info.triggers.join(', ')
+
+  var vars = []
+  info.variables.forEach(function(variable){
+      let reg = new RegExp(/\W/g)
+      vars.push(variable.replace(reg, ""))
+  })
+  document.getElementById('inputVariables').value = vars.join(', ')
+
+  document.getElementById("select_num_of_script").value = info.script.length
+}
+
+display_info(info)

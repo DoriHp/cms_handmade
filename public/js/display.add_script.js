@@ -1,9 +1,7 @@
 const comps = Array.from(document.querySelectorAll('.comp'))
 comps.forEach(comp => comp.style.display = 'none')
-comps[2].style.display = 'block'
 const fb_tpl_type = Array.from(document.querySelectorAll('.fb_tpl_type'))
 fb_tpl_type.forEach(comp => comp.style.display = 'none')
-fb_tpl_type[1].style.display = 'block'
 var fb_tpl_type_selected = 'generic'
 const num_of_script = document.querySelector('#select_num_of_script')
 num_of_script.disabled = true
@@ -51,10 +49,13 @@ function add_tpl_button(e){
 				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
 				let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
 				label.innerHTML = `Button ${i + 1}`
-				let child_URL = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
-				child_URL.name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
-				let child_title = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
-				child_title.name = `title_button_${i + 1}_${fb_tpl_type_selected}`
+				let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+				child[0].placeholder = 'URL | Payload'
+				child[0].value = ""
+				child[0].name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
+				child[1].placeholder = 'Title to display'
+				child[1].value = ""
+				child[1].name = `title_button_${i + 1}_${fb_tpl_type_selected}`
 			}
 	}else if(buttons.length > num){
 		var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
@@ -66,8 +67,8 @@ function add_tpl_button(e){
 }
 
 function add_trigger(){
-	console.log('Test button')
 	var trigger_area = document.getElementById('trigger_area')
+	var buttons = trigger_area.querySelectorAll('div button')
 	var c = trigger_area.children
 	var count = 0
 	for(var i = 0; i < c.length; ++i){
@@ -77,58 +78,135 @@ function add_trigger(){
 	var node_before = document.getElementById('adding_trigger')
 	var original1 = document.getElementById('original1')
 	var newNode = original1.cloneNode(true)
-	newNode.id = `original${count+1}`
+	newNode.id = `original${count}`
 	trigger_area.insertBefore(newNode, node_before)
-	let labels = document.querySelectorAll(`#original${count+1} label`)
+	if(count > 1){
+		display_del_button(buttons[0], buttons[1])
+	}
+	let labels = document.querySelectorAll(`#original${count} label`)
 	labels.forEach(label => label.innerHTML = "")
-	let select = document.querySelector(`#original${count+1} select`)
+	let select = document.querySelector(`#original${count} select`)
 	select.name = `type${count - 1}`
-	let input = document.querySelector(`#original${count+1} input`)
+	let input = document.querySelector(`#original${count} input`)
 	input.name = `trigger${count - 1}`
+	input.placeholder = 'Trigger'
+	input.value = ""
+}
+
+function del_trigger(){
+	var trigger_area = document.getElementById('trigger_area')
+	var buttons = trigger_area.querySelectorAll('div button')
+	var c = trigger_area.children
+	var count = 0
+	for(var i = 0; i < c.length; ++i){
+		if(c[i].tagName == "DIV")
+	    count++
+	}
+	var last = document.getElementById(`original${count - 1}`)
+	last.parentNode.removeChild(last)
+	count--
+	if(count == 2){
+		display_del_button(buttons[0], buttons[1], false)
+	}
+}
+
+function display_del_button(del_button, add_button, display = true){
+	if(display == true){
+		del_button.classList.add('col-4')
+		del_button.style.display = 'block'
+		add_button.classList.remove('col-12')
+		add_button.classList.add('col-8')
+	}else{
+		del_button.classList.remove('col-4')
+		del_button.style.display = 'none'
+		add_button.classList.remove('col-8')
+		add_button.classList.add('col-12')
+	}
 }
 
 //thêm quick_reply cho question
 function add_quick_reply(){
 	var node_before = document.getElementById('adding_reply')
 	var replies_area = document.getElementById('replies_area')
+	var buttons = replies_area.querySelectorAll('div button')
 	var reply1 = document.getElementById('reply1') 
 	var newNode = reply1.cloneNode(true)
 	var c = replies_area.children;
 	var count = 0
-	var count_reply = 0
 	for(var i = 0; i < c.length; ++i){
-		if(c[i].tagName == "INPUT")
+		if(c[i].tagName == "DIV")
 	    count++;
-		count_reply = (count_reply + 2) / 2
 	}
-
-	newNode.id = `reply${count+1}`
+	newNode.id = `reply${count}`
 	replies_area.insertBefore(newNode ,node_before)
-	let reply = document.querySelectorAll(`#reply${count+1} .col-6 .reply`)
-	reply.name = `quick_reply${count - 1}`
-	let payload = document.querySelectorAll(`#reply${count+1} .col-6 .payload`)
-	payload.name = `payload${count - 1}`
+	if(count > 1){
+		display_del_button(buttons[0], buttons[1])
+	}
+	let child = document.querySelectorAll(`#reply${count} div input`)
+	child[0].placeholder = 'Option'
+	child[0].value = ""
+	child[0].name = `quick_reply${count - 1}`
+	child[1].name = `payload${count - 1}`
+	child[1].placeholder = 'Payload'
+	child[1].value = ""
+}
+
+function del_quick_reply(){
+	var replies_area = document.getElementById('replies_area')
+	var buttons = replies_area.querySelectorAll('div button')
+	var c = replies_area.children;
+	var count = 0
+	for(var i = 0; i < c.length; ++i){
+		if(c[i].tagName == "DIV")
+	    count++;
+	}
+	let last = document.getElementById(`reply${count - 1}`)
+	last.parentNode.removeChild(last)
+	count--
+	if(count == 2){
+		display_del_button(buttons[0], buttons[1], false)
+	}
 }
 
 function add_res_mapping(){
 	var node_before = document.getElementById('adding_res_mapping')
 	var response_area = document.getElementById('response_area')
+	var buttons = response_area.querySelectorAll('div button')
 	var res_mapping1 = document.getElementById('res_mapping1') 
 	var newNode = res_mapping1.cloneNode(true)
 	var c = response_area.children;
 	var count = 0
 	for(var i = 0; i < c.length; ++i){
-		if(c[i].tagName == "INPUT")
+		if(c[i].tagName == "DIV")
 	    count++;
 	}
-
-	newNode.id = `res_mapping${count+1}`
+	if(count > 1){
+		display_del_button(buttons[0], buttons[1])
+	}
+	newNode.id = `res_mapping${count}`
 	response_area.insertBefore(newNode ,node_before)
-	let res_mapping = document.querySelectorAll(`#reply${count+1} .col-6 .res_mapping`)
+	let res_mapping = document.querySelectorAll(`#reply${count} .col-6 .res_mapping`)
 	res_mapping.name = `res_mapping${count - 1}`
-	res.mapping.placeholder = `${count - 1}`
+	res_mapping.placeholder = `${count - 1}`
 	let res_payload = document.querySelectorAll(`#reply${count+1} .col-6 .res_payload`)
-	payload.name = `res_payload${count - 1}`
+	res_payload.name = `res_payload${count - 1}`
+}
+
+function del_res_mapping(){
+	var response_area = document.getElementById('response_area')
+	var buttons = response_area.querySelectorAll('div button')
+	var c = response_area.children;
+	var count = 0
+	for(var i = 0; i < c.length; ++i){
+		if(c[i].tagName == "DIV")
+	    count++;
+	}
+	let last = document.getElementById(`res_mapping${count - 1}`)
+	last.parentNode.removeChild(last)
+	count--
+	if(count == 2){
+		display_del_button(buttons[0], buttons[1], false)
+	}
 }
 
 function change_num_of_script(e){

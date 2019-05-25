@@ -46,7 +46,7 @@
 						<div class="form-group col-3">
 				    	<select name="type0" class="form-control">
 					        <option value="string" selected>Chuỗi kí tự</option>
-					        <option value="regexp">Regular Expression</option>
+					        <option value="regexp" hidden disabled>Regular Expression</option>
 					    </select>
 					  	</div>
 					  	<label class="col-1">Trigger</label>
@@ -55,7 +55,8 @@
 					  	</div>
 				  	</div>
 				  	<div class="form-group row" id="adding_trigger">
-				  		<div class="col-8 offset-4 form-group" style="padding-right: 0">
+				  		<div class="col-8 offset-4 row form-group" style="padding-right: 0">
+				  			<button type="button" class="btn btn-outline-danger form-group" onclick="del_trigger()" style="display: none">Xóa trigger</button>			
 				  			<button type="button" class="btn btn-outline-secondary col-12 form-group" id="adding_trigger" onclick="add_trigger()">Thêm trigger</button>
 				  		</div>
 				  	</div>
@@ -139,13 +140,14 @@
 					  	<div class="form-group col-8" id="replies_area" style="padding-right: 0">
 					  		<div class="form-group col-12 row" id="reply1" style="padding-right: 0">
 					  			<div class="form-group col-6">
-					  			<input type="text" name="quick_reply0" class="form-control reply" id="inputQuickReplies" placeholder="Option">
-					  		</div>
-					  		<div class="form-group col-6" style="padding-right: 0">
-					    		<input type="text" name="payload0" class="form-control payload" id="inputPayload" placeholder="Payload for option">
-					  		</div>
+						  			<input type="text" name="quick_reply0" class="form-control reply" id="inputQuickReplies" placeholder="Option">
+						  		</div>
+						  		<div class="form-group col-6" style="padding-right: 0">
+						    		<input type="text" name="payload0" class="form-control payload" id="inputPayload" placeholder="Payload for option">
+						  		</div>
 					  		</div>
 					  		<div class="form-group row" id="adding_reply" style="padding-right: 0">
+					  			<button type="button" type="button" class="btn btn-outline-danger form-group" onclick="del_quick_reply()" style="display: none">Xóa quick reply</button>
 					  			<button type="button" class="btn btn-outline-secondary col-12 form-control" onclick="add_quick_reply()">Thêm quick reply</button>
 					  		</div>
 					  	</div>
@@ -302,11 +304,12 @@
 						  		</div>
 					  		</div>
 					  		<div class="form-group row" id="adding_res_mapping">
+					  			<button type="button" type="button" class="btn btn-danger form-group" onclick="del_res_mapping()" style="display: none">Xóa response mapping</button>
 					  			<button type="button" class="btn btn-outline-secondary col-12 form-control" onclick="add_res_mapping()">Thêm response mapping</button>
 					  		</div>
-					  	</div>
+						</div>
 					</div>
-				</div>
+			</div>
 				<div class="form-group row">
 					<div class="col-12">
 						<button type="button" onclick="submitData()" class="btn btn-success float-right">Lưu lại</button>
