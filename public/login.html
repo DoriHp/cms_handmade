@@ -13,90 +13,29 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/login.style.css">
     <title>Login</title>
   </head>
   <body>
     <div class="container">
-      <form id="div_form" class="col-5 offset-4">
+      <form id="div_form" class="col-5 offset-4" method="post" action="/login">
         <h3 style="text-align: center;">Login</h3>
         <div class="row form-group">
           <label for="inputID" class="col-3">Tài khoản</label>
           <div class="col-9">
-            <input type="text" id="inputID" name="userID" class="form-control" placeholder="ID">
+            <input type="text" id="inputID" name="username" class="form-control" placeholder="ID">
           </div>
         </div>
         <div class="form-group row">
           <label for="inputPassword" class="col-3">Mật khẩu</label>
           <div class="col-9">
-            <input type="password" id="inputPassword" name="userPassword" class="form-control" placeholder="Password">
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" autocomplete>
           </div>
         </div>
-        <button type="button" class="btn btn-primary float-right" onclick = "login()">Đăng nhập
+        <button type="submit" class="btn btn-primary float-right">Đăng nhập
         </button>
       </form>
     </div>
-    <script type="text/javascript">
-      //kiểm tra có trường thông tin nào trống không
-      function validateForm(){
-
-        var reg = /^[\wa-zA-Z0-9].{8,20}$/g
-        var info = document.querySelectorAll('input')
-        var fill = true
-        info.forEach(function(input){
-          if(input.value == ""){
-            fill = false
-          }
-        })
-
-        if(!fill){
-          alert("Bạn phải điền đầy đủ thông tin!")
-        }
-        
-        if(!reg.test(document.getElementById("inputID").value)){
-          alert("Sai định dạng tên tài khoản!\nTên tài khoản phải là một chuỗi kí tự dài 8~20 kí tự và không chứa kí tự đặc biệt!")
-
-          return false
-        }
-
-        if(!reg.test(document.getElementById("inputPassword").value)){
-          alert("Sai định dạng mật khẩu!\nMật khẩu phải là một chuỗi kí tự dài 8~20 kí tự và không chứa kí tự đặc biệt!")
-
-          return false
-        }
-
-        return true
-
-      }
-
-      function login(){
-        //get data from the form
-        if(validateForm() == true){
-          var formData = new FormData(document.querySelector('form'))
-          var data = {}
-          for (var pair of formData.entries()) {
-              data[pair[0]] = pair[1]
-          }
-
-          //create post request to login
-          axios.post('/login', {
-            header: {
-              'Content-Type': 'application/json'
-            },
-            data: {
-              'id': data.userID,
-              'password': data.userPassword
-            }
-          }).then(function(response){
-            if(response.status != 200){
-              alert("Lỗi đăng nhập:\n" + response.data)
-            }
-          }).catch(function(error){
-            console.log(error)
-          })
-        }
-      }
-    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
