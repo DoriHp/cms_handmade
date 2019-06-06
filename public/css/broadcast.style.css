@@ -43,63 +43,6 @@ footer {
       padding-left: 15px;
       padding-right: 15px; }
 
-#div_table {
-  position: relative;
-  margin-top: 20px;
-  margin-bottom: 50px;
-  padding: 0 !important;
-  overflow-y: auto;
-  height: 500px; }
-  #div_table th {
-    position: sticky;
-    top: 0; }
-  #div_table table {
-    border-collapse: collapse;
-    width: 100%; }
-    #div_table table th, #div_table table td {
-      padding: 8px 16px; }
-    #div_table table th {
-      background: #9B9595; }
-
-input.invalid {
-  background: #ffdddd; }
-
-.tab {
-  display: none; }
-
-.step.active {
-  opacity: 1; }
-
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #4CAF50; }
-
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5; }
-
-hr {
-  -moz-border-bottom-colors: none;
-  -moz-border-image: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
-  border-color: #989595 -moz-use-text-color #989595;
-  border-style: dashed none;
-  border-width: 1px 0;
-  margin: 18px 0; }
-
-/*# sourceMappingURL=style.css.map */
-footer{
-  margin-bottom: 40px;
-}
-
 #prevBtn, #nextBtn {
   width: 40px;
   height: 40px; }
@@ -130,5 +73,15 @@ input.invalid {
   display: inline-block;
   opacity: 0.5; }
 
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #989595 -moz-use-text-color #989595;
+  border-style: dashed none;
+  border-width: 1px 0;
+  margin: 18px 0; }
 
 /*# sourceMappingURL=style.css.map */

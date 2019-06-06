@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Gửi tin nhắn hàng loạt</title>
-	<meta charset="utf-8">	
+<html lang="vi">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<link rel="stylesheet" type="text/css" href="/css/style.css">	
 	<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no">
 	<meta name="theme-color" content="#574E4E">
 	<meta name="msapplication-TileColor" content="#574E4E">
@@ -10,28 +13,160 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#574E4E">
 	<link rel="shortcut icon" href="/image/image.jpg">
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<script type="text/javascript" scr="script.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-	<form>
-		<div class="form-row">
-		    <div class="form-group row">
-				<label for="inputID" class="col form-control-label"> Lựa chọn định dạng message </label>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <title>Tin nhắn hàng loạt</title>
+  </head>
+  <header>
+		<h1 class="display-4">BotkitCMS</h1>
+	</header>
+	<div class="container">
+		<div class="row" id='div_button'>
+			<div class="col-5 btn-group" role="group" aria-label="Button" style="padding-left: 0">
+				<button type="button" class="btn btn-secondary btn-info" onclick="window.location.href='/'">Danh sách</button>
+				<button type="button" class="btn btn-secondary btn-toolbar" onclick="window.location.href='/script/add/question'">Thêm script</button>
+				<button type="button" class="btn btn-secondary btn-warning" onclick="window.location.href='/broadcast'">Tin nhắn hàng loạt</button>
+			</div>
+		</div>
+		<form method="post" action="/broadcast/page_token" id="page_token_form">
+			<div class="row form-group">
+				<label class="col-2">Nhập page token</label>
+				<div class="col-8">
+					<input class="form-control" type="text" name="page_token" placeholder="Facebook page token">	
+				</div>
+				<button type="submit" class="col-2 btn btn-primary">Lưu lại</button>
+			</div>
+		</form>	
+		<hr>
+		<form id="broadcast_form">
+			<div class="form-group row">
+				<label class="col-sm-2">Định dạng tin nhắn quảng bá</label>
 				<div class="col-sm-10">
-					<select>
-						<option>Tin nhắn text</option>
-						<option></option>
-					</select>
+					<div class="radio">
+						<label>
+							<input class="key" type="radio" name="broadcast" data-key="1" id="gridRadios1" value="text">
+							Tin nhắn text
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input class="key" type="radio" name="broadcast" data-key="2" id="gridRadios2" value="template">
+							Mẫu facebook(mẫu chung)
+						</label>
+					</div>
 				</div>
 			</div>
-	  	</div>
-	  <button type="button" class="btn btn-primary">Gửi tin nhắn hàng loạt</button>
-	</form>
-</body>
+			<!-- Tin nhắn text -->
+			<div class="form-group row comp" data-key="1" >
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="inputReply" class="col-2">Tin nhắn</label>
+					<div class="form-group col-10" style="padding-right: 0">
+				    	<input type="text" name="text_content" class="form-control" id="inputReply" placeholder="Message">
+				  	</div>	
+				</div>	
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="inputTopic" class="col-2">Fallback text</label>
+					<div class="form-group col-10" style="padding-right: 0">
+				    	<input type="text" name="fallback_text" class="form-control" id="inputID_next_script" placeholder="Fallback text">
+				  	</div>
+				</div>		
+			</div>
+			<!-- Facebook template generic type -->
+			<div class="form-group" id="regGeneric">
+				<div class="generic_tab">
+				</div>
+			</div>
+			<div class="form-group row fb_tpl_type comp" data-key="2" data-type="generic" style="padding-right: 0">
+				<div class="form-group row col-12">
+					<label for="select_num_of_template" class="col-2">Số lượng mẫu</label>
+					<div class="col-4">
+						<select name="select_num_of_template" class="form-control" id="select_num_of_template">
+					        <option value="1">1</option>
+					        <option value="2">2 (mẫu quay vòng)</option>
+					        <option value="3">3 (mẫu quay vòng)</option>
+					        <option value="4">4 (mẫu quay vòng)</option>
+					        <option value="5">5 (mẫu quay vòng)</option>
+					        <option value="6">7 (mẫu quay vòng)</option>
+					        <option value="8">8 (mẫu quay vòng)</option>
+					        <option value="9">9 (mẫu quay vòng)</option>
+			    		</select>
+					</div>
+				</div>
+				<label id='generic_num_label' style="padding-left: 15px">Mẫu chung 1</label>
+				<hr>
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="inputTitle_generic" class="col-2 form-control-label"> Tiêu đề </label>
+					<div class="col-10" style="padding-right: 0">
+						<input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title" style="padding-right: 0">
+					</div>
+				</div>
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="inputSubtitle_generic" class="col-sm-2 form-control-label"> Phụ đề </label>
+					<div class="col-10" style="padding-right: 0">
+						<input type="text" name="subtitle_generic" class="form-control" id="inputSubtitle_generic" placeholder="Subtitle">
+					</div>
+				</div>
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="inputImageURL_generic" class="col-2 form-control-label"> Đường dẫn tới hình ảnh </label>
+					<div class="col-10" style="padding-right: 0">
+						<input type="text" name="image_url_generic" class="form-control" id="inputImageURL_generic" placeholder="Image URL">
+					</div>
+				</div>
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label class="col-2 form-control-label"> Hành động mặc định </label>
+					<label for="inputDefault_URL_generic" class="col-2 form-control-label"> Đường dẫn mặc định </label>
+					<input id="inputDefault_URL_generic" type="text" name="default_URL_generic" class="col-8 form-control" placeholder="Default URL to open">
+				</div>
+				<div class="form-group row col-12" style="padding-right: 0">
+					<label for="num_of_button" class="col-2 form-control-label"> Số lượng các nút </label>
+					<div class="form-group col-1" style="padding-right: 0">
+						<select name="num_of_button" class="form-control num_of_button">
+				        <option value="1" selected>1</option>
+				        <option value="2">2</option>
+				        <option value="3">3</option>
+		    		</select>
+					</div>
+					<label class="col-3 form-control-label" style="text-align: center;"> Loại nút </label>
+		    		<label class="col-3 form-control-label" style="text-align: center;"> URL | Payload</label>
+		    		<label class="col-3 form-control-label"> Tiêu đề nút</label>
+				</div>
+				<div class="form-group row generic_tpl_button col-12" id="generic_button_1" style="padding-right: 0">
+					<div class="form-group col-2"></div>
+					<label class="col-2 form-control-label"> Button 1 </label>
+		    		<div class="form-group row col-8" style="padding-right: 0">
+		    			<select name="style_of_button_1_generic" class="form-control col-4" style="padding-right: 0">
+					        <option value="web_url" selected>Nút URL</option>
+					        <option value="payload">Nút đăng lại</option>
+			    		</select>
+		   				<div class="form-group col-4" style="padding-right: 0">
+							<input type="text" name="URL_button_1_generic" class="form-control" placeholder=" URL | payload ">
+						</div>
+						<div class="form-group col-4" style="padding-right: 0">
+							<input type="text" name="title_button_1_generic" class="form-control" placeholder="Title to display">
+						</div>
+		    		</div>
+				</div>
+				<div class="form-group row col-12" id="nav_button">
+				    <button class="btn btn-info offset-5" type="button" id="prevBtn" onclick="nextPrev(-1)"><i class="fas fa-angle-left"></i></button>
+				    <div class="form-group col-2" style="text-align:center;margin-top:10px;" 
+				    	id='generic_count'>
+					  <span class="generic_step"></span>
+					</div>
+				    <button class="btn btn-info" type="button" id="nextBtn" onclick="nextPrev(1)"><i class="fas fa-angle-right"></i></button>
+				</div>				
+			</div>		
+		  	<button type="button" class="btn btn-primary float-right" style="display: none" id="submit_button" >Gửi tin nhắn hàng loạt</button>
+		</form>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script type="text/javascript" src="/js/display.broadcast.js"></script>
+    <script type="text/javascript" src="/js/submit.broadcast.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <footer></footer>
 </html>

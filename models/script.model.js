@@ -1,11 +1,5 @@
 var mongoose = require('mongoose')
 
-var triggerSchema = new mongoose.Schema({
-    _id : false,
-    type : String, 
-    pattern : String
-})
-
 var responseSchema = new mongoose.Schema({
     _id: false,
     response: [String],
@@ -19,7 +13,7 @@ var scriptSchema = new mongoose.Schema({
     type: String,
     id : String, 
     name : String, 
-    triggers : [triggerSchema], 
+    triggers : [String], 
     variables : [String], 
     script: mongoose.Schema.Types.Mixed,
     next_script: String,
