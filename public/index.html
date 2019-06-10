@@ -138,7 +138,7 @@
 			
 			var row = document.getElementById(data.script._id)
 			var cells = row.querySelectorAll("*")
-			cells[0].textContent.trim() == data.script.id
+			cells[0].innerHTML = data.script.id
 			cells[1].innerHTML = (data.script.type == undefined)?"N/A":data.script.type
 			cells[2].innerHTML = (data.script.triggers == undefined)?"N/A":data.script.triggers.join(', ')
 			

@@ -93,6 +93,7 @@ function showTab(n, pre=false) {
   if (currentTab >= x.length) {
     //...the form gets submitted:
     submit()
+    return
   }
   initiation()
   showTab(currentTab, pre=true)

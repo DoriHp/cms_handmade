@@ -1,5 +1,6 @@
 var express = require('express')
 var Script = require('../models/script.model.js')
+var mongoose = require('mongoose')
 require('dotenv').config()
 
 module.exports.index = async (req, res) => {
@@ -47,10 +48,25 @@ module.exports.getProperties = async function(req, res){
 	}
 }
 
+module.exports.updateScript = function(req, res){
+
+	console.log(req.body.data)
+	var update = req.body.data
+	Script.findOneAndUpdate({'_id': req.params._id}, {$set: update}, { new: true, upsert: false, useFindAndModify: false},function(err, result){
+		if(err){
+			console.log(err)	
+			res.status(500).end()
+		}else{
+			res.status(200).send(result)
+		}
+	})
+}
+
 module.exports.delScript = function(req, res){
 	
 	Script.findOneAndRemove({'_id' : req.params._id}, { useFindAndModify: false }, function(err, result){
 		if(err){
+			console.log(err)
 			res.status(500).end()
 		}else{
 			res.status(200).end()

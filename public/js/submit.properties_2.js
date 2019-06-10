@@ -111,7 +111,7 @@ function submit(){
   for (var pair of formData.entries()) {
       data[pair[0]] = pair[1]
   }
-  submit_data._id = info._id
+  // submit_data._id = info._id
   submit_data.id = data.id
   submit_data.type = 'response'
     //tao array cua trigger
@@ -134,18 +134,16 @@ function submit(){
   for(let i = 0; window.localStorage.getItem(`script${i}`)!= undefined; i++){
     submit_data.script.push(JSON.parse(window.localStorage.getItem(`script${i}`)))
   }
-  // submit_data.intent = ""
-  // submit_data.entities = []
   console.log(submit_data)
-  console.log(info)
+  
   if(!deepCompare(submit_data, info)){
     var save = confirm("Bạn chắc chắn muốn lưu thay đổi?")
     if(save == true){
-      axios.put('/script/add',{
+      axios.put(`/script/update/${info._id}`,{
         headers: {
           'Content-Type': 'application/json',
         },
-        data: JSON.stringify(submit_data)
+        data: submit_data
       }).then(function(response){
         if(response.status == 200){
           alert("Lưu thay đổi thành công!")

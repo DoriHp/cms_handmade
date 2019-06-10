@@ -140,11 +140,11 @@ function submit(){
   if(!deepCompare(submit_data, info)){
     var save = confirm("Bạn chắc chắn muốn lưu thay đổi?")
     if(save == true){
-      axios.put('/script/add',{
+      axios.put(`/script/update/${info._id}`,{
         headers: {
           'Content-Type': 'application/json',
         },
-        data: JSON.stringify(submit_data)
+        data: submit_data
       }).then(function(response){
         if(response.status == 200){
           alert("Lưu thay đổi thành công!")

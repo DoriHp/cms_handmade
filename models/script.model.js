@@ -2,7 +2,7 @@ var mongoose = require('mongoose')
 
 var responseSchema = new mongoose.Schema({
     _id: false,
-    response: [String],
+    responses: [String],
     next_script: String
 })
 
