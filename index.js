@@ -11,6 +11,7 @@ var passport = require('passport')
 var bcrypt = require('bcrypt')
 var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
+var flash = require('connect-flash')
 
 require('dotenv').config()
 
@@ -48,6 +49,7 @@ app.use(session({
 	// cookie: { secure: true }
 }))
 
+app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -62,8 +64,8 @@ app.get('/public/image/:filename', (req, res) => {
 	res.sendFile(__basedir + '/public/upload/' + req.params.filename)
 })
 
-app.get('/login', (req, res) => {
-	res.render('login', {locate: 'Trang đăng nhập'})
+app.get('/login' ,(req, res) => {
+	res.render('login', {locate: 'Trang đăng nhập', message: req.flash('error')})
 })
 
 passport.serializeUser(function(user, done) {
@@ -80,23 +82,23 @@ passport.deserializeUser(function(_id, done) {
 
 passport.use(new LocalStrategy(
     function (username,password,done) {
-        User.findOne({username: username}).then(function (user) {
-            bcrypt.compare(password, user.password, function (err,result) {
+        User.findOne({username: username}, function(err, user) {
+        	if(err) return done(err)
+        	if(!user) return done(null, false, {message: 'Thông tin đăng nhập không đúng!'})
+            bcrypt.compare(password, user.password, function (err, result) {
                 if (err) { return done(err) }
                 if(!result) {
                     return done(null, false, { message: 'Thông tin đăng nhập không đúng!' });
                 }
-                return done(null, user);
+                return done(null, user)
             })
-        }).catch(function (err) {
-            return done(err)
         })
     }
 ))
 
 // Endpoint to login
 app.post('/login', passport.authenticate('local', 
-	{ successReturnToOrRedirect: '/', failureRedirect: '/login' }))
+	{ successReturnToOrRedirect: '/', failureRedirect: '/login' , failureFlash: true}))
 
 // Endpoint to logout
 app.get('/logout', function(req, res){
@@ -105,7 +107,7 @@ app.get('/logout', function(req, res){
 })
 
 //Main page
-app.get('*' , ensureLoggedIn('/login'), isAdmin,(req, res, next) => {	
+app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {	
 	next()
 })
 
