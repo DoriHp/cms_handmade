@@ -112,15 +112,15 @@ function del_trigger(){
 
 function display_del_button(del_button, add_button, display = true){
 	if(display == true){
-		del_button.classList.add('col-4')
+		del_button.classList.add('col-md-3', 'col-md-offset-3')
 		del_button.style.display = 'block'
-		add_button.classList.remove('col-12')
-		add_button.classList.add('col-8')
+		add_button.classList.remove('col-md-6', 'col-md-offset-3')
+		add_button.classList.add('col-md-3')
 	}else{
-		del_button.classList.remove('col-4')
+		del_button.classList.remove('col-md-3', 'col-md-offset-3')
 		del_button.style.display = 'none'
-		add_button.classList.remove('col-8')
-		add_button.classList.add('col-12')
+		add_button.classList.remove('col-md-3')
+		add_button.classList.add('col-md-6', 'col-md-offset-3')
 	}
 }
 
@@ -149,6 +149,8 @@ function add_quick_reply(){
 	child[1].name = `payload${count - 1}`
 	child[1].placeholder = 'Payload'
 	child[1].value = ""
+	let label = document.querySelector(`#reply${count} label`)
+	label.innerHTML = `Option (${count}).`
 }
 
 function del_quick_reply(){

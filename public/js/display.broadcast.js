@@ -32,14 +32,14 @@ function showTab(n, pre=false) {
   x[n].style.display = "block"
   // ... and fix the Previous/Next buttons:
   if (n == 0) {
-    document.getElementById("prevBtn").disabled = true;
+    document.getElementById("prevTpl").disabled = true;
   } else {
-    document.getElementById("prevBtn").disabled = false;
+    document.getElementById("prevTpl").disabled = false;
   }
   if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").disabled = true;
+    document.getElementById("nextTpl").disabled = true;
   } else {
-    document.getElementById("nextBtn").disabled = false;
+    document.getElementById("nextTpl").disabled = false;
   }
   const generic_num_label = document.getElementById('generic_num_label')
   generic_num_label.innerHTML = `Mẫu chung ${n + 1}`
@@ -102,19 +102,24 @@ function display(e){
   var data_key = e.target.getAttribute('data-key')
   var selected = document.querySelector(`div[data-key="${data_key}"]`)
   selected.style.display = 'block'
-  document.getElementById('submit_button').style.display = 'block'
+  document.getElementById('submit_button').style.display = 'inline-block'
+  document.getElementById('preview_button').style.display = 'inline-block'
 }
+
 const keys = Array.from(document.querySelectorAll('.key'))
 keys.forEach(key => key.addEventListener('click', display))
 
 function init_generic(){
   (function(){
+    document.querySelectorAll('input').forEach(input => input.value = '')
     for(let i = 2; i <= 3; i++){
       if(document.getElementById(`generic_button_${i}`) != undefined){
         let remove_button = document.getElementById(`generic_button_${i}`)
         remove_button.parentNode.removeChild(remove_button)
       }
     }
+    document.getElementById('inputImageURL_generic').value = ""
+    document.getElementById('inputImageURL_generic').placeholder = 'Choose file from your computer'
   })()
 
   const fb_tpl_type_selected = 'generic'

@@ -86,6 +86,28 @@ function exec_fb_template(data, output = {}){
     return output
 }
 
+document.getElementById('chooseFile').addEventListener('change', function (e) {
+    var image = this.value.replace(/.*[\/\\]/, '');
+  var display = document.getElementById('inputImageURL_generic')
+  var formData = new FormData()
+  formData.append("image", e.target.files[0])
+  axios.post('/broadcast/upload', formData,
+    {
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  ).then(function(response){
+    if(response.status == 200){
+      display.value = response.data
+    }
+    else{
+      alert('Tải ảnh lên thất bại!')
+    }   
+  }).catch(function(error){
+    alert('An error occured!')
+  })
+})
 
 function submit(){
   var submit_data = {}

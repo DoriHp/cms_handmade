@@ -1,3 +1,4 @@
+loadProgressBar()
 function getCookie(name) {
     // Split cookie string and get all individual name=value pairs in an array
     var cookieArr = document.cookie.split(";");

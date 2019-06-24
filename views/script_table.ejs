@@ -1,0 +1,212 @@
+<% include _layouts/header %>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <% include _layouts/top_menu %>
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include _layouts/sidebar %>
+        <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Quản lý tin nhắn
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <% include _layouts/toolbar %>
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <% include _layouts/breadcrumb %>
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet box blue">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="far fa-list-alt"></i>Danh sách mẫu tin nhắn</div>
+                                    <div class="tools">
+                                        <a href="javascript:;" class="collapse"> </a>
+                                        <a href="javascript:;" class="reload"> </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th> ID tin nhắn </th>
+                                                    <th> Mục đích sử dụng </th>
+                                                    <th> Triggers </th>
+                                                    <th> Định dạng tin nhắn </th>
+                                                    <th> Thao tác </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE TABLE PORTLET-->
+                        </div>
+                    </div>
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <% include _layouts/quick_sidebar %>
+    </div>
+    <!-- END CONTAINER -->
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	// location.hash = "main"
+	function getScript(){
+		axios.get('/script',{
+			headers:{
+				'Content-Type': 'application/json',
+				}
+			}).then(function(response){
+				var a = JSON.stringify(response.data)
+				showOut(a)
+			}).catch(function(error){
+				console.log(error)
+			})
+	}	
+	function showOut(items){
+		var table_body = document.querySelector('table tbody')
+		var a = JSON.parse(items)
+		var index = 0
+		for(let i of a){
+			let row = table_body.insertRow(index)
+			row.id = i._id
+			
+			var cell0 = row.insertCell(0)
+			var cell1 = row.insertCell(1)
+			var cell2 = row.insertCell(2)
+			var cell3 = row.insertCell(3)
+			var cell4 = row.insertCell(4)
+			
+			cell0.innerHTML = (i.id == undefined)?"N/A":i.id
+			cell1.innerHTML = (i.type == undefined)?"N/A":(i.type == 'question')?'Đặt câu hỏi, khảo sát':'Phản hồi tin nhắn'
+			cell2.innerHTML = (i.triggers == undefined)?"N/A":i.triggers.join(', ')
+			
+			if(!Array.isArray(i.script)){
+				cell3.innerHTML = (i.script.type == undefined)?"N/A":i.script.type
+			}else{
+				var str = []
+				for(let j of i.script){
+					str.push(j.type)
+				}	
+				cell3.innerHTML = str.join(', ')
+			}
+			cell4.innerHTML = `<i class="fas fa-trash" style="color: red" id=${i._id}></i> <i class="fas fa-info-circle" style="color: #3598dc" id=${i._id}></i>`
+			index++
+			var icons1 = document.getElementsByClassName('fa-trash')
+		}
+		for(let i of icons1){
+			i.addEventListener('click', delScript)
+		}
+
+		var icons2 = document.getElementsByClassName('fa-info-circle')
+		for(let i of icons2){
+			i.addEventListener('click', getProperties)
+		}
+	}
+	getScript()
+	function getProperties(e){
+		var _id = this.id
+		window.open('/script/properties/' + encodeURIComponent(_id), '_blank')
+	}
+
+	var socket = io(); // start a connection to the server
+
+    socket.on('insert script', function(data) {
+        console.log('script inserted');
+
+        var index = document.querySelector("#table_body tbody").rows.length;
+
+        var i = data.script
+        let row = table_body.insertRow(index)
+		row.id = data.script._id
+		var cell0 = row.insertCell(0)
+		var cell1 = row.insertCell(1)
+		var cell2 = row.insertCell(2)
+		var cell3 = row.insertCell(3)
+		
+		cell0.innerHTML = (i.id == undefined)?"N/A":i.id
+		cell1.innerHTML = (i.type == undefined)?"N/A":(i.type == 'question')?'Đặt câu hỏi, khảo sát':'Phản hồi tin nhắn'
+		cell2.innerHTML = (i.triggers == undefined)?"N/A":i.triggers.join(', ')
+
+		if(!Array.isArray(i.script)){
+			cell3.innerHTML = (i.script.type == undefined)?"N/A":i.script.type
+		}else{
+			var str = []
+			for(let j of i.script){
+				str.push(j.type)
+			}	
+			cell3.innerHTML = str.join(', ')
+		}
+		for(let i of icons1){
+			i.addEventListener('click', delScript)
+		}
+
+		var icons2 = document.getElementsByClassName('fa-info-circle')
+		for(let i of icons2){
+			i.addEventListener('click', getProperties)
+		}
+		
+    });
+
+    socket.on('update script',function(data){
+        console.log('updated! script');
+		
+		var row = document.getElementById(data.script._id)
+		var cells = row.querySelectorAll("*")
+		cells[0].innerHTML = data.script.id
+		cells[1].innerHTML = (data.script.type == undefined)?"N/A":(data.script.type == 'question')?'Đặt câu hỏi, khảo sát':'Phản hồi tin nhắn'
+		cells[2].innerHTML = (data.script.triggers == undefined)?"N/A":data.script.triggers.join(', ')
+		
+		if(!Array.isArray(data.script.script)){
+			cells[3].innerHTML = (data.script.script.type == undefined)?"N/A":data.script.script.type
+		}else{
+			var str = []
+			for(let j of data.script.script){
+				str.push(j.type)
+			}	
+			cells[3].innerHTML = str.join(', ')
+		}
+	})
+
+	socket.on('delete script', function(data){
+		console.log('deleted script ' + data.id)
+		var row = document.getElementById(data._id)
+		row.parentNode.removeChild(row)
+	})
+
+	function delScript(e){
+		var _id = this.id
+		var conf = confirm('Bạn chắc chắn muốn xóa mẫu tin nhắn này?')
+		if(!conf) return
+		axios.delete(`/script/delete/${_id}`).
+		then(function(response){
+			if(response.status == 200){
+				alert('Xóa mẫu tin nhắn thành công!')
+				location.reload()
+			}else{
+				alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+			}
+		}).
+		catch(function(error){
+			alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+		})
+	}
+</script>
+<% include _layouts/footer %>

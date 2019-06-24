@@ -1,0 +1,228 @@
+<% include _layouts/header%>
+<!-- <% if (page_token == 'yes') { -%>
+	<% include broadcast_page_token%>
+<% } -%> -->
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <% include _layouts/top_menu %>
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include _layouts/sidebar %>
+        <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Quản lý script
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <% include _layouts/toolbar %>
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <% include _layouts/breadcrumb %>
+                     <!-- BEGIN PAGE BASE CONTENT -->
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject font-dark sbold uppercase">Dữ liệu cho tin nhắn quảng bá</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form id="broadcast_form" class="form-horizontal" role="form">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="col-md-4">Định dạng tin nhắn quảng bá</label>
+                                                <div class="col-md-8">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input class="key" type="radio" name="broadcast" data-key="1" id="gridRadios1" value="text">
+                                                            Tin nhắn text
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input class="key" type="radio" name="broadcast" data-key="2" id="gridRadios2" value="template">
+                                                            Mẫu facebook(mẫu chung)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div class="comp" data-key="1" >
+                                                <div class="form-group">
+                                                    <label for="inputReply" class="col-md-3">Tin nhắn</label>
+                                                    <div class="form-group col-md-9">
+                                                        <input type="text" name="text_content" class="form-control" id="inputReply" placeholder="Message">
+                                                    </div>  
+                                                </div>  
+                                                <div class="form-group">
+                                                    <label for="inputTopic" class="col-md-3">Fallback text</label>
+                                                    <div class="form-group col-md-9">
+                                                        <input type="text" name="fallback_text" class="form-control" id="inputID_next_script" placeholder="Fallback text">
+                                                    </div>
+                                                </div>      
+                                            </div>
+                                            <div class="form-group" id="regGeneric">
+                                                <div class="generic_tab">
+                                                </div>
+                                            </div>
+                                            <div class="fb_tpl_type comp" data-key="2" data-type="generic">
+                                                <div class="form-group">
+                                                    <label for="select_num_of_template" class="col-md-3">Số lượng mẫu</label>
+                                                    <div class="col-md-9 form-group">
+                                                        <select name="select_num_of_template" class="form-control" id="select_num_of_template">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2 (mẫu quay vòng)</option>
+                                                            <option value="3">3 (mẫu quay vòng)</option>
+                                                            <option value="4">4 (mẫu quay vòng)</option>
+                                                            <option value="5">5 (mẫu quay vòng)</option>
+                                                            <option value="6">7 (mẫu quay vòng)</option>
+                                                            <option value="8">8 (mẫu quay vòng)</option>
+                                                            <option value="9">9 (mẫu quay vòng)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                <label id='generic_num_label' class="col-md-3">Mẫu chung 1</label>    
+                                                </div>
+                                                <hr>
+                                                <div class="form-group" >
+                                                    <label for="inputTitle_generic"class="col-md-3"> Tiêu đề</label>
+                                                    <div class="col-md-9 form-group">
+                                                        <input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label for="inputSubtitle_generic" class="col-md-3"> Phụ đề </label>
+                                                    <div class="col-md-9 form-group">
+                                                        <input type="text" name="subtitle_generic" class="form-control" id="inputSubtitle_generic" placeholder="Subtitle">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputImageURL_generic" class="col-md-3"> Hình ảnh </label>
+                                                    <div class="col-md-9 form-group">
+                                                        <input type="text" class="form-control" name="image_url_generic" id="inputImageURL_generic" placeholder="Choose file from your computer" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-3 offset-3">                        
+                                                        <input type="file" name="chooseFile" id="chooseFile" accept="image/*">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-md-12" style="text-decoration: underline;"> Hành động mặc định </label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputDefault_URL_generic" class="col-md-3"> Đường dẫn mặc định </label>
+                                                    <div class="form-group col-md-9">
+                                                        <input id="inputDefault_URL_generic" type="text" name="default_URL_generic" class="form-control" placeholder="Default URL to open">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="num_of_button" class="col-md-3"> Số lượng các nút </label>
+                                                    <div class="form-group col-md-9">
+                                                        <select name="num_of_button" class="form-control num_of_button">
+                                                            <option value="1" selected>1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group generic_tpl_button" id="generic_button_1">
+                                                    <label class="col-md-3"> Button 1 </label>
+                                                    <div class="form-group row col-md-12" style="display: flex; justify-content: space-around; padding-right: 0; padding-left: 0;">
+                                                        <div class="form-group col-md-4">
+                                                            <select name="style_of_button_1_generic" class="form-control">
+                                                                <option value="web_url" selected>Nút URL</option>
+                                                                <option value="payload">Nút đăng lại</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group col-md-4">
+                                                            <input type="text" name="URL_button_1_generic" class="form-control" placeholder=" URL | payload ">
+                                                        </div>
+                                                        <div class="form-group col-md-4" style="padding-right: 0">
+                                                            <input type="text" name="title_button_1_generic" class="form-control" placeholder="Tiêu đề nút">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" id="nav_button" style="display: flex; justify-content: space-around;">
+                                                    <button class="btn btn-info" type="button" id="prevTpl" onclick="nextPrev(-1)"><i class="fas fa-angle-left"></i></button>
+                                                    <div class="form-group col-md-2" style="text-align:center;margin-top:10px;" 
+                                                        id='generic_count'>
+                                                        <span class="generic_step"></span>
+                                                    </div>
+                                                    <button class="btn btn-info" type="button" id="nextTpl" onclick="nextPrev(1)"><i class="fas fa-angle-right"></i></button>
+                                                </div>              
+                                            </div> 
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-6 col-md-6">
+                                                    <button type="button" id="preview_button" class="btn default">Xem trước</button>
+                                                    <button type="submit" id="submit_button" class="btn green">Gửi tin nhắn</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE FORM PORTLET-->
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portlet box purple">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i> Cài đặt cho tin nhắn quảng bá 
+                                    </div>
+                                    <div class="tools">
+                                        <a href="" class="collapse"> </a>
+                                        <a href="" class="reload"> </a>
+                                        <a href="" class="remove"> </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Page token</label>
+                                                <div class="col-md-8">
+                                                    <div class="input-icon right">
+                                                        <i class="fa fa-check tooltips" data-original-title="You look OK!" data-container="body"></i>
+                                                        <input type="text" class="form-control"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">
+                                                    Thời gian
+                                                </label>
+                                                <div class="col-md-8">
+                                                    <a href="javascript:;" id="meeting_start" data-type="datetime" data-pk="1" data-url="/post" data-placement="right" title="Set date & time"> 15/03/2013 12:45 </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <% include _layouts/quick_sidebar %>
+    </div>
+    <!-- END CONTAINER -->
+<script type="text/javascript" src="/js/display.broadcast.js"></script>
+<script type="text/javascript" src="/js/submit.broadcast.js"></script>
+<% include _layouts/footer%>

@@ -1,0 +1,360 @@
+<% include _layouts/header %>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <% include _layouts/top_menu %>
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include _layouts/sidebar %>
+        <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Quản lý tin nhắn
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <% include _layouts/toolbar %>
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <% include _layouts/breadcrumb %>
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <div class="row">
+                        <div class="col-md-6 ">
+                            <!-- BEGIN SAMPLE FORM PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject font-dark sbold uppercase">Dữ liệu cho tin nhắn</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                    <form class="form-horizontal" role="form" id="form_info">
+                                        <div class="form-body">
+                                            <!-- ID cho script -->
+                                            <div class="form-group">
+                                                <label class="col-md-3">ID cho tin nhắn</label>
+                                                <div class="form-group col-md-6">
+                                                    <input type="text" name="id" class="form-control" id="inputID" placeholder="ID" required>
+                                                </div> 
+                                                <div class="col-md-3" style="padding-right: 0">
+                                                    <button type="button" class="btn-info form-control" id="generate_id"> Generate ID </button>
+                                                </div>
+                                            </div>
+                                            <!-- END OF INPUT SCRIPT ID -->
+                                            <!-- SCRIPT TRIGGER -->
+                                            <div class="form-group">
+                                                <label for="inputTriggers" class="col-md-3">Triggers <i class="far fa-question-circle"></i></label>
+                                                <div class="form-group col-md-9">
+                                                    <input type="text" name="triggers" class="form-control" id="inputTriggers" placeholder='Triggers'>
+                                                </div>
+                                            </div>
+                                            <!-- END OF INPUT TRIGGER -->
+                                            <!-- SELECT INTENT OF SCRIPT -->
+                                            <div class="form-group" id="div_select_intent_of_script" style="padding-right: 0">
+                                                <label for="select_intent" class="col-md-3">Mục đích</label>
+                                                <div class="form-group col-md-4">
+                                                    <select name="intent" class="form-control" id="select_intent">
+                                                        <option value="question" selected>Đặt câu hỏi, khảo sát</option>
+                                                    </select>
+                                                </div>
+                                                <label for="select_num_of_script" class="col-md-3">Số lượng script <i class="far fa-question-circle"></i>
+                                                </label>
+                                                <div class="form-group col-md-2" style="padding: 0;">
+                                                    <select name="num_of_script" class="form-control" id="select_num_of_script">
+                                                        <option value="1" selected>1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- END OF SELECT INTENT OF SCRIPT --> 
+                                            <!-- INPUT VARIABLES -->
+                                            <div class="form-group">
+                                                <label for="inputVariables" class="col-md-3">Biến dữ liệu <i class="far fa-question-circle"></i></label>
+                                                <div class="form-group col-md-9">
+                                                    <input type="text" name="variables" class="form-control" id="inputVariables" placeholder='Variables (eg: "var1, var2")'>
+                                                </div>
+                                            </div>
+                                            <!-- END OF INPUT VARIABLES -->
+                                            <!-- DISPLAY SCIRPT'S NUMBER -->
+                                            <div class="form-group">
+                                                <label class="col-md-4" id='script_num_label'>Mẫu tin nhắn 1</label>
+                                            </div>
+                                            <hr>
+                                            <div class="form-group" id="regForm">
+                                                <div class="tab">
+                                                </div>
+                                            </div>
+                                            <!-- END OF DISPLAY SCRIPT'S NUMBER -->
+                                            <!-- SELECT SCRIPT FORM -->
+                                            <div class="form-group" id="script_info">
+                                                <label class="col-md-4">Định dạng tin nhắn <i class="far fa-question-circle"></i></label>
+                                                <div class="col-md-8">
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input class="key" type="radio" name="script" data-key="1" id="gridRadios1" value="text">
+                                                            Tin nhắn text
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input class="key" type="radio" name="script" data-key="2" id="gridRadios2" value="template">
+                                                            Facebook_template
+                                                        </label>
+                                                    </div>
+                                                    <div class="radio">
+                                                        <label>
+                                                            <input class="key" type="radio" name="script" data-key="3" id="gridRadios3" value="image">
+                                                            Hình ảnh
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- END OF SELECT SCRIPT FORM -->
+                                            <hr>
+                                            <!--INPUT TEXT TYPE MESSAGE -->
+                                            <div class="comp" data-key="1">
+                                                <div class="form-group">
+                                                    <label for="inputReply" class="col-md-3">
+                                                        Câu đối thoại</label>
+                                                    <div class="form-group col-md-9">
+                                                        <input type="text" name="text_content" class="form-control" id="inputReply" placeholder="Message">
+                                                    </div>  
+                                                </div>       
+                                            </div>
+                                            <!-- END OF TEXT TYPE MESSAGE -->
+                                            <div class="comp" data-key="2">
+                                                <!-- SELECT FB TEMPLATE TYPE -->
+                                                <div class="form-group">
+                                                    <label for="fb_template_type" class="col-md-3">Định dạng mẫu</label>
+                                                    <div class="form-group col-md-9">
+                                                        <select name="fb_template_type" class="form-control" id="fb_template_type">
+                                                            <option hidden disabled selected value> -- select an option -- </option>
+                                                            <option value="generic">Mẫu chung (generic)</option>
+                                                            <option value="button">Mẫu nút (button)</option>
+                                                            <option value="media">Mẫu phương tiện (media)</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!-- END OF SELECT FB TEMPLATE TYPE -->
+                                                <!-- FB TEMPLATE GENERIC TYPE -->
+                                                <div class="fb_tpl_type" data-type="generic">
+                                                    <div class="form-group" >
+                                                        <label for="inputTitle_generic"class="col-md-3"> Tiêu đề
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label for="inputSubtitle_generic" class="col-md-3"> Phụ đề 
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input type="text" name="subtitle_generic" class="form-control" id="inputSubtitle_generic" placeholder="Subtitle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputImageURL_generic" class="col-md-3"> Hình ảnh 
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input type="text" class="form-control" name="image_url_generic" id="inputImageURL_generic" placeholder="Choose file from your computer" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3 col-md-offset-3" style="padding-left: 0">
+                                                            <input type="file" name="chooseFile" id="chooseFile" accept="image/*">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-12" style="text-decoration: underline;"> Hành động mặc định 
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputDefault_URL_generic" class="col-md-3"> Đường dẫn mặc định 
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input id="inputDefault_URL_generic" type="text" name="default_URL_generic" class="form-control" placeholder="Default URL to open">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="num_of_button" class="col-md-3"> Số lượng các nút 
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <select name="num_of_button" class="form-control num_of_button">
+                                                                <option value="1" selected>1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group generic_tpl_button" id="generic_button_1">
+                                                        <label class="col-md-3"> Button 1 
+                                                        </label>
+                                                        <div class="form-group row col-md-12" style="display: flex; justify-content: space-around; padding-right: 0; padding-left: 0;">
+                                                            <div class="form-group col-md-4">
+                                                                <select name="style_of_button_1_generic" class="form-control">
+                                                                    <option value="web_url" selected>Nút URL</option>
+                                                                    <option value="payload">Nút đăng lại</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <input type="text" name="URL_button_1_generic" class="form-control" placeholder=" URL | payload ">
+                                                            </div>
+                                                            <div class="form-group col-md-4" style="padding-right: 0">
+                                                                <input type="text" name="title_button_1_generic" class="form-control" placeholder="Tiêu đề nút">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- END OF FB TEMPLATE GENERIC TYPE -->
+
+                                                <!-- FB TEMPLATE BUTTON TYPE -->
+                                                <div class="fb_tpl_type" data-type="button">
+                                                    <div class="form-group">
+                                                        <label for="inputText_button" class="col-md-3"> Tiêu đề </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input type="text" name="title_button" class="form-control" id="inputText_button" placeholder="Title" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="num_of_button" class="col-md-3"> Số lượng các nút </label>
+                                                        <div class="form-group col-md-9">
+                                                            <select name="num_of_button" class="form-control num_of_button">
+                                                                <option value="1" selected>1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <div class="col-md-9 col-md-offset-3" id="button_properties_label">
+                                                            <label class="col-md-4" style="text-align: left;">Loại nút </label>
+                                                            <label class="col-md-4">URL | Payload</label>
+                                                            <label class="col-md-4">Tiêu đề nút</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group button_tpl_button" id="button_button_1">
+                                                        <label class="col-md-3"> Button 1 </label>
+                                                        <div class="form-group row col-md-9">
+                                                            <div class="col-md-4">
+                                                                <select name="style_of_button_1_button" class="form-control">
+                                                                    <option value="web_url" selected>Nút URL</option>
+                                                                    <option value="payload">Nút đăng lại</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="URL_button_1_button" class="form-control" placeholder=" URL | payload ">
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="text" name="title_button_1_button" class="form-control" placeholder="Title to display">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- FB TEMPLATE MEDIA TYPE -->
+                                                <div class="fb_tpl_type" data-type="media">
+                                                    <div class="form-group">
+                                                        <label for="inputImageURL_media" class="col-md-3"> Media type </label>
+                                                        <div class="form-group col-md-9">
+                                                            <select name="fb_tpl_media_type" class="form-control">
+                                                                <option value="video">Video</option>
+                                                                <option value="photo">Hình ảnh</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputImageURL_media" class="col-md-3"> Đường dẫn </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input type="text" name="media_url_media" class="form-control" id="inputMediaURL_media" placeholder="URL">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <!-- END OF FB TEMPLATE MEDIA TYPE -->
+                                            </div> 
+                                            <!-- END OF INPUT FB TEMPLATE -->
+                                            <!-- MESSAGE MEDIA TYPE -->
+                                            <div class="comp" data-key="3">
+                                                <div class="form-group">
+                                                    <label for="chooseFile2" class="col-md-3 form-control-label"> Hình ảnh </label>
+                                                    <div class="form-group col-md-9">
+                                                        <input type="text" class="form-control" name="image_url" id="inputImageURL" placeholder="Choose file from your computer" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-md-3 col-md-offset-3" style="padding-left: 0">
+                                                        <input type="file" name="chooseFile" id="chooseFile2" name="chooseFile2" accept="image/*">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="inputID_next_script" class="col-md-3"> ID của script kế tiếp</label>
+                                                    <div class="form-group col-md-9">
+                                                        <input type="text" name="ID_next_script" class="form-control" id="inputID_next_script" placeholder="Next script's ID">
+                                                    </div>
+                                                </div>          
+                                            </div>
+                                            <!-- END OF MESSAGE MEDIA TYPE -->
+                                            <div class="form-group col-mf-2 col-md-offset-5" style="text-align:center;margin-top:40px;" id='step_count'>
+                                              <span class="step"></span>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-7 col-md-5">
+                                                    <!-- <button class="btn btn-danger" type="button" onclick="del_script()">Xóa script</button> -->
+                                                    <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Quay lại</button>
+                                                    <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Kế tiếp</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- END SAMPLE FORM PORTLET-->
+                        <div class="col-md-6">
+                            <div class="portlet box purple">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fas fa-eye"></i> Preview form 
+                                    </div>
+                                    <div class="tools">
+                                        <a href="" class="collapse"> </a>
+                                        <a href="" class="reload"> </a>
+                                        <a href="" class="remove"> </a>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <% include _layouts/quick_sidebar %>
+    </div>
+    <!-- BEGIN PAGE SCRIPT -->
+    <<% if (intent == 'adding') { -%>
+        <script type="text/javascript" src="/js/display.add_script_2.js"></script>
+        <script type="text/javascript" src="/js/submit.add_script_2.js"></script>
+    <% } else { -%>
+        <script type="text/javascript" src="/js/display.properties_2.js"></script>
+        <script type="text/javascript" src="/js/submit.properties_2.js"></script>
+    <% } -%>
+    <!-- END OF INPUT PAGE SCRIPT -->
+    <!-- END CONTAINER -->
+<% include _layouts/footer %>
