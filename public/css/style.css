@@ -180,6 +180,15 @@ input.invalid {
     padding-right: 0 !important; }
 
 /*# sourceMappingURL=style.css.map */
+/* CSS cho preview button template*/
+#preview-div ul .button_template{
+  max-width: 50%;
+  display:inline-block;
+  clear: both;
+  border-radius: 20px !important;
+  margin-bottom: 5px;
+}
+
 .btn_template_title{
   padding: 10px;
 }
@@ -224,12 +233,106 @@ input.invalid {
 .btn_group button:active {
     transform: scale(0.99);
 }
+/* CSS cho preview generic template*/
+#preview-div ul .generic_template{
+  position: relative;
+  width: 191px;
+  min-height: 100px;
+  max-height: 300px;
+  display:inline-block;
+  clear: both;
+  border-radius: 20px !important;
+  margin-bottom: 5px;
+}
+
+.div_template{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.generic_template .gen_template_title{
+  display: flex;
+  height: 50px;
+  flex-direction: column;
+  text-indent: 10px;
+  background-color: white;
+  color: #002;
+}
+
+.gen_template_title p{
+  font-size: 14px;
+  font-weight: bold;
+  height: 20px;
+  line-height: 20px;
+  margin: 5px 0 3px 0 !important;
+}
+
+.gen_template_title span{
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+}
+
+.generic_template .gen_template_img{
+  height: 100px;
+  border-radius: 20px 20px 0 0 !important;
+}
+
+.generic_template .btn_group{
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+  z-index: 4;
+}
+
+.generic_template .btn_group button{
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #fff;
+  color: #1c8bff;
+  font-family: sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+} 
+
+.generic_template .nav_template{
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border: 1px solid #ccc;
+  color: #000;
+  border-radius: 50px !important; 
+}
+
+#nav_tpl_next{
+  position: absolute;
+  right: -30px;
+  top: 80px;
+}
+
+#nav_tpl_pre{
+  position: absolute;
+  left: -30px;
+  top: 80px;
+}
 
 #preview-div{
   position: relative;
   border: 1px solid #e7505a;
   max-height: 500px;
+  min-height: 300px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #preview-div ul{
@@ -237,14 +340,6 @@ input.invalid {
   margin: 0;
   padding: 0;
   margin-top: 50px;
-}
-
-#preview-div ul .button_template{
-  max-width: 50%;
-  display:inline-block;
-  clear: both;
-  border-radius: 20px !important;
-  margin-bottom: 5px;
 }
 
 #preview-div ul li{
