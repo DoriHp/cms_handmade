@@ -1,4 +1,3 @@
-loadProgressBar()
 function getCookie(name) {
     // Split cookie string and get all individual name=value pairs in an array
     var cookieArr = document.cookie.split(";");
@@ -215,24 +214,24 @@ function display_question(data){
 
 (function display_response_mapping(){
   while(document.getElementsByClassName('res_mapping').length != info.response_mapping.length) add_res_mapping()
-  for(let i = 0; i < info.response_mapping.length; i++){
-    var child = document.querySelectorAll(`#res_mapping${i + 1} div input`)
-    child[0].value = info.response_mapping[i].responses.join(', ')
-    child[1].value = info.response_mapping[i].next_script
+  for(let i = 1; i <= info.response_mapping.length; i++){
+    var child = document.querySelectorAll(`#res_mapping${i} div input`)
+    child[0].value = info.response_mapping[i - 1].responses.join(', ')
+    child[1].value = info.response_mapping[i - 1].next_script
   }
 })()
 
 function display_del_button(del_button, add_button, display = true){
   if(display == true){
-    del_button.classList.add('col-4')
+    del_button.classList.add('col-md-3', 'col-md-offset-3')
     del_button.style.display = 'block'
-    add_button.classList.remove('col-12')
-    add_button.classList.add('col-8')
+    add_button.classList.remove('col-md-6', 'col-md-offset-3')
+    add_button.classList.add('col-md-3')
   }else{
-    del_button.classList.remove('col-4')
+    del_button.classList.remove('col-md-3', 'col-md-offset-3')
     del_button.style.display = 'none'
-    add_button.classList.remove('col-8')
-    add_button.classList.add('col-12')
+    add_button.classList.remove('col-md-3')
+    add_button.classList.add('col-md-6', 'col-md-offset-3')
   }
 }
 
@@ -261,6 +260,8 @@ function add_quick_reply(){
   child[1].name = `payload${count - 1}`
   child[1].placeholder = 'Payload for option'
   child[1].value = ""
+  let label = document.querySelector(`#reply${count} label`)
+  label.innerHTML = `Option (${count}).`
 }
 
 function del_quick_reply(){
@@ -286,33 +287,26 @@ function add_res_mapping(){
   var buttons = response_area.querySelectorAll('div button')
   var res_mapping1 = document.getElementById('res_mapping1') 
   var newNode = res_mapping1.cloneNode(true)
-  var child = response_area.getElementsByClassName('res_mapping')
-  var count = child.length
-  if(child.length == 1){
+  var count = document.getElementsByClassName('res_mapping').length
+  if(count == 1){
     display_del_button(buttons[0], buttons[1])
   }
   newNode.id = `res_mapping${count + 1}`
   response_area.insertBefore(newNode ,node_before)
-  let res_mapping = document.querySelectorAll(`#res_mapping${count + 1} div input`)
-  res_mapping[0].name = `res_mapping${count + 1}`
-  res_mapping[0].placeholder = `Response from customer`
-  res_mapping[1].name = `res_payload${count + 1}`
-  res_mapping[1].placeholder = 'Payload for response'
+  let inputs = document.querySelectorAll(`#res_mapping${count + 1} div input`)
+  inputs[0].name = `res_mapping${count + 1}`
+  inputs[1].name = `res_payload${count + 1}`
 }
 
 function del_res_mapping(){
   var response_area = document.getElementById('response_area')
   var buttons = response_area.querySelectorAll('div button')
   var c = response_area.children;
-  var count = 0
-  for(var i = 0; i < c.length; ++i){
-    if(c[i].tagName == "DIV")
-      count++;
-  }
-  let last = document.getElementById(`res_mapping${count - 1}`)
+  var count = document.getElementsByClassName('res_mapping').length
+  let last = document.getElementById(`res_mapping${count}`)
   last.parentNode.removeChild(last)
   count--
-  if(count == 2){
+  if(count == 1){
     display_del_button(buttons[0], buttons[1], false)
   }
 }

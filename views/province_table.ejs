@@ -1,0 +1,630 @@
+<% include _layouts/header %>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+<!-- END OF PAGE LEVEL PLUGIN -->
+</header>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
+    <% include _layouts/top_menu %>
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include _layouts/sidebar %>
+        <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Quản lý danh sách tỉnh thành
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                        <% include _layouts/toolbar %>
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <% include _layouts/breadcrumb %>
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                    <div class="portlet light bordered">
+                        <div class="portlet-title">
+                            <div class="caption font-dark">
+                                <i class="icon-settings font-dark"></i>
+                                <span class="caption-subject bold uppercase"> Danh sách tỉnh thành </span>
+                            </div>
+                        </div>
+                        <div class="portlet-body">
+                            <div class="table-toolbar">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="btn-group">
+                                            <button id="sample_editable_1_2_new" type="button" onclick="displayForm()" class="btn sbold green"> Thêm mới
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="btn-group pull-right">
+                                            <button class="btn green  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                                <i class="fa fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-print"></i> Print </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1_2">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                            <input type="checkbox" class="checkboxes" value="1" />
+                                            <span></span>
+                                            </label>
+                                        </th>
+                                        <th> Mã tỉnh thành </th>
+                                        <th> Tên tỉnh thành </th>
+                                        <th> Địa chỉ chi nhánh </th>
+                                        <th> Đường dây nóng </th>
+                                        <th> Actions </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (var i = 0; i < data.length; i++) { -%>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td><%= data[i].province_code %></td>
+                                            <td><%= data[i].name %></td>
+                                            <td><%= data[i].office_address %></td>
+                                            <td><%= data[i].hotline %></td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Thao tác
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a class="a_pro" id="<%= data[i]._id %>" href="#"><i class="far fa-question-circle"></i></i> Chi tiết & thay đổi </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="a_dt" id="<%= data[i]._id %>" href="#" ><i class="icon-docs"></i> D/s quận, huyện </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="a_del" id="<%= data[i]._id %>" href="#"><i class="far fa-trash-alt"></i></i> Xóa </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <% } -%>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- BEGIN EDITING AND ADDING FORM -->
+                    <div id="adding_div" class="row" style="display: none;">
+                        <div class="col-md-12">
+                            <div class="portlet box green">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fas fa-info-circle"></i> Dữ liệu tỉnh thành </div>
+                                    <div class="actions" style="margin-left: 10px;">
+                                        <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
+                                            <i class="far fa-edit"></i> Enable editing </button>
+                                        <button type="button" onclick="closeForm()" class="btn btn-default btn-sm" style="border: none;">
+                                            <i class="far fa-times-circle" style="color: red"></i>
+                                        </button>
+                                    </div>
+                                    <div class="tools">
+                                        <a class="collapse"> </a>
+                                        <a class="reload"> </a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body form">
+                                <!-- BEGIN FORM-->
+                                <form action="#" class="form-horizontal" id="province_data" >
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Tên tỉnh thành</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Mã tỉnh thành</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="province_code" name="province_code" class="form-control input-circle" placeholder="District code">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Pic name</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Pic name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Pic phone</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="Pic phone">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Địa chỉ chi nhánh</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-3 control-label">Số điện thoại đường dây nóng</label>
+                                            <div class="col-md-4">
+                                                <input type="text" id="hotline" name="hotline" class="form-control input-circle" placeholder="Hotline">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button id="save_change" type="button" onclick="updateProvince()" class="btn btn-circle green" style="display: none;" disabled>Lưu thay đổi</button>
+                                                <button id="adding" type="button" onclick="addProvince()" class="btn btn-circle green" style="display: none;">Lưu lại</button>
+                                                <button type="button" class="btn btn-circle grey-salsa btn-outline">Hủy bỏ</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- END FORM-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END OF EDITING AND ADDING FORM -->
+                    <!-- BEGIN TABLE OF DISTRICT -->
+                    <div class="row" id="district_div" style="display: none;">
+                        <div class="col-md-12">
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption font-dark">
+                                        <i class="icon-settings font-dark"></i>
+                                        <span class="caption-subject bold uppercase"> Danh sách quận huyện trực thuộc </span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <table class="table table-striped table-bordered table-hover" id="district_table">
+                                        <thead>
+                                            <tr>
+                                                <th> STT </th>
+                                                <th> Mã quận, huyện </th>
+                                                <th> Tên quận, huyện </th>
+                                                <th> Địa chỉ chi nhánh </th>
+                                                <th> Đường dây nóng </th>
+                                                <th> Thao tác </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <!-- END OF TABLE OF DISTRICT -->
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <% include _layouts/quick_sidebar %>
+    </div>
+    <!-- END CONTAINER -->
+<script type="text/javascript">
+    const adding_form = document.getElementById('adding_div')
+    var a_pro = document.getElementsByClassName('a_pro')
+    var a_dt = document.getElementsByClassName('a_dt')
+    var a_del = document.getElementsByClassName('a_del')
+    var select_id
+    for(let i = 0; i < a_pro.length; i++){
+        a_pro[i].addEventListener('click', getProperties)
+        a_dt[i].addEventListener('click', getDistrict)
+        a_del[i].addEventListener('click', delProvince)
+    }
+    function getDistrict(){
+        axios.get('/manager/province/list')
+        .then(function(response){
+            if(response.status == 200){
+                showOut(response.data)
+            }else{
+                alert('Tải dữ liệu thất bại, đã có lỗi xảy ra!')
+                return    
+            }
+        })
+        .catch(function(error){
+            alert('Tải dữ liệu thất bại, đã có lỗi xảy ra!' + error)
+        })
+    }
+
+    function showOut(items){
+        var table_body = document.querySelector('table tbody')
+        var a = items
+        var index = 0
+        for(let i of a){
+            let row = table_body.insertRow(index)
+            row.id = i._id
+            row.classList.add('odd', 'gradeX')
+            
+            var cell0 = row.insertCell(0)
+            var cell1 = row.insertCell(1)
+            var cell2 = row.insertCell(2)
+            var cell3 = row.insertCell(3)
+            var cell4 = row.insertCell(4)
+            var cell5 = row.insertCell(5)
+            var cell6 = row.insertCell(6)
+            
+            cell0.innerHTML = index + 1
+            cell1.innerHTML = (!i.district_code)?"N/A":i.district_code
+            cell2.innerHTML = (!i.province_code)?"N/A":i.province_code
+            cell3.innerHTML = (!i.name)?"N/A":i.name
+            cell4.innerHTML = (!i.office_address)?"N/A":i.office_address
+            cell5.innerHTML = (!i.hotline)?"N/A":i.hotline
+            cell6.innerHTML = `<div class="btn-group">
+                                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Thao tác
+                                        <i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a class="i._id" href="#" onclick="getProperties()"><i class="icon-docs"></i> Chi tiết </a>
+                                        </li>
+                                        <li>
+                                            <a class="i._id" href="#" onclick="addDistrict()"><i class="icon-tag"></i> Thay đổi </a>
+                                        </li>
+                                        <li>
+                                            <a class="i._id" href="#" onclick="delDistrict()"><i class="icon-user"></i> Xóa </a>
+                                        </li>
+                                    </ul>
+                                </div>`
+            
+            index++
+        }
+    }
+
+    function delProvince(e){
+        var conf = confirm('Bạn chắc chắn muốn xóa dữ liệu này?')
+        if(!conf) return
+        var _id = this.id
+        axios.delete('/manager/province/delete/:_id')
+        .then(function(response){
+            if(response.status == 200){
+                alert('Xóa dữ liệu thành công!')
+                location.reload()
+            }else{
+                alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
+            }
+        })
+        .catch(function(error){
+            alert('Đã có lỗi xảy ra, vui lòng thử lại sau' + error)
+        })
+    }
+
+    function updateProvince(){
+        var formData = new FormData(document.getElementById('province_data'))
+        var new_data = {}
+        for (var pair of formData.entries()) {
+            new_data[pair[0]] = (pair[1])?pair[1]:""
+        }   
+        console.log(new_data)
+        axios.get('/manager/province/properties/' + encodeURIComponent(select_id))
+        .then(function(response){
+            if(response.status == 200){
+                var _id = response.data._id
+                delete(response.data._id)
+                console.log(response.data)
+                if(deepCompare(response.data, new_data)){
+                    alert('Dữ liệu không thay đổi!')
+                    return
+                }else{
+                    var conf = confirm("Bạn chắc chắn muốn lưu thay đổi?")
+                    if(!conf) return
+                    axios.post('/manager/province/update/' + encodeURIComponent(select_id), {
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        data: new_data
+                    }).then(function(res){
+                        if(res.status == 200){
+                            alert('Thay đổi dữ liệu thành công!')
+                            location.reload()
+                        }else{
+                            alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
+                        }
+                    }).catch(function(error){
+                        alert('Request 2: Đã có lỗi xảy ra, vui lòng thử lại sau!' + error)
+                    })
+                }
+            }else{
+                alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
+            }
+        })
+        .catch(function(error){
+            alert('Request 1: Đã có lỗi xảy ra, vui lòng thử lại sau!' + error)
+        })
+    }
+
+    function getProperties(e){
+        var _id = this.id
+        select_id = this.id
+        axios.get('/manager/province/properties/' + encodeURIComponent(_id))
+        .then(function(response){
+            if(response.status == 200){
+                var data = response.data
+                displayForm()
+                var input = adding_form.querySelectorAll('input[type="text"]')
+                input[0].value = data.name
+                input[1].value = data.province_code
+                input[2].value = data.pic_name
+                input[3].value = data.pic_phone
+                input[4].value = data.office_address
+                input[5].value = data.hotline
+                adding_form.querySelectorAll('input').forEach(input => input.disabled = true)
+                adding_form.querySelectorAll('select').forEach(select => select.disabled = true)
+                document.getElementById('save_change').style.display = 'inline-block'
+                document.getElementById('adding').style.display = 'none'
+
+            }else{
+                alert('Tải dữ liệu thất bại, vui lòng thử lại sau!')
+            }
+        })
+        .catch(function(error){
+            alert('Đã có lỗi xảy ra, vui lòng thử lại!' + error)
+        })
+    }
+
+    function enableEdit(){
+        adding_form.querySelectorAll('input').forEach(input => input.disabled = false)
+        adding_form.querySelectorAll('select').forEach(select => select.disabled = false)
+        adding_form.querySelector('#save_change').disabled = false
+    }
+
+    function scrollTo(element, to, duration) {
+        if (duration <= 0) return
+        var difference = to - element.scrollTop
+        var perTick = difference / duration * 10
+
+        setTimeout(function() {
+            element.scrollTop = element.scrollTop + perTick
+            if (element.scrollTop === to) return
+            scrollTo(element, to, duration - 10)
+        }, 10)
+    }
+
+    function displayForm(){
+        document.getElementById('save_change').style.display = 'none'
+        document.getElementById('adding').style.display = 'inline-block'
+        adding_form.querySelectorAll('input').forEach(input => input.value = "")
+        adding_form.querySelectorAll('select').forEach(select => select.selectedIndex = 0)
+        adding_form.style.display = 'block'
+        scrollTo(document.body, adding_form.offsetTop, 400)
+        adding_form.querySelectorAll('input').forEach(input => input.disabled = false)
+        adding_form.querySelectorAll('select').forEach(select => select.disabled = false)
+    }
+
+    function closeForm(){
+        adding_form.style.display = 'none'
+    }
+
+    function addProvince(){
+        var formData = new FormData(document.getElementById('province_data'))
+        var data = {}
+        for (var pair of formData.entries()) {
+            data[pair[0]] = (pair[1])?pair[1]:""
+        }   
+        
+        axios.post('/manager/province/adding',{
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            data: data
+        }).then(function(response){
+            if(response.status == 200){
+                alert('Thêm dữ liệu thành công!')
+                location.reload()
+            }else{
+                alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+            }
+        }).catch(function(error){
+            alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+        })
+    }
+
+    function getDistrict(e){
+        scrollTo(document.body, document.getElementById('district_div'), 200)
+        document.getElementById('district_div').style.display = 'block'
+        axios.get('/manager/province/districtlist/' + encodeURIComponent(this.id))
+        .then(function(response){
+            if(response.status != 200){
+                alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
+                return
+            }
+            var table = document.querySelector('#district_table')
+            table.style.display = 'block'
+            var table_body = table.querySelector('tbody')
+            var index = 0
+            console.log(response.data)
+            if(!response.data){
+                let row = table_body.insertRow(index)
+                var cell0 = row.insertCell(0)
+                cell0.innerHTML = 'Không có dữ liệu để hiển thị!'
+                return
+            }
+            for(let i of response.data){
+                let row = table_body.insertRow(index)
+                row.id = i._id
+                
+                var cell0 = row.insertCell(0)
+                var cell1 = row.insertCell(1)
+                var cell2 = row.insertCell(2)
+                var cell3 = row.insertCell(3)
+                var cell4 = row.insertCell(4)
+                var cell5 = row.insertCell(5)
+                
+                cell0.innerHTML = index + 1
+                cell1.innerHTML = (!i.district_code)?"N/A":i.district_code
+                cell2.innerHTML = (!i.name)?"N/A":i.name
+                cell3.innerHTML = (!i.office_address)?"N/A":i.office_address
+                cell4.innerHTML = (!i.hotline)?"N/A":i.hotline
+                cell5.innerHTML = `<div class="btn-group">
+                                        <button class="btn btn_open btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Chi tiết
+                                        </button>
+                                    </div>`
+            
+            index++
+            var btn_open = document.getElementsByClassName('btn_open')
+            for(let i of btn_open){
+                i.addEventListener('click', open_tab)
+            }
+        }
+
+        })  
+        .catch(function(error){
+            alert('Đã có lỗi xảy ra, vui lòng thử lại sau!' + error)
+        })
+    }
+
+    function open_tab(){
+        window.open('/manager/district', "_blank")
+    }
+
+    function deepCompare () {
+        var i, l, leftChain, rightChain;
+
+      function compare2Objects (x, y) {
+        var p;
+
+        if (isNaN(x) && isNaN(y) && typeof x === 'number' && typeof y === 'number') {
+             return true;
+        }
+
+        if (x === y) {
+            return true;
+        }
+
+        if ((typeof x === 'function' && typeof y === 'function') ||
+           (x instanceof Date && y instanceof Date) ||
+           (x instanceof RegExp && y instanceof RegExp) ||
+           (x instanceof String && y instanceof String) ||
+           (x instanceof Number && y instanceof Number)) {
+            return x.toString() === y.toString();
+        }
+
+        // At last checking prototypes as good as we can
+        if (!(x instanceof Object && y instanceof Object)) {
+            return false;
+        }
+
+        if (x.isPrototypeOf(y) || y.isPrototypeOf(x)) {
+            return false;
+        }
+
+        if (x.constructor !== y.constructor) {
+            return false;
+        }
+
+        if (x.prototype !== y.prototype) {
+            return false;
+        }
+
+        // Check for infinitive linking loops
+        if (leftChain.indexOf(x) > -1 || rightChain.indexOf(y) > -1) {
+             return false;
+        }
+
+        for (p in y) {
+            if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                return false;
+            }
+            else if (typeof y[p] !== typeof x[p]) {
+                return false;
+            }
+        }
+
+        for (p in x) {
+            if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                return false;
+            }
+            else if (typeof y[p] !== typeof x[p]) {
+                return false;
+            }
+
+            switch (typeof (x[p])) {
+                case 'object':
+                case 'function':
+
+                    leftChain.push(x);
+                    rightChain.push(y);
+
+                    if (!compare2Objects (x[p], y[p])) {
+                        return false;
+                    }
+
+                    leftChain.pop();
+                    rightChain.pop();
+                    break;
+
+                default:
+                    if (x[p] !== y[p]) {
+                        return false;
+                    }
+                    break;
+                }
+            }
+
+            return true;
+          }
+
+          if (arguments.length < 1) {
+            return true; //Die silently? Don't know how to handle such case, please help...
+            // throw "Need two or more arguments to compare";
+          }
+
+          for (i = 1, l = arguments.length; i < l; i++) {
+
+              leftChain = []; //Todo: this can be cached
+              rightChain = [];
+
+              if (!compare2Objects(arguments[0], arguments[i])) {
+                  return false;
+              }
+          }
+
+          return true;
+    }
+
+</script>
+<% include _layouts/global_plugin %>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+<script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL PLUGINS -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+<script src="/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
+<% include _layouts/footer %>

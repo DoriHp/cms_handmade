@@ -2,7 +2,7 @@ require('dotenv').config()
 var Script = require('../models/script.model.js')
 
 module.exports.sendBroadcastForm = function(req, res){
-	res.render('broadcast_form', {locate: 'Broacast message'})
+	res.render('broadcast_form', {locate: 'Broacast message', user: {username: 'Bảo'}})
 }
 
 module.exports.execUpload = function(req, res){

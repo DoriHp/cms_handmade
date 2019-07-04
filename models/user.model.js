@@ -5,7 +5,6 @@ var userSchema = new mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	username: String,
 	password: String,
-	page_token: String,
 	name: String,
 	email: String,
 	role: String

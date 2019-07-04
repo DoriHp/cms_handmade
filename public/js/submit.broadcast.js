@@ -102,16 +102,23 @@ function add_full_button(fb_tpl_type_selected){
   }
 }
 
-async function submit(){
+async function create_submit_data(){
 	var submit_data = {}
-	var formData = new FormData(document.querySelector('#broadcast_form'))
+	var formData = new FormData(document.getElementById('broadcast_form'))
 
+	var radios = document.querySelectorAll('input[type = "radio"]')
+	for(let i of radios){
+		console.log(i.value)
+	}
 	var data = {}
-	for (var pair of formData.entries()) {
+	for(var pair of formData.entries()) {
 	  data[pair[0]] = pair[1]
+	  console.log(pair[0] + ':' + pair[1])
 	}
 
-	if(data.broadcast == 'text'){
+	data.type = 'text'
+
+	if(data.type == 'text'){
 		submit_data = {}
 		submit_data.messages = []
 		var dynamic_text = {}
@@ -133,25 +140,30 @@ async function submit(){
 		}
 		submit_data.messages.push({attachment})
 	}
+	return submit_data
+}
+
+function submit(){
+	var submit_data = create_submit_data()
 
 	console.log(submit_data)
-	axios.post('/broadcast', {
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		data: submit_data
-	})
-	.then(function(response){
-		if(response.status == 200){
-			alert('Gửi tin nhắn hàng loạt thành công!')
-			location.reload()
-		}else{
-			alert('Đã có lỗi xảy ra!')
-		}
-	})
-	.catch(function(err){
-		alert(err)
-	})
+	// axios.post('/broadcast', {
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	data: submit_data
+	// })
+	// .then(function(response){
+	// 	if(response.status == 200){
+	// 		alert('Gửi tin nhắn hàng loạt thành công!')
+	// 		location.reload()
+	// 	}else{
+	// 		alert('Đã có lỗi xảy ra!')
+	// 	}
+	// })
+	// .catch(function(err){
+	// 	alert(err)
+	// })
 }
 
 document.getElementById('submit_button').addEventListener('click', submit)

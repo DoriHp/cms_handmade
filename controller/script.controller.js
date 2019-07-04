@@ -4,6 +4,10 @@ var mongoose = require('mongoose')
 require('dotenv').config()
 
 module.exports.index = async (req, res) => {
+	res.status(200).render('script_table', {locate: 'Danh sách mẫu tin nhắn', user: 'admin'})
+}
+
+module.exports.list = async (req, res) => {
 	var result = await Script.find().lean()
 	res.send(result)
 }
@@ -12,10 +16,10 @@ module.exports.addScript = (req, res) => {
 	var intent = req.params.intent
 	if(intent == "question"){
 		res.status(200)
-		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn '})
+		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: req.user})
 	}else{
 		res.status(200)
-		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn '})
+		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: req.user})
 	}
 }
 
@@ -39,9 +43,9 @@ module.exports.getProperties = async function(req, res){
 	if(result){
 		res.cookie("info" ,response)
 		if(result.type == 'question'){
-			res.render('script_question', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn'})
+			res.render('script_question', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: req.user})
 		}else{
-			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn'})
+			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: req.user})
 		}
 	}else{
 		res.status(500)

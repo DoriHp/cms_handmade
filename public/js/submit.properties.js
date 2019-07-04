@@ -187,7 +187,7 @@ function submit(){
 }
 
 
-document.getElementById("saver").addEventListener('click', function(){
+document.getElementById("submit_button").addEventListener('click', function(){
   submit()
 })
 //starting from script.attachment.payload

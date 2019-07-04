@@ -38,6 +38,65 @@ footer {
 #div_table table th {
   background: #9B9595; }
 
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.switch input {display:none;}
+
+.slide {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #A1A6AB;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+}
+
+.slide:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 14px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slide {
+  background-color: #4CAF50;
+}
+
+input:focus + .slide {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slide:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slide.round {
+  border-radius: 34px !important;
+}
+
+.slide.round:before {
+  border-radius: 50%;
+}
+
+
 .button_tpl_button div .col-md-4 {
   padding-right: 5px !important;
   padding-left: 0 !important; }
@@ -114,93 +173,6 @@ input.invalid {
   display: inline-block;
   opacity: 0.5; }
 
-.custom-file-input {
-  opacity: 1 !important; }
-
-.custom-file-input:before {
-  content: "Chọn file";
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #007bff;
-  text-align: center;
-  vertical-align: middle;
-  color: #fff;
-  z-index: 3;
-  border-radius: 5px;
-  font-weight: bold;
-  display: table-cell;
-  box-shadow: none; }
-
-#preview {
-  position: fixed;
-  left: 300px;
-  top: 100px;
-  width: 300px;
-  height: 450px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 10px;
-  border: 1px solid #C9C2C2; }
-  #preview #user {
-    width: 300px;
-    height: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    border-radius: 10px 10px 0 0;
-    border-bottom: 1px solid #C9C2C2; }
-    #preview #user .user_avatar {
-      width: 45px;
-      height: 45px;
-      margin-left: 10px;
-      background-image: url("./circle-github-512.png");
-      background-size: cover; }
-    #preview #user .user_avatar:before {
-      content: "Người dùng";
-      font-family: 'Roboto';
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 45px;
-      position: absolute;
-      left: 70px; }
-  #preview #conversation {
-    display: flex;
-    flex-direction: column-reverse; }
-    #preview #conversation .user_say {
-      width: 300px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around; }
-      #preview #conversation .user_say .user_avatar {
-        position: absolute;
-        left: 5px;
-        width: 30px;
-        height: 30px;
-        margin-left: 10px;
-        background-image: url("./circle-github-512.png");
-        background-size: cover; }
-      #preview #conversation .user_say span {
-        position: absolute;
-        left: 45px;
-        background-color: #AEA5A5;
-        border-radius: 10px;
-        padding: 0 5px;
-        font-size: 14px;
-        line-height: 30px;
-        color: #fff; }
-  #preview button {
-    position: absolute;
-    right: -15px;
-    top: -15px;
-    background-color: #fff;
-    border: 1px solid #ccc; }
-    #preview button span {
-      font-size: 20px;
-      line-height: 30px; }
-
 #button_properties_label {
   padding-left: 0; }
   #button_properties_label label {
@@ -208,3 +180,169 @@ input.invalid {
     padding-right: 0 !important; }
 
 /*# sourceMappingURL=style.css.map */
+.btn_template_title{
+  padding: 10px;
+}
+
+.button_template .btn_group{
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.btn_group button:last-of-type{
+  border-radius: 0 0 20px 20px !important;
+}
+
+.button_template .btn_group button{
+  display: inline-block;
+  border: none;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background: #fff;
+  color: #000;
+  font-family: sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+} 
+
+.btn_group button:hover,
+.btn_group button:focus {
+    background: #ccc;
+}
+
+.btn_group button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+.btn_group button:active {
+    transform: scale(0.99);
+}
+
+#preview-div{
+  position: relative;
+  border: 1px solid #e7505a;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+#preview-div ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 50px;
+}
+
+#preview-div ul .button_template{
+  max-width: 50%;
+  display:inline-block;
+  clear: both;
+  border-radius: 20px !important;
+  margin-bottom: 5px;
+}
+
+#preview-div ul li{
+  display:inline-block;
+  clear: both;
+  padding: 10px;
+  border-radius: 20px !important;
+  margin-bottom: 5px;
+  font-family: Helvetica, Arial, sans-serif;
+  max-width: 70%;
+  font-size: 12px;
+}
+
+#preview-div ul img{
+  display:inline-block;
+  clear: both;
+  border-radius: 20px !important;
+  margin-bottom: 5px;
+  max-width: 70%;
+  max-height: 250px;
+  background-color: transparent !important; 
+}
+
+#preview-div .him{
+  background-color: #eee;
+  float: left;
+}
+
+#preview-div .me{
+  float: right;
+  background: #0084ff;
+  color: #fff;
+}
+
+#preview-div .him + .me{
+  border-bottom-right-radius: 5px;
+}
+
+#preview-div .me + .me{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#preview-div .me:last-of-type {
+  border-bottom-right-radius: 30px !important;
+}
+
+#preview-div .row{
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-flex;
+  justify-content: space-between;
+  border-bottom: 1px solid red;
+} 
+
+#preview-div:before{
+  content: 'Preview form';
+  position: absolute;
+  width: 100%;
+  min-height: 41px;
+  left: 0;
+  top: 0;
+  line-height: 41px;
+  background-color: #e7505a;
+  font-size: 18px;
+  text-align: left;
+  text-indent: 10px;
+  color: white;
+  z-index: 3;
+  display: block;
+}
+
+#preview-div::-webkit-scrollbar{
+  width: 6px !important;
+  -webkit-appearance: none;
+}
+
+#preview-div::-webkit-scrollbar-thumb{
+  background-color: #e7505a !important;
+}
+
+#user_avatar{
+  width: 100%;
+  max-height: 100px;
+}
+
+#user_avatar img{
+  margin: 0 auto;
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 50px !important;
+  display: block;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+}
+
+#user_info{
+  display: flex;
+  flex-direction: column;
+}

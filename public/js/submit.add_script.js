@@ -117,7 +117,7 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
 
 function submitData(){
 
- 	var formData = new FormData(document.querySelector('form'))
+ 	var formData = new FormData(document.querySelector('#data_form'))
 
  	var submit_data = {}
  	
@@ -182,6 +182,7 @@ function submitData(){
 	}).then(function(response){
 		if(response.status == 200){
 			alert("Lưu script thành công!")
+			location.reload()
 		}else{
 			alert("Lưu script thất bại!")
 		}

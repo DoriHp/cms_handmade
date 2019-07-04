@@ -13,9 +13,64 @@ var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
 
+const fs = require('fs')
+const readline = require('readline')
+const {google} = require('googleapis')
+const TOKEN_PATH = 'token.json'
+const CREDENTIAL_FILE = 'credentials.json'
+
+// If modifying these scopes, delete token.json.
+const SCOPES = [
+  'https://mail.google.com/'
+]
+
+fs.readFile(CREDENTIAL_FILE, (err, content) => {
+  if(err) throw err
+  checkToken(JSON.parse(content))
+})
+
+// check token exist in token file
+function checkToken(credential) {
+  let clientSecret = credential.installed.client_secret;
+  let clientId = credential.installed.client_id;
+  let redirectUrl = credential.installed.redirect_uris[0];
+  let oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUrl);
+
+  fs.readFile(TOKEN_PATH, (err, token) => {
+    if(err) return getNewToken(oauth2Client)
+    oauth2Client.setCredentials(JSON.parse(token))
+  })
+}
+
+function getNewToken(oauth2Client) {
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES,
+  });
+  console.log('Authorize this app by visiting this url:', authUrl)
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  rl.question('Enter the code from that page here: ', (code) => {
+    rl.close();
+    oauth2Client.getToken(code, (err, token) => {
+      if (err) return console.error('Error retrieving access token', err)
+      oauth2Client.setCredentials(token);
+      // Store the token to disk for later program executions
+      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+        if (err) return console.error(err);
+        console.log('Token stored to', TOKEN_PATH)
+      });
+    });
+  });
+}
+
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
+mongoose.connect(process.env.MONGODB_URL_2, { useNewUrlParser: true }, function(error){
+  if(error) throw error
+})
 
 var app = express(),
 server = require('http').createServer(app),
@@ -106,13 +161,17 @@ app.get('/logout', function(req, res){
   res.redirect('/login')
 })
 
-//Main page
-app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {	
-	next()
-})
-
+// Main page
+// app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {  
+//   next()
+// })
 app.get('', function(req, res){
-	res.render('script_table', {locate: 'Main page'})
+	res.render('index', {locate: 'Main page', user: 'admin', data:{
+    new_user: 100,
+    new_mes: 1000,
+    new_auto_mes: 999,
+    new_feedback: 200
+  }})
 })
 
 function isAdmin(req, res, next) {
@@ -127,9 +186,11 @@ function isUser(req, res, next){
 }
 
 var scriptRoute = require('./routes/script.route.js')
-var broadcastRoute = require('./routes/broadcast.route.js')
+var message241Route = require('./routes/message241.route.js')
 var userRoute  = require('./routes/user.route.js')
+var managerRoute = require('./routes/manager.route.js')
 app.use('/script', scriptRoute)
-app.use('/broadcast', broadcastRoute)
+app.use('/message241', message241Route)
 app.use('/user', userRoute)
+app.use('/manager', managerRoute)
 app.use(haltOnTimedout)

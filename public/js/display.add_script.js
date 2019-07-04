@@ -176,39 +176,29 @@ function add_res_mapping(){
 	var buttons = response_area.querySelectorAll('div button')
 	var res_mapping1 = document.getElementById('res_mapping1') 
 	var newNode = res_mapping1.cloneNode(true)
-	var c = response_area.children;
-	var count = 0
-	for(var i = 0; i < c.length; ++i){
-		if(c[i].tagName == "DIV")
-	    count++;
-	}
-	if(count > 1){
+	var count = document.getElementsByClassName('res_mapping').length
+	if(count == 1){
 		display_del_button(buttons[0], buttons[1])
 	}
-	newNode.id = `res_mapping${count}`
+	newNode.id = `res_mapping${count + 1}`
 	response_area.insertBefore(newNode ,node_before)
-	let res_mapping = document.querySelectorAll(`#reply${count} .col-6 .res_mapping`)
-	res_mapping.name = `res_mapping${count - 1}`
-	res_mapping.placeholder = `${count - 1}`
-	let res_payload = document.querySelectorAll(`#reply${count+1} .col-6 .res_payload`)
-	res_payload.name = `res_payload${count - 1}`
+	let inputs = document.querySelectorAll(`#res_mapping${count + 1} div input`)
+	inputs[0].name = `res_mapping${count + 1}`
+	inputs[1].name = `res_payload${count + 1}`
 }
 
 function del_res_mapping(){
-	var response_area = document.getElementById('response_area')
-	var buttons = response_area.querySelectorAll('div button')
-	var c = response_area.children;
-	var count = 0
-	for(var i = 0; i < c.length; ++i){
-		if(c[i].tagName == "DIV")
-	    count++;
-	}
-	let last = document.getElementById(`res_mapping${count - 1}`)
-	last.parentNode.removeChild(last)
-	count--
-	if(count == 2){
-		display_del_button(buttons[0], buttons[1], false)
-	}
+  var response_area = document.getElementById('response_area')
+  var buttons = response_area.querySelectorAll('div button')
+  var c = response_area.children;
+  var count = document.getElementsByClassName('res_mapping').length
+  console.log(count)
+  let last = document.getElementById(`res_mapping${count}`)
+  last.parentNode.removeChild(last)
+  count--
+  if(count == 1){
+    display_del_button(buttons[0], buttons[1], false)
+  }
 }
 
 function change_num_of_script(e){

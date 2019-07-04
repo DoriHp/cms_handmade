@@ -17,8 +17,8 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage })
 
-router.get('/', controller.sendBroadcastForm)
-router.post('/', controller.execBroadcast)
+router.get('/broadcast', controller.sendBroadcastForm)
+router.post('/broadcast', controller.execBroadcast)
 router.post('/upload', upload.single('image'), controller.execUpload)
 
 module.exports = router

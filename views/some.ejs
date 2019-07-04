@@ -1,0 +1,14 @@
+	                                                                    
+	                                                                    
+<td> 
+	                                                                    	<% if (feedbacks[i].status.read) { -%>
+	                                                                    		<span class="label label-sm label-success label-feedback"> Đã đọc </span>
+	                                                                    	<% } else { -%>
+	                                                                    		<span class="label label-sm label-warning label-feedback"> Chưa đọc </span>
+	                                                                    	<% } -%>
+	                                                                    	<% if (feedbacks[i].status.reply) { -%>
+	                                                                    		<span class="label label-sm label-info label-feedback"> Đã trả lời </span>
+	                                                                    	<% } else { -%>
+	                                                                    		<span class="label label-sm label-danger label-feedback"> Chưa trả lời </span>
+	                                                                    	<% } -%> 
+	                                                                    </td>
