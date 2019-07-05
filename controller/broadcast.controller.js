@@ -12,6 +12,13 @@ module.exports.execUpload = function(req, res){
 }
 
 module.exports.execBroadcast = function(req, res){
+	console.log(req.body.data)
+	var timer
+	if(req.body.data.timer){
+		timer = req.body.data.timer / 1000
+		delete(req.body.data.timer)
+	}
+
 	var request = require('request')
 	var option1 = {
 		method : 'POST',
@@ -30,6 +37,7 @@ module.exports.execBroadcast = function(req, res){
 		}
 		message_creative_id = body.message_creative_id
 		error1 = body
+		console.log(error1)
 		var option2 = {
 			method : 'POST',
 			uri: 'https://graph.facebook.com/v3.3/me/broadcast_messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
