@@ -16,7 +16,7 @@ module.exports.addScript = (req, res) => {
 	var intent = req.params.intent
 	if(intent == "question"){
 		res.status(200)
-		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: req.user})
+		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: 'admin'})
 	}else{
 		res.status(200)
 		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: req.user})

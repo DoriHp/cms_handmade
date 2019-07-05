@@ -34,7 +34,7 @@ document.getElementById('chooseFile').addEventListener('change', function (e) {
 	var display = document.getElementById('inputImageURL_generic')
 	var formData = new FormData()
 	formData.append("image", e.target.files[0])
-	axios.post('/broadcast/upload', formData,
+	axios.post('/message241/upload', formData,
 		{
 			headers:{
 				'Content-Type': 'multipart/form-data'
@@ -101,22 +101,14 @@ function add_full_button(fb_tpl_type_selected){
     }
   }
 }
-
+//Lấy dữ liệu từ form
 async function create_submit_data(){
 	var submit_data = {}
 	var formData = new FormData(document.getElementById('broadcast_form'))
-
-	var radios = document.querySelectorAll('input[type = "radio"]')
-	for(let i of radios){
-		console.log(i.value)
-	}
 	var data = {}
 	for(var pair of formData.entries()) {
 	  data[pair[0]] = pair[1]
-	  console.log(pair[0] + ':' + pair[1])
 	}
-
-	data.type = 'text'
 
 	if(data.type == 'text'){
 		submit_data = {}
@@ -136,7 +128,7 @@ async function create_submit_data(){
 		attachment.payload.elements = []
 		for(let i = 0; i < 9 && window.localStorage.getItem(`generic${i}`) != undefined; i++){
 			let element = window.localStorage.getItem(`generic${i}`) 
-			attachment.payload.elements.push(element)
+			attachment.payload.elements.push(JSON.parse(element))
 		}
 		submit_data.messages.push({attachment})
 	}
@@ -164,6 +156,13 @@ function submit(){
 	// .catch(function(err){
 	// 	alert(err)
 	// })
+}
+
+function setting(){
+	var get_value = document.getElementById('timer').value
+	var arr = get_value.split(' ')
+	var new_str = `${arr[1]} ${arr[0]} ${arr[2]} ${arr[4]}`
+	var timer = Date.parse('new_str')
 }
 
 document.getElementById('submit_button').addEventListener('click', submit)

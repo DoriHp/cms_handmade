@@ -111,7 +111,7 @@ keys.forEach(key => key.addEventListener('click', display))
 
 function init_generic(){
   (function(){
-    document.querySelectorAll('input').forEach(input => input.value = '')
+    document.querySelectorAll('input[type="text"]').forEach(input => input.value = '')
     for(let i = 2; i <= 3; i++){
       if(document.getElementById(`generic_button_${i}`) != undefined){
         let remove_button = document.getElementById(`generic_button_${i}`)

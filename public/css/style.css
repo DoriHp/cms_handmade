@@ -96,7 +96,6 @@ input:checked + .slide:before {
   border-radius: 50%;
 }
 
-
 .button_tpl_button div .col-md-4 {
   padding-right: 5px !important;
   padding-left: 0 !important; }
@@ -203,7 +202,9 @@ input.invalid {
   border-radius: 0 0 20px 20px !important;
 }
 
-.button_template .btn_group button{
+/*CSS chung cho button của template*/
+
+.btn_group button{
   display: inline-block;
   border: none;
   padding: 1rem 2rem;
@@ -289,20 +290,7 @@ input.invalid {
 }
 
 .generic_template .btn_group button{
-  display: inline-block;
-  border: none;
-  padding: 1rem 2rem;
-  margin: 0;
-  text-decoration: none;
-  background: #fff;
   color: #1c8bff;
-  font-family: sans-serif;
-  line-height: 1;
-  cursor: pointer;
-  text-align: center;
-  transition: background 250ms ease-in-out, transform 150ms ease;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 } 
 
 .generic_template .nav_template{
@@ -316,13 +304,13 @@ input.invalid {
 
 #nav_tpl_next{
   position: absolute;
-  right: -30px;
+  right: -15px;
   top: 80px;
 }
 
 #nav_tpl_pre{
   position: absolute;
-  left: -30px;
+  left: -15px;
   top: 80px;
 }
 
@@ -353,14 +341,15 @@ input.invalid {
   font-size: 12px;
 }
 
-#preview-div ul img{
+#preview-div img{
   display:inline-block;
   clear: both;
   border-radius: 20px !important;
   margin-bottom: 5px;
   max-width: 70%;
   max-height: 250px;
-  background-color: transparent !important; 
+  background-color: transparent !important;
+  cursor: pointer; 
 }
 
 #preview-div .him{
@@ -440,4 +429,83 @@ input.invalid {
 #user_info{
   display: flex;
   flex-direction: column;
+}
+
+/* CSS cho modal image */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  max-width: 100%; /* Full width */
+  max-height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close-modal {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+  transform: scale(1);
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
 }

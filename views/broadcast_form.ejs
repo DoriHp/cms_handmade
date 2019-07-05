@@ -49,11 +49,11 @@
                                                 <label class="col-md-4">Định dạng tin nhắn</label>
                                                 <div class="col-md-8 mt-radio-list">
                                                     <label class="mt-radio" style="font-weight: 400;"> Tin nhắn text
-                                                        <input class="key" type="radio" value="text" name="type" data-key="1"/>
+                                                        <input class="key" type="radio" name="type" data-key="1" value="text"/>
                                                         <span></span>
                                                     </label>
                                                     <label class="mt-radio" style="font-weight: 400;"> Mẫu facebook(mẫu chung)
-                                                        <input class="key" type="radio" value="template" name="type" data-key="2"/>
+                                                        <input class="key" type="radio" name="type" data-key="2" value="template"/>
                                                         <span></span>
                                                     </label>
                                                 </div>
@@ -203,7 +203,7 @@
                                                 <label class="control-label col-md-4">Hẹn giờ gửi</label>
                                                 <div class="col-md-8">
                                                     <div class="input-group date form_datetime form_datetime bs-datetime">
-                                                        <input type="text" size="16" class="form-control">
+                                                        <input type="text" size="16" class="form-control" id="timer">
                                                         <span class="input-group-addon">
                                                             <button class="btn default date-set" type="button">
                                                                 <i class="fa fa-calendar"></i>
@@ -216,14 +216,14 @@
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-md-offset-9 col-md-3">
-                                                    <button type="button" id="setting_button" class="btn green">Lưu lại</button>
+                                                    <button type="button" id="setting_button" onclick="setting()" class="btn green">Lưu lại</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
                             </div> 
-                            <div class="col-md-12" id="preview-div">
+                            <div class="col-md-12" id="preview-div" style="display: none">
                                 <ul>
                                 </ul>   
                             </div> 

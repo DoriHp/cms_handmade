@@ -23,6 +23,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
+    "fbgraph": "^1.4.4",
     "generate-password": "^1.4.2",
     "googleapis": "^39.2.0",
     "mongoose": "^5.5.7",
