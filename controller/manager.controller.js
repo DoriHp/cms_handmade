@@ -6,6 +6,7 @@ var District = require('../models/district.model.js')
 var Province = require('../models//province.model.js')
 var Product = require('../models/product.model.js')
 var Feedback = require('../models/feedback.model.js')
+var Member = require('../models/member.modal.js')
 var request = require('request')
 
 //District management module
@@ -207,6 +208,38 @@ module.exports.feedback = async function(req, res){
 
 }	
 
+module.exports.feedback_list = async function(req, res){
+	switch (req.params.filter) {
+		case 'all':
+			var feedbacks = await Feedback.find().lean()
+			if(feedbacks){
+				res.status(200).send(feedbacks)
+			}else{
+				res.status(503).end()
+			}
+			break;
+		case 'unread':
+			var feedbacks = await Feedback.find({'status.read': false}).lean()
+			if(feedbacks){
+				res.status(200).send(feedbacks)
+			}else{
+				res.status(503).end()
+			}
+			break
+		case 'unreply':
+			var feedbacks = await Feedback.find({'status.reply': false}).lean()
+			if(feedbacks){
+				res.status(200).send(feedbacks)
+			}else{
+				res.status(503).end()
+			}
+			break
+		default:
+			res.status(404).send('Not found!')
+			break;
+	}
+}
+
 module.exports.get_feedback_content = async function(req, res){
 	var content = await Feedback.findById(req.params._id).lean()
 	if(content){
@@ -242,13 +275,19 @@ function customFilter(object){
 }
 
 module.exports.get_user_info = async function(req, res){
-	var result = await Feedback.findById(req.params._id)
+	var result = await Feedback.findById(req.params._id).lean()
 	if(!result){
 		res.status(500).end()
 		return
 	} 
 	var fb_id = result.fb_id
-	console.log(fb_id)
+	var member = await Member.findOne({fb_id: fb_id}).lean()
+	if(!member){
+		res.status(500).end()
+		return
+	}
+	var auto_reply = member.auto_reply
+	console.log(auto_reply)
 	var options = {
 		uri: `https://graph.facebook.com/v3.2/${fb_id}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${process.env.PAGE_ACCESS_TOKEN_2}`,
 		headers: {
@@ -259,8 +298,43 @@ module.exports.get_user_info = async function(req, res){
 		if(response.statusCode != 200 || error){
 			res.status(500).end()
 		}
-		res.status(200).send(JSON.parse(body))
+		var send = JSON.parse(body)
+		send.auto_reply = auto_reply
+		console.log(send)
+		res.status(200).send(send)
 	})
 }
 
+module.exports.get_user_link = async function(req, res, next){
+	var result = await Member.findOne({fb_id: req.params.fb_id})
+	if(!result){
+		res.status(404).end()
+	}else{
+		res.status(200).send(result.fb_linkChat)
+	}
+}
+
+module.exports.update_status_member = async function(req, res){
+	var update = req.body.data
+	console.log(req.params.fb_id)
+	await Member.findOneAndUpdate({fb_id: req.params.fb_id}, {$set:update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
+		if(err){
+			res.status(500).end()
+		}else{
+			console.log('Updated!')
+			res.status(200).end()
+		}
+	})
+}
+
+module.exports.update_status_feedback = async function(req, res){
+	var update = req.body.data
+	await Feedback.findByIdAndUpdate(req.params._id, {$set:update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
+		if(err){
+			res.status(500).end()
+		}else{
+			res.status(200).end()
+		}
+	})
+}
 

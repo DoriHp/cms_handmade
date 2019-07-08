@@ -1,5 +1,6 @@
 require('dotenv').config()
 var Script = require('../models/script.model.js')
+var Member = require('../models/member.modal.js')
 
 module.exports.sendBroadcastForm = function(req, res){
 	res.render('broadcast_form', {locate: 'Broacast message', user: {username: 'Bảo'}})
@@ -38,13 +39,14 @@ module.exports.execBroadcast = function(req, res){
 		message_creative_id = body.message_creative_id
 		error1 = body
 		console.log(error1)
+		var option2_data = (timer)?{message_creative_id: message_creative_id, schedule_time: timer}:{message_creative_id: message_creative_id}
 		var option2 = {
 			method : 'POST',
 			uri: 'https://graph.facebook.com/v3.3/me/broadcast_messages?access_token=' + process.env.PAGE_ACCESS_TOKEN,
 			headers:{
 				'Content-Type': 'application/json'
 			},
-			body: {message_creative_id: message_creative_id},
+			body: option2_data,
 			json: true
 		}
 

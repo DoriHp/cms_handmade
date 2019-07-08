@@ -335,7 +335,7 @@ input.invalid {
   clear: both;
   padding: 10px;
   border-radius: 20px !important;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   font-family: Helvetica, Arial, sans-serif;
   max-width: 70%;
   font-size: 12px;
@@ -361,9 +361,51 @@ input.invalid {
   float: right;
   background: #0084ff;
   color: #fff;
+  position: relative;
+}
+
+#preview-div .bot{
+  float: right;
+  background: #0084ff;
+  color: #fff;
+  position: relative;
+}
+
+#preview-div .bot:after{
+  content: 'From bot';
+  min-width: 50px;
+  min-height: 15px;
+  background-color: #BBB6B6;
+  border-radius: 20px;
+  color: #2E2B2B;
+  font-size: 10px;
+  line-height: 15px;
+  position: absolute;
+  right: 5%;
+  bottom: -10px;
+  z-index: 2;
+}
+
+#preview-div .me:after{
+  content: 'From admin';
+  min-width: 60px;
+  min-height: 15px;
+  background-color: #BBB6B6;
+  border-radius: 20px;
+  color: #2E2B2B;
+  font-size: 10px;
+  line-height: 15px;
+  position: absolute;
+  right: 5%;
+  bottom: -10px;
+  z-index: 2;
 }
 
 #preview-div .him + .me{
+  border-bottom-right-radius: 5px;
+}
+
+#preview-div .him + .bot{
   border-bottom-right-radius: 5px;
 }
 
@@ -372,8 +414,14 @@ input.invalid {
   border-bottom-right-radius: 5px;
 }
 
-#preview-div .me:last-of-type {
-  border-bottom-right-radius: 30px !important;
+#preview-div .me + .bot{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+#preview-div .bot + .bot{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #preview-div .row{

@@ -37,22 +37,22 @@
                                 <div class="inbox-sidebar">
                                     <ul class="inbox-nav">
                                         <li class="active">
-                                            <a href="javascript:;" data-type="inbox" data-title="Inbox"> Tất cả
+                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="all" data-title="Inbox"> Tất cả
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" data-type="important" data-title="Inbox">Chưa đọc
+                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="unread" data-title="Inbox">Chưa đọc
                                                 <span class="badge badge-danger" id="num_of_unread">1</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" data-type="draft" data-title="Draft"> Trạng thái
+                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="unreply" data-title="Draft"> Chưa trả lời
                                                 <span class="badge badge-danger" id="num_of_replied"></span>
                                             </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a href="javascript:;" data-type="inbox" data-title="Promotions">Quan trọng
+                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="important" data-title="Promotions">Quan trọng
                                                 <span class="badge badge-warning">2</span>
                                             </a>
                                         </li>
@@ -70,7 +70,7 @@
                                                 <div class="actions" style="align-content: left">
                                                     <button type="button" class="btn btn-default btn-sm">
                                                         <i class="far fa-check-circle"></i></i> Mark as important </button>
-                                                    <button type="button" class="btn btn-default btn-sm">
+                                                    <button type="button" class="btn btn-default btn-sm" onclick="open_chat()">
                                                         <i class="far fa-edit"></i> Viết trả lời </button>
                                                 </div>
                                                 <div class="tools" style="margin-right: 10px;" style="align-content: right">
@@ -100,7 +100,7 @@
                                                                 	<tr class="odd gradeX" id="<%= feedbacks[i]._id %>">
 	                                                                    <td>
 	                                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-	                                                                            <input type="checkbox" class="checkboxes" value="1"/ id="<%= feedbacks[i]._id %>">
+	                                                                            <input type="checkbox" class="checkboxes" value="<%= feedbacks[i].fb_id %>"/>
 	                                                                            <span></span>
 	                                                                        </label>
 	                                                                    </td>
@@ -154,6 +154,7 @@
                                         <p>Facebook name: <span></span></p>
                                         <p>Giới tính: <span></span></p>
                                         <p>Quốc gia: <span></span></p>
+                                        <p>Cho phép bot tự động trả lời người dùng này:  <span></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -176,39 +177,113 @@
             <% include _layouts/quick_sidebar %>
     </div>
     <!-- END CONTAINER -->
+    <% include _layouts/global_plugin %>
     <!-- SELF ADDING SCRIPT -->
     <script type="text/javascript">
         var list_checked = []
         const nav_ul = document.getElementsByClassName('inbox-nav')[0]
         const nav_li = nav_ul.querySelectorAll('li')
-        const feedback_row = document.querySelectorAll('#sample_1_2 tbody tr')
         const feedback_content = document.getElementById('preview-div')
         const feedback_area = document.getElementById('feedback_area')
         for(let i of nav_li){
             i.addEventListener('click', active)
         }
 
-        for(let i of feedback_row){
+        function add_listener(){
+            var feedback_row = document.querySelectorAll('#sample_1_2 tbody tr')
+            for(let i of feedback_row){
 
-            i.addEventListener('click', get_feedback)
+                i.addEventListener('click', get_feedback)
+                var j = i.querySelectorAll('td')[0]
+                $(j).add(i).click(handler)
+                j.addEventListener('click', add_to_list)
+            }
         }
 
-        function display_inbox(scope = 'all'){
+        add_listener()
+        function handler(event) {
+            event.stopPropagation();
+            // now do your stuff        
+        }
 
-            if(scope == all){
-
+        function customize_table(scope){
+            var table = document.getElementById('sample_1_2')
+            var wrapper = document.getElementById('sample_1_2_wrapper')
+            if(scope != 'all'){
+                table.querySelectorAll('thead tr th').forEach(th => th.style.pointerEvents = "none")
+                table.classList.remove('dataTable')
+                wrapper.querySelectorAll('div').forEach(div => {
+                    if(!div.classList.contains('table-scrollable')) div.style.display = 'none'
+                })
+            }else{
+                table.querySelectorAll('thead tr th').forEach(th => th.style.pointerEvents = "auto")
+                wrapper.querySelectorAll('div').forEach(div => {
+                    if(!div.classList.contains('table-scrollable')) div.style.display = 'block'
+                })
+                if(!table.classList.contains('dataTable')) table.classList.add('dataTable')
             }
+        }
+
+        function request_feedback_list(e){
+            var scope = e.getAttribute('data-type')
+            axios.get('/manager/feedback/list/' + scope)
+            .then(function(response){
+                if(response.status == 200){
+                    customize_table(scope)    
+                    display_feedback_list(response.data)
+                }else{
+                    alert("Lỗi khi tải dữ liệu!")
+                }
+            })
+            .catch(function(error){
+                console.log(error)
+                alert("Đã có lỗi xảy ra!")
+            })
+        }
+
+        function display_feedback_list(data){
+            var table_body = document.querySelector('#sample_1_2 tbody')
+            while (table_body.firstChild) {
+                table_body.removeChild(table_body.firstChild);
+            }
+            var index = 0
+            for(let i of data){
+                let row = table_body.insertRow(index)
+                row.id = i._id
+                
+                var cell0 = row.insertCell(0)
+                var cell1 = row.insertCell(1)
+                var cell2 = row.insertCell(2)
+                var cell3 = row.insertCell(3)
+                var cell4 = row.insertCell(4)
+
+                cell0.innerHTML = `<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                        <input type="checkbox" class="checkboxes" value=${i.fb_id}>
+                                        <span></span>
+                                    </label>`
+                cell1.innerHTML = i.fb_id
+                cell2.innerHTML = i.type
+                cell3.innerHTML = i.datetime
+                if(i.status.read && i.status.reply){
+                    cell4.innerHTML = '<span class="label label-sm label-success label-feedback"> Đã đọc </span>'
+                    + '<span class="label label-sm label-info label-feedback"> Đã trả lời </span>'
+                }else if(!i.status.read && !i.status.reply){
+                    cell4.innerHTML = '<span class="label label-sm label-warning label-feedback"> Chưa đọc </span>'
+                    + '<span class="label label-sm label-danger label-feedback"> Chưa trả lời </span>'
+                }else if(i.status.read && !i.status.reply){
+                    cell4.innerHTML = '<span class="label label-sm label-success label-feedback"> Đã đọc </span>'
+                    + '<span class="label label-sm label-danger label-feedback"> Chưa trả lời </span>'
+                }
+                index++
+            }
+            add_listener()
         }
 
         //hiển thị tin nhắn text
         function display_text_message(ul, from ,text ){
             var li = document.createElement('li')
             li.innerHTML = text
-            if(from == 'member'){
-                li.classList.add('him')
-            }else{
-                li.classList.add('me') 
-            }
+            li.classList.add(from)
             ul.appendChild(li)
         }
 
@@ -217,13 +292,7 @@
 
             var img = document.createElement('img')
             img.src = url
-            if(from == 'member'){
-
-                img.classList.add('him')
-            }else{
-
-                img.classList.add('me')
-            }
+            img.classList.add(from)
             img.addEventListener('click', zoom)
             ul.appendChild(img)
         }
@@ -232,13 +301,7 @@
         function display_file_message(ul, from, url){
 
             var li = document.createElement('li')
-            if(from == 'member'){
-
-                li.classList.add('him')
-            }else{
-
-                li.classList.add('me')
-            }
+            li.classList.add(from)
             li.innerHTML = url
             ul.appendChild(li)
         }
@@ -262,6 +325,7 @@
             ul.appendChild(container)
         }
 
+        //lấy dữ liệu về một feedback
         function get_feedback(e){
             get_user_info(this.id)
             axios.get(`/manager/feedback/read/${encodeURIComponent(this.id)}`)
@@ -278,6 +342,7 @@
             })
         }
 
+        //hiển thị dữ liệu về một feedback
         function display_feedback(data){
             var feedback_ul = document.querySelector('#preview-div ul')
             while (feedback_ul.firstChild) {
@@ -286,14 +351,14 @@
             for(let i of data.feedbacks){
                 if(i.from == 'member'){
                     if(i.text || i.postback){
-                        display_text_message(feedback_ul, 'member', i.text || i.postback.title)
+                        display_text_message(feedback_ul, 'him', i.text || i.postback.title)
                     if(i.attachments && i.attachments[0].type == 'image')
-                        display_image_message(feedback_ul, 'member', i.attachments[0].payload.url)
+                        display_image_message(feedback_ul, 'him', i.attachments[0].payload.url)
                     }
                     if(i.attachments && i.attachments[0].type == 'file'){
-                        display_file_message(feedback_ul, 'member', i.attachments[0].payload.url)
+                        display_file_message(feedback_ul, 'him', i.attachments[0].payload.url)
                     }
-                }else{
+                }else if(i.from == 'fanpage'){
                     if(i.text){
                         display_text_message(feedback_ul, 'me', i.text)
                     }
@@ -306,16 +371,31 @@
                     if(i.attachment && i.attachment.type == 'template'){
                         display_template_button(feedback_ul, 'me', i.attachment.payload)
                     }
+                }else{
+                    if(i.text){
+                        display_text_message(feedback_ul, 'bot', i.text)
+                    }
+                    if(i.attachments && i.attachments[0].type == 'image'){
+                        display_image_message(feedback_ul, 'bot', i.attachments[0].payload.url)
+                    }
+                    if(i.attachments && i.attachments[0].type == 'file'){
+                        display_file_message(feedback_ul, 'bot', i.attachments[0].payload.url)
+                    }
+                    if(i.attachment && i.attachment.type == 'template'){
+                        display_template_button(feedback_ul, 'bot', i.attachment.payload)
+                    }
                 }
             }
             feedback_area.style.display = 'block'
         }
 
+        //thêm feedback được đánh dấu trong checkbox
         function add_to_list(e){
-            if(this.checked){
-                list_checked.push(this.id)
+            var checkbox = this.querySelector('label input')
+            if(checkbox.checked && list_checked.indexOf(checkbox.value) == -1){
+                list_checked.push(checkbox.value)
             }else{
-                let index = array.indexOf(this.id)
+                let index = list_checked.indexOf(checkbox.value)
                 if (index > -1) {
                   list_checked.splice(index, 1)
                 }
@@ -343,9 +423,19 @@
                     data.push(res.first_name + " " + res.last_name)
                     data.push((res.gender == 'male')?'Name':'Nữ')
                     data.push(res.locale)
+                    data.push(res.auto_reply)
                     for(let i in data){
-                        span[i].innerHTML = data[i]
+                        if(i != 4){
+                            span[i].innerHTML = data[i]
+                        }else{
+                            if(data[i]){
+                                span[i].innerHTML = `<label class="switch"><input id=${res.id} class="input_status" type="checkbox" checked><span class="slide round"></span></label>`
+                            }else{
+                                span[i].innerHTML = `<label class="switch"><input id=${res.id} class="input_status" type="checkbox"><span class="slide round"></span></label>`
+                            }
+                        }
                     }
+                    document.getElementsByClassName('input_status')[0].addEventListener('click', change_auto_reply)
                 }
                 else{
                     while (display.firstChild) {
@@ -361,6 +451,81 @@
             })
         }
 
+        function open_chat(){
+            if(list_checked.length == 0){
+                alert("Hãy chọn ít nhất một feedback để phản hồi!")
+                return
+            }
+            if(list_checked.length >= 1){
+                for(let i of list_checked){
+                    axios.get('/manager/feedback/user_link/' + encodeURIComponent(i))
+                    .then(function(response){
+                        if(response.status == 200){
+                            var child = window.open(response.data, '_blank')
+                            var pre 
+                            axios.post('/manager/feedback/user_info/' + encodeURIComponent(i),
+                            {
+                                headers:{
+                                    'Content-Type': 'application/json'
+                                },
+                                data: {auto_reply: false}
+                            })
+                            .catch(function(error){
+                                console.log(error)
+                            })
+                            var timer = setInterval(checkChild, 500)
+
+                            function checkChild() {
+                                if (child.closed) {
+                                    axios.post('/manager/feedback/user_info/' + encodeURIComponent(i),
+                                    {
+                                        headers:{
+                                            'Content-Type': 'application/json'
+                                        },
+                                        data: {auto_reply: true}
+                                    }).catch(function(error){
+                                        console.log(error)
+                                    })
+                                    clearInterval(timer);
+                                }
+                            }
+                        }
+                        else{
+                            alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+                            return
+                        }
+                    })
+                    .catch(function(error){
+                        alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+                        return
+                    })
+                }
+            }
+            
+        }
+
+        function change_auto_reply(e){
+            var status = (this.checked)?true:false
+            axios.post('/manager/feedback/user_info/' + encodeURIComponent(this.id), {
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                data: {auto_reply: status}
+            })
+            .then(function(response){
+                if(response.status == 200)
+                alert("Thay đổi trạng thái cho phép bot trả lời người dùng!")
+                else{
+                    alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+                    if(this.checked) this.checked = false
+                        else this.checked = true
+                }
+            })
+            .catch(function(error){
+                alert("Đã có lỗi xảy ra! \n" + error)
+                return
+            })
+        }
 
     </script>
     <script>
@@ -385,7 +550,6 @@
         }
     </script>
     <!-- END OF SELF ADDING SCRIPT -->
-    <% include _layouts/global_plugin %>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>

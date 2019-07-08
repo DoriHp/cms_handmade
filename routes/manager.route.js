@@ -27,7 +27,11 @@ router.delete('/district/delete/:_id', controller.dt_delete)
 router.post('/province/update/:_id', controller.dt_update)
 //Feedback management route
 router.get('/feedback', controller.feedback)
+router.get('/feedback/list/:filter', controller.feedback_list)
 router.get('/feedback/read/:_id', controller.get_feedback_content)
 router.get('/feedback/user_info/:_id', controller.get_user_info)
+router.get('/feedback/user_link/:fb_id', controller.get_user_link)
+router.post('/feedback/user_info/:fb_id', controller.update_status_member)
+router.post('/feedback/update/_id', controller.update_status_feedback)
 
 module.exports = router

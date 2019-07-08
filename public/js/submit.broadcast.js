@@ -1,3 +1,4 @@
+var timer = ""
 function display_pre_generic(n){
 	var data = JSON.parse(window.localStorage.getItem(`generic${n}`))
 	if(data == undefined) return
@@ -135,34 +136,47 @@ async function create_submit_data(){
 	return submit_data
 }
 
-function submit(){
-	var submit_data = create_submit_data()
-
-	console.log(submit_data)
-	// axios.post('/broadcast', {
-	// 	headers: {
-	// 		'Content-Type': 'application/json',
-	// 	},
-	// 	data: submit_data
-	// })
-	// .then(function(response){
-	// 	if(response.status == 200){
-	// 		alert('Gửi tin nhắn hàng loạt thành công!')
-	// 		location.reload()
-	// 	}else{
-	// 		alert('Đã có lỗi xảy ra!')
-	// 	}
-	// })
-	// .catch(function(err){
-	// 	alert(err)
-	// })
+async function submit(){
+	var submit_data = await create_submit_data()
+	if(!timer){
+		var setting_conf = confirm('Bạn có muốn cài đặt thời gian gửi/ nhắm mục tiêu gửi tin nhắn hàng loạt?')
+		if(setting_conf == true){
+			document.getElementById('timer').focus()
+		}else{
+			send_request(submit_data)
+		}
+	}else{
+		submit_data.timer = timer
+		send_request(submit_data)
+	}
 }
 
-function setting(){
+function send_request(data){
+	axios.post('/message241/broadcast', {
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: data
+	})
+	.then(function(response){
+		if(response.status == 200){
+			alert('Gửi tin nhắn hàng loạt thành công!')
+			location.reload()
+		}else{
+			alert('Đã có lỗi xảy ra!')
+		}
+	})
+	.catch(function(err){
+		alert(err)
+	})
+}
+
+function message_config(e){
 	var get_value = document.getElementById('timer').value
 	var arr = get_value.split(' ')
 	var new_str = `${arr[1]} ${arr[0]} ${arr[2]} ${arr[4]}`
-	var timer = Date.parse('new_str')
+	timer = Date.parse(new_str)
+	alert('Đã lưu thời gian gửi!')
 }
 
 document.getElementById('submit_button').addEventListener('click', submit)
