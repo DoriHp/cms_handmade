@@ -1,4 +1,5 @@
 var timer = ""
+var br_label = ""
 function display_pre_generic(n){
 	var data = JSON.parse(window.localStorage.getItem(`generic${n}`))
 	if(data == undefined) return
@@ -46,10 +47,11 @@ document.getElementById('chooseFile').addEventListener('change', function (e) {
 			display.value = response.data
 		}
 		else{
-			alert('Tải ảnh lên thất bại!')
+			swal("Thất bại" ,'Tải ảnh lên thất bại!', "error", {dangerMode: true})
 		}		
 	}).catch(function(error){
-		alert('An error occured!')
+		console.error(error)
+		error_alert()
 	})
 })
 
@@ -139,17 +141,33 @@ async function create_submit_data(){
 async function submit(){
 	var submit_data = await create_submit_data()
 	if(!timer){
-		var setting_conf = confirm('Bạn có muốn cài đặt thời gian gửi/ nhắm mục tiêu gửi tin nhắn hàng loạt?')
-		if(setting_conf == true){
-			document.getElementById('timer').focus()
-		}else{
-			send_request(submit_data)
-		}
+		swal({
+            title: "Chú ý!",
+            text: "Bạn chưa cài đặt thời gian/nhóm đối tượng xác định nhận tin nhắn hàng loạt. Đi đến mục này?",
+            type: "info",
+            showCancelButton: true,
+            cancelButtonText: "Bỏ qua",
+            confirmButtonText: "Chuyển tới cài đặt"
+        })
+        .then(function(result){
+        	if(result.value){
+				document.getElementById('timer').focus()
+			}else{
+				send_request(submit_data)
+			}
+        })
 	}else{
+		if(br_label){
+			submit_data.label = br_label
+		}
 		submit_data.timer = timer
 		send_request(submit_data)
 	}
 }
+
+document.getElementById('label_list').addEventListener('focusout', function(){
+	return br_label = this.value
+})
 
 function send_request(data){
 	axios.post('/message241/broadcast', {
@@ -160,14 +178,17 @@ function send_request(data){
 	})
 	.then(function(response){
 		if(response.status == 200){
-			alert('Gửi tin nhắn hàng loạt thành công!')
-			location.reload()
+			swal("Thành công!", "Tin nhắn hàng loạt đã được gửi", "success", {buttons: false} )
+			setTimeout(function(){
+				location.reload()
+			}, 500)
 		}else{
-			alert('Đã có lỗi xảy ra!')
+			error_alert()
 		}
 	})
 	.catch(function(err){
-		alert(err)
+		console.error(err)
+		error_alert()
 	})
 }
 
@@ -176,7 +197,29 @@ function message_config(e){
 	var arr = get_value.split(' ')
 	var new_str = `${arr[1]} ${arr[0]} ${arr[2]} ${arr[4]}`
 	timer = Date.parse(new_str)
-	alert('Đã lưu thời gian gửi!')
+	swal("Thành công", "Đã lưu cài đặt cho tin nhắn quảng bá", "success")
+}
+
+function add_psid_to_label(){
+	var label = document.getElementById('label_list').value
+	var psid = document.getElementById('member_list').value
+	axios.post('/message241/broadcast/add-psid-to-label', {
+		headers:{
+			'Content-Type': 'application/json'
+		},
+		data: {label: label, psid: psid}
+	})
+	.then(function(response){
+		if(response.status == 200){
+			swal( "Thành công!", "Đã thêm khách hàng được chỉ định vào nhóm này", "success")
+		}else{
+			error_alert()
+		}
+	})
+	.catch(function(error){
+		console.log(error)
+		error_alert()
+	})
 }
 
 document.getElementById('submit_button').addEventListener('click', submit)

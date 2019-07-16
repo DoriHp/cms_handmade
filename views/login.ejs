@@ -10,7 +10,9 @@
 <body class=" login">
     <% if (message.length > 0) { %>
     <!-- <p> Message <%= message %></p> -->
-      <script type="text/javascript"> alert(`<%= message %>`) </script>
+      <script type="text/javascript"> swal("" ,`<%= message %>`, "error", {customClass: {
+        confirmButton: 'btn btn-danger'
+      }}) </script>
     <% } %>
     <!-- BEGIN LOGO -->
     <div class="logo">
@@ -99,7 +101,7 @@
         <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/login.min.js" type="text/javascript"></script>
+        <script src="/assets/pages/scripts/login.min.js" type="text/javascript"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <script>
             $(document).ready(function()

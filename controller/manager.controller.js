@@ -188,6 +188,39 @@ module.exports.pd_properties = async function(req, res){
 }
 
 //Feedback management modules
+
+//use redis module
+const get_user_data = async (req, res) => {
+	var _id = req.params._id
+	var result = await Feedback.findById(_id).lean()
+	if(!result){
+		res.status(500).end()
+		return
+	} 
+	var fb_id = result.fb_id
+	var member = await Member.findOne({fb_id: fb_id}).lean()
+	if(!member){
+		res.status(500).end()
+		return
+	}
+	var auto_reply = member.auto_reply
+	var options = {
+		uri: `https://graph.facebook.com/v3.2/${fb_id}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${process.env.PAGE_ACCESS_TOKEN_2}`,
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	}
+	request(options, function(error, response, body){
+		if(response.statusCode != 200 || error){
+			res.status(500).end()
+		}
+		var send = JSON.parse(body)
+		send.auto_reply = auto_reply
+		// client.setex(_id, 3600, JSON.stringify(send))
+		res.status(200).send(send)
+	})
+}
+
 module.exports.feedback = async function(req, res){
 	var feedbacks = await Feedback.find().lean()
 	var data = []
@@ -204,7 +237,7 @@ module.exports.feedback = async function(req, res){
 		})
 	}
 	console.log()
-	res.status(200).render('feedback', {locate: 'Quản lý phản ánh từ người dùng', user: {username: "Bảo"}, feedbacks: data})
+	res.status(200).render('feedback', {breadcrumb: [{ href: "/manager/feedback", locate: 'Quản lý phản ánh từ người dùng'}], user: {username: "Bảo"}, feedbacks: data})
 
 }	
 
@@ -252,6 +285,7 @@ module.exports.get_feedback_content = async function(req, res){
 		res.status(500).end()
 	}
 }
+//lọc feedback phù hợp với request từ client
 function customFilter(object){
 	for(let i of object.feedbacks){
 		if(i.attachments && i.attachments[0].type == 'file'){
@@ -275,34 +309,15 @@ function customFilter(object){
 }
 
 module.exports.get_user_info = async function(req, res){
-	var result = await Feedback.findById(req.params._id).lean()
-	if(!result){
-		res.status(500).end()
-		return
-	} 
-	var fb_id = result.fb_id
-	var member = await Member.findOne({fb_id: fb_id}).lean()
-	if(!member){
-		res.status(500).end()
-		return
-	}
-	var auto_reply = member.auto_reply
-	console.log(auto_reply)
-	var options = {
-		uri: `https://graph.facebook.com/v3.2/${fb_id}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${process.env.PAGE_ACCESS_TOKEN_2}`,
-		headers: {
-			'Content-Type': 'application/json'
-		}
-	}
-	request(options, function(error, response, body){
-		if(response.statusCode != 200 || error){
-			res.status(500).end()
-		}
-		var send = JSON.parse(body)
-		send.auto_reply = auto_reply
-		console.log(send)
-		res.status(200).send(send)
-	})
+	var _id = req.parmas._id
+	// client.get(_id, (err, result) => {
+	// 	if(result) {
+	// 		res.send(result)
+	// 	}else{
+	// 		get_user_data(req, res)
+	// 	}
+	// })
+	get_user_data(req, res)
 }
 
 module.exports.get_user_link = async function(req, res, next){

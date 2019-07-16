@@ -16,10 +16,10 @@ module.exports.addScript = (req, res) => {
 	var intent = req.params.intent
 	if(intent == "question"){
 		res.status(200)
-		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: 'admin'})
+		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: {username: 'Bao'}})
 	}else{
 		res.status(200)
-		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: req.user})
+		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: {username: 'Bao'}})
 	}
 }
 
@@ -43,9 +43,9 @@ module.exports.getProperties = async function(req, res){
 	if(result){
 		res.cookie("info" ,response)
 		if(result.type == 'question'){
-			res.render('script_question', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: req.user})
+			res.render('script_question', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user:{username: 'Bao'}})
 		}else{
-			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: req.user})
+			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: {username: 'Bao'}})
 		}
 	}else{
 		res.status(500)

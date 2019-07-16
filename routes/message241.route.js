@@ -19,6 +19,7 @@ var upload = multer({ storage: storage })
 
 router.get('/broadcast', controller.sendBroadcastForm)
 router.post('/broadcast', controller.execBroadcast)
+router.post('/broadcast/add-psid-to-label', controller.add_psid_to_label)
 router.post('/upload', upload.single('image'), controller.execUpload)
 
 module.exports = router

@@ -340,8 +340,50 @@ input.invalid {
   max-width: 70%;
   font-size: 12px;
 }
+/* CSS cho các nút trong quick_reply*/
+#preview-div ul ul{
+  display: flex;
+  padding: 10px;
+  position: absolute;
+  bottom: 30px;
+  /*overflow-x: scroll;*/
+  /*overflow-y: hidden;*/
+  min-width: 100%;
+  max-width: 500px;
+  max-height: 50px;
+}
 
-#preview-div img{
+#preview-div ul ul::-webkit-scrollbar{
+  width: 2px !important;
+  -webkit-appearance: none;
+}
+
+#preview-div ul ul::-webkit-scrollbar-thumb{
+  background-color: #1c8bff !important;
+}
+
+#preview-div ul ul li{
+  min-width: 50px;
+  margin: 0 5px;
+  border-radius: 20px;
+  color: #737171;
+  min-height: 40px;
+  max-height: 50px;
+  text-align: center;
+  border: 2px solid #1c8bff;
+  flex-grow: 1;
+  cursor: pointer;
+  font-size: 11px;
+  padding: 5px;
+}
+
+#preview-div ul ul li:hover,
+#preview-div ul ul li:focus{
+  background-color: #1c8bff;
+  color: #fff;
+}
+
+#preview-div ul img{
   display:inline-block;
   clear: both;
   border-radius: 20px !important;
@@ -514,6 +556,7 @@ input.invalid {
   height: 150px;
 }
 
+
 /* Add Animation */
 .modal-content, #caption {  
   -webkit-animation-name: zoom;
@@ -556,4 +599,111 @@ input.invalid {
   .modal-content {
     width: 100%;
   }
+}
+
+/*CSS cho myEditor*/
+
+#myEditor{
+  margin-top: 100px;
+  padding: 0;
+  max-height: 450px;
+  background-color: transparent;
+}
+
+#myEditor .portlet{
+  margin: auto;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+#myEditor .portlet-body{
+  min-height: 400px;
+}
+
+#myEditor .close-modal{
+  top: 14px;
+  right: 2%;
+  font-size: 30px;
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+#pk_image{
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+#pk_image img{
+  max-width: 90%;
+}
+
+/*CSS cho warning box*/
+.warning{
+  background-color: #E7EC62;
+  font-size: 12px;
+  color: #767373;
+  padding: 10px;
+  position: relative;
+}
+
+.close-warning{
+  position: absolute;
+  max-width: 10px;
+  max-height: 10px;
+  right: -5px;
+  top: -5px;
+  color: red;
+}
+
+.danger{
+  background-color: #F04D4D;
+  font-size: 12px;
+  padding: 10px;
+  position: relative;
+  color: white;
+}
+
+.close-danger{
+  position: absolute;
+  max-width: 10px;
+  max-height: 10px;
+  right: -5px;
+  top: -5px;
+  color: #000;
+}
+
+
+#sample_1_2 tbody tr td img{
+  max-height: 50px;
+  width: auto;
+}
+
+#sample_1_2 tbody tr td{
+  overflow-x: hidden;
+  vertical-align: baseline;
+  min-width: 80px;
+  max-width: 200px;
+}
+
+.overme {
+    width: 300px;
+    overflow:hidden; 
+    white-space:nowrap; 
+    text-overflow: ellipsis;
+    color: blue;
+}
+
+#sample_1_2 tbody tr td a{
+  max-width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-decoration: none;
 }

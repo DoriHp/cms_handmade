@@ -87,10 +87,23 @@
                 <h3 class="uppercase">Quản lý danh mục</h3>
             </li>
             <li class="nav-item  ">
-                <a href="/manager/product" class="nav-link">
+                <a href="javascript;" class="nav-link nav-toggle">
                     <i class="fab fa-product-hunt"></i>
                     <span class="title">Danh mục sản phẩm</span>
+                    <span class="arrow"></span>
                 </a>
+                <ul class="sub-menu">
+                    <li class="nav-tem">
+                        <a href="/manager/product" class="nav-link ">
+                            <span class="title">Quản lý danh sách sản phẩm</span>
+                        </a>
+                    </li>
+                    <li class="nav-tem">
+                        <a href="/manager/package/image" class="nav-link ">
+                            <span class="title">Hình ảnh đại diện</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item  ">
                 <a href="/manager/province" class="nav-link">
@@ -111,7 +124,7 @@
                 <a href="/manager/feedback" class="nav-link">
                     <i class="fas fa-comments"></i>
                     <span class="title">Quản lý phản hồi</span>
-                    <span class="badge badge-danger">2</span>
+                    <span id="notify_feedback" class="badge badge-danger" style="display: none;"><i class="fas fa-exclamation"></i></span>
                 </a>
             </li>
             <li class="heading">
@@ -121,13 +134,6 @@
                 <a href="/user/profile" class="nav-link">
                     <i class="far fa-address-card"></i>
                     <span class="title">Hồ sơ</span>
-                    <span class="title"></span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="/user/change-password" class="nav-link">
-                    <i class="far fa-eye-slash"></i>
-                    <span class="title">Đổi mật khẩu</span>
                     <span class="title"></span>
                 </a>
             </li>

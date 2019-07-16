@@ -9,15 +9,17 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var passport = require('passport')
 var bcrypt = require('bcrypt')
+var responseTime = require('response-time')
 var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
-
 const fs = require('fs')
 const readline = require('readline')
 const {google} = require('googleapis')
 const TOKEN_PATH = 'token.json'
 const CREDENTIAL_FILE = 'credentials.json'
+var request = require('request')
+const saltRounds = 10
 
 // If modifying these scopes, delete token.json.
 const SCOPES = [
@@ -31,10 +33,10 @@ fs.readFile(CREDENTIAL_FILE, (err, content) => {
 
 // check token exist in token file
 function checkToken(credential) {
-  let clientSecret = credential.installed.client_secret;
-  let clientId = credential.installed.client_id;
-  let redirectUrl = credential.installed.redirect_uris[0];
-  let oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUrl);
+  let clientSecret = credential.installed.client_secret
+  let clientId = credential.installed.client_id
+  let redirectUrl = credential.installed.redirect_uris[0]
+  let oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUrl)
 
   fs.readFile(TOKEN_PATH, (err, token) => {
     if(err) return getNewToken(oauth2Client)
@@ -81,6 +83,7 @@ app.use(bodyParser.urlencoded({
 	extended : true
 }))
 app.use(timeout(10000))
+app.use(responseTime())
 
 // Setup View engine
 app.set('views', path.join(__dirname, 'views'));
@@ -120,7 +123,7 @@ app.get('/public/image/:filename', (req, res) => {
 })
 
 app.get('/login' ,(req, res) => {
-	res.render('login', {locate: 'Trang đăng nhập', message: req.flash('error')})
+	res.render('login', {breadcrumb: [{href: "/login", locate: 'Trang đăng nhập'}], message: req.flash('error')})
 })
 
 passport.serializeUser(function(user, done) {
@@ -136,18 +139,18 @@ passport.deserializeUser(function(_id, done) {
 })
 
 passport.use(new LocalStrategy(
-    function (username,password,done) {
-        User.findOne({username: username}, function(err, user) {
-        	if(err) return done(err)
-        	if(!user) return done(null, false, {message: 'Thông tin đăng nhập không đúng!'})
-            bcrypt.compare(password, user.password, function (err, result) {
-                if (err) { return done(err) }
-                if(!result) {
-                    return done(null, false, { message: 'Thông tin đăng nhập không đúng!' });
-                }
-                return done(null, user)
-            })
-        })
+    function(username, password, done) {
+      User.findOne({username: username}, function(err, user) {
+      	if(err) return done(err)
+      	if(!user) return done(null, false, {message: 'Thông tin đăng nhập không đúng!'})
+          bcrypt.compare(password, user.password, function (err, result) {
+            if (err) { return done(err) }
+            if(!result) {
+                return done(null, false, { message: 'Thông tin đăng nhập không đúng!' });
+            }
+            return done(null, user)
+          })
+      })
     }
 ))
 
@@ -161,17 +164,25 @@ app.get('/logout', function(req, res){
   res.redirect('/login')
 })
 
-// Main page
-// app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {  
-//   next()
-// })
-app.get('', function(req, res){
-	res.render('index', {locate: 'Main page', user: 'admin', data:{
-    new_user: 100,
-    new_mes: 1000,
-    new_auto_mes: 999,
-    new_feedback: 200
-  }})
+app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {  
+  next()
+})
+app.get('/404', function(req, res, next){
+  next()
+})
+
+app.get('', async function(req, res){
+
+  await request(`https://graph.facebook.com/${process.env.PAGE_ID}/?fields=fan_count,name,picture,rating_count,link&access_token=${process.env.PAGE_ACCESS_TOKEN}`, function(error, response, body){
+    if(response.statusCode == 200){
+      res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: 'admin', data:{
+        new_user: 100,
+        new_mes: 1000,
+        new_auto_mes: 999,
+        new_feedback: 200
+      }, page: JSON.parse(body)})
+    }
+  })
 })
 
 function isAdmin(req, res, next) {
@@ -180,7 +191,7 @@ function isAdmin(req, res, next) {
 }}
 
 function isUser(req, res, next){
-	if(req.isAuthenticated() && req.user.role == 'admin') {
+	if(req.isAuthenticated() && req.user.role == 'user') {
 		next()
 	}
 }
@@ -196,3 +207,11 @@ app.use('/message241', message241Route)
 app.use('/user', userRoute)
 app.use('/manager', managerRoute)
 app.use(haltOnTimedout)
+app.use(function(req, res, next){
+  res.status(404)
+  res.format({
+    html: function () {
+      res.render('404page', { url: req.url,breadcrumb:[{href: req.url, locate: "Page not found!"}], user: {username: "Bảo"} })
+    }
+  })
+})

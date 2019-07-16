@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8" />
-        <title><%= locate %></title>
+        <title><%= breadcrumb[breadcrumb.length - 1].locate %></title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="Preview page of Metronic Admin Theme #4 for responsive bootstrap table demos" name="description" />
@@ -23,6 +23,7 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <link rel="shortcut icon" href="/image/logo.png" type="image/x-icon"/>
         <script src="https://cdn.rawgit.com/rikmms/progress-bar-4-axios/0a3acf92/dist/index.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
         <!-- END THEME GLOBAL STYLES -->
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link href="/assets/layouts/layout4/css/layout.min.css" rel="stylesheet" type="text/css" />
@@ -33,7 +34,6 @@
         <style type="text/css">
             #nprogress .bar {
                 background-color: red;
-
                 position: fixed;
                 z-index: 1031;
                 top: 75px !important;

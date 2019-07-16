@@ -26,6 +26,14 @@
 <script src="/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 <script>
+    function error_alert(){
+        swal({
+            title: "Thất bại!",
+            text: "Đã có lỗi xảy ra, vui lòng thử lại sau!",
+            type: "error",
+            confirmButtonColor: 'red'
+        })
+    }
     loadProgressBar()
     $(document).ready(function()
     {
@@ -34,4 +42,14 @@
             $('#radio1003').attr('checked', 'checked');
         });
     })
+</script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+    var socket = io()
+    socket.on('recieve new feedback', function(data){
+        console.log('Receive new feedback')
+        var notifier = document.getElementById('notify_feedback')
+        notifier.style.display = 'block'       
+    })
+
 </script>

@@ -27,7 +27,6 @@
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
-                        <% include _layouts/toolbar %>
                     </div>
                     <!-- END PAGE HEAD-->
                     <% include _layouts/breadcrumb %>
@@ -115,8 +114,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-3 offset-3">                        
-                                                        <input type="file" name="chooseFile" id="chooseFile" accept="image/*">
+                                                    <div class="col-md-3 col-md-offset-3" style="padding-left: 0;">                        
+                                                        <input type="file" name="chooseFile" id="chooseFile" accept="image/*" style="display: none;">
+                                                        <input type="button" value="Lựa chọn & upload ảnh" onclick="document.getElementById('chooseFile').click();" />
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -192,14 +192,6 @@
                                     <form class="form-horizontal" role="form" id="setting-form">
                                         <div class="form-body">
                                             <div class="form-group">
-                                                <label class="col-md-4 control-label">Page token</label>
-                                                <div class="col-md-8">
-                                                    <div class="input-icon right">
-                                                        <i class="fa fa-check tooltips" data-original-title="You look OK!" data-container="body"></i>
-                                                        <input type="text" class="form-control"></div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <label class="control-label col-md-4">Hẹn giờ gửi</label>
                                                 <div class="col-md-8">
                                                     <div class="input-group date form_datetime form_datetime bs-datetime">
@@ -212,7 +204,31 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Nhóm khách hàng</label>
+                                                <div class="col-md-8">
+                                                    <div class="input-icon right">
+                                                        <select name="broadcast_label" class="form-control" id="label_list">
+                                                            <option hidden>Select one</option>
+                                                            <% for (var i = 0; i < labels.length; i++) { -%>
+                                                                <option value="<%= labels[i].id %>"><%= labels[i].name%></option>    
+                                                            <% } -%>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-4 control-label">Thêm khách hàng vào nhóm này</label>
+                                                <div class="col-md-7">
+                                                    <select name="add_member_to_label" class="form-control" id="member_list" style="padding-right: 5px;">
+                                                        <option hidden>Select one and click + button</option>
+                                                        <% for (var i = 0; i < members.length; i++) { -%>
+                                                            <option value="<%= members[i].fb_id %>"><%= members[i].fb_id%></option>    
+                                                        <% } -%>
+                                                    </select>
+                                                </div>
+                                                <button class="col-md-1 btn-info form-group" type="button" style="height: 34px;" onclick="add_psid_to_label()">+</button>
+                                            </div>
                                         <div class="form-actions">
                                             <div class="row">
                                                 <div class="col-md-offset-9 col-md-3">
@@ -223,7 +239,7 @@
                                     </form>
                                 </div>
                             </div> 
-                            <div class="col-md-12" id="preview-div" style="display: none">
+                            <div class="col-md-12" id="preview-div" style="display: none; margin-top: 20px;">
                                 <ul>
                                 </ul>   
                             </div> 
@@ -234,7 +250,6 @@
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
-            <% include _layouts/quick_sidebar %>
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>

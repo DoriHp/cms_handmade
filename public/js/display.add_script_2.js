@@ -42,7 +42,7 @@ function showTab(n, pre=false) {
     document.getElementById("nextBtn").innerHTML = "Kế tiếp";
   }
   const script_num_label = document.getElementById('script_num_label')
-  script_num_label.innerHTML = `Script ${n + 1}`
+  script_num_label.innerHTML = `Mẫu tin nhắn ${n + 1}`
   // ... and run a function that displays the correct step indicator:
   if(pre == true){
     display_pre_tab(currentTab)

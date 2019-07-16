@@ -64,7 +64,7 @@
                                                         <option value="question" selected>Đặt câu hỏi, khảo sát</option>
                                                     </select>
                                                 </div>
-                                                <label for="select_num_of_script" class="col-md-3">Số lượng script <i class="far fa-question-circle"></i>
+                                                <label for="select_num_of_script" class="col-md-3">Số lượng mẫu tin <i class="far fa-question-circle"></i>
                                                 </label>
                                                 <div class="form-group col-md-2" style="padding: 0;">
                                                     <select name="num_of_script" class="form-control" id="select_num_of_script">
@@ -104,21 +104,21 @@
                                                 <label class="col-md-4">Định dạng tin nhắn <i class="far fa-question-circle"></i></label>
                                                 <div class="col-md-8">
                                                     <div class="radio">
-                                                        <label>
+                                                        <label label class="mt-radio" style="font-weight: 400;">Tin nhắn text
                                                             <input class="key" type="radio" name="script" data-key="1" id="gridRadios1" value="text">
-                                                            Tin nhắn text
+                                                            <span></span>
                                                         </label>
                                                     </div>
                                                     <div class="radio">
-                                                        <label>
+                                                        <label label class="mt-radio" style="font-weight: 400;">Facebook template
                                                             <input class="key" type="radio" name="script" data-key="2" id="gridRadios2" value="template">
-                                                            Facebook_template
+                                                        <span></span>
                                                         </label>
                                                     </div>
                                                     <div class="radio">
-                                                        <label>
+                                                        <label label class="mt-radio" style="font-weight: 400;">Hình ảnh
                                                             <input class="key" type="radio" name="script" data-key="3" id="gridRadios3" value="image">
-                                                            Hình ảnh
+                                                        <span></span>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -295,7 +295,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="col-md-3 col-md-offset-3" style="padding-left: 0">
-                                                        <input type="file" name="chooseFile" id="chooseFile2" name="chooseFile2" accept="image/*">
+                                                        <input type="file" name="chooseFile2" id="chooseFile2" name="chooseFile2" accept="image/*">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -309,12 +309,19 @@
                                             <div class="form-group col-mf-2 col-md-offset-5" style="text-align:center;margin-top:40px;" id='step_count'>
                                               <span class="step"></span>
                                             </div>
-
+                                            <div id="myModal" class="modal">
+                                                <i class="far fa-times-circle close-modal"></i>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div> 
                                         </div>
                                         <div class="form-actions">
                                             <div class="row">
-                                                <div class="col-md-offset-7 col-md-5">
-                                                    <!-- <button class="btn btn-danger" type="button" onclick="del_script()">Xóa script</button> -->
+                                                <div class="col-md-offset-5 col-md-7">
+                                                    <% if (intent == 'display') { -%>
+                                                        <button class="btn btn-danger" type="button" onclick="del_script()">Xóa script</button>
+                                                    <% }-%>
+                                                    <button type="button" id="preview_button" class="btn default">Xem trước</button>
                                                     <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Quay lại</button>
                                                     <button class="btn btn-primary" type="button" id="nextBtn" onclick="nextPrev(1)">Kế tiếp</button>
                                                 </div>
@@ -324,28 +331,19 @@
                                 </div>
                             </div>
                         </div>
-                            <!-- END SAMPLE FORM PORTLET-->
-                        <div class="col-md-6">
-                            <div class="portlet box purple">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="fas fa-eye"></i> Preview form 
-                                    </div>
-                                    <div class="tools">
-                                        <a href="" class="collapse"> </a>
-                                        <a href="" class="reload"> </a>
-                                        <a href="" class="remove"> </a>
-                                    </div>
-                                </div>
-                            </div>   
-                        </div>
+                        <!-- END SAMPLE FORM PORTLET-->
+                        <div class="col-md-6" id="preview-div" style="background-color: #fff;">
+                            <ul>
+                                <li style="margin: 5% 40%; font-size: 40px; color: #8E8989; font-weight: bold; text-align: center;"><i class="fas fa-exclamation-triangle"></i></li>
+                                <li style="margin: 0 20%; font-size: 20px; color: #8E8989; font-weight: bold; text-align: center;">Không có dữ liệu xem trước</li>
+                            </ul>   
+                        </div> 
                     </div>
                     <!-- END PAGE BASE CONTENT -->
                 </div>
-                <!-- END CONTENT BODY -->
+                <!-- END CONTENT BODY <--></-->
             </div>
             <!-- END CONTENT -->
-            <% include _layouts/quick_sidebar %>
     </div>
     <% include _layouts/global_plugin%>
     <!-- BEGIN PAGE SCRIPT -->
@@ -356,6 +354,29 @@
         <script type="text/javascript" src="/js/display.properties_2.js"></script>
         <script type="text/javascript" src="/js/submit.properties_2.js"></script>
     <% } -%>
+    <script type="text/javascript" src="/js/preview.js"></script>
+    <script>
+        //phóng to hình ảnh trong phần đọc feedback
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        function zoom(e){
+          modal.style.display = "block"
+          modalImg.src = this.src
+          captionText.innerHTML = this.alt
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-modal")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+    </script>
     <!-- END OF INPUT PAGE SCRIPT -->
     <!-- END CONTAINER -->
 <% include _layouts/footer %>

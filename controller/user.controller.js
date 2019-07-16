@@ -5,7 +5,7 @@ require('dotenv').config()
 var bcrypt = require('bcrypt')
 const saltRounds = 10
 var nodemailer = require('nodemailer')
-var generator = require('generate-password')
+var generator = require('generate-password')	
 var fs = require('fs')
 var tokens = JSON.parse(fs.readFileSync('token.json'))
 var credentials = JSON.parse(fs.readFileSync('credentials.json'))
@@ -58,32 +58,58 @@ module.exports.forgotpw = function(req, res){
 }
 
 module.exports.register = async function(req, res){
-	
-	var exist = User.find({username: req.body.username})
-	if(exist){
-		req.flash('error', 'Tên đăng nhập đã tồn tại! Hãy chọn tên khác!')
-		res.status(500).redirect('../../login')
-	}
-
-    var password = bcrypt.hashSync(req.body.password, saltRounds)
-	User.insertMany({
-		name: req.body.fullname,
-		username: req.body.username,
-		password: password,
-		page_token: '',
-		email: req.body.email,
-		role: 'admin'
-	}, function(err, result){
-		if(err){
-			req.flash('error', 'Đã có lỗi xảy ra, vui lòng thử lại sau!')
+	var username = req.body.username
+	console.log(username)
+	User.findOne({username: username}, function(err, result){
+		if(result){
+			req.flash('error', 'Tên đăng nhập đã tồn tại! Hãy chọn tên khác!')
 			res.status(500).redirect('../../login')
 		}else{
-			res.status(200).redirect('../')
+			var password = bcrypt.hashSync(req.body.password, saltRounds)
+			User.insertMany({
+				name: req.body.fullname,
+				username: req.body.username,
+				password: password,
+				page_token: '',
+				email: req.body.email,
+				role: 'admin'
+			}, function(err, result){
+				if(err){
+					req.flash('error', 'Đã có lỗi xảy ra, vui lòng thử lại sau!')
+					res.status(500).redirect('../../login')
+				}else{
+					req.flash('error', 'Tạo tài khoản thành công! Sử dụng tài khoản vừa tạo để đăng nhập!')
+					res.status(200).redirect('../')
+				}
+			})
 		}
 	})
 }
 
 module.exports.profile = async function (req, res) {
-	var user = User.findById(req.user._id)
-	// body...
+	res.status(200).render('user_profile', {breadcrumb: [{href: '/user/profile', locate: "Hồ sơ người dùng"}], user: req.user})
+}
+
+module.exports.changepw = function(req, res){
+	var username = req.user.username
+	var password = req.body.data.oldPW
+	bcrypt.compare(password, req.user.password, function(err, result){
+		if(err){
+			res.status(500).end("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+			return
+		}
+		if(!result){
+			res.status(500).send("Mật khẩu hiện tại không đúng!")
+			return
+		}
+		var newPassword = bcrypt.hashSync(req.body.data.newPW, saltRounds)
+		User.findOneAndUpdate({username: username}, {$set:{password: newPassword}}, {new: true, upsert: false, useFindAndModify: false},function(error, user){
+			if(error){
+				res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+				return
+			}else{
+				res.status(200).send("OK")
+			}
+		})
+	})
 }

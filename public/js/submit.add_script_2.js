@@ -99,11 +99,11 @@ function saving_script(n){
 }
 
 document.getElementById('chooseFile').addEventListener('change', function (e) {
-    var image = this.value.replace(/.*[\/\\]/, '');
+  var image = this.value.replace(/.*[\/\\]/, '');
   var display = document.getElementById('inputImageURL_generic')
   var formData = new FormData()
   formData.append("image", e.target.files[0])
-  axios.post('/broadcast/upload', formData,
+  axios.post('/message241/upload', formData,
     {
       headers:{
         'Content-Type': 'multipart/form-data'
@@ -121,8 +121,31 @@ document.getElementById('chooseFile').addEventListener('change', function (e) {
   })
 })
 
-function submit(){
-  alert('sending')
+document.getElementById('chooseFile2').addEventListener('change', function (e) {
+  var image = this.value.replace(/.*[\/\\]/, '');
+  var display = document.getElementById('inputImageURL')
+  var formData = new FormData()
+  formData.append("image", e.target.files[0])
+  axios.post('/message241/upload', formData,
+    {
+      headers:{
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+  ).then(function(response){
+    if(response.status == 200){
+      display.value = response.data
+    }
+    else{
+      alert('Tải ảnh lên thất bại!')
+    }   
+  }).catch(function(error){
+    alert('An error occured!')
+  })
+})
+
+function create_submit_data(){
+  saving_script(currentTab)
   var submit_data = {}
   var formData = new FormData(document.querySelector('#form_info'))
 
@@ -145,6 +168,12 @@ function submit(){
   for(let i = 0; window.localStorage.getItem(`script${i}`)!= undefined; i++){
     submit_data.script.push(JSON.parse(window.localStorage.getItem(`script${i}`)))
   }
+
+  return submit_data
+}
+
+function submit(){
+  var submit_data = create_submit_data()
 
   axios.post('/script/add',{
     headers: {

@@ -22,21 +22,30 @@
         <!-- BEGIN CONTENT -->
             <div class="page-content-wrapper">
                 <!-- BEGIN CONTENT BODY -->
-                <div class="page-content">
+                <div class="page-content" style="padding-top: 0;">
                     <!-- BEGIN PAGE HEAD-->
                     <div class="page-head">
-                        <!-- BEGIN PAGE TITLE -->
-                        <div class="page-title">
-                            <h1>Main page
-                            </h1>
-                        </div>
-                        <!-- END PAGE TITLE -->
-                        <% include _layouts/toolbar %>
                     </div>
                     <!-- END PAGE HEAD-->
-                    <% include _layouts/breadcrumb %>
                     <!-- BEGIN PAGE BASE CONTENT -->
-                    <!-- BEGIN DASHBOARD STATS 1-->
+                    <div class="row" style="margin-bottom: 30px;">
+                        <div class="col-md-12" id="banner">
+                            <div id="page_image" class="col-md-2" style="background-image: url('<%= page.picture.data.url %>');">
+                            </div>
+                            <div id="page_info" class="col-md-8">
+                                <h4><%= page.name %></h4>
+                                <p>PageID: <%= page.id %></p>
+                                <a href="<%= page.link %>"><%= page.link %></a>
+                            </div>
+                            <div id="num_of_likes" class="col-md-2">
+                                <div style="text-align: right;">
+                                    <h3 style="font-weight: bold;"><%= page.fan_count %></h3>
+                                    <h4>Total likes</h4>
+                                </div>
+                                <i class="far fa-thumbs-up" style="font-size: 30px;"></i>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
@@ -45,32 +54,32 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup" data-value=<%= data.new_user %>>0</span>
+                                        <span data-counter="counterup" data-value=100>0</span>
                                     </div>
                                     <div class="desc"> Người dùng mới </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a class="dashboard-stat dashboard-stat-v2 red" href="#">
+                            <a class="dashboard-stat dashboard-stat-v2 green" href="#">
                                 <div class="visual">
                                     <i class="fas fa-envelope-open"></i>
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup" data-value=<%= data.new_mes %>>0</span> </div>
+                                        <span data-counter="counterup" data-value=200>0</span> </div>
                                     <div class="desc"> Tin nhắn mới từ người dùng </div>
                                 </div>
                             </a>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                            <a class="dashboard-stat dashboard-stat-v2 green" href="#">
+                            <a class="dashboard-stat dashboard-stat-v2 red" href="#">
                                 <div class="visual">
                                     <i class="fas fa-robot"></i>
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup" data-value=<%= data.new_auto_mes%>>0</span>
+                                        <span data-counter="counterup" data-value=300>0</span>
                                     </div>
                                     <div class="desc"> Tin nhắn được gửi tự động </div>
                                 </div>
@@ -83,12 +92,64 @@
                                 </div>
                                 <div class="details">
                                     <div class="number">
-                                        <span data-counter="counterup" data-value=<%= data.new_feedback %>></span> </div>
+                                        <span data-counter="counterup" data-value=400></span> </div>
                                     <div class="desc"> Phản hồi mới </div>
                                 </div>
                             </a>
                         </div>
                     </div>
+                    <style type="text/css">
+                        #banner{
+                            height: 100px; 
+                            background-color: #fff; 
+                            background-clip: content-box; 
+                            border-radius: 20px; 
+                            outline: none; 
+                            display: flex;
+                        }
+                        #page_image{
+                            width: 70px; 
+                            height: 70px; 
+                            border-radius: 50px !important; 
+                            margin-top: 15px; 
+                            margin-left: 30px;
+                            background-size: cover; 
+                            background-repeat: no-repeat;
+                        }
+                        #page_info{
+                            flex-grow: 1; 
+                            text-align: left; 
+                            padding-top: 15px; 
+                            padding-bottom: 15px;
+                        }
+                        #page_info h4, #page_info p, #page_info a{
+                            margin: 5px;
+                            margin-left: 15px;
+                        }
+                        
+                        #page_info a{
+                            font-weight: bold;
+                        }
+
+                        #page_info a:hover{
+                            text-decoration: none;
+                        }
+
+                        #num_of_likes{
+                            height: 100px; 
+                            display: flex;
+                            color: #337ab7; 
+                            flex-direction: row;
+                        }
+                        #num_of_likes i{
+                            margin-left: 15px;
+                            line-height: 100px;
+                        }
+                        #num_of_likes div{
+                            height: 100px;
+                        }
+                    </style>
+                    <div class="clearfix"></div>
                     <div class="clearfix"></div>
                     <!-- END DASHBOARD STATS 1-->
                     <!-- END PAGE BASE CONTENT -->
@@ -96,7 +157,6 @@
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
-            <% include _layouts/quick_sidebar %>
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>

@@ -78,7 +78,7 @@
                                                         <td><%= data[i].chu_ky %></td>
                                                         <td><%= data[i].hoa_hong_msocial %></td>
                                                         <td>
-                                                            <i class="fas fa-trash" style="color: red;"></i> <i class="fas fa-info-circle" style="color: #3598dc;" id='<%= data[i]._id %>'></i>
+                                                            <i class="fas fa-trash" style="color: red;" id=<%= data[i]._id%>></i> <i class="fas fa-info-circle" style="color: #3598dc;" id='<%= data[i]._id %>'></i>
                                                         </td>
                                                         <td>
                                                             <label class="switch"><input class="input_status" type="checkbox" <% if (data[i].public) { -%>
@@ -116,99 +116,99 @@
                                     </div>
 	                            </div>
                     			<div class="portlet-body form">
-                                <!-- BEGIN FORM-->
-                                <form action="#" class="form-horizontal" id="product_data">
-                                    <div class="form-body">
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Tên gói cước</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="ten_goi" name="ten_goi" class="form-control input-circle" placeholder="Tên gói">
+                                    <!-- BEGIN FORM-->
+                                    <form action="#" class="form-horizontal" id="product_data">
+                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Tên gói cước</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="ten_goi" name="ten_goi" class="form-control input-circle" placeholder="Tên gói">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Giá gói</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="gia_goi" name="gia_goi" class="form-control input-circle" placeholder="Giá gói cước">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Chu kỳ</label>
+                                                <div class="col-md-3">
+                                                    <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
+                                                </div>
+                                                <div class="col-md-1" style="padding-left: 0;">
+                                                	<select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;">
+    														<option value="day">Ngày</option>
+    														<option value="month">Tháng</option>
+    														<option value="year">Năm</option>
+                                                	</select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Khuyến mại chu kỳ đầu</label>
+                                                <div class="col-md-3">
+                                                    <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
+                                                </div>
+                                                <div class="col-md-1" style="padding-left: 0;">
+                                                	<select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;">
+    														<option value="day">Ngày</option>
+    														<option value="month">Tháng</option>
+    														<option value="year">Năm</option>
+                                                	</select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Hoa hồng</label>
+                                                <div class="col-md-3">
+                                                    <input type="text" id="hoa_hong_msocial" name="hoa_hong_msocial" class="form-control input-circle" placeholder="Hoa hồng msocial">
+                                                </div>
+                                                <div class="col-md-1"  style="padding-left: 0;">
+                                                	<input type="text" class="form-control input-circle" placeholder="VND" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Ưu đãi nội mạng</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="uu_dai_noi_mang" name="uu_dai_noi_mang" class="form-control input-circle" placeholder="Ưu đãi nội mạng">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Ưu đãi ngoại mạng</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="uu_dai_ngoai_mang" name="uu_dai_ngoai_mang" class="form-control input-circle" placeholder="Ưu đãi ngoại mạng">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Ưu đãi data</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="uu_dai_data" name="uu_dai_data" class="form-control input-circle" placeholder="Ưu đãi data">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Ưu đãi khác</label>
+                                                <div class="col-md-4">
+                                                    <input type="text" id="uu_dai_khac" name="uu_dai_khac" class="form-control input-circle" placeholder="Ưu đãi khác">
+                                                </div>
+                                                <label class="col-md-3 control-label">Cho phép trả lời bằng chatbot</label>
+                                                <div class="col-md-1" style="padding-left: 0;">
+                                                	<select id="public" name="public" class="form-control input-circle" style="padding: 0;">
+                                                		<option value="true">Có</option>
+                                                		<option value="false">Không</option>
+                                                	</select>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Giá gói</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="gia_goi" name="gia_goi" class="form-control input-circle" placeholder="Giá gói cước">
+                                        <div class="form-actions">
+                                            <div class="row">
+                                                <div class="col-md-offset-3 col-md-9">
+                                                    <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle green" style="display: none;" disabled>Lưu thay đổi</button>
+                                                    <button id="adding" type="button" onclick="addProduct()" class="btn btn-circle green" style="display: none;">Lưu lại</button>
+                                                    <button type="button" class="btn btn-circle grey-salsa btn-outline">Hủy bỏ</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Chu kỳ</label>
-                                            <div class="col-md-3">
-                                                <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
-                                            </div>
-                                            <div class="col-md-1" style="padding-left: 0;">
-                                            	<select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;">
-														<option value="day">Ngày</option>
-														<option value="month">Tháng</option>
-														<option value="year">Năm</option>
-                                            	</select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Khuyến mại chu kỳ đầu</label>
-                                            <div class="col-md-3">
-                                                <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
-                                            </div>
-                                            <div class="col-md-1" style="padding-left: 0;">
-                                            	<select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;">
-														<option value="day">Ngày</option>
-														<option value="month">Tháng</option>
-														<option value="year">Năm</option>
-                                            	</select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Hoa hồng</label>
-                                            <div class="col-md-3">
-                                                <input type="text" id="hoa_hong_msocial" name="hoa_hong_msocial" class="form-control input-circle" placeholder="Hoa hồng msocial">
-                                            </div>
-                                            <div class="col-md-1"  style="padding-left: 0;">
-                                            	<input type="text" class="form-control input-circle" placeholder="VND" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Ưu đãi nội mạng</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="uu_dai_noi_mang" name="uu_dai_noi_mang" class="form-control input-circle" placeholder="Ưu đãi nội mạng">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Ưu đãi ngoại mạng</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="uu_dai_ngoai_mang" name="uu_dai_ngoai_mang" class="form-control input-circle" placeholder="Ưu đãi ngoại mạng">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Ưu đãi data</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="uu_dai_data" name="uu_dai_data" class="form-control input-circle" placeholder="Ưu đãi data">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-3 control-label">Ưu đãi khác</label>
-                                            <div class="col-md-4">
-                                                <input type="text" id="uu_dai_khac" name="uu_dai_khac" class="form-control input-circle" placeholder="Ưu đãi khác">
-                                            </div>
-                                            <label class="col-md-3 control-label">Cho phép trả lời bằng chatbot</label>
-                                            <div class="col-md-1" style="padding-left: 0;">
-                                            	<select id="public" name="public" class="form-control input-circle" style="padding: 0;">
-                                            		<option value="true">Có</option>
-                                            		<option value="false">Không</option>
-                                            	</select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-offset-3 col-md-9">
-                                                <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle green" style="display: none;" disabled>Lưu thay đổi</button>
-                                                <button id="adding" type="button" onclick="addProduct()" class="btn btn-circle green" style="display: none;">Lưu lại</button>
-                                                <button type="button" class="btn btn-circle grey-salsa btn-outline">Hủy bỏ</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- END FORM-->
+                                    </form>
+                                    <!-- END FORM-->
                             	</div>
 	                        </div>
                     	</div>
@@ -219,7 +219,6 @@
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
-            <% include _layouts/quick_sidebar %>
     </div>
     <!-- END CONTAINER -->
 <script type="text/javascript">
@@ -304,7 +303,7 @@
             cell2.innerHTML = (i.gia_goi == undefined)?"N/A":i.gia_goi
             cell3.innerHTML = (i.chu_ky == undefined)?"N/A":i.chu_ky
             cell4.innerHTML = (i.hoa_hong_msocial == undefined)?"N/A":i.hoa_hong_msocial
-            cell5.innerHTML = `<i class="fas fa-trash" style="color: red" id=${i._id}></i> <i class="fas fa-info-circle" style="color: #3598dc" id=${i._id}></i>`
+            cell5.innerHTML = `<i class="fas fa-trash" style="color: red" id=${index}></i><i class="fas fa-info-circle" style="color: #3598dc" id=${i._id}></i>`
             index++
             if(i.public){
                 cell6.innerHTML = `<label class="switch"><input class="input_status" type="checkbox" checked id=${i._id}><span class="slide round"></span></label>`
@@ -443,15 +442,16 @@
         var _id = this.id
         var conf = confirm('Bạn chắc chắn muốn xóa sản phẩm này?')
         if(!conf) return
-        axios.delete(`/manager/product/delete/${_id}`).
-        then(function(response){
+        axios.delete(`/manager/product/delete/${_id}`)
+        .then(function(response){
             if(response.status == 200){
                 alert('Xóa sản phẩm khỏi danh sách thành công!')
                 location.reload()
             }else{
                 alert('Đã có lỗi xảy ra, vui lòng thử lại!')
             }
-        }).catch(function(error){
+        })
+        .catch(function(error){
             alert('Đã có lỗi xảy ra, vui lòng thử lại!')
         })
     }

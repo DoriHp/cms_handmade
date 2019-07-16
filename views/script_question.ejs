@@ -16,7 +16,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý script
+                            <h1>Quản lý mẫu tin nhắn
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -40,12 +40,12 @@
                                         <div class="form-body">
                                             <!-- ID cho script -->
                                             <div class="form-group">
-                                                <label class="col-md-3">ID cho tin nhắn</label>
+                                                <label class="col-md-3">ID mẫu tin</label>
                                                 <div class="form-group col-md-6">
                                                     <input type="text" name="id" class="form-control" id="inputID" placeholder="ID" required>
                                                 </div> 
                                                 <div class="col-md-3" style="padding-right: 0">
-                                                    <button type="button" class="btn-info form-control" id="generate_id"> Generate ID </button>
+                                                    <button type="button" class="btn-info form-control" id="generate_id" onclick="generateId()"> Generate ID </button>
                                                 </div>
                                             </div>
                                             <!-- END OF INPUT SCRIPT ID -->
@@ -65,7 +65,7 @@
                                                         <option value="question" selected>Đặt câu hỏi, khảo sát</option>
                                                     </select>
                                                 </div>
-                                                <label for="select_num_of_script" class="col-md-3">Số lượng script <i class="far fa-question-circle"></i>
+                                                <label for="select_num_of_script" class="col-md-3">Số lượng mẫu <i class="far fa-question-circle"></i>
                                                 </label>
                                                 <div class="form-group col-md-2" style="padding: 0;">
                                                     <select name="num_of_script" class="form-control" id="select_num_of_script">
@@ -118,7 +118,7 @@
                                                     </div>  
                                                 </div>  
                                                 <div class="form-group">
-                                                    <label for="inputID_next_script" class="col-md-3"> ID của script kế tiếp</label>
+                                                    <label for="inputID_next_script" class="col-md-3"> ID mẫu tin kế tiếp</label>
                                                     <div class="form-group col-md-9">
                                                         <input type="text" name="id_next_script" class="form-control" id="inputID_next_script" placeholder="Next script's ID">
                                                     </div>
@@ -141,7 +141,7 @@
                                                 </div>
                                                 <div id="replies_area">
                                                     <div id="reply1" class="form-group">
-                                                        <label class="col-md-3">Option (1).</label>
+                                                        <label class="col-md-3">Lựa chọn 1</label>
                                                         <div class="form-group col-md-5">
                                                             <input type="text" name="quick_reply0" class="form-control reply" id="inputQuickReplies" placeholder="Option">
                                                         </div>
@@ -287,6 +287,14 @@
                                                 </div>
                                                 <!-- FB TEMPLATE MEDIA TYPE -->
                                                 <div class="fb_tpl_type" data-type="media">
+                                                    <div class="form-group warning">
+                                                        Đường dẫn hình ảnh/video phải là của hình ảnh/video đã được upload lên trang facebook mà bạn đang quản lý.
+                                                        Để lấy URL Facebook của hình ảnh hoặc video, hãy làm như sau:
+
+                                                            1. Nhấp vào hình nhỏ của ảnh hoặc video để mở chế độ xem toàn kích thước.
+                                                            2. Sao chép URL từ thanh địa chỉ trên trình duyệt của bạn.
+                                                        <i class="far fa-times-circle close-warning"></i>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="inputImageURL_media" class="col-md-3"> Media type </label>
                                                         <div class="form-group col-md-9">
@@ -296,10 +304,43 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group danger" style="display: none;">
+                                                        Đường dẫn tệp không khả dụng. Đường dẫn tệp phải là các đường dẫn khả dụng trên Facebook. Vui lòng kiểm tra lại
+                                                        <i class="far fa-times-circle close-danger"></i>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="inputImageURL_media" class="col-md-3"> Đường dẫn </label>
                                                         <div class="form-group col-md-9">
                                                             <input type="text" name="media_url_media" class="form-control" id="inputMediaURL_media" placeholder="URL">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="num_of_button" class="col-md-3"> Số lượng các nút 
+                                                        </label>
+                                                        <div class="form-group col-md-9">
+                                                            <select name="num_of_button" class="form-control num_of_button">
+                                                                <option value="1" selected>1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group media_tpl_button" id="media_button_1">
+                                                        <label class="col-md-3"> Nút nhấn 1 
+                                                        </label>
+                                                        <div class="form-group row col-md-12" style="display: flex; justify-content: space-around; padding-right: 0; padding-left: 0;">
+                                                            <div class="form-group col-md-4">
+                                                                <select name="style_of_button_1_media" class="form-control">
+                                                                    <option value="web_url" selected>Nút URL</option>
+                                                                    <option value="payload">Nút đăng lại</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <input type="text" name="URL_button_1_media" class="form-control" placeholder=" URL | payload ">
+                                                            </div>
+                                                            <div class="form-group col-md-4" style="padding-right: 0">
+                                                                <input type="text" name="title_button_1_media" class="form-control" placeholder="Tiêu đề nút">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -320,12 +361,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="inputID_next_script" class="col-md-3"> ID của script kế tiếp</label>
+                                                    <label for="inputID_next_script" class="col-md-3"> ID mẫu tin nhắn kế tiếp</label>
                                                     <div class="form-group col-md-9">
                                                         <input type="text" name="ID_next_script" class="form-control" id="inputID_next_script" placeholder="Next script's ID">
                                                     </div>
-                                                </div>          
+                                                </div> 
+                                                
                                             </div>
+                                            <div id="myModal" class="modal">
+                                                <i class="far fa-times-circle close-modal"></i>
+                                                <img class="modal-content" id="img01">
+                                                <div id="caption"></div>
+                                            </div> 
                                             <!-- END OF MESSAGE MEDIA TYPE -->
                                             <!-- RESPONSE MAPPING AREA -->
                                             <div id="response_mapping_area">
@@ -334,7 +381,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputQuickReplies" class="col-md-6"><i class="fas fa-comment-dots"></i> Câu trả lời của người dùng </label>
-                                                    <label for="inputPayload" class="col-md-6"><i class="fas fa-arrow-alt-circle-right"></i> ID script tiếp theo </label>
+                                                    <label for="inputPayload" class="col-md-6"><i class="fas fa-arrow-alt-circle-right"></i> ID mẫu tin nhắn kế </label>
                                                 </div>
                                                 <div id="response_area">
                                                     <div id="res_mapping1" class="form-group">
@@ -365,28 +412,19 @@
                                 </div>
                             </div>
                         </div>
-                            <!-- END SAMPLE FORM PORTLET-->
-                        <div class="col-md-6">
-                            <div class="portlet box purple">
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <i class="fas fa-eye"></i> Preview form 
-                                    </div>
-                                    <div class="tools">
-                                        <a href="" class="collapse"> </a>
-                                        <a href="" class="reload"> </a>
-                                        <a href="" class="remove"> </a>
-                                    </div>
-                                </div>
-                            </div>   
-                        </div>
+                        <!-- END SAMPLE FORM PORTLET-->
+                        <div class="col-md-6" id="preview-div" style="background-color: #fff;">
+                            <ul>
+                                <li style="margin: 5% 40%; font-size: 40px; color: #8E8989; font-weight: bold; text-align: center;"><i class="fas fa-exclamation-triangle"></i></li>
+                                <li style="margin: 0 20%; font-size: 20px; color: #8E8989; font-weight: bold; text-align: center;">Không có dữ liệu xem trước</li>
+                            </ul>   
+                        </div> 
                     </div>
                     <!-- END PAGE BASE CONTENT -->
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
-            <% include _layouts/quick_sidebar %>
     </div>
     <% include _layouts/global_plugin%>
     <% if (intent == 'adding') { -%>
@@ -396,5 +434,28 @@
         <script type="text/javascript" src="/js/display.properties.js"></script>
         <script type="text/javascript" src="/js/submit.properties.js"></script>
     <% } -%>
+    <script>
+        //phóng to hình ảnh trong phần đọc feedback
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        function zoom(e){
+          modal.style.display = "block"
+          modalImg.src = this.src
+          captionText.innerHTML = this.alt
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-modal")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+    </script>
+    <script type="text/javascript" src="/js/preview.js"></script>
     <!-- END CONTAINER -->
 <% include _layouts/footer %>

@@ -34,21 +34,30 @@ fb_type_selection.addEventListener('change', display_fb_tpl)
 const num_of_button = document.querySelectorAll('.num_of_button')
 num_of_button.forEach(num => num.addEventListener('change', add_tpl_button))
 
+//tự động tạo ID
+function generateId(){
+	var result           = ''
+	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+	var charactersLength = characters.length
+	for ( var i = 0; i < 5; i++ ) {
+	  result += characters.charAt(Math.floor(Math.random() * charactersLength))
+	}
+	document.getElementById('inputID').value = 'q-'+result
+}
+
 // thêm button cho template
 function add_tpl_button(e){
 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
 	var num = elem.value || elem.options[elem.selectedIndex].value
-	console.log(num)
 	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
 	var arr_length = Array.from(buttons).length
-	console.log(arr_length)
 	if(buttons.length < num){
 			for(let i = buttons.length; i != num; i++){
 				var newNode = buttons[0].cloneNode(true)
 				newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
 				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
 				let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
-				label.innerHTML = `Button ${i + 1}`
+				label.innerHTML = `Nút nhấn ${i + 1}`
 				let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
 				child[0].placeholder = 'URL | Payload'
 				child[0].value = ""
@@ -150,7 +159,7 @@ function add_quick_reply(){
 	child[1].placeholder = 'Payload'
 	child[1].value = ""
 	let label = document.querySelector(`#reply${count} label`)
-	label.innerHTML = `Option (${count}).`
+	label.innerHTML = `Lựa chọn ${count}`
 }
 
 function del_quick_reply(){

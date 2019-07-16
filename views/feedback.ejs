@@ -26,7 +26,6 @@
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
-                        <% include _layouts/toolbar %>
                     </div>
                     <!-- END PAGE HEAD-->
                     <% include _layouts/breadcrumb %>
@@ -41,19 +40,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="unread" data-title="Inbox">Chưa đọc
-                                                <span class="badge badge-danger" id="num_of_unread">1</span>
+                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="unread" data-title="Inbox">Chưa xem
+                                                <span class="badge badge-warning" id="num_of_unread"></span>
                                             </a>
                                         </li>
                                         <li>
                                             <a href="javascript:;" onclick="request_feedback_list(this)" data-type="unreply" data-title="Draft"> Chưa trả lời
-                                                <span class="badge badge-danger" id="num_of_replied"></span>
-                                            </a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <a href="javascript:;" onclick="request_feedback_list(this)" data-type="important" data-title="Promotions">Quan trọng
-                                                <span class="badge badge-warning">2</span>
+                                                <span class="badge badge-danger" id="num_of_unreply"></span>
                                             </a>
                                         </li>
                                     </ul>
@@ -67,15 +60,14 @@
                                             <div class="portlet-title">
                                                 <div class="caption">
                                                     <i class="far fa-list-alt"></i>Feedback</div>
+                                                <div class="tools" style="margin-left: 10px;" style="align-content: right">
+                                                    <a class="collapse"> </a>
+                                                </div>
                                                 <div class="actions" style="align-content: left">
                                                     <button type="button" class="btn btn-default btn-sm">
                                                         <i class="far fa-check-circle"></i></i> Mark as important </button>
                                                     <button type="button" class="btn btn-default btn-sm" onclick="open_chat()">
                                                         <i class="far fa-edit"></i> Viết trả lời </button>
-                                                </div>
-                                                <div class="tools" style="margin-right: 10px;" style="align-content: right">
-                                                    <a class="collapse"> </a>
-                                                    <a class="reload"> </a>
                                                 </div>
                                             </div>
                                             <div class="portlet-body">
@@ -100,7 +92,7 @@
                                                                 	<tr class="odd gradeX" id="<%= feedbacks[i]._id %>">
 	                                                                    <td>
 	                                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-	                                                                            <input type="checkbox" class="checkboxes" value="<%= feedbacks[i].fb_id %>"/>
+	                                                                            <input type="checkbox" class="checkboxes" value="<%= feedbacks[i]._id %>|<%= feedbacks[i].fb_id %>"/>
 	                                                                            <span></span>
 	                                                                        </label>
 	                                                                    </td>
@@ -174,7 +166,6 @@
                 <img class="modal-content" id="img01">
                 <div id="caption"></div>
             </div>
-            <% include _layouts/quick_sidebar %>
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
@@ -224,6 +215,7 @@
             }
         }
 
+        //tải feedback list dựa trên read and reply fields
         function request_feedback_list(e){
             var scope = e.getAttribute('data-type')
             axios.get('/manager/feedback/list/' + scope)
@@ -258,7 +250,7 @@
                 var cell4 = row.insertCell(4)
 
                 cell0.innerHTML = `<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                        <input type="checkbox" class="checkboxes" value=${i.fb_id}>
+                                        <input type="checkbox" class="checkboxes" value="${i._id}|${i.fb_id}">
                                         <span></span>
                                     </label>`
                 cell1.innerHTML = i.fb_id
@@ -387,21 +379,44 @@
                 }
             }
             feedback_area.style.display = 'block'
+            scrollTo(document.body, feedback_area, 200)
+            axios.post('/manager/feedback/update/' + encodeURIComponent(data._id),{
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data:{'status.read': true}
+            })
+            .then(function(response){
+                if(response.status == 200){
+                    console.log('Updated feedback status')
+                }
+            })
+            .catch(function(error){
+                console.log('Failed to update feedback status! \n' + error)
+            })
+
         }
 
         //thêm feedback được đánh dấu trong checkbox
         function add_to_list(e){
             var checkbox = this.querySelector('label input')
-            if(checkbox.checked && list_checked.indexOf(checkbox.value) == -1){
-                list_checked.push(checkbox.value)
+            var spliter = checkbox.value.split('|')
+            var data = {
+                _id: spliter[0],
+                fb_id: spliter[1]
+            }
+            if(checkbox.checked && list_checked.indexOf(data) == -1){
+                list_checked.push(data)
             }else{
-                let index = list_checked.indexOf(checkbox.value)
+                let index = list_checked.indexOf(data)
                 if (index > -1) {
                   list_checked.splice(index, 1)
                 }
             }
+            console.log(list_checked)
         }
 
+        //thay đổi mục được chọn
         function active(e){
             for(let i of nav_li){
                 i.classList.remove('active')
@@ -409,6 +424,7 @@
             this.classList.add('active')
         }
 
+        //lấy dữ liệu về người dùng
         function get_user_info(fb_id){
             var display = document.getElementById('user_info')
             var span = user_info.querySelectorAll('span')
@@ -451,6 +467,7 @@
             })
         }
 
+        //mở fb chat link và thay đổi trạn thái cho phép trả lời của bot
         function open_chat(){
             if(list_checked.length == 0){
                 alert("Hãy chọn ít nhất một feedback để phản hồi!")
@@ -458,12 +475,12 @@
             }
             if(list_checked.length >= 1){
                 for(let i of list_checked){
-                    axios.get('/manager/feedback/user_link/' + encodeURIComponent(i))
+                    axios.get('/manager/feedback/user_link/' + encodeURIComponent(i.fb_id))
                     .then(function(response){
                         if(response.status == 200){
                             var child = window.open(response.data, '_blank')
                             var pre 
-                            axios.post('/manager/feedback/user_info/' + encodeURIComponent(i),
+                            axios.post('/manager/feedback/user_info/' + encodeURIComponent(i.fb_id),
                             {
                                 headers:{
                                     'Content-Type': 'application/json'
@@ -472,12 +489,13 @@
                             })
                             .catch(function(error){
                                 console.log(error)
+                                return
                             })
                             var timer = setInterval(checkChild, 500)
 
                             function checkChild() {
                                 if (child.closed) {
-                                    axios.post('/manager/feedback/user_info/' + encodeURIComponent(i),
+                                    axios.post('/manager/feedback/user_info/' + encodeURIComponent(i.fb_id),
                                     {
                                         headers:{
                                             'Content-Type': 'application/json'
@@ -489,6 +507,27 @@
                                     clearInterval(timer);
                                 }
                             }
+
+                            function update_status_feedback(){
+                                axios.post('/manager/feedback/update/' + encodeURIComponent(i._id),{
+                                    headers:{
+                                        'Content-Type': 'application/json'
+                                    },
+                                    data: {status: {
+                                        read: true,
+                                        reply: true
+                                    }}
+                                })
+                                .then(function(response){
+                                    if(response.status == 200) console.log('Changed feedback stauts to replied')
+                                })
+                                .catch(function(error){
+                                    console.log('Failed to change feedback status' + error)
+                                    return
+                                })
+                            }
+
+                            update_status_feedback()
                         }
                         else{
                             alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
@@ -504,6 +543,7 @@
             
         }
 
+        //đổi trạng thái cho phép bot trả lời user
         function change_auto_reply(e){
             var status = (this.checked)?true:false
             axios.post('/manager/feedback/user_info/' + encodeURIComponent(this.id), {
@@ -527,8 +567,30 @@
             })
         }
 
+        function change_num(){
+            var table = document.getElementById('sample_1_2')
+            var num_of_unread = table.querySelectorAll('.label-warning').length
+            var num_of_unreply = table.querySelectorAll('.label-danger').length
+            document.getElementById('num_of_unread').innerHTML = (num_of_unread == 0)?"":num_of_unread
+            document.getElementById('num_of_unreply').innerHTML = (num_of_unreply == 0)?"":num_of_unreply
+        }
+
+        change_num()
+        function scrollTo(element, to, duration) {
+            if (duration <= 0) return
+            var difference = to - element.scrollTop
+            var perTick = difference / duration * 10
+
+            setTimeout(function() {
+                element.scrollTop = element.scrollTop + perTick
+                if (element.scrollTop === to) return
+                scrollTo(element, to, duration - 10)
+            }, 10)
+        }
+
     </script>
     <script>
+        //phóng to hình ảnh trong phần đọc feedback
         // Get the modal
         var modal = document.getElementById("myModal");
 
@@ -549,6 +611,23 @@
           modal.style.display = "none";
         }
     </script>
+    <script type="text/javascript">
+        socket.on('update feedback', function(data){   
+            var row = document.getElementById(data.feedback._id)
+            var labels = row.querySelectorAll('.label-feedback')
+            if(data.feedback.status.read){
+                labels[0].innerHTML = 'Đã đọc'
+                labels[0].classList.remove('label-warning')
+                labels[0].classList.add('label-success')
+            }
+            if(data.feedback.status.reply){
+                labels[1].innerHTML = 'Đã trả lời'
+                labels[1].classList.remove('label-danger')
+                labels[1].classList.add('label-info')   
+            }
+            change_num()
+        })
+    </script>  
     <!-- END OF SELF ADDING SCRIPT -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>

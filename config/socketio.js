@@ -1,4 +1,5 @@
-var Script = require('../models/script.model.js');
+var Script = require('../models/script.model.js')
+var Feedback = require('../models/feedback.model.js')
 
 module.exports = function(server){
     var io = require('socket.io')(server);
@@ -16,10 +17,10 @@ module.exports = function(server){
                     break;
                 }
             }
-        });
-    });
+        })
+    })
     
-    const changeStream = Script.watch({fullDocument: 'updateLookup'});
+    const changeStream = Script.watch({fullDocument: 'updateLookup'})
     changeStream.on('change', function (change) {
         console.log('Script document change with type is ' + change.operationType);
 
@@ -41,20 +42,49 @@ module.exports = function(server){
                         console.log(err);
                     
                     clientList.forEach((client) => {
-                        console.log('emit event "update script" to client ' + client.id);
-                        client.socket.emit('update script', {script: script});
-                    });
-                });
+                        console.log('emit event "update script" to client ' + client.id)
+                        client.socket.emit('update script', {script: script})
+                    })
+                })
                 break;
             case "delete":
                 clientList.forEach((client) => {
-                    console.log('emit event "delete script" to client ' + client.id);
-                    client.socket.emit('delete script', {_id: change.documentKey._id});
+                    console.log('emit event "delete script" to client ' + client.id)
+                    client.socket.emit('delete script', {_id: change.documentKey._id})
+                })
+                break
+            default: 
+                console.log('Error: Change stream type is ' + change.operationType)
+                break
+        }
+    })
+
+    const changeStream_fb = Feedback.watch({fullDocument: 'updateLookup'})
+    changeStream_fb.on('change', function (change) {
+        console.log('Feedback document change with type is ' + change.operationType)
+
+        switch(change.operationType) {
+            case "insert":
+                Feedback.findById(change.documentKey._id, function(err, feedback){
+                    if(err)
+                        console.log(err)
+                    
+                    clientList.forEach((client) => {
+                        console.log('emit event "recieve new feedback" to client ' + feedback._id)
+                        client.socket.emit('recieve new feedback',  {feedback: feedback})
+                    })
                 });
                 break;
-            default: 
-                console.log('Error: Change stream type is ' + change.operationType);
-                break;
+            case "update":
+                Feedback.findById(change.documentKey._id, function(err, feedback){
+                    if(err)
+                        console.log(err)
+                    clientList.forEach((client) => {
+                        console.log('emit event "update feedback" to client ' + client.id)
+                        client.socket.emit('update feedback', {feedback: feedback})
+                    })
+                })
+                break
         }
-    });
+    }) 
 }

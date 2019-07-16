@@ -1,9 +1,11 @@
 <!-- BEGIN PAGE BREADCRUMB -->
 <ul class="page-breadcrumb breadcrumb">
     <li>
-        <a href="index.html">Home</a>
-        <i class="fa fa-circle"></i>
-        <a href=""><%= locate %></a>
+        <a href="/">Home</a>
+        <% for (var i = 0; i < breadcrumb.length ; i++) { -%>
+        	<i class="fa fa-circle"></i>
+        	<a href="<%= breadcrumb[i].href %>"><%= breadcrumb[i].locate %></a>
+        <% } -%>
     </li>
 </ul>
 <!-- END PAGE BREADCRUMB -->

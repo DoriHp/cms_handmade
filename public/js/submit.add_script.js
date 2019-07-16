@@ -1,3 +1,22 @@
+function close_notifier(){
+	var warning = document.getElementsByClassName('warning')
+	var closer_warning = document.getElementsByClassName('close-warning')
+	for(let i in closer_warning){
+		closer_warning[i].addEventListener('click', function(){
+			warning[i].style.display = 'none'
+		})
+	}
+	var danger = document.getElementsByClassName('danger')
+	var closer_danger = document.getElementsByClassName('closer-danger')
+	for(let i in closer_danger){
+		closer_danger[i].addEventListener('click', function(){
+			danger[i].style.display = 'none'
+		})
+	}
+}
+
+// close_notifier()
+
 function exec_text(data, output){
 
 	output.type = 'text'
@@ -69,12 +88,23 @@ function exec_fb_template(data, output){
 		return output
 }
 
+function exec_question(data, output = {}){
+  output.type = 'quick_reply'
+  output.question = {}
+  output.question.text = data.question
+  output.question.quick_replies = []
+  for(i = 0; typeof data[`quick_reply${i}`] !== 'undefined'; i++ ){
+    output.question.quick_replies.push({content_type: 'text', title: data[`quick_reply${i}`], payload: data[`payload${i}`]})
+  }
+  return output
+}
+
 document.getElementById('chooseFile').addEventListener('change', function (e) {
   	var image = this.value.replace(/.*[\/\\]/, '')
 	var display = document.getElementById('inputImageURL_generic')
 	var formData = new FormData()
 	formData.append("image", e.target.files[0])
-	axios.post('/broadcast/upload', formData,
+	axios.post('/message241/upload', formData,
 		{
 			headers:{
 				'Content-Type': 'multipart/form-data'
@@ -97,7 +127,7 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
 	var display = document.getElementById('inputImageURL')
 	var formData = new FormData()
 	formData.append("image", e.target.files[0])
-	axios.post('/broadcast/upload', formData,
+	axios.post('/message241/upload', formData,
 		{
 			headers:{
 				'Content-Type': 'multipart/form-data'
@@ -115,9 +145,9 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
 	})
 })
 
-function submitData(){
-
- 	var formData = new FormData(document.querySelector('#data_form'))
+// dữ liệu trước khi gửi
+function create_submit_data(){
+	var formData = new FormData(document.querySelector('#data_form'))
 
  	var submit_data = {}
  	
@@ -125,9 +155,6 @@ function submitData(){
 	for (var pair of formData.entries()) {
 	  	data[pair[0]] = pair[1]
 	}
-
-	console.log(data)
-
 	submit_data.id = data.id
 		//tao array cua trigger
 	var array_triggers = [];
@@ -138,14 +165,14 @@ function submitData(){
 	var vars = data.variables.split('')
 	vars.forEach(variable => '{{' + variable + '}}')
 	submit_data.variables = vars
-	submit_data.type = data.type
+	submit_data.type = data.script
 	submit_data.script = {}
 	switch (data.script) {
 		case 'text':
 			submit_data.script = exec_text(data, submit_data.script)
 			// statements_1
 			break;
-		case 'question':
+		case 'quick_reply':
 			submit_data.script = exec_question(data, submit_data.script)
 			// statements_1
 			break;
@@ -165,14 +192,19 @@ function submitData(){
 	}
 
 	submit_data.response_mapping = []
-	for(i = 0; typeof data[`res_mapping${i}`] !== 'undefined'; i++){
+	for(i = 1; typeof data[`res_mapping${i}`] !== 'undefined'; i++){
 		let res_mapping = {}
 		res_mapping.res = data[`res_mapping${i}`].split(',')
 	    res_mapping.next_script = data[`res_payload${i}`]
 	    submit_data.response_mapping.push(res_mapping)
 	}
+	return submit_data
+}
 
-	console.log(submit_data)
+//gửi yêu cầu thêm mẫu mới
+function submitData(){
+
+	submit_data = create_submit_data()
 	// submit dữ liệu
 	axios.post('/script/add',{
 		headers: {
@@ -191,4 +223,16 @@ function submitData(){
 	})
 
 	return false
+}
+
+function scrollTo(element, to, duration) {
+    if (duration <= 0) return
+    var difference = to - element.scrollTop
+    var perTick = difference / duration * 10
+
+    setTimeout(function() {
+        element.scrollTop = element.scrollTop + perTick
+        if (element.scrollTop === to) return
+        scrollTo(element, to, duration - 10)
+    }, 10)
 }
