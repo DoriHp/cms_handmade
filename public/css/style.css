@@ -319,7 +319,7 @@ input.invalid {
   border: 1px solid #e7505a;
   max-height: 500px;
   min-height: 300px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -581,7 +581,7 @@ input.invalid {
   top: 20%;
   right: 5%;
   color: #f1f1f1;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   transition: 0.3s;
 }
@@ -603,29 +603,30 @@ input.invalid {
 
 /*CSS cho myEditor*/
 
-#myEditor{
-  margin-top: 100px;
+#myEditor, #myAdding{
+  margin-top: 75px;
   padding: 0;
-  max-height: 450px;
+  max-height: 600px;
   background-color: transparent;
+  overflow-y: auto !important;
 }
 
-#myEditor .portlet{
+#myEditor .portlet, #myAdding .portlet{
   margin: auto;
   display: block;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 650px;
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
   animation-name: zoom;
   animation-duration: 0.6s;
 }
 
-#myEditor .portlet-body{
+#myEditor .portlet-body, #myEditor .portlet, #myAdding .portlet{
   min-height: 400px;
 }
 
-#myEditor .close-modal{
+#myEditor .close-modal, #myAdding .close-modal{
   top: 14px;
   right: 2%;
   font-size: 30px;

@@ -27,65 +27,6 @@ function display_file_message(ul, from, url){
     ul.appendChild(li)
 }
 
-// var template = {
-// 	messages: [
-// 	    {
-// 	    attachment:{
-// 	      	type:"template",
-// 	      	payload:{
-// 	        	template_type:"generic",
-// 	        	elements:[
-// 			        	{
-// 					        title: "Hello",
-// 					        subtitle: "Hello, too!",
-// 					        image_url: "https://picsum.photos/191/100",
-// 					        default_action: {
-// 					        	type: "web_url",
-// 					        	url: "https://google.com.vn",
-// 					        	webview_height_ratio: "FULL"
-// 					        },
-// 					        buttons:[
-// 					          {
-// 					            type:"web_url",
-// 					            url:"https://www.messenger.com",
-// 					            title:"Visit Messenger"
-// 					          }
-// 					        ]
-// 				    	},
-// 				    	{
-// 					        title: "Template2",
-// 					        subtitle: "Hi template2!",
-// 					        image_url: "https://picsum.photos/191/100",
-// 					        default_action: {
-// 					        	type: "web_url",
-// 					        	url: "https://google.com.vn",
-// 					        	webview_height_ratio: "FULL"
-// 					        },
-// 					        buttons:[
-// 								{
-// 									type:"web_url",
-// 									url:"https://www.messenger.com",
-// 									title:"Button 1"
-// 								},
-// 								{
-// 									type:"web_url",
-// 									url:"https://www.messenger.com",
-// 									title:"Button 2"
-// 								},
-// 								{
-// 									type:"web_url",
-// 									url:"https://www.messenger.com",
-// 									title:"Button 3"
-// 								}
-// 					        ]
-// 				    	}
-// 			    	]
-// 				}
-// 	    	}
-// 	    }
-// 	]
-// }
-
 var pre_tab = 0
 //display generic template, suport multi template
 function display_template_generic(ul, from, data){
@@ -160,13 +101,13 @@ function display_text_question(ul, data){
             li1.innerHTML = data.response_mapping[0].res[0]
             li1.classList.add('him')
             ul.appendChild(li1)
-        }, 1500)
+        }, 500)
         setTimeout(function (){
             var li2 = document.createElement('li')
             li2.innerHTML = data.response_mapping[0].next_script
             li2.classList.add('bot')
             ul.appendChild(li2)
-        }, 2000)
+        }, 1000)
     }
 }
 
@@ -190,14 +131,14 @@ function display_quick_reply(ul, data){
                 li_1.innerHTML = option
                 ul.appendChild(li_1)
                 sub_ul.style.display = 'none'
-            }, 1000)
+            }, 500)
             setTimeout(function(){
                 var li_2 = document.createElement('li')
                 li_2.classList.add('bot')
                 li_2.style.fontStyle = 'italic'
                 li_2.innerHTML = `Xử lý tiếp phản hồi của user theo dữ liệu trong mẫu tin nhắn ${payload}`
                 ul.appendChild(li_2)    
-            }, 2000)
+            }, 1000)
         })
         sub_ul.appendChild(sub_li)
     })
@@ -277,6 +218,7 @@ function display_image_message(ul, from, url){
 async function display_preview(){
 	var data = await create_submit_data()
     console.log(data)
+    if(!data) return
 	preview_div.style.display = 'block'
 	var preview_ul = document.querySelector('#preview-div ul')
     while (preview_ul.firstChild) {
@@ -299,20 +241,20 @@ async function display_preview(){
     if(data.type == 'response'){
         data.script.forEach(script => {
             if(script.type == 'text') display_text_response(preview_ul, script)
-            if(script.type == 'template' && script.attachment.payload.template_type == 'generic') display_template_media(preview_ul, data)
+            if(script.type == 'template' && script.attachment.payload.template_type == 'generic') display_template_generic(preview_ul, 'bot', script.attachment.payload.elements)
             if(script.type == 'template' && script.attachment.payload.template_type == 'button')
             display_template_button(preview_ul, 'bot', script.attachment.payload.element[0])
             if(script.type == 'template' && script.attachment.payload.template_type == 'media')
             display_template_media(preview_ul, data)
             if(script.type == 'image') display_image_message(preview_ul, 'bot', script.attachment.payload.url)
-            return
         })
+        return
     }
-    // if(data.messages[0].dynamic_text){
-    //     display_text_message(preview_ul, 'me', data.messages[0].dynamic_text.text)
-    // }else{
-    //     display_template_generic(preview_ul, 'me', data.messages[0].attachment.payload.elements)
-    // }
+    if(data.messages[0].dynamic_text){
+        display_text_message(preview_ul, 'bot', data.messages[0].dynamic_text.text)
+    }else{
+        display_template_generic(preview_ul, 'bot', data.messages[0].attachment.payload.elements)
+    }
 }
 // display_preview()
 document.getElementById('preview_button').addEventListener('click', display_preview)

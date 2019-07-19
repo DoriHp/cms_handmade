@@ -1,0 +1,592 @@
+<% include _layouts/header %>
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+<link href="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+<link href="/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+<link href="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="/assets/apps/css/inbox.min.css" rel="stylesheet" type="text/css" />
+<!-- END PAGE LEVEL PLUGINS -->
+<link rel="stylesheet" href="/slickGrid/slick.grid.css" type="text/css"/>
+<link rel="stylesheet" href="/slickGrid/controls/slick.pager.css" type="text/css"/>
+<link rel="stylesheet" href="/slickGrid/css/smoothness/jquery-ui-1.11.3.custom.css" type="text/css"/>
+<link rel="stylesheet" href="/slickGrid/controls/slick.columnpicker.css" type="text/css"/>
+<!-- <link rel="stylesheet" href="examples.css" type="text/css"/> -->
+</head>
+<body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo" onbeforeunload="destroyAutoResize()">
+    <% include _layouts/top_menu %>
+    <!-- BEGIN HEADER & CONTENT DIVIDER -->
+    <div class="clearfix"> </div>
+    <!-- END HEADER & CONTENT DIVIDER -->
+    <!-- BEGIN CONTAINER -->
+    <div class="page-container">
+        <% include _layouts/sidebar %>
+        <!-- BEGIN CONTENT -->
+            <div class="page-content-wrapper">
+                <!-- BEGIN CONTENT BODY -->
+                <div class="page-content">
+                    <!-- BEGIN PAGE HEAD-->
+                    <div class="page-head">
+                        <!-- BEGIN PAGE TITLE -->
+                        <div class="page-title">
+                            <h1>Quản lý danh sách điểm bán
+                            </h1>
+                        </div>
+                        <!-- END PAGE TITLE -->
+                    </div>
+                    <!-- END PAGE HEAD-->
+                    <% include _layouts/breadcrumb %>
+                    <!-- BEGIN PAGE BASE CONTENT -->
+                   
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet box red">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="far fa-list-alt"></i>Điểm bán</div>
+                                    <div class="tools" style="margin-left: 10px;" style="align-content: right">
+                                        <a class="collapse"> </a>
+                                    </div>
+<!--                                     <div class="actions" style="align-content: left">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <i class="far fa-check-circle"></i></i> Mark as important </button>
+                                        <button type="button" class="btn btn-default btn-sm" onclick="open_chat()">
+                                            <i class="far fa-edit"></i>  </button>
+                                    </div> -->
+                                </div>
+                                <div class="portlet-body">
+                                    <div style="width:100%;">
+                                        <div class="grid-header" style="width:100%;">
+                                            <div id="addingForm" class="col-md-6" style="padding: 0; display: none;">
+                                                <label class="col-md-3 control-label" style="padding:0; height: 34px; line-height: 34px;">Mã thành viên</label>
+                                                <div class="input-group col-md-7">
+                                                    <input type="text" class="form-control" placeholder="Member code" id="input_mem_code" name="member_code">
+                                                    <span class="input-group-addon">
+                                                        <i class="fas fa-sync-alt" onclick="reset()" title="Reset input form"></i>
+                                                    </span>
+                                                </div>
+                                                <button class="col-md-2 btn btn-secondary" type="button" onclick="addNew()" style="height: 34px;">Lưu lại</button>
+                                            </div>
+                                            <div class="btn-group" style="float:right;margin-bottom: 10px;">
+                                                <button class="btn btn-info" onclick="toggleFilterRow()" style="margin-right: 5px; font-weight: bold;"><i class="fas fa-search"></i> Tìm kiếm </button>
+                                                <button class="btn btn-danger" style="font-weight: bold;" onclick="toggleAddingForm()"><i class="fas fa-plus"></i> Thêm mới </button>    
+                                            </div>
+                                        </div>
+                                        <div id="myGrid" style="width:100%;height:400px; border: 1px solid #ccc"></div>
+                                        <div id="pager" style="width:100%;height:20px;"></div>
+                                    </div>
+                                </div>
+                                <div id="inlineFilterPanel" style="display:none;background:#dddddd;padding:3px;color:black; display: flex;">
+                                    Nhập dữ liệu tìm kiếm &nbsp; 
+                                    <div class="input-group" style="height: 30px;">
+                                        <input type="text" class="form-control" id="txtSearch2" name="member_code" style="height: 30px;">
+                                        <span class="input-group-addon" style="height: 30px;">
+                                            <i class="fas fa-sync-alt" id="reset2" title="Reset input form"></i>
+                                        </span>
+                                    </div>
+                                    &nbsp; Tìm kiếm theo &nbsp;
+                                    <select id="set_search_field" onchange="change_field()">
+                                        <option value="member_code">Mã thành viên</option>
+                                        <option value="fb_name" selected>Tên facebook</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE TABLE PORTLET-->
+                        </div>
+                    </div>
+                    <!-- END PAGE BASE CONTENT -->
+                </div>
+                <!-- END CONTENT BODY -->
+            </div>
+            <!-- END CONTENT -->
+            <div id="myEditor" class="modal col-md-8 col-md-offset-2" style="background-color: transparent !important;">
+                <i class="far fa-times-circle close-modal"></i>
+                <div class="portlet box red">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fas fa-info-circle"></i>Thông tin sản phẩm</div>
+                        <div class="actions" style="margin-right: 50px;">
+                            <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
+                                <i class="far fa-edit"></i> Cho phép sửa đổi </button>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <!-- BEGIN FORM-->
+                        <form action="#" class="form-horizontal" id="product_data">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle red" disabled>Lưu thay đổi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- END FORM-->
+                    </div>
+                </div>
+            </div>
+    </div>
+    <!-- END CONTAINER -->
+    <% include _layouts/global_plugin %>
+    <!-- SELF ADDING SCRIPT -->
+    <!-- <script src="/js/lib/jquery-1.11.2.min.js"></script> -->
+    <script src="/slickGrid/lib/firebugx.js"></script>
+    <script src="/slickGrid/lib/jquery-ui-1.11.3.min.js"></script>
+    <script src="/slickGrid/lib/jquery.event.drag-2.3.0.js"></script>
+
+    <script src="/slickGrid/slick.core.js"></script>
+    <script src="/slickGrid/slick.formatters.js"></script>
+    <script src="/slickGrid/slick.editors.js"></script>
+    <script src="/slickGrid/plugins/slick.rowselectionmodel.js"></script>
+    <script src="/slickGrid/slick.grid.js"></script>
+    <script src="/slickGrid/slick.dataview.js"></script>
+    <script src="/slickGrid/controls/slick.pager.js"></script>
+    <script src="/slickGrid/controls/slick.columnpicker.js"></script>
+    <script>
+        var searchField = "fb_name"
+        function change_field(e){
+            var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
+            var value = elem.value || elem.options[elem.selectedIndex].value
+            return searchField = value
+        }
+
+        function reset(){
+            document.getElementById("input_mem_code").value = ""
+        }
+
+        function isIEPreVer9() { var v = navigator.appVersion.match(/MSIE ([\d.]+)/i); return (v ? v[1] < 9 : false); }
+        var grid
+        var dataView
+        var checkboxSelector1
+        var columns = []
+
+        columns.push({id: "id", name: "STT", field: "id", maxWidth: 80, cssClass: "cell-title", sortable: true})
+        columns.push({id: "member_code", name: "Member_code", field: "member_code", minWidth: 120, cssClass: "cell-title", sortable: true})
+        columns.push({id: "fb_id", name: "Facebook ID", field: "fb_id", width: 120, minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "fb_name", name: "Facebook name", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
+        columns.push({id: "fb_gender", name: "Facebook gender", field: "fb_gender", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "fb_linkChat", name: "Link to chat box", field: "fb_linkChat", minWidth: 120, cssClass: "cell-title"})
+
+        var options = {
+            columnPicker: {
+                columnTitle: "Columns",
+                hideForceFitButton: false,
+                hideSyncResizeButton: false,
+                forceFitTitle: "Force fit columns",
+                syncResizeTitle: "Synchronous resize",
+            },
+            editable: true,
+            enableAddRow: false,
+            enableCellNavigation: true,
+            asyncEditorLoading: true,
+            forceFitColumns: true,
+            topPanelHeight: 25
+        }
+
+        var sortcol = "fb_id"
+        var sortdir = 1
+        var percentCompleteThreshold = 0
+        var searchString = ""
+
+        function myFilter(item, args) {
+            
+            if (args.searchString != "" && item[`${searchField}`].indexOf(args.searchString) == -1) {
+                return false;
+            } 
+        
+
+            return true;
+        }
+
+        function comparer(a, b) {
+            var x = a[sortcol], y = b[sortcol];
+            return (x == y ? 0 : (x > y ? 1 : -1));
+        }
+
+        function toggleFilterRow() {
+            grid.setTopPanelVisibility(!grid.getOptions().showTopPanel);
+        }
+
+        function toggleAddingForm(){
+            var form = document.getElementById("addingForm")
+            if(form.style.display == 'flex'){
+                form.style.display = 'none'
+            }else{
+                form.style.display = 'flex'
+            }
+        }
+
+        function addNew(){
+            var data = document.getElementById("input_mem_code").value
+            axios.post('/manager/member/add', {
+                data: {member_code: data}
+            })
+            .then(function(response){
+                if(response.status == 200){
+                    swal("Thành công!", "Thêm mới dữ liệu thành công!", "success", {showConfirmButton: false})
+                    setTimeout(function(){
+                        location.reload()
+                    }, 500)
+                }
+            })
+            .catch(function(error){
+                console.error(error)
+                swal("Lỗi!", error.response.data, "error", {confimrButtonColor: 'red'})
+            })
+        }
+
+
+        $(".grid-header .ui-icon")
+            .addClass("ui-state-default ui-corner-all")
+            .mouseover(function (e) {
+            $(e.target).addClass("ui-state-hover")
+        })
+            .mouseout(function (e) {
+            $(e.target).removeClass("ui-state-hover")
+        });
+
+    axios.get('/manager/member/list')
+    .then(function(response){
+        var data = response.data
+        for(let i = 0; i < data.length; i++ ){
+            data[i].id = i
+            data[i].fb_id = data[i].fb_id
+            data[i].fb_name = data[i].fb_firstName + " " + data[i].fb_lastName
+            data[i].fb_gender = data[i].fb_gender
+        }
+        dataView = new Slick.Data.DataView({ inlineFilters: true })
+        grid = new Slick.Grid("#myGrid", dataView, columns, options)
+        grid.setSelectionModel(new Slick.RowSelectionModel())
+
+        var pager = new Slick.Controls.Pager(dataView, grid, $("#pager"));
+        var columnpicker = new Slick.Controls.ColumnPicker(columns, grid, options);
+
+        var row5 = document.getElementsByClassName("r5")
+        for(let i of row5){
+            var a = document.createElement("a")
+            a.href = i.textContent
+            a.innerHTML = "Link"
+            i.append(a)
+        }
+
+        // move the filter panel defined in a hidden div into grid top panel
+        $("#inlineFilterPanel")
+            .appendTo(grid.getTopPanel())
+            .show()
+
+        grid.onCellChange.subscribe(function (e, args) {
+            dataView.updateItem(args.item.id, args.item)
+        })
+
+        grid.onKeyDown.subscribe(function (e) {
+            // select all rows on ctrl-a
+            if (e.which != 65 || !e.ctrlKey) {
+            return false;
+        }
+
+        var rows = []
+        for (var i = 0; i < dataView.getLength(); i++) {
+          rows.push(i)
+        }
+        grid.setSelectedRows(rows);
+            e.preventDefault()
+        })
+
+        grid.onSort.subscribe(function (e, args) {
+        sortdir = args.sortAsc ? 1 : -1;
+        sortcol = args.sortCol.field
+
+        if (isIEPreVer9()) {
+          // using temporary Object.prototype.toString override
+          // more limited and does lexicographic sort only by default, but can be much faster
+
+        var percentCompleteValueFn = function () {
+            var val = this["percentComplete"];
+            if (val < 10) {
+              return "00" + val;
+            } else if (val < 100) {
+              return "0" + val;
+            } else {
+              return val;
+            }
+        }
+
+            // use numeric sort of % and lexicographic for everything else
+            dataView.fastSort((sortcol == "percentComplete") ? percentCompleteValueFn : sortcol, args.sortAsc);
+        } else {
+            // using native sort with comparer
+            // preferred method but can be very slow in IE with huge datasets
+            dataView.sort(comparer, args.sortAsc);
+            }
+        })
+
+        // wire up model events to drive the grid
+        // !! both dataView.onRowCountChanged and dataView.onRowsChanged MUST be wired to correctly update the grid
+        // see Issue#91
+        dataView.onRowCountChanged.subscribe(function (e, args) {
+            grid.updateRowCount()
+            grid.render()
+        })
+
+        dataView.onRowsChanged.subscribe(function (e, args) {
+            grid.invalidateRows(args.rows)
+            grid.render()
+        });
+
+        dataView.onPagingInfoChanged.subscribe(function (e, pagingInfo) {
+            grid.updatePagingStatusFromView( pagingInfo )
+        })
+
+        var h_runfilters = null;
+
+        // wire up the slider to apply the filter to the model
+        $("#pcSlider,#pcSlider2").slider({
+            "range": "min",
+            "slide": function (event, ui) {
+              Slick.GlobalEditorLock.cancelCurrentEdit();
+
+              if (percentCompleteThreshold != ui.value) {
+                window.clearTimeout(h_runfilters);
+                h_runfilters = window.setTimeout(updateFilter, 10);
+                percentCompleteThreshold = ui.value;
+              }
+            }
+        })
+
+
+        // wire up the search textbox to apply the filter to the model
+        $("#txtSearch,#txtSearch2").keyup(function (e) {
+            Slick.GlobalEditorLock.cancelCurrentEdit();
+
+            // clear on Esc
+            if (e.which == 27) {
+              this.value = "";
+            }
+
+            searchString = this.value;
+            updateFilter()
+        });
+
+        function updateFilter() {
+            dataView.setFilterArgs({
+              searchString: searchString
+            })
+            dataView.refresh()
+        }
+
+        document.getElementById("reset2").addEventListener("click", function(){
+            document.getElementById("txtSearch2").value = ""
+            searchString = ""
+            updateFilter()
+        })
+
+        $("#btnSelectRows").click(function () {
+            if (!Slick.GlobalEditorLock.commitCurrentEdit()) {
+              return;
+        }
+
+        var rows = [];
+            for (var i = 0; i < 10 && i < dataView.getLength(); i++) {
+              rows.push(i)
+        }
+
+        grid.setSelectedRows(rows)
+        })
+
+
+        // initialize the model after all the events have been hooked up
+        dataView.beginUpdate()
+        dataView.setItems(data)
+        dataView.setFilterArgs({
+            searchString: searchString
+        })
+        dataView.setFilter(myFilter)
+        dataView.endUpdate()
+        // for(let i = 0; i < data.length; i++){
+        //     if(!rows[i].classList.contains("new-row"))
+        //     rows[i].id = data[i]._id
+        // }
+        // if you don't want the items that are not visible (due to being filtered out
+        // or being on a different page) to stay selected, pass 'false' to the second arg
+        dataView.syncGridSelection(grid, true)
+
+        $("#gridContainer").resizable();
+    })
+
+
+
+    </script>
+    <script type="text/javascript">
+        var myEditor = document.getElementById('myEditor')
+        var myAdding = document.getElementById('myAdding')
+        function displayAdd(){
+            myAdding.style.display = 'block'
+            var other = document.getElementsByClassName("page-content")[0]
+            other.style.filter = "blur(10px)"
+            other.blur()
+            myAdding.focus()
+            myAdding.querySelectorAll('input').forEach(input => input.value = "")
+            myAdding.querySelectorAll('select').forEach(select => select.selectedIndex = 0)
+            myAdding.style.display = 'block'
+        }
+
+        function displayEdit(){
+            myEditor.style.display = 'block'
+            var other = document.getElementsByClassName("page-content")[0]
+            other.style.filter = "blur(10px)"
+            other.blur()
+            myEditor.focus()
+            myEditor.querySelectorAll('input').forEach(input => input.value = "")
+            myEditor.querySelectorAll('select').forEach(select => select.selectedIndex = 0)
+            myEditor.style.display = 'block'
+        }
+
+        function deepCompare () {
+          var i, l, leftChain, rightChain;
+
+          function compare2Objects (x, y) {
+            var p;
+
+            if (isNaN(x) && isNaN(y) && typeof x === 'number' && typeof y === 'number') {
+                 return true;
+            }
+
+            if (x === y) {
+                return true;
+            }
+
+            if ((typeof x === 'function' && typeof y === 'function') ||
+               (x instanceof Date && y instanceof Date) ||
+               (x instanceof RegExp && y instanceof RegExp) ||
+               (x instanceof String && y instanceof String) ||
+               (x instanceof Number && y instanceof Number)) {
+                return x.toString() === y.toString();
+            }
+
+            // At last checking prototypes as good as we can
+            if (!(x instanceof Object && y instanceof Object)) {
+                return false;
+            }
+
+            if (x.isPrototypeOf(y) || y.isPrototypeOf(x)) {
+                return false;
+            }
+
+            if (x.constructor !== y.constructor) {
+                return false;
+            }
+
+            if (x.prototype !== y.prototype) {
+                return false;
+            }
+
+            // Check for infinitive linking loops
+            if (leftChain.indexOf(x) > -1 || rightChain.indexOf(y) > -1) {
+                 return false;
+            }
+
+            for (p in y) {
+                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                    return false;
+                }
+                else if (typeof y[p] !== typeof x[p]) {
+                    return false;
+                }
+            }
+
+            for (p in x) {
+                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
+                    return false;
+                }
+                else if (typeof y[p] !== typeof x[p]) {
+                    return false;
+                }
+
+                switch (typeof (x[p])) {
+                    case 'object':
+                    case 'function':
+
+                        leftChain.push(x);
+                        rightChain.push(y);
+
+                        if (!compare2Objects (x[p], y[p])) {
+                            return false;
+                        }
+
+                        leftChain.pop();
+                        rightChain.pop();
+                        break;
+
+                    default:
+                        if (x[p] !== y[p]) {
+                            return false;
+                        }
+                        break;
+                }
+            }
+
+                return true;
+              }
+
+              if (arguments.length < 1) {
+                return true; //Die silently? Don't know how to handle such case, please help...
+                // throw "Need two or more arguments to compare";
+              }
+
+              for (i = 1, l = arguments.length; i < l; i++) {
+
+                  leftChain = []; //Todo: this can be cached
+                  rightChain = [];
+
+                  if (!compare2Objects(arguments[0], arguments[i])) {
+                      return false;
+                  }
+              }
+
+              return true;
+        }
+
+        //span close modal
+        // Get the <span> element that closes the modal
+        var spans = document.getElementsByClassName("close-modal")
+        var modals = document.getElementsByClassName("modal")
+        for(let i in spans){
+            spans[i].onclick = function() { 
+                modals[i].style.display = "none"
+                var other = document.getElementsByClassName("page-content")[0]
+                other.style.filter = "blur(0)"
+            }
+        }
+        // When the user clicks on <span> (x), close the modal
+    </script>
+    <script type="text/javascript">
+        socket.on('update feedback', function(data){   
+            var row = document.getElementById(data.feedback._id)
+            var labels = row.querySelectorAll('.label-feedback')
+            if(data.feedback.status.read){
+                labels[0].innerHTML = 'Đã đọc'
+                labels[0].classList.remove('label-warning')
+                labels[0].classList.add('label-success')
+            }
+            if(data.feedback.status.reply){
+                labels[1].innerHTML = 'Đã trả lời'
+                labels[1].classList.remove('label-danger')
+                labels[1].classList.add('label-info')   
+            }
+            change_num()
+        })
+    </script>  
+    <!-- END OF SELF ADDING SCRIPT -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/assets/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+<% include _layouts/footer %>

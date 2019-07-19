@@ -8,12 +8,13 @@ var Product = require('../models/product.model.js')
 var Feedback = require('../models/feedback.model.js')
 var Member = require('../models/member.modal.js')
 var request = require('request')
+var client = require('./redis.client.js')
 
 //District management module
 module.exports.district = async function(req, res){
 	var data = await District.find().lean()
 	var province = await Province.find().lean()
-	res.status(200).render('district_table', {locate: 'Quản lý danh sách quận huyện', data: data, province: province, user: req.user})
+	res.status(200).render('district_table', {breadcrumb: [{href:'/manager/province' ,locate: 'Quản lý danh sách quận huyện'}], data: data, province: province, user: req.user})
 }
 
 module.exports.dt_list = async function(req, res){
@@ -28,7 +29,7 @@ module.exports.dt_properties = async function(req, res){
 	if(result){
 		res.status(200).send(result)
 	}else{
-		res.status(404).end()
+		res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 	}
 }
 
@@ -38,7 +39,7 @@ module.exports.dt_adding = function(req, res){
 		if(!err){
 			res.status(200).send('OK')
 		}else{
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}
 	})
 	//some code here
@@ -70,7 +71,7 @@ module.exports.dt_delete = async function(req, res){
 //Province management module
 module.exports.province = async function(req, res){
 	var data = await Province.find().lean()
-	res.status(200).render('province_table', {locate: 'Quản lý danh sách tỉnh thành', data: data, user: req.user})
+	res.status(200).render('province_table', {breadcrumb: [{href: '/manager/province', locate: 'Quản lý danh sách tỉnh thành'}], data: data, user: req.user})
 }
 
 module.exports.pv_list = async function(req, res){
@@ -85,7 +86,7 @@ module.exports.pv_properties = async function(req, res){
 	if(result){
 		res.status(200).send(result)
 	}else{
-		res.status(404).end()
+		res.status(500).send("Không tìm thấy dữ liệu tương ứng!")
 	}
 }
 
@@ -95,7 +96,7 @@ module.exports.pv_adding = function(req, res){
 		if(!err){
 			res.status(200).send('OK')
 		}else{
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}
 	})
 	//some code here
@@ -127,7 +128,7 @@ module.exports.pv_dt = async function(req, res){
 	var _id = decodeURIComponent(req.params._id)
 	var province = await Province.findById(_id).lean()
 	if(!province){
-		res.status(404).end()
+		res.status(500).send("Không tìm thấy dữ liệu tương ứng!")
 	}
 	var result = await District.find({province_code: province.province_code}).lean()
 	res.status(200).send(result)
@@ -136,7 +137,7 @@ module.exports.pv_dt = async function(req, res){
 //Product management modules
 module.exports.product =async function(req, res){
 	var data = await Product.find().lean()
-	res.status(200).render('product_table', {locate: 'Quản lý danh sách sản phẩm', data: data, user: {username: 'admin'}})
+	res.status(200).render('product_table', {breadcrumb:[{href: '/manager/product', locate: 'Quản lý danh sách sản phẩm'}], data: data, user: {username: 'admin'}})
 }
 
 module.exports.pd_list = async function(req, res){
@@ -161,7 +162,7 @@ module.exports.pd_adding = function(req, res){
 		if(!err){
 			res.status(200).send('OK')
 		}else{
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}
 	})
 }
@@ -183,24 +184,23 @@ module.exports.pd_properties = async function(req, res){
 	if(result){
 		res.status(200).send(result)
 	}else{
-		res.status(404).end()
+		res.status(500).send("Không có dữ liệu tương ứng")
 	}
 }
 
 //Feedback management modules
 
-//use redis module
 const get_user_data = async (req, res) => {
 	var _id = req.params._id
 	var result = await Feedback.findById(_id).lean()
 	if(!result){
-		res.status(500).end()
+		res.status(500).send("Không tìm thấy dữ liệu yêu cầu!")
 		return
 	} 
 	var fb_id = result.fb_id
 	var member = await Member.findOne({fb_id: fb_id}).lean()
 	if(!member){
-		res.status(500).end()
+		res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		return
 	}
 	var auto_reply = member.auto_reply
@@ -212,7 +212,7 @@ const get_user_data = async (req, res) => {
 	}
 	request(options, function(error, response, body){
 		if(response.statusCode != 200 || error){
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}
 		var send = JSON.parse(body)
 		send.auto_reply = auto_reply
@@ -248,7 +248,7 @@ module.exports.feedback_list = async function(req, res){
 			if(feedbacks){
 				res.status(200).send(feedbacks)
 			}else{
-				res.status(503).end()
+				res.status(500).send("Lỗi khi tải dữ liệu người dùng!")
 			}
 			break;
 		case 'unread':
@@ -256,7 +256,7 @@ module.exports.feedback_list = async function(req, res){
 			if(feedbacks){
 				res.status(200).send(feedbacks)
 			}else{
-				res.status(503).end()
+				res.status(500).send("Lỗi khi tải dữ liệu người dùng!")
 			}
 			break
 		case 'unreply':
@@ -264,11 +264,11 @@ module.exports.feedback_list = async function(req, res){
 			if(feedbacks){
 				res.status(200).send(feedbacks)
 			}else{
-				res.status(503).end()
+				res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 			}
 			break
 		default:
-			res.status(404).send('Not found!')
+			res.status(500).send('Không tìm thấy dữ liệu tương ứng!')
 			break;
 	}
 }
@@ -282,7 +282,7 @@ module.exports.get_feedback_content = async function(req, res){
 		}, 1000)
 		
 	}else{
-		res.status(500).end()
+		res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 	}
 }
 //lọc feedback phù hợp với request từ client
@@ -307,23 +307,53 @@ function customFilter(object){
 		}
 	}
 }
-
+//lấy thông tin người dùng
 module.exports.get_user_info = async function(req, res){
-	var _id = req.parmas._id
-	// client.get(_id, (err, result) => {
-	// 	if(result) {
-	// 		res.send(result)
-	// 	}else{
-	// 		get_user_data(req, res)
-	// 	}
-	// })
-	get_user_data(req, res)
+	var _id = req.params._id
+	var result = await Feedback.findById(_id).lean()
+	if(!result){
+		res.status(500).send("Lỗi khi tải dữ liệu người dùng!")
+		return
+	} 
+	var fb_id = result.fb_id
+	var member = await Member.findOne({fb_id: fb_id}).lean()
+	if(!member){
+		res.status(500).send("Lỗi khi tải dữ liệu người dùng!")
+		return
+	}
+	var auto_reply = member.auto_reply
+	function get_info_from_api(fb_id){
+		var options = {
+		uri: `https://graph.facebook.com/v3.2/${fb_id}?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=${process.env.PAGE_ACCESS_TOKEN_2}`,
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}
+		request(options, function(error, response, body){
+			if(response.statusCode != 200 || error){
+				res.status(500).send("Lỗi khi tải dữ liệu người dùng!")
+			}
+			var send = JSON.parse(body)
+			client.setex(fb_id, 3600, body)
+			send.auto_reply = auto_reply
+			// client.setex(_id, 3600, JSON.stringify(send))
+			res.status(200).send(send)
+		})
+	}
+	client.get(fb_id, (err, result) => {
+	    if (result) {
+	      	var send = JSON.parse(result)
+	      	res.status(200).send(send)
+	    } else {
+	      	get_info_from_api(fb_id)
+	    }
+	})
 }
 
 module.exports.get_user_link = async function(req, res, next){
 	var result = await Member.findOne({fb_id: req.params.fb_id})
 	if(!result){
-		res.status(404).end()
+		res.status(500).send("Không tìm thấy dữ liệu người dùng!")
 	}else{
 		res.status(200).send(result.fb_linkChat)
 	}
@@ -334,7 +364,7 @@ module.exports.update_status_member = async function(req, res){
 	console.log(req.params.fb_id)
 	await Member.findOneAndUpdate({fb_id: req.params.fb_id}, {$set:update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
 		if(err){
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}else{
 			console.log('Updated!')
 			res.status(200).end()
@@ -346,9 +376,9 @@ module.exports.update_status_feedback = async function(req, res){
 	var update = req.body.data
 	await Feedback.findByIdAndUpdate(req.params._id, {$set:update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
 		if(err){
-			res.status(500).end()
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}else{
-			res.status(200).end()
+			res.status(200).send("")
 		}
 	})
 }

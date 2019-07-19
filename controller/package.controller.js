@@ -10,7 +10,7 @@ module.exports.package_image_list = async (req, res) => {
 	data.forEach(ele => {
 		image_link.push('http://' + req.headers.host + '/public/image/' + ele.image_name)			
 	})
-	res.status(200).render('package', {breadcrumb: [{href: '/manager/package/image' ,locate: 'Hình ảnh mô tả gói dịch vụ'}], data: data, link: image_link, user: req.user})
+	res.status(200).render('package', {breadcrumb: [{href: '/manager/package/image' ,locate: 'Hình ảnh mô tả VAS'}], data: data, link: image_link, user: req.user})
 }
 
 module.exports.add_image = (req, res) => {

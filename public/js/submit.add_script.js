@@ -114,11 +114,8 @@ document.getElementById('chooseFile').addEventListener('change', function (e) {
 		if(response.status == 200){
 			display.value = response.data
 		}
-		else{
-			alert('Tải ảnh lên thất bại!')
-		}		
 	}).catch(function(error){
-		alert('An error occured!')
+		swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
 	})
 })
 
@@ -137,11 +134,9 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
 		if(response.status == 200){
 			display.value = response.data
 		}
-		else{
-			alert('Tải ảnh lên thất bại!')
-		}		
 	}).catch(function(error){
-		alert('An error occured!')
+		console.error(error)
+		swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
 	})
 })
 
@@ -165,7 +160,7 @@ function create_submit_data(){
 	var vars = data.variables.split('')
 	vars.forEach(variable => '{{' + variable + '}}')
 	submit_data.variables = vars
-	submit_data.type = data.script
+	submit_data.type = 'question'
 	submit_data.script = {}
 	switch (data.script) {
 		case 'text':
@@ -185,9 +180,9 @@ function create_submit_data(){
 			// statements_1
 			break;
 		default:
-			alert('Hãy lựa chọn một định dạng script!')
+			swal("Chú ý", "Hãy lựa chọn một định dạng cho mẫu tin nhắn!", "info")
 			// statements_def
-			return
+			return null
 			break
 	}
 
@@ -213,13 +208,12 @@ function submitData(){
 		data: JSON.stringify(submit_data)
 	}).then(function(response){
 		if(response.status == 200){
-			alert("Lưu script thành công!")
+			swal("Thành công", "Mẫu tin nhắn đã được lưu lại!", "success", {showConfirmButton: false})
 			location.reload()
-		}else{
-			alert("Lưu script thất bại!")
 		}
 	}).catch(function(error){
-		console.log(error)
+		console.error(error)
+		swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
 	})
 
 	return false

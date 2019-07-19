@@ -13,6 +13,7 @@ module.exports.update_linkChat = function(){
 		   graph.get(`/${process.env.PAGE_ID}/conversations/conversations?access_token=${process.env.PAGE_ACCESS_TOKEN_2}&fields=link%2Cparticipants&limit=2`, function(err, res){
 		       	if (err) {
 		       		console.log('Đã có lỗi xảy ra! ' + err)
+		       		return
 		       	}
 		        res.data.forEach(data => {
 	            	result.push(data)

@@ -13,13 +13,15 @@ var responseTime = require('response-time')
 var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
-const fs = require('fs')
-const readline = require('readline')
-const {google} = require('googleapis')
-const TOKEN_PATH = 'token.json'
-const CREDENTIAL_FILE = 'credentials.json'
+var fs = require('fs')
+var readline = require('readline')
+var {google} = require('googleapis')
+var TOKEN_PATH = 'token.json'
+var CREDENTIAL_FILE = 'credentials.json'
 var request = require('request')
-const saltRounds = 10
+var saltRounds = 10
+var client = require('./controller/redis.client.js')
+var compression = require('compression')
 
 // If modifying these scopes, delete token.json.
 const SCOPES = [
@@ -48,24 +50,24 @@ function getNewToken(oauth2Client) {
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
-  });
+  })
   console.log('Authorize this app by visiting this url:', authUrl)
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-  });
+  })
   rl.question('Enter the code from that page here: ', (code) => {
     rl.close();
     oauth2Client.getToken(code, (err, token) => {
       if (err) return console.error('Error retrieving access token', err)
-      oauth2Client.setCredentials(token);
+      oauth2Client.setCredentials(token)
       // Store the token to disk for later program executions
       fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-        if (err) return console.error(err);
+        if (err) return console.error(err)
         console.log('Token stored to', TOKEN_PATH)
-      });
-    });
-  });
+      })
+    })
+  })
 }
 
 require('dotenv').config()
@@ -82,7 +84,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
 	extended : true
 }))
-app.use(timeout(10000))
+
+app.use(compression())
+app.use(timeout(20000))
 app.use(responseTime())
 
 // Setup View engine
@@ -91,7 +95,11 @@ app.set('view engine', 'ejs');
 
 //Halt on timeout
 function haltOnTimedout(req, res, next){
-  if (!req.timedout) next();
+  if (!req.timedout){
+    next()
+  }else{
+    res.status(503).send("Connection timeout!Please retry later")
+  }
 }
 
 //Use static file
@@ -104,6 +112,7 @@ app.use(session({
 	secret: process.env.SESSION_KEY,
 	resave: true,
 	saveUninitialized: true,
+  cookie: { maxAge: 6000000 }
 	// cookie: { secure: true }
 }))
 
@@ -163,7 +172,7 @@ app.get('/logout', function(req, res){
   req.logout()
   res.redirect('/login')
 })
-
+//Đảm bảo tất cả các endpoint đều phải xác thực
 app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {  
   next()
 })
@@ -171,16 +180,35 @@ app.get('/404', function(req, res, next){
   next()
 })
 
-app.get('', async function(req, res){
+app.get('', function(req, res){
+  async function getPageInfo(){
+    await request(`https://graph.facebook.com/${process.env.PAGE_ID}/?fields=fan_count,name,picture,rating_count,link&access_token=${process.env.PAGE_ACCESS_TOKEN}`, function(error, response, body){
+      if(error){
+        console.log(error)
+        return
+      }
+      if(response.statusCode == 200){
+        client.setex('page_info', 3600, body)
+        res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: 'admin', data:{
+          new_user: 100,
+          new_mes: 1000,
+          new_auto_mes: 999,
+          new_feedback: 200
+        }, page: JSON.parse(body)})
+      }
+    })
+  }
 
-  await request(`https://graph.facebook.com/${process.env.PAGE_ID}/?fields=fan_count,name,picture,rating_count,link&access_token=${process.env.PAGE_ACCESS_TOKEN}`, function(error, response, body){
-    if(response.statusCode == 200){
+  client.get('page_info', (err, result) => {
+    if (result) {
       res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: 'admin', data:{
-        new_user: 100,
-        new_mes: 1000,
-        new_auto_mes: 999,
-        new_feedback: 200
-      }, page: JSON.parse(body)})
+          new_user: 100,
+          new_mes: 1000,
+          new_auto_mes: 999,
+          new_feedback: 200
+        }, page: JSON.parse(result)})
+    } else {
+      getPageInfo(req, res)
     }
   })
 })

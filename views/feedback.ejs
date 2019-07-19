@@ -64,8 +64,8 @@
                                                     <a class="collapse"> </a>
                                                 </div>
                                                 <div class="actions" style="align-content: left">
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                        <i class="far fa-check-circle"></i></i> Mark as important </button>
+                                                    <!-- <button type="button" class="btn btn-default btn-sm">
+                                                        <i class="far fa-check-circle"></i></i> Mark as important </button> -->
                                                     <button type="button" class="btn btn-default btn-sm" onclick="open_chat()">
                                                         <i class="far fa-edit"></i> Viết trả lời </button>
                                                 </div>
@@ -193,8 +193,7 @@
 
         add_listener()
         function handler(event) {
-            event.stopPropagation();
-            // now do your stuff        
+            event.stopPropagation()
         }
 
         function customize_table(scope){
@@ -324,13 +323,11 @@
             .then(function(response){
                 if(response.status == 200){
                     display_feedback(response.data)
-                }else{
-                    alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
-                    return
                 }
             })
             .catch(function(error){
-                alert('Tải dữ liệu thất bại, vui lòng thử lại sau!' + error)
+                console.error(error)
+                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
             })
         }
 
@@ -379,7 +376,7 @@
                 }
             }
             feedback_area.style.display = 'block'
-            scrollTo(document.body, feedback_area, 200)
+            scrollTo(document.body, document.getElementById('preview-div'), 200)
             axios.post('/manager/feedback/update/' + encodeURIComponent(data._id),{
                 headers: {
                     'Content-Type': 'application/json'
@@ -413,7 +410,6 @@
                   list_checked.splice(index, 1)
                 }
             }
-            console.log(list_checked)
         }
 
         //thay đổi mục được chọn
@@ -453,24 +449,22 @@
                     }
                     document.getElementsByClassName('input_status')[0].addEventListener('click', change_auto_reply)
                 }
-                else{
-                    while (display.firstChild) {
-                        display.removeChild(display.firstChild)
-                        var p = document.createElement('p')
-                        p.innerHTML = 'Đã có lỗi xảy ra, không thể hiển thị dữ liệu người dùng!'
-                        display.appendChild(p)
-                    }
-                }
             })
             .catch(function(error){
-                console.log(error)
+                console.error(error)
+                while (display.firstChild) {
+                    display.removeChild(display.firstChild)
+                    var p = document.createElement('p')
+                    p.innerHTML = 'Đã có lỗi xảy ra, không thể hiển thị dữ liệu người dùng!'
+                    display.appendChild(p)
+                }
             })
         }
 
         //mở fb chat link và thay đổi trạn thái cho phép trả lời của bot
         function open_chat(){
             if(list_checked.length == 0){
-                alert("Hãy chọn ít nhất một feedback để phản hồi!")
+                swal("Chú ý", "Chọn ít nhất một phản hồi để mở cửa sổ chat!", "info")
                 return
             }
             if(list_checked.length >= 1){
@@ -488,8 +482,8 @@
                                 data: {auto_reply: false}
                             })
                             .catch(function(error){
-                                console.log(error)
-                                return
+                                console.error(error)
+                                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
                             })
                             var timer = setInterval(checkChild, 500)
 
@@ -502,9 +496,9 @@
                                         },
                                         data: {auto_reply: true}
                                     }).catch(function(error){
-                                        console.log(error)
+                                        console.error(error)
                                     })
-                                    clearInterval(timer);
+                                    clearInterval(timer)
                                 }
                             }
 
@@ -522,7 +516,7 @@
                                     if(response.status == 200) console.log('Changed feedback stauts to replied')
                                 })
                                 .catch(function(error){
-                                    console.log('Failed to change feedback status' + error)
+                                    console.error('Failed to change feedback status' + error)
                                     return
                                 })
                             }
@@ -530,13 +524,13 @@
                             update_status_feedback()
                         }
                         else{
-                            alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+                            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
                             return
                         }
                     })
                     .catch(function(error){
-                        alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
-                        return
+                        console.error(error)
+                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
                     })
                 }
             }
@@ -554,16 +548,11 @@
             })
             .then(function(response){
                 if(response.status == 200)
-                alert("Thay đổi trạng thái cho phép bot trả lời người dùng!")
-                else{
-                    alert("Đã có lỗi xảy ra, vui lòng thử lại sau!")
-                    if(this.checked) this.checked = false
-                        else this.checked = true
-                }
+                swal( "Thành công!", "Đã thay đổi trạng thái cho phép bot trả lời người dùng!", "success", {confirmButtonColor: 'green'})
             })
             .catch(function(error){
-                alert("Đã có lỗi xảy ra! \n" + error)
-                return
+                console.error(error)
+                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
             })
         }
 
@@ -635,6 +624,6 @@
     <script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <script src="/assets/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 <% include _layouts/footer %>

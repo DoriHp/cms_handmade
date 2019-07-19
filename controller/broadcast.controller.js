@@ -45,7 +45,7 @@ module.exports.sendBroadcastForm = async function(req, res){
 	        })
 	    } else {
 	    	//update linkChat trong csdl
-	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: {username: 'Bảo'}, labels: result, members: members})
+	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: req.user, labels: result, members: members})
 		}
 	}
 }
@@ -136,24 +136,24 @@ module.exports.execBroadcast = function(req, res){
 				res.status(503).end()
 			}
 	
-			var broadcast_id = body.broadcast_id
-			var option3 = {
-				method: 'POST',
-				uri: `https://graph.facebook.com/v2.11/${broadcast_id}/insights/messages_sent?access_token=${process.env.PAGE_ACCESS_TOKEN}`
-			}
-			request(option3, function(err, response, body){
-				if(!body.error){
-					var now = new Date()
-					var number = body.data[0].values[0].value
-					var type = (timer)?'Scheduled message':"" + (label)?'Targeting message':""
-					var save = {
-						time: now,
-						number: number,
-						type: type
-					}
-					fs.writeFileSync('./log/broadcast.history.json', )
-				}
-			})
+			// var broadcast_id = body.broadcast_id
+			// var option3 = {
+			// 	method: 'POST',
+			// 	uri: `https://graph.facebook.com/v2.11/${broadcast_id}/insights/messages_sent?access_token=${process.env.PAGE_ACCESS_TOKEN}`
+			// }
+			// request(option3, function(err, response, body){
+			// 	if(!body.error){
+			// 		var now = new Date()
+			// 		var number = body.data[0].values[0].value
+			// 		var type = (timer)?'Scheduled message':"" + (label)?'Targeting message':""
+			// 		var save = {
+			// 			time: now,
+			// 			number: number,
+			// 			type: type
+			// 		}
+			// 		fs.writeFileSync('./log/broadcast.history.json', )
+			// 	}
+			// })
 		})
 	})
 }

@@ -14,11 +14,11 @@ var TableDatatablesManaged = function () {
                     "sortDescending": ": activate to sort column descending"
                 },
                 "emptyTable": "No data available in table",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
+                "info": "Hiển thị _START_ đến _END_ của _TOTAL_ kết quả",
                 "infoEmpty": "No records found",
                 "infoFiltered": "(filtered1 from _MAX_ total records)",
                 "lengthMenu": "Show _MENU_",
-                "search": "Search:",
+                "search": "Tìm kiếm",
                 "zeroRecords": "No matching records found",
                 "paginate": {
                     "previous":"Prev",
@@ -42,7 +42,7 @@ var TableDatatablesManaged = function () {
 
             "lengthMenu": [
                 [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [5, 15, 20, "Toàn bộ"] // change per page values here
             ],
             // set the initial value
             "pageLength": 5,            
@@ -100,13 +100,13 @@ var TableDatatablesManaged = function () {
                     "sortAscending": ": activate to sort column ascending",
                     "sortDescending": ": activate to sort column descending"
                 },
-                "emptyTable": "No data available in table",
-                "info": "Showing _START_ to _END_ of _TOTAL_ records",
-                "infoEmpty": "No records found",
+                "emptyTable": "Không có dữ liệu sẵn có",
+                "info": "Hiển thị _START_ đến _END_ của _TOTAL_ kết quả",
+                "infoEmpty": "Không tìm thấy dữ liệu tương ứng!",
                 "infoFiltered": "(filtered1 from _MAX_ total records)",
-                "lengthMenu": "Show _MENU_",
-                "search": "Search:",
-                "zeroRecords": "No matching records found",
+                "lengthMenu": "Hiển thị _MENU_",
+                "search": "Tìm kiếm:",
+                "zeroRecords": "Không tìm thấy dữ liệu tương ứng!",
                 "paginate": {
                     "previous":"Prev",
                     "next": "Next",
@@ -128,12 +128,12 @@ var TableDatatablesManaged = function () {
             "bStateSave": false, // save datatable state(pagination, sort, etc) in cookie.
 
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [10, 15, 20, -1],
+                [10, 15, 20, "Tất cả"] // change per page values here
             ],
 
             // set the initial value
-            "pageLength": 5,            
+            "pageLength": 10,            
             "pagingType": "bootstrap_full_number",
             "columnDefs": [
                 {  // set default column settings

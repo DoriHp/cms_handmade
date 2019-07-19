@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 require('dotenv').config()
 
 module.exports.index = async (req, res) => {
-	res.status(200).render('script_table', {locate: 'Danh sách mẫu tin nhắn', user: 'admin'})
+	res.status(200).render('script_table', {breadcrumb: [{href:'/script',locate: 'Danh sách mẫu tin nhắn'}], user: 'admin'})
 }
 
 module.exports.list = async (req, res) => {
@@ -16,22 +16,30 @@ module.exports.addScript = (req, res) => {
 	var intent = req.params.intent
 	if(intent == "question"){
 		res.status(200)
-		res.render('script_question', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: {username: 'Bao'}})
+		res.render('script_question', {intent: 'adding', breadcrumb:[{href:'/script/adding/question', locate: 'Thêm mẫu tin nhắn - khảo sát'}], user: {username: 'Bao'}})
 	}else{
 		res.status(200)
-		res.render('script_response', {intent: 'adding', locate: 'Thêm mẫu tin nhắn ', user: {username: 'Bao'}})
+		res.render('script_response', {intent: 'adding', breadcrumb:[{href:'/script/adding/question', locate: 'Thêm mẫu tin nhắn - phản hồi'}], user: {username: 'Bao'}})
 	}
 }
 
 module.exports.saveNewScript = (req, res) => {
 	var data = JSON.parse(req.body.data)
-	Script.insertMany(data, function(err, result){
-		if(err){
-			console.log(err)
-			res.status(500).send("Error:" + err)
-		}else{
-			res.status(200).send('OK')
+	Script.findOne({id: data.id}, function(error, result){
+		if(error){
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}
+		if(result){
+			res.status(500).send("ID của mẫu tin nhắn đã tồn tại, vui lòng lựa chọn ID khác!")
+		}
+		Script.insertMany(data, function(err){
+			if(err){
+				console.log(err)
+				res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+			}else{
+				res.status(200).send('OK')
+			}
+		})
 	})
 }
 
@@ -48,7 +56,7 @@ module.exports.getProperties = async function(req, res){
 			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: {username: 'Bao'}})
 		}
 	}else{
-		res.status(500)
+		res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 	}
 }
 
@@ -59,7 +67,7 @@ module.exports.updateScript = function(req, res){
 	Script.findOneAndUpdate({'_id': req.params._id}, {$set: update}, { new: true, upsert: false, useFindAndModify: false},function(err, result){
 		if(err){
 			console.log(err)	
-			res.status(500).end()
+			res.status(500).end("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}else{
 			res.status(200).send(result)
 		}
@@ -71,7 +79,7 @@ module.exports.delScript = function(req, res){
 	Script.findOneAndRemove({'_id' : req.params._id}, { useFindAndModify: false }, function(err, result){
 		if(err){
 			console.log(err)
-			res.status(500).end()
+			res.status(500).end("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}else{
 			res.status(200).end()
 		}

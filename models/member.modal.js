@@ -6,7 +6,8 @@ var MemberSchema = new mongoose.Schema({
     otp: String,
     auto_reply: Boolean,
     fb_id: String,
-    fb_name: String,
+    fb_firstName: String,
+    fb_lastName: String,
     fb_gender: String,
     fb_linkChat: String,
     lastTimeQueryVAS: Date

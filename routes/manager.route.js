@@ -3,6 +3,7 @@ var router = express.Router()
 var controller = require('../controller/manager.controller.js')
 var path = require('path')
 var controller2 = require('../controller/package.controller.js')
+var controller3 = require('../controller/member.controller.js')
 var multer = require('multer')
 var path = require('path')
 var crypto = require('crypto')
@@ -70,4 +71,8 @@ router.post('/package/image/upload/:pc_code', upload.single('package_image'), co
 router.get('/package/image/properties/:_id', controller2.get_image_pro)
 router.post('/package/image/update/:pk_code', controller2.update_pk_image)
 router.post('/package/add-new', controller2.add_new_pk)
+// Member management route
+router.get('/member', controller3.member)
+router.get('/member/list', controller3.list)
+router.post('/member/add', controller3.add)
 module.exports = router

@@ -9,6 +9,57 @@
 <link href="/assets/apps/css/inbox.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    #banner{
+        height: 100px; 
+        background-color: #fff; 
+        background-clip: content-box; 
+        border-radius: 20px; 
+        outline: none; 
+        display: flex;
+    }
+    #page_image{
+        width: 70px; 
+        height: 70px; 
+        border-radius: 50px !important; 
+        margin-top: 15px; 
+        margin-left: 30px;
+        background-size: cover; 
+        background-repeat: no-repeat;
+    }
+    #page_info{
+        flex-grow: 1; 
+        text-align: left; 
+        padding-top: 15px; 
+        padding-bottom: 15px;
+    }
+    #page_info h4, #page_info p, #page_info a{
+        margin: 5px;
+        margin-left: 15px;
+    }
+    
+    #page_info a{
+        font-weight: bold;
+    }
+
+    #page_info a:hover{
+        text-decoration: none;
+    }
+
+    #num_of_likes{
+        height: 100px; 
+        display: flex;
+        color: #337ab7; 
+        flex-direction: row;
+    }
+    #num_of_likes i{
+        margin-left: 15px;
+        line-height: 100px;
+    }
+    #num_of_likes div{
+        height: 100px;
+    }
+</style>
 <!-- END PAGE LEVEL STYLES -->
 </head>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -46,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <a class="dashboard-stat dashboard-stat-v2 blue" href="#">
                                 <div class="visual">
@@ -97,58 +148,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
-                    <style type="text/css">
-                        #banner{
-                            height: 100px; 
-                            background-color: #fff; 
-                            background-clip: content-box; 
-                            border-radius: 20px; 
-                            outline: none; 
-                            display: flex;
-                        }
-                        #page_image{
-                            width: 70px; 
-                            height: 70px; 
-                            border-radius: 50px !important; 
-                            margin-top: 15px; 
-                            margin-left: 30px;
-                            background-size: cover; 
-                            background-repeat: no-repeat;
-                        }
-                        #page_info{
-                            flex-grow: 1; 
-                            text-align: left; 
-                            padding-top: 15px; 
-                            padding-bottom: 15px;
-                        }
-                        #page_info h4, #page_info p, #page_info a{
-                            margin: 5px;
-                            margin-left: 15px;
-                        }
-                        
-                        #page_info a{
-                            font-weight: bold;
-                        }
-
-                        #page_info a:hover{
-                            text-decoration: none;
-                        }
-
-                        #num_of_likes{
-                            height: 100px; 
-                            display: flex;
-                            color: #337ab7; 
-                            flex-direction: row;
-                        }
-                        #num_of_likes i{
-                            margin-left: 15px;
-                            line-height: 100px;
-                        }
-                        #num_of_likes div{
-                            height: 100px;
-                        }
-                    </style>
+                    </div> -->
                     <div class="clearfix"></div>
                     <div class="clearfix"></div>
                     <!-- END DASHBOARD STATS 1-->
