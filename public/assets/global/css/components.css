@@ -15403,7 +15403,8 @@ body.stop-scrolling {
     color: #32c5d2 !important; }
   .mt-element-step .step-default .active .mt-step-title,
   .mt-element-step .step-default .active .mt-step-content {
-    color: #fff !important; }
+    color: #fff !important;
+     }
 
 .mt-element-step .step-default .done {
   background-color: #26C281 !important; }
@@ -15678,18 +15679,18 @@ body.stop-scrolling {
   text-align: center; }
 
 .mt-element-step .step-line .mt-step-number {
-  font-size: 26px;
+  font-size: 20px;
   border-radius: 50% !important;
   display: inline-block;
   margin: auto;
-  padding: 9px;
+  padding: 5px;
   margin-bottom: 5px;
   border: 3px solid;
   border-color: #e5e5e5;
   position: relative;
   z-index: 5;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   text-align: center; }
   .mt-element-step .step-line .mt-step-number > i {
     position: relative;
@@ -15697,26 +15698,26 @@ body.stop-scrolling {
     transform: translateY(-120%); }
 
 .mt-element-step .step-line .mt-step-title {
-  font-size: 20px;
+  font-size: 11px;
   font-weight: 400;
   position: relative; }
   .mt-element-step .step-line .mt-step-title:after {
     content: '';
-    height: 3px;
+    height: 2px;
     width: 50%;
     position: absolute;
     background-color: #e5e5e5;
-    top: -32px;
+    top: -22px;
     left: 50%;
     z-index: 4;
     transform: translateY(-100%); }
   .mt-element-step .step-line .mt-step-title:before {
     content: '';
-    height: 3px;
+    height: 2px;
     width: 50%;
     position: absolute;
     background-color: #e5e5e5;
-    top: -32px;
+    top: -22px;
     right: 50%;
     z-index: 4;
     transform: translateY(-100%); }
@@ -15733,7 +15734,8 @@ body.stop-scrolling {
 
 .mt-element-step .step-line .active .mt-step-title,
 .mt-element-step .step-line .active .mt-step-content {
-  color: #32c5d2 !important; }
+  color: #32c5d2 !important;
+  font-size: 11px; }
 
 .mt-element-step .step-line .active .mt-step-title:after, .mt-element-step .step-line .active .mt-step-title:before {
   background-color: #32c5d2; }
@@ -15744,7 +15746,8 @@ body.stop-scrolling {
 
 .mt-element-step .step-line .done .mt-step-title,
 .mt-element-step .step-line .done .mt-step-content {
-  color: #26C281 !important; }
+  color: #26C281 !important;
+  font-size: 11px; }
 
 .mt-element-step .step-line .done .mt-step-title:after, .mt-element-step .step-line .done .mt-step-title:before {
   background-color: #26C281; }
@@ -21024,7 +21027,8 @@ Custom color buttons
   background: #95A5A6 !important; }
 
 .font-grey-cascade {
-  color: #95A5A6 !important; }
+  color: #95A5A6 !important;
+  font-size: 11px; }
 
 .bg-font-grey-cascade {
   color: #FFFFFF !important; }

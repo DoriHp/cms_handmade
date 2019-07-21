@@ -65,28 +65,44 @@ function display_template_generic(ul, from, data){
     }
 }
 
-function preview_next(){
+function preview_next(e){
 	pre_tab++
 	var templates = document.getElementsByClassName('div_template')
-	for(let i in templates){
-		if(i == pre_tab){
+	for(let i = 0; i < templates.length; i++){
+		if(i == pre_tab && i != 'length'){
 			templates[i].style.display = 'block'
 		}else{
 			templates[i].style.display = 'none'
 		}
 	}
+    if(pre_tab == templates.length - 1){
+        document.getElementById('nav_tpl_next').disabled = true
+    }else if(pre_tab > 0 && pre_tab < templates.length - 1){
+        document.getElementById('nav_tpl_pre').disabled = false
+        document.getElementById('nav_tpl_next').disabled = false
+    }else{
+        document.getElementById('nav_tpl_next').disabled = false
+    }
 }
 
 function preview_pre(){
 	pre_tab--
 	var templates = document.getElementsByClassName('div_template')
-	for(let i in templates){
+	for(let i = 0; i < templates.length; i++){
 		if(i == pre_tab){
 			templates[i].style.display = 'block'
 		}else{
 			templates[i].style.display = 'none'
 		}
 	}
+    if(pre_tab == 0){
+        document.getElementById('nav_tpl_pre').disabled = true
+    }else if(pre_tab > 0 && pre_tab < templates.length - 1){
+        document.getElementById('nav_tpl_pre').disabled = false
+        document.getElementById('nav_tpl_next').disabled = false
+    }else{
+        document.getElementById('nav_tpl_pre').disabled = false
+    }
 }
 
 //tin nhắn định dạng text - question
@@ -230,11 +246,13 @@ async function display_preview(){
     if(data.type == 'question'){
         if(data.script.type == 'text') display_text_question(preview_ul, data)    
         if(data.script.type == 'quick_reply') display_quick_reply(preview_ul, data)
-        if(data.script.type == 'template' && data.script.attachment.payload.template_type == 'generic') display_template_media(preview_ul, data)
+        if(data.script.type == 'template' && data.script.attachment.payload.template_type == 'generic') display_template_generic(preview_ul, 'bot', data.script.attachment.payload.elements)
         if(data.script.type == 'template' && data.script.attachment.payload.template_type == 'button')
             display_template_button(preview_ul, 'bot', data.script.attachment.payload.element[0])
-        if(data.script.type == 'template' && data.script.attachment.payload.template_type == 'media')
-            display_template_media(preview_ul, data)
+        if(data.script.type == 'template' && data.script.attachment.payload.template_type == 'media'){
+            swal("Chú ý", "Định dạng này không hỗ trợ xem trước!", "warning", {confirmButtonColor: 'orange'})
+            return
+        }
         if(data.script.type == 'image') display_image_message(preview_ul, 'bot', data.script.attachment.payload.url)
         return
     }
@@ -244,8 +262,10 @@ async function display_preview(){
             if(script.type == 'template' && script.attachment.payload.template_type == 'generic') display_template_generic(preview_ul, 'bot', script.attachment.payload.elements)
             if(script.type == 'template' && script.attachment.payload.template_type == 'button')
             display_template_button(preview_ul, 'bot', script.attachment.payload.element[0])
-            if(script.type == 'template' && script.attachment.payload.template_type == 'media')
-            display_template_media(preview_ul, data)
+            if(script.type == 'template' && script.attachment.payload.template_type == 'media'){
+                swal("Chú ý", "Định dạng này không hỗ trợ xem trước!", "warning", {confirmButtonColor: 'orange'})
+                return
+            }
             if(script.type == 'image') display_image_message(preview_ul, 'bot', script.attachment.payload.url)
         })
         return

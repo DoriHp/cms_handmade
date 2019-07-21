@@ -4,7 +4,7 @@ var mongoose = require('mongoose')
 require('dotenv').config()
 
 module.exports.index = async (req, res) => {
-	res.status(200).render('script_table', {breadcrumb: [{href:'/script',locate: 'Danh sách mẫu tin nhắn'}], user: 'admin'})
+	res.status(200).render('script_table', {breadcrumb: [{href:'/script',locate: 'Danh sách mẫu tin nhắn'}], user: {username: 'Bảo'}})
 }
 
 module.exports.list = async (req, res) => {
@@ -28,9 +28,11 @@ module.exports.saveNewScript = (req, res) => {
 	Script.findOne({id: data.id}, function(error, result){
 		if(error){
 			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+			return
 		}
 		if(result){
 			res.status(500).send("ID của mẫu tin nhắn đã tồn tại, vui lòng lựa chọn ID khác!")
+			return
 		}
 		Script.insertMany(data, function(err){
 			if(err){
@@ -51,7 +53,7 @@ module.exports.getProperties = async function(req, res){
 	if(result){
 		res.cookie("info" ,response)
 		if(result.type == 'question'){
-			res.render('script_question', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user:{username: 'Bao'}})
+			res.render('script_question', {intent: 'display', breadcrumb:[{href:`/script/properties/${_id}`, locate: 'Chi tiết mẫu tin nhắn'}], user:{username: 'Bao'}})
 		}else{
 			res.render('script_response', {intent: 'display', locate: 'Chi tiết mẫu tin nhắn', user: {username: 'Bao'}})
 		}

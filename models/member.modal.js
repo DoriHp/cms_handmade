@@ -10,7 +10,9 @@ var MemberSchema = new mongoose.Schema({
     fb_lastName: String,
     fb_gender: String,
     fb_linkChat: String,
-    lastTimeQueryVAS: Date
+    lastTimeQueryVAS: Date,
+    create_time: Date,
+    update_time: Date
 })
 
 var Member = mongoose.model('Member', MemberSchema, 'members')

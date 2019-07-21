@@ -40,11 +40,11 @@
                                             <!-- ID cho script -->
                                             <div class="form-group">
                                                 <label class="col-md-3">ID mẫu tin</label>
-                                                <div class="form-group col-md-6">
+                                                <div class="form-group col-md-5">
                                                     <input type="text" name="id" class="form-control" id="inputID" placeholder="ID" required>
                                                 </div> 
-                                                <div class="col-md-3" style="padding-right: 0">
-                                                    <button type="button" class="btn-info form-control" id="generate_id" onclick="generateId()"> Generate ID </button>
+                                                <div class="col-md-4" style="padding-right: 0">
+                                                    <button type="button" class="btn-info form-control" id="generate_id" onclick="generateId()"> Tạo ngẫu nhiên </button>
                                                 </div>
                                             </div>
                                             <!-- END OF INPUT SCRIPT ID -->
@@ -171,7 +171,29 @@
                                                 </div>
                                                 <!-- END OF SELECT FB TEMPLATE TYPE -->
                                                 <!-- FB TEMPLATE GENERIC TYPE -->
-                                                <div class="fb_tpl_type" data-type="generic">
+                                                <!-- <div class="fb_tpl_type" data-type="generic">
+                                                    <div class="form-group" id="regGeneric">
+                                                        <div class="generic_tab">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="select_num_of_template" class="col-md-3">Số lượng mẫu</label>
+                                                        <div class="col-md-9 form-group">
+                                                            <select name="select_num_of_template" class="form-control" id="select_num_of_template">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2 (mẫu quay vòng)</option>
+                                                                <option value="3">3 (mẫu quay vòng)</option>
+                                                                <option value="4">4 (mẫu quay vòng)</option>
+                                                                <option value="5">5 (mẫu quay vòng)</option>
+                                                                <option value="6">7 (mẫu quay vòng)</option>
+                                                                <option value="8">8 (mẫu quay vòng)</option>
+                                                                <option value="9">9 (mẫu quay vòng)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label id='generic_num_label' class="col-md-3">Mẫu chung 1</label>    
+                                                    </div>
                                                     <div class="form-group" >
                                                         <label for="inputTitle_generic"class="col-md-3"> Tiêu đề
                                                         </label>
@@ -221,7 +243,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group generic_tpl_button" id="generic_button_1">
-                                                        <label class="col-md-3"> Button 1 
+                                                        <label class="col-md-3"> Nút nhấn 1 
                                                         </label>
                                                         <div class="form-group row col-md-12" style="display: flex; justify-content: space-around; padding-right: 0; padding-left: 0;">
                                                             <div class="form-group col-md-4">
@@ -238,7 +260,108 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="form-group" id="nav_button" style="display: flex; justify-content: space-around;">
+                                                        <button class="btn btn-info" type="button" id="prevTpl" onclick="nextPrev(-1)"><i class="fas fa-angle-left"></i></button>
+                                                        <div class="form-group col-md-2" style="text-align:center;margin-top:10px;" 
+                                                            id='generic_count'>
+                                                            <span class="generic_step"></span>
+                                                        </div>
+                                                        <button class="btn btn-info" type="button" id="nextTpl" onclick="nextPrev(1)"><i class="fas fa-angle-right"></i></button>
+                                                    </div>   
+                                                </div> -->
+                                                <div class="fb_tpl_type" data-type="generic">
+                                                    <div class="form-group" id="regGeneric">
+                                                        <div class="generic_tab">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="select_num_of_template" class="col-md-3">Số lượng mẫu</label>
+                                                        <div class="col-md-9 form-group">
+                                                            <select name="select_num_of_template" class="form-control" id="select_num_of_template">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2 (mẫu quay vòng)</option>
+                                                                <option value="3">3 (mẫu quay vòng)</option>
+                                                                <option value="4">4 (mẫu quay vòng)</option>
+                                                                <option value="5">5 (mẫu quay vòng)</option>
+                                                                <option value="6">7 (mẫu quay vòng)</option>
+                                                                <option value="8">8 (mẫu quay vòng)</option>
+                                                                <option value="9">9 (mẫu quay vòng)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label id='generic_num_label' class="col-md-3">Mẫu chung 1</label>    
+                                                    </div>
+                                                    <hr>
+                                                    <div class="form-group" >
+                                                        <label for="inputTitle_generic"class="col-md-3"> Tiêu đề</label>
+                                                        <div class="col-md-9 form-group">
+                                                            <input type="text" name="title_generic" class="form-control" id="inputTitle_generic" placeholder="Title">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" >
+                                                        <label for="inputSubtitle_generic" class="col-md-3"> Phụ đề </label>
+                                                        <div class="col-md-9 form-group">
+                                                            <input type="text" name="subtitle_generic" class="form-control" id="inputSubtitle_generic" placeholder="Subtitle">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputImageURL_generic" class="col-md-3"> Hình ảnh </label>
+                                                        <div class="col-md-9 form-group">
+                                                            <input type="text" class="form-control" name="image_url_generic" id="inputImageURL_generic" placeholder="Choose file from your computer" readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-3 col-md-offset-3" style="padding-left: 0;">                        
+                                                            <input type="file" name="chooseFile" id="chooseFile" accept="image/*" style="display: none;">
+                                                            <input type="button" value="Lựa chọn & upload ảnh" onclick="document.getElementById('chooseFile').click();" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-md-12" style="text-decoration: underline;"> Hành động mặc định </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputDefault_URL_generic" class="col-md-3"> Đường dẫn mặc định </label>
+                                                        <div class="form-group col-md-9">
+                                                            <input id="inputDefault_URL_generic" type="text" name="default_URL_generic" class="form-control" placeholder="Default URL to open">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="num_of_button" class="col-md-3"> Số lượng các nút </label>
+                                                        <div class="form-group col-md-9">
+                                                            <select name="num_of_button" class="form-control num_of_button">
+                                                                <option value="1" selected>1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group generic_tpl_button" id="generic_button_1">
+                                                        <label class="col-md-3"> Button 1 </label>
+                                                        <div class="form-group row col-md-12" style="display: flex; justify-content: space-around; padding-right: 0; padding-left: 0;">
+                                                            <div class="form-group col-md-4">
+                                                                <select name="style_of_button_1_generic" class="form-control">
+                                                                    <option value="web_url" selected>Nút URL</option>
+                                                                    <option value="payload">Nút đăng lại</option>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-4">
+                                                                <input type="text" name="URL_button_1_generic" class="form-control" placeholder=" URL | payload ">
+                                                            </div>
+                                                            <div class="form-group col-md-4" style="padding-right: 0">
+                                                                <input type="text" name="title_button_1_generic" class="form-control" placeholder="Tiêu đề nút">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group" id="nav_button" style="display: flex; justify-content: space-around;">
+                                                        <button class="btn btn-info" type="button" id="prevTpl" onclick="nextPrev(-1)"><i class="fas fa-angle-left"></i></button>
+                                                        <div class="form-group col-md-2" style="text-align:center;margin-top:10px;" 
+                                                            id='generic_count'>
+                                                            <span class="generic_step"></span>
+                                                        </div>
+                                                        <button class="btn btn-info" type="button" id="nextTpl" onclick="nextPrev(1)"><i class="fas fa-angle-right"></i></button>
+                                                    </div>              
+                                                </div> 
                                                 <!-- END OF FB TEMPLATE GENERIC TYPE -->
 
                                                 <!-- FB TEMPLATE BUTTON TYPE -->
@@ -267,7 +390,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group button_tpl_button" id="button_button_1">
-                                                        <label class="col-md-3"> Button 1 </label>
+                                                        <label class="col-md-3"> Nút nhấn 1 </label>
                                                         <div class="form-group row col-md-9">
                                                             <div class="col-md-4">
                                                                 <select name="style_of_button_1_button" class="form-control">
@@ -286,14 +409,6 @@
                                                 </div>
                                                 <!-- FB TEMPLATE MEDIA TYPE -->
                                                 <div class="fb_tpl_type" data-type="media">
-                                                    <div class="form-group warning">
-                                                        Đường dẫn hình ảnh/video phải là của hình ảnh/video đã được upload lên trang facebook mà bạn đang quản lý.
-                                                        Để lấy URL Facebook của hình ảnh hoặc video, hãy làm như sau:
-
-                                                            1. Nhấp vào hình nhỏ của ảnh hoặc video để mở chế độ xem toàn kích thước.
-                                                            2. Sao chép URL từ thanh địa chỉ trên trình duyệt của bạn.
-                                                        <i class="far fa-times-circle close-warning"></i>
-                                                    </div>
                                                     <div class="form-group">
                                                         <label for="inputImageURL_media" class="col-md-3"> Media type </label>
                                                         <div class="form-group col-md-9">
@@ -302,10 +417,6 @@
                                                                 <option value="photo">Hình ảnh</option>
                                                             </select>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group danger" style="display: none;">
-                                                        Đường dẫn tệp không khả dụng. Đường dẫn tệp phải là các đường dẫn khả dụng trên Facebook. Vui lòng kiểm tra lại
-                                                        <i class="far fa-times-circle close-danger"></i>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputImageURL_media" class="col-md-3"> Đường dẫn </label>
@@ -380,7 +491,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="inputQuickReplies" class="col-md-6"><i class="fas fa-comment-dots"></i> Câu trả lời của người dùng </label>
-                                                    <label for="inputPayload" class="col-md-6"><i class="fas fa-arrow-alt-circle-right"></i> ID mẫu tin nhắn kế </label>
+                                                    <label for="inputPayload" class="col-md-6"><i class="fas fa-arrow-alt-circle-right"></i> ID mẫu tin nhắn kế tiếp</label>
                                                 </div>
                                                 <div id="response_area">
                                                     <div id="res_mapping1" class="form-group">
@@ -429,9 +540,11 @@
     <% if (intent == 'adding') { -%>
         <script type="text/javascript" src="/js/display.add_script.js"></script>
         <script type="text/javascript" src="/js/submit.add_script.js"></script>
+        <script type="text/javascript" src="/js/display.add_script_tpl.js"></script>
     <% } else { -%>
         <script type="text/javascript" src="/js/display.properties.js"></script>
         <script type="text/javascript" src="/js/submit.properties.js"></script>
+        <script type="text/javascript" src="/js/display.properties_tpl.js"></script>
     <% } -%>
     <script>
         //phóng to hình ảnh trong phần đọc feedback

@@ -7,13 +7,7 @@
 <link href="../assets/pages/css/login.min.css" rel="stylesheet" type="text/css" />
 <!-- END PAGE LEVEL STYLES -->
 </head>
-<body class=" login">
-    <% if (message.length > 0) { %>
-    <!-- <p> Message <%= message %></p> -->
-      <script type="text/javascript"> swal("" ,`<%= message %>`, "error", {customClass: {
-        confirmButton: 'btn btn-danger'
-      }}) </script>
-    <% } %>
+<body class="login">
     <!-- BEGIN LOGO -->
     <div class="logo">
         <a href="/" style="text-decoration: none;">
@@ -112,4 +106,7 @@
                 });
             })
         </script>
+        <% if (message.length > 0) { %>
+          <script type="text/javascript"> swal("Lỗi!" ,`<%= message %>`, "error", {confirmButtonColor: 'red'}) </script>
+        <% } %>
 </body>

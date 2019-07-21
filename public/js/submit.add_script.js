@@ -35,7 +35,7 @@ function exec_image(data, output){
 	return output
 }
 
-function exec_fb_template(data, output){
+async function exec_fb_template(data, output){
 	output.type = 'template'
 	output.attachment = {}
 	output.attachment.type = 'template'
@@ -46,44 +46,35 @@ function exec_fb_template(data, output){
 	switch (output.attachment.payload.template_type) {
 
 		case 'generic':
-			element.title = data.title_generic
-			element.subtitle = data.subtitle_generic
-			element.image_url = data.image_url_generic
-			element.default_action = {}
-			element.default_action.type = 'web_url'
-			element.default_action.url = data.default_URL_generic
-			element.default_action.messenger_extensions = 'false'
-			element.default_action.webview_height_ratio = 'FULL'
-			element.buttons = []
-			for(i = 0; typeof data[`URL_button_${i}_generic`] !== 'undefined'; i++ ){
-				if(data[`style_of_button_${i}_generic`] == 'web_url'){
-					element.buttons.push({type: 'web_url', url: data[`URL_button_${i}_generic`], title: data[`title_button_${i}_generic`]})
-				}else{
-					element.buttons.push({type: 'postback', payload: data[`URL_button_${i}_generic`], title: data[`title_button_${i}_generic`]})
-				}
-			}
+			await saving_generic(currentTpl)
 			output.attachment.payload.elements = []
-			output.attachment.payload.elements[0] = element
+			for(let i = 0; i < 9 && window.localStorage.getItem(`generic${i}`) != undefined; i++){
+				let element = window.localStorage.getItem(`generic${i}`) 
+				output.attachment.payload.elements.push(JSON.parse(element))
+			}
 			break;
 
 		case 'button':
 			output.attachment.payload.text = data.title_button
 			output.attachment.payload.buttons = []
 			for(i = 0; typeof data[`URL_button_${i}_button`] !== 'undefined'; i++ ){
-			output.attachment.payload.buttons.push({type: 'web_url', url: data[`URL_button_${i}_button`], title: data[`title_button_${i}_generic`]})
+			output.attachment.payload.buttons.push({type: 'web_url', url: data[`URL_button_${i}_button`], title: data[`title_button_${i}_button`]})
 			}
 			break
 
 		case 'media':
-				element.media_type = data.fb_tpl_media_type
-				element.url = data.media_url_media
-				output.attachment.payload.elements = []
-				output.attachment.payload.elements[0] = element
+			element.media_type = data.fb_tpl_media_type
+			element.url = data.media_url_media
+			output.attachment.payload.elements = []
+			output.attachment.payload.elements[0] = element
+			output.attachment.payload.elements[0].buttons = []
+			for(i = 0; typeof data[`URL_button_${i + 1}_media`] !== 'undefined'; i++ ){
+			output.attachment.payload.elements[0].buttons.push({type: 'web_url', url: data[`URL_button_${i + 1}_button`], title: data[`title_button_${i + 1}_media`]})
+			}
 			break
 		default:
-			
-			break;
-
+			swal("Chú ý!", "Không có định dạng nào được chọn, vui lòng kiểm tra lại", "warning")
+			break
 	}
 		return output
 }
@@ -115,6 +106,7 @@ document.getElementById('chooseFile').addEventListener('change', function (e) {
 			display.value = response.data
 		}
 	}).catch(function(error){
+		cons.error(error)
 		swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
 	})
 })
@@ -140,8 +132,28 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
 	})
 })
 
+function validate(){
+	var form = document.querySelector('#data_form')
+	var valid = true
+	form.querySelectorAll("input").forEach(input => {
+		if(input.style.display !== 'none'){
+	      if(!input.value || input.value == ""){
+	        valid = false
+	      }
+	    }
+	})
+	return valid
+}
+
 // dữ liệu trước khi gửi
-function create_submit_data(){
+async function create_submit_data(){
+	var valid = validate()
+	// if(!valid){
+	// 	swal("Chú ý!", "Bạn phải nhập đầy đủ dữ liệu để tiếp tục!", "warning", {customClass: {
+	//         confirmButton: 'btn btn-warning'
+	//       }})
+	// 	return
+	// }
 	var formData = new FormData(document.querySelector('#data_form'))
 
  	var submit_data = {}
@@ -151,14 +163,17 @@ function create_submit_data(){
 	  	data[pair[0]] = pair[1]
 	}
 	submit_data.id = data.id
-		//tao array cua trigger
+	//tao array cua trigger
 	var array_triggers = [];
-	for(i = 0; typeof data[`type${i}`] !== 'undefined'; i++){
-	    array_triggers.push({type: data[`type${i}`], pattern: data[`trigger${i}`] })
-	}
+	data.triggers.split(',').forEach(function(trigger){
+	    array_triggers.push(trigger.trim())
+	})
 	submit_data.triggers = array_triggers
-	var vars = data.variables.split('')
-	vars.forEach(variable => '{{' + variable + '}}')
+	var vars = []
+	for(let i of data.variables.split(',')){
+		i = '{{' + i.trim() + '}}'
+		vars.push(i)
+	}
 	submit_data.variables = vars
 	submit_data.type = 'question'
 	submit_data.script = {}
@@ -171,8 +186,8 @@ function create_submit_data(){
 			submit_data.script = exec_question(data, submit_data.script)
 			// statements_1
 			break;
-		case 'fb_template':
-			submit_data.script = exec_fb_template(data, submit_data.script)
+		case 'template':
+			submit_data.script = await exec_fb_template(data, submit_data.script)
 			// statements_1
 			break;
 		case 'image':
@@ -182,7 +197,6 @@ function create_submit_data(){
 		default:
 			swal("Chú ý", "Hãy lựa chọn một định dạng cho mẫu tin nhắn!", "info")
 			// statements_def
-			return null
 			break
 	}
 
@@ -193,30 +207,34 @@ function create_submit_data(){
 	    res_mapping.next_script = data[`res_payload${i}`]
 	    submit_data.response_mapping.push(res_mapping)
 	}
+	console.log(submit_data)
 	return submit_data
 }
 
 //gửi yêu cầu thêm mẫu mới
-function submitData(){
-
-	submit_data = create_submit_data()
-	// submit dữ liệu
-	axios.post('/script/add',{
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		data: JSON.stringify(submit_data)
-	}).then(function(response){
-		if(response.status == 200){
-			swal("Thành công", "Mẫu tin nhắn đã được lưu lại!", "success", {showConfirmButton: false})
-			location.reload()
-		}
-	}).catch(function(error){
-		console.error(error)
-		swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-	})
-
-	return false
+async function submitData(){
+	submit_data = await create_submit_data()
+	if(!submit_data || Object.entries(submit_data).length === 0){
+		return
+	}else{
+		// submit dữ liệu
+		axios.post('/script/add',{
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			data: JSON.stringify(submit_data)
+		}).then(function(response){
+			if(response.status == 200){
+				swal("Thành công", "Mẫu tin nhắn đã được lưu lại!", "success", {showConfirmButton: false})
+				setTimeout(function(){
+					location.reload()
+				}, 500)
+			}
+		}).catch(function(error){
+			console.error(error)
+			swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+		})
+	}
 }
 
 function scrollTo(element, to, duration) {

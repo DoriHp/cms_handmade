@@ -48,11 +48,47 @@
 </script>
 <script src="/socket.io/socket.io.js"></script>
 <script type="text/javascript">
+    var notice_dropdown = document.getElementById('notice_dropdown')
+    var bell = document.getElementById('bell')
+    var bell_num = document.getElementById('bell_num')
+
+    function update_bell(){
+        var num = notice_dropdown.querySelectorAll('li').length
+        bell_num.style.display = 'inline-block'
+        bell_num.innerHTML = num
+    }
+
+    function add_to_notice_dropdown(content, href, i_class, ticket_id){
+        var newNode = document.createElement('li')
+        if(ticket_id) newNode.id = ticket_id
+        var a = document.createElement('a')
+        a.href = href
+        var span = document.createElement('span')
+        span.classList.add('details')
+        var i = document.createElement('i')
+        i.classList.add('fa', i_class)
+        span.innerHTML = "  " + content 
+        a.append(i)
+        a.append(span)
+        newNode.append(a)
+        notice_dropdown.appendChild(newNode)
+    }
+
     var socket = io()
     socket.on('recieve new feedback', function(data){
         console.log('Receive new feedback')
-        var notifier = document.getElementById('notify_feedback')
-        notifier.style.display = 'block'       
+        var notify_feedback = document.getElementById('notify_feedback')
+        notify_feedback.style.display = 'block'
+        add_to_notice_dropdown('Một feedback vừa được thêm mới', `/manager/feedback/`, 'fa-comments') 
+        update_bell()      
+    })
+
+    socket.on('recieve new ticket', function(data){
+        console.log('Receive new ticket')
+        var notify_ticket = document.getElementById('notify_ticket')
+        notify_ticket.style.display = 'block'
+        add_to_notice_dropdown(`Ticket ${data.id} vừa được thêm mới`, `/manager/ticket/properties/${data.id}`, 'fa-ticket-alt') 
+        update_bell() 
     })
 
 </script>

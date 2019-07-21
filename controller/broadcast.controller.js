@@ -45,7 +45,7 @@ module.exports.sendBroadcastForm = async function(req, res){
 	        })
 	    } else {
 	    	//update linkChat trong csdl
-	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: req.user, labels: result, members: members})
+	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: {username: "Bảo"}, labels: result, members: members})
 		}
 	}
 }

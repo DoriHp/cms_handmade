@@ -1,5 +1,7 @@
 var Script = require('../models/script.model.js')
 var Feedback = require('../models/feedback.model.js')
+var Ticket = require('../models/ticket.model.js')
+var Tk_history = require('../models/ticket_history.model.js')
 
 module.exports = function(server){
     var io = require('socket.io')(server);
@@ -87,4 +89,55 @@ module.exports = function(server){
                 break
         }
     }) 
+
+    const changeStream_tk = Ticket.watch({fullDocument: 'updateLookup'})
+    changeStream_tk.on('change', function(change){
+        ('Ticket document change with type is' + change.operationType)
+        switch (change.operationType) {
+            case 'insert':
+                Ticket.findById(change.documentKey._id, function(err, ticket){
+                    if(err){
+                        console.log(err)
+                        return
+                    }
+                    var now = new Date()
+                    Tk_history.insertMany({
+                        ticket_id: ticket.id,
+                        update_time: now.toISOString(),
+                        update_by: "System",
+                        change_description: ""
+                    }, function(err, result){
+                        if(err)
+                            console.log('Error when update ticket history')
+                    })                    
+                    clientList.forEach((client) => {
+                        console.log('emit event "recieve new ticket" to client ' + ticket._id)
+                        client.socket.emit('recieve new ticket',  {ticket: ticket})
+                    })
+                });
+                break;
+            case 'update':
+                Ticket.findById(change.documentKey._id, function(err, ticket){
+                    if(err)
+                        console.log(err);
+                    
+                    clientList.forEach((client) => {
+                        console.log('emit event "update ticket" to client ' + client.id)
+                        client.socket.emit('update ticket', {ticket: ticket})
+                    })
+                })
+
+                break
+            case "delete":
+                clientList.forEach((client) => {
+                    console.log('emit event "delete ticket" to client ' + client.id)
+                    client.socket.emit('delete ticket', {_id: change.documentKey._id})
+                })
+                break;
+            default:
+                // statements_def
+                break;
+        }
+    })
+
 }

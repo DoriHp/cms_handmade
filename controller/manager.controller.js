@@ -45,9 +45,9 @@ module.exports.dt_adding = function(req, res){
 	//some code here
 }
 
-module.exports.dt_update = async function(req, res){
+module.exports.dt_update = function(req, res){
 	var update = req.body.data
-	await Product.findOneAndUpdate({'_id': req.params._id}, {$set: update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
+	Product.findOneAndUpdate({'_id': req.params._id}, {$set: update}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
 		if(err){
 			res.status(500).send('An error occured!')
 		}else{
@@ -56,9 +56,9 @@ module.exports.dt_update = async function(req, res){
 	})
 }
 
-module.exports.dt_delete = async function(req, res){
+module.exports.dt_delete = function(req, res){
 	//some code here
-	await District.findOneAndDelete({'_id': req.params._id}, function(err, result){
+	District.findOneAndDelete({'_id': req.params._id}, function(err, result){
 		if(err){
 			res.status(500).send('An error occured!')
 		}else{
@@ -222,22 +222,9 @@ const get_user_data = async (req, res) => {
 }
 
 module.exports.feedback = async function(req, res){
-	var feedbacks = await Feedback.find().lean()
-	var data = []
-	for(var i of feedbacks){
-		data.push({
-			_id: i._id,
-			fb_id: i.fb_id,
-			type: i.type,
-			time: i.datetime,
-			status: {
-				reply: i.status.reply,
-				read: i.status.read
-			}
-		})
-	}
-	console.log()
-	res.status(200).render('feedback', {breadcrumb: [{ href: "/manager/feedback", locate: 'Quản lý phản ánh từ người dùng'}], user: {username: "Bảo"}, feedbacks: data})
+	var feedbacks = await Feedback.find({}, ['fb_id', 'type', 'datetime', 'status']).lean()
+	console.log(feedbacks)
+	res.status(200).render('feedback', {breadcrumb: [{ href: "/manager/feedback", locate: 'Quản lý phản ánh từ người dùng'}], user: {username: "Bảo"}, feedbacks: feedbacks})
 
 }	
 

@@ -191,73 +191,73 @@ document.getElementById("submit_button").addEventListener('click', function(){
   submit()
 })
 //starting from script.attachment.payload
-function display_fb_template(data){
-  document.getElementById('fb_template_type').value = data.template_type
-  switch (data.template_type) {
-    case "generic":
-      document.getElementById("inputTitle_generic").value = data.elements[0].title
-      document.getElementById("inputSubtitle_generic").value = data.elements[0].subtitle
-      document.getElementById("inputImageURL_generic").value = data.elements[0].image_url
-      document.getElementById("inputDefault_URL_generic").value = data.elements[0].default_action.url
-      var num_of_button = document.querySelector('div[data-type=generic] div div .num_of_button')
-      num_of_button.value = data.elements[0].buttons.length
-      add_full_button('generic')
-      for(let i = 1; i <= 3; i++){
-        if(data.elements[0].buttons[i - 1]){
-          var button = document.getElementById(`generic_button_${i}`)
-          var child = button.querySelectorAll(`div div input`)
-          var set_type = button.querySelector(`div select`)
-          if(data.elements[0].buttons[i - 1].type == "web_url"){
-            set_type.value = "web_url"
-            child[0].value = data.elements[0].buttons[i - 1].url
-            child[1].value = data.elements[0].buttons[i - 1].title
-          }else{
-            set_type.value = "payload"
-            child[0].value = data.elements[0].buttons[i - 1].payload
-            child[1].value = data.elements[0].buttons[i - 1].title
-          } 
-        }else{
-          var button = document.getElementById(`generic_button_${i}`)
-          button.parentNode.removeChild(button)
-        }
-      }
-      break;
-    case "button":
-      document.getElementById("inputText_button").value = data.text
-      add_full_button('button')
-      var num_of_button = document.querySelector('div[data-type=button] div div .num_of_button')
-          num_of_button.value = data.buttons.length
-      for(let i = 1; i <= 3; i++){
-        if(data.buttons[i - 1]){
-          var button = document.getElementById(`button_button_${i}`)
-          var child = button.querySelectorAll(`div div input`)
-          var set_type = button.querySelector(`div select`)
-          if(data.buttons[i - 1].type == "web_url"){
-            set_type.value = "web_url"
-            child[0].value = data.buttons[i - 1].url
-            child[1].value = data.buttons[i - 1].title
-          }else{
-            set_type.value = "payload"
-            child[0].value = data.buttons[i - 1].payload
-            child[1].value = data.buttons[i - 1].title
-          } 
-        }else{
-          console.log(i)
-          var button = document.getElementById(`button_button_${i}`)
-          button.parentNode.removeChild(button)
-        }
-      }
-      break
-    case "media":
-      document.getElementById("inputImageURL_media").value = data.url
-      break
-    default:
-      // statements_def
-    break;
-  }
-  var selected = document.querySelector(`div[data-type="${data.template_type}"]`)
-  selected.style.display = 'block'
-}
+// function display_fb_template(data){
+//   document.getElementById('fb_template_type').value = data.template_type
+//   switch (data.template_type) {
+//     case "generic":
+//       document.getElementById("inputTitle_generic").value = data.elements[0].title
+//       document.getElementById("inputSubtitle_generic").value = data.elements[0].subtitle
+//       document.getElementById("inputImageURL_generic").value = data.elements[0].image_url
+//       document.getElementById("inputDefault_URL_generic").value = data.elements[0].default_action.url
+//       var num_of_button = document.querySelector('div[data-type=generic] div div .num_of_button')
+//       num_of_button.value = data.elements[0].buttons.length
+//       add_full_button('generic')
+//       for(let i = 1; i <= 3; i++){
+//         if(data.elements[0].buttons[i - 1]){
+//           var button = document.getElementById(`generic_button_${i}`)
+//           var child = button.querySelectorAll(`div div input`)
+//           var set_type = button.querySelector(`div select`)
+//           if(data.elements[0].buttons[i - 1].type == "web_url"){
+//             set_type.value = "web_url"
+//             child[0].value = data.elements[0].buttons[i - 1].url
+//             child[1].value = data.elements[0].buttons[i - 1].title
+//           }else{
+//             set_type.value = "payload"
+//             child[0].value = data.elements[0].buttons[i - 1].payload
+//             child[1].value = data.elements[0].buttons[i - 1].title
+//           } 
+//         }else{
+//           var button = document.getElementById(`generic_button_${i}`)
+//           button.parentNode.removeChild(button)
+//         }
+//       }
+//       break;
+//     case "button":
+//       document.getElementById("inputText_button").value = data.text
+//       add_full_button('button')
+//       var num_of_button = document.querySelector('div[data-type=button] div div .num_of_button')
+//           num_of_button.value = data.buttons.length
+//       for(let i = 1; i <= 3; i++){
+//         if(data.buttons[i - 1]){
+//           var button = document.getElementById(`button_button_${i}`)
+//           var child = button.querySelectorAll(`div div input`)
+//           var set_type = button.querySelector(`div select`)
+//           if(data.buttons[i - 1].type == "web_url"){
+//             set_type.value = "web_url"
+//             child[0].value = data.buttons[i - 1].url
+//             child[1].value = data.buttons[i - 1].title
+//           }else{
+//             set_type.value = "payload"
+//             child[0].value = data.buttons[i - 1].payload
+//             child[1].value = data.buttons[i - 1].title
+//           } 
+//         }else{
+//           console.log(i)
+//           var button = document.getElementById(`button_button_${i}`)
+//           button.parentNode.removeChild(button)
+//         }
+//       }
+//       break
+//     case "media":
+//       document.getElementById("inputImageURL_media").value = data.url
+//       break
+//     default:
+//       // statements_def
+//     break;
+//   }
+//   var selected = document.querySelector(`div[data-type="${data.template_type}"]`)
+//   selected.style.display = 'block'
+// }
 
 function add_full_button(fb_tpl_type_selected){
   var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)

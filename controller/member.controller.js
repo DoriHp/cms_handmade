@@ -69,7 +69,9 @@ function loop_add(){
 					fb_lastName: "me",
 					fb_gender: "men",
 					fb_linkChat: "https://google.com",
-					lastTimeQueryVAS: now.toISOString()
+					lastTimeQueryVAS: now.toISOString(),
+					create_time: now.toISOString(),
+					update_time: now.toISOString()
 	        	}
 	            
 	            Member.insertMany(new_member ,function(err, result){
@@ -80,6 +82,7 @@ function loop_add(){
 	    )(i)
 	}
 }
+
 
 
 

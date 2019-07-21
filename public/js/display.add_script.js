@@ -48,31 +48,39 @@ function generateId(){
 // thêm button cho template
 function add_tpl_button(e){
 	var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
-	var num = elem.value || elem.options[elem.selectedIndex].value
-	var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
-	var arr_length = Array.from(buttons).length
-	if(buttons.length < num){
-			for(let i = buttons.length; i != num; i++){
-				var newNode = buttons[0].cloneNode(true)
-				newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
+    var num = elem.value || elem.options[elem.selectedIndex].value
+    var buttons = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+    var arr_length = Array.from(buttons).length
+    var nav = document.getElementById('nav_button')
+    if(buttons.length < num){
+        for(let i = buttons.length; i != num; i++){
+          	var nav_button = document.getElementById('nav_button')
+          	var newNode = buttons[0].cloneNode(true)
+          	newNode.id = `${fb_tpl_type_selected}_button_${i + 1}`
+          	if(fb_tpl_type_selected == 'generic'){
+				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).insertBefore(newNode, nav)
+			}else{
 				document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`).appendChild(newNode)
-				let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
-				label.innerHTML = `Nút nhấn ${i + 1}`
-				let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
-				child[0].placeholder = 'URL | Payload'
-				child[0].value = ""
-				child[0].name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
-				child[1].placeholder = 'Title to display'
-				child[1].value = ""
-				child[1].name = `title_button_${i + 1}_${fb_tpl_type_selected}`
 			}
-	}else if(buttons.length > num){
-		var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
-		while(document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`).length != num){
-			let re_define = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
-			parent.removeChild(re_define[re_define.length - 1])
-		}
-	}
+          	let label = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} label`)
+          	label.innerHTML = `Nút nhấn ${i + 1}`
+          	let child = document.querySelectorAll(`#${fb_tpl_type_selected}_button_${i + 1} div div input`)
+          	child[0].placeholder = 'URL | Payload'
+          	child[0].value = ""
+          	child[0].name = `URL_button_${i + 1}_${fb_tpl_type_selected}`
+          	child[1].placeholder = 'Title to display'
+          	child[1].value = ""
+          	child[1].name = `title_button_${i + 1}_${fb_tpl_type_selected}`
+          	let select = document.querySelector(`#${fb_tpl_type_selected}_button_${i + 1} div select`)
+          	select.name = `style_of_button_${i + 1}_${fb_tpl_type_selected}`
+        }
+    }else if(buttons.length > num){
+      var parent = document.querySelector(`div[data-type="${fb_tpl_type_selected}"]`)
+      while(document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`).length != num){
+        let re_define = document.querySelectorAll(`.${fb_tpl_type_selected}_tpl_button`)
+        parent.removeChild(re_define[re_define.length - 1])
+      }
+    }
 }
 
 function add_trigger(){

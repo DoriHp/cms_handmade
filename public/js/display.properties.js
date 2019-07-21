@@ -17,64 +17,12 @@ function getCookie(name) {
     // Return null if not found
     return null
 }
-
+//lấy dữ liệu từ cookie
 const cookie = getCookie('info')
 
 const info = JSON.parse(cookie)
-// var info = {
-//   "id": "q 1.1",
-//     "type": "question",
-//     "triggers":
-//     [
-//       "trigger1",
-//       "trigger2",
-//       "trigger3"
-//     ],
-//     "variables":
-//     [
-//       "{{var1}}",
-//       "{{var2}}"  
-//     ],
-//     "script": 
-//     {
-//         "type": "quick_reply",
-//         "question":
-//         {
-//             "text": "{{title}} có cần tư vấn trực tiếp không?",
-//             "quick_replies":
-//             [
-//               {
-//                 "content_type": "text",
-//                 "title": "Có",
-//                 "payload": "q 1.1.1"
-//               },
-//               {
-//                 "content_type": "text",
-//                   "title": "Không",
-//                   "payload": "q 1.1.2"
-//               }
-//             ]
-//         }
-//     },      
-//     "response_mapping":[
-//         {
-//           "responses": 
-//           [
-//             "Ok",
-//             "Đồng ý"
-//           ],
-//           "next_script": "q 1.1.1"
-//         },
-//         {
-//           "responses": 
-//           [
-//               "No",
-//               "Đừng"
-//           ],
-//           "next_script": "q 1.1.2"
-//         }
-//     ]
-// }
+console.log(info)
+
 const comps = Array.from(document.querySelectorAll('.comp'))
 comps.forEach(comp => comp.style.display = 'none')
 const fb_tpl_type = Array.from(document.querySelectorAll('.fb_tpl_type'))
@@ -148,17 +96,17 @@ function add_tpl_button(e){
 }
 
 
-function execInfo(){
+function execInfo(info){
 	
 	document.getElementById('inputID').value = (info.id)?info.id:'N/A'
 	document.getElementById('inputTriggers').value = info.triggers.join(', ')
 	//
 
 	var vars = []
-  	info.variables.forEach(function(variable){
-      let reg = new RegExp(/\W/g)
-      vars.push(variable.replace(reg, ""))
-  	})
+	info.variables.forEach(function(variable){
+    let reg = new RegExp(/\W/g)
+    vars.push(variable.replace(reg, ""))
+	})
 	document.getElementById('inputVariables').value = vars.join(', ')
 	if(info != undefined){
 	    var keys = document.getElementsByClassName("key")
@@ -370,9 +318,33 @@ function display_fb_template(data){
       }
       break
     case "media":
-      document.getElementById("inputImageURL_media").value = data.url
+      document.getElementById("inputMediaURL_media").value = data.elements[0].url
+      add_full_button('media')
+      var num_of_button = document.querySelector('div[data-type=button] div div .num_of_button')
+          num_of_button.value = data.elements[0].buttons.length
+      for(let i = 1; i <= 3; i++){
+        if(data.elements[0].buttons[i - 1]){
+          var button = document.getElementById(`media_button_${i}`)
+          var child = button.querySelectorAll(`div div input`)
+          var set_type = button.querySelector(`div select`)
+          if(data.elements[0].buttons[i - 1].type == "web_url"){
+            set_type.value = "web_url"
+            child[0].value = data.elements[0].buttons[i - 1].url
+            child[1].value = data.elements[0].buttons[i - 1].title
+          }else{
+            set_type.value = "payload"
+            child[0].value = data.elements[0].buttons[i - 1].payload
+            child[1].value = data.elements[0].buttons[i - 1].title
+          } 
+        }else{
+          console.log(i)
+          var button = document.getElementById(`media_button_${i}`)
+          button.parentNode.removeChild(button)
+        }
+      }
       break
     default:
+
       // statements_def
     break;
   }
@@ -406,6 +378,5 @@ function add_full_button(fb_tpl_type_selected){
     }
   }
 }
-
 
 execInfo(info)

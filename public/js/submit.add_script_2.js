@@ -144,7 +144,28 @@ document.getElementById('chooseFile2').addEventListener('change', function (e) {
   })
 })
 
+function validate(){
+  var form = document.querySelector('#data_form')
+  var valid = true
+  form.querySelectorAll("input").forEach(input => {
+    if(input.style.display !== 'none'){
+      if(input.value || input.value == ""){
+        valid = false
+      }
+    }
+  })
+  return valid
+}
+
 function create_submit_data(){
+  var valid = validate()
+  if(!valid){
+    swal("Chú ý!", "Bạn phải nhập đầy đủ dữ liệu để tiếp tục!", "warning", {customClass: {
+        confirmButton: 'btn btn-warning'
+      }})
+    return
+  }
+
   saving_script(currentTab)
   var submit_data = {}
   var formData = new FormData(document.querySelector('#form_info'))
@@ -157,9 +178,9 @@ function create_submit_data(){
   submit_data.type = 'response'
     //tao array cua trigger
   var array_triggers = [];
-  for(i = 0; typeof data[`trigger${i}`] !== 'undefined'; i++){
-      array_triggers.push(data[`trigger${i}`])
-  }
+  data.triggers.split(',').forEach(function(trigger){
+    array_triggers.push(trigger.trim())
+  })
   submit_data.triggers = array_triggers
   var vars = data.variables.split('')
   vars.forEach(variable => '{{' + variable + '}}')
@@ -174,23 +195,25 @@ function create_submit_data(){
 
 function submit(){
   var submit_data = create_submit_data()
-
-  axios.post('/script/add',{
+  if(!submit_data || Object.entries(submit_data).length === 0){
+    return
+  }else{
+    axios.post('/script/add',{
     headers: {
       'Content-Type': 'application/json',
     },
     data: JSON.stringify(submit_data)
-  }).then(function(response){
-    if(response.status == 200){
-      alert("Lưu script thành công!")
-    }else{
-      alert("Lưu script thất bại!")
-    }
-  }).catch(function(error){
-    console.log(error)
-  })
-
-  location.reload()
+    }).then(function(response){
+      if(response.status == 200){
+        swal("Thành công", "Mẫu tin nhắn đã được lưu lại!", "success", {showConfirmButton: false})
+        setTimeout(function(){
+          location.reload()
+        }, 500)
+      }
+    }).catch(function(error){
+      console.log(error)
+    })
+  }
 }
 
 function display_pre_tab(n){

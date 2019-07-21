@@ -4,13 +4,13 @@ graph.setVersion("3.3")
 var schedule = require('node-schedule')
 
 module.exports.update_linkChat = function(){
-	var job = schedule.scheduleJob('* * */0 * * *' , function(fireDate){
+	var job = schedule.scheduleJob('0 1 * * *' , function(fireDate){
 		console.log("Bắt đầu update fb_linkChat của member vào lúc " + fireDate)
 		var result = []
 
 		//gọi đến api của fbgraph
 		function test(){
-		   graph.get(`/${process.env.PAGE_ID}/conversations/conversations?access_token=${process.env.PAGE_ACCESS_TOKEN_2}&fields=link%2Cparticipants&limit=2`, function(err, res){
+		   graph.get(`/${process.env.PAGE_ID}/conversations/conversations?access_token=${process.env.PAGE_ACCESS_TOKEN}&fields=link%2Cparticipants&limit=2`, function(err, res){
 		       	if (err) {
 		       		console.log('Đã có lỗi xảy ra! ' + err)
 		       		return
@@ -36,7 +36,6 @@ module.exports.update_linkChat = function(){
 		                }
 		            })
 		        }).then(resolveData => {
-		            console.log('Get a new page: \n')
 		            resolveData.data.forEach(data => {
 		            	result.push(data)
 		            })
@@ -54,8 +53,6 @@ module.exports.update_linkChat = function(){
                                 if(err){
                                     console.log('Fail to update')
                                     return
-                                }else{
-                                	console.log('Updated!')
                                 }
                             })
                         }
