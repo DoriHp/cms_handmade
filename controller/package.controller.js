@@ -45,10 +45,9 @@ module.exports.update_pk_image = async (req, res) => {
 					console.log('Deleted old file!')
 				}catch(eror){
 					console.log(eror)
-					res.status(500).end()
 				}
 			}
-			result.update(update, function(err){
+			result.updateOne(update, function(err){
 				if(err){
 					res.status(500).end()
 				}else{

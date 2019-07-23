@@ -111,8 +111,8 @@ app.use(cookieParser(process.env.SEC_COOKIE))
 app.use(session({
 	secret: process.env.SESSION_KEY,
 	resave: true,
-	saveUninitialized: true,
-  cookie: { maxAge: 6000000 }
+	saveUninitialized: true
+  // cookie: { maxAge: 6000000 }
 	// cookie: { secure: true }
 }))
 
@@ -173,11 +173,15 @@ app.get('/logout', function(req, res){
   res.redirect('/login')
 })
 //Đảm bảo tất cả các endpoint đều phải xác thực
-app.get('*' , ensureLoggedIn('/login'), isAdmin, (req, res, next) => {  
+app.get('*' , ensureLoggedIn('/login'), (req, res, next) => {  
   next()
 })
 app.get('/404', function(req, res, next){
   next()
+})
+
+app.get('/403', function(req, res, next){
+  res.render('403page', {url: req.url, breadcrumb:[{href: req.url, locate: "Bạn không có quyền truy cập trang này!"}], user: {username: "Bảo"}})
 })
 
 app.get('', function(req, res){
@@ -189,7 +193,7 @@ app.get('', function(req, res){
       }
       if(response.statusCode == 200){
         client.setex('page_info', 3600, body)
-        res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: 'admin', data:{
+        res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: req.user, data:{
           new_user: 100,
           new_mes: 1000,
           new_auto_mes: 999,
@@ -201,7 +205,7 @@ app.get('', function(req, res){
 
   client.get('page_info', (err, result) => {
     if (result) {
-      res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: 'admin', data:{
+      res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: req.user, data:{
           new_user: 100,
           new_mes: 1000,
           new_auto_mes: 999,
@@ -213,16 +217,17 @@ app.get('', function(req, res){
   })
 })
 
-function isAdmin(req, res, next) {
-	if (req.isAuthenticated() && req.user.role == 'admin') {
-		next()
-}}
+// function isAdmin(req, res, next) {
+// 	if (req.isAuthenticated() && req.user.role == 'admin') {
+// 		next()
+//   }
+// }
 
-function isUser(req, res, next){
-	if(req.isAuthenticated() && req.user.role == 'user') {
-		next()
-	}
-}
+// function isUser(req, res, next){
+// 	if(req.isAuthenticated() && req.user.role == 'user') {
+// 		next()
+// 	}
+// }
 
 var scriptRoute = require('./routes/script.route.js')
 var message241Route = require('./routes/message241.route.js')
@@ -243,3 +248,4 @@ app.use(function(req, res, next){
     }
   })
 })
+

@@ -43,40 +43,58 @@
                                                 <div class="tools" style="margin-left: 10px;" style="align-content: right">
                                                     <a class="collapse"> </a>
                                                 </div>
-                                                <div class="actions" style="align-content: left">
-                                                    <button type="button" class="btn btn-default btn-sm" onclick="open_chat()">
-                                                        <i class="fas fa-trash-alt"></i> Xóa ticket </button>
-                                                </div>
                                             </div>
                                             <div class="portlet-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1_2">
                                                         <thead>
                                                             <tr>
-                                                                <th>
+                                                                <th style="display: none;">
                                                                     <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                     <input type="checkbox" class="checkboxes" value="1" disabled />
                                                                     <span></span>
                                                                     </label>
                                                                 </th>
                                                                 <th> Ticket ID </th>
-                                                                <th> Status </th>
-                                                                <th> Updated </th>
-                                                                <th> Priority </th>
+                                                                <th> Loại </th>
+                                                                <th> Người xử lý </th>
+                                                                <th> Trạng thái </th>
+                                                                <th> Cập nhật gần nhất </th>
+                                                                <th> Độ ưu tiên </th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                                 <% for (var i = 0; i < tickets.length ; i++) { -%>
                                                                 	<tr class="odd gradeX" id="<%= tickets[i].id %>">
-	                                                                    <td>
+	                                                                    <td style="display: none;">
                                                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-                                                                                <input id="<%= tickets[i].id %>" type="checkbox" class="checkboxes" value="1"/>
+                                                                                <input id="<%= tickets[i].id %>" type="checkbox" class="checkboxes" value="<%= tickets[i].id %>" <% if (tickets[i].status != 'closed') { -%>
+                                                                                    disabled
+                                                                                <% } -%>/>
                                                                                 <span></span>
                                                                             </label>
 	                                                                    </td>
 	                                                                    <td> <%= tickets[i].id %> </td>
-	                                                                    <td> <%= tickets[i].status %> </td>
-	                                                                    <td> <%= tickets[i].update_time %> </td>
+                                                                        <td> 
+                                                                            <% if (tickets[i].type == 'feedback') { -%>
+                                                                                Phản hồi
+                                                                            <% } else { -%>
+                                                                                Hỏi thông tin                              
+                                                                            <% } -%>
+                                                                        </td>
+                                                                        <td> <% if (tickets[i].assignee) { -%>
+                                                                            <%= tickets[i].assignee %>
+                                                                        <% } else { -%>
+                                                                            -
+                                                                        <% } -%> </td>
+	                                                                    <td data-sort=<%= tickets[i].data_sort %>> 
+                                                                            <%= tickets[i].status_string %> 
+                                                                        </td>
+	                                                                    <td> <% if (tickets[i].update_time_string) { -%>
+                                                                            <%= tickets[i].update_time_string %>
+                                                                        <% } else { -%>
+                                                                            -
+                                                                        <% } -%>  </td>
                                                                         <td> 
                                                                             <% if (tickets[i].priority == "high") { -%>
                                                                                 <span class="label label-sm label-danger"> Cao </span>
@@ -111,6 +129,7 @@
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
+    <% include _layouts/socket %>
     <!-- SELF ADDING SCRIPT -->
     <script type="text/javascript">
         var list_checked = []
@@ -139,19 +158,53 @@
         //thêm feedback được đánh dấu trong checkbox
         function add_to_list(e){
             var checkbox = this.querySelector('label input')
-            var spliter = checkbox.value.split('|')
-            var data = {
-                _id: spliter[0],
-                fb_id: spliter[1]
-            }
-            if(checkbox.checked && list_checked.indexOf(data) == -1){
-                list_checked.push(data)
+            if(checkbox.checked && list_checked.indexOf(this.value) == -1){
+                list_checked.push(this.value)
             }else{
-                let index = list_checked.indexOf(data)
+                let index = list_checked.indexOf(this.value)
                 if (index > -1) {
                   list_checked.splice(index, 1)
                 }
             }
+        }
+
+        function del_ticket(){
+            if(list_checked.length == 0){
+                swal("Chú ý", 'Lựa chọn ít nhất một ticket ở trạng thái "closed" để xóa', "warning")
+                return
+            }
+
+            var text = (list_checked.length == 1)?"Xóa ticket đã chọn":"Xóa các ticket đã chọn"
+            var result = (list_checked.length == 1)?"Đã xóa ticket được chọn":"Đã xóa các ticket được lựa chọn"
+            swal({
+                title: "Xác nhận",
+                text: text, 
+                showCancelButton: true,
+                confirmButtonText: "Tiếp tục",
+                cancelButtonText: "Hủy bỏ",
+                confirmButtonColor: 'orange',
+                type: "warning",
+                allowOutsideClick: false
+            })
+            .then(function(result){
+                if(result.value){
+                    axios.delete("/manager/ticket/delete", {
+                        data: list_checked
+                    })
+                    .then(function(response){
+                        if(response.status == 200){
+                            swal("Thành công!", result, "success", {showConfirmButton: false})
+                            setTimeout(function(){
+                                location.reload()
+                            }, 500)
+                        }
+                    })
+                    .catch(function(error){
+                        console.error(error)
+                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                    })
+                }
+            })
         }
 
     </script>

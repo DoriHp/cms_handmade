@@ -25,6 +25,7 @@ const transporter = nodemailer.createTransport({
         expires: tokens.expiry_date
     }
 })
+var Notify = require('../models/notify.model.js')
 
 module.exports.forgotpw = function(req, res){
 	var str = generator.generate({
@@ -112,4 +113,23 @@ module.exports.changepw = function(req, res){
 			}
 		})
 	})
+}
+
+module.exports.notify = async function(req, res){
+	var user = req.user
+	//Trả về các notification dựa theo người dùng
+	if(user.role == 'admin' || user.role == 'supervisor'){
+		var result = await Notify.find({username: 'admin', status: false}).lean()
+		if(result){
+			res.status(200).send(result)
+			return
+		}
+	}
+	if(user.role == 'user'){
+		var result = await Notify.find({username: user.username, status: false}).lean()
+		if(result){
+			res.status(200).send(result)
+			return
+		}
+	}
 }

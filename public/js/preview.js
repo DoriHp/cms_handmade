@@ -261,7 +261,7 @@ async function display_preview(){
             if(script.type == 'text') display_text_response(preview_ul, script)
             if(script.type == 'template' && script.attachment.payload.template_type == 'generic') display_template_generic(preview_ul, 'bot', script.attachment.payload.elements)
             if(script.type == 'template' && script.attachment.payload.template_type == 'button')
-            display_template_button(preview_ul, 'bot', script.attachment.payload.element[0])
+            display_template_button(preview_ul, 'bot', script.attachment.payload.elements[0])
             if(script.type == 'template' && script.attachment.payload.template_type == 'media'){
                 swal("Chú ý", "Định dạng này không hỗ trợ xem trước!", "warning", {confirmButtonColor: 'orange'})
                 return

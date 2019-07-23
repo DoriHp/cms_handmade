@@ -1,92 +1,125 @@
 var Ticket = require('../models/ticket.model.js')
 var Tk_history = require('../models/ticket_history.model.js')
 var User = require('../models/user.model.js')
+var dateFormat = require('dateformat')
+var Notify = require('../models/notify.model.js')
+var request = require('request')
 
-module.exports.create = function(){
-	var piority = [0, 1, 2]
-	var now = new Date()
-	var pri_arr = ["high", "normal"]
-	var assignee = ["supervisor", "user1", "user2", ""]
-	var type_arr = ["feedback", "asking_for_information"]
-	var sta_arr = ["new", "assigned", "recieve", "resolve", "closed"]
-	function loop_add(){
-		console.log("Start inserting...")
-		var now = new Date()
-		var index = 20
-		for (var i = 0; i < 20; i++) {
-		    (
-		        function(index) {
+var values_array = [{vi: 'mới', en: 'new'}, {vi: 'đã giao', en: 'assigned'}, {vi: 'đã nhận', en: 'recieved'}, {vi: 'đã xử lý', en: 'resolved'}, {vi: 'đã đóng', en: 'closed'}, {vi: 'cao', en: 'high'}, {vi: 'bình thường', en: 'normal'}]
+var fields_array = [{vi: 'trạng thái ticket sang', en: 'status'}, {vi: 'chỉ định người xử lý ticket là', en: 'assignee'}, 
+{vi: 'độ ưu tiên của ticket thành', en: 'priority'}]
 
-		        	var new_ticket = {
-		        		id: i,
-		        		status: sta_arr[Math.floor(Math.random() * sta_arr.length)],
-	                    type: type_arr[Math.floor(Math.random() * type_arr.length)],
-	                    priority: pri_arr[Math.floor(Math.random() * pri_arr.length)],
-	                    assignee: assignee[Math.floor(Math.random() * assignee.length)],
-	                    member_profile: {
-	                        fb_id: "2137451023011934",
-	                        member_code: "0fffassss",
-	                        fb_linkChat: "https://google.com"
-	                    },
-	                    comment: generateId(),
-	                    update_by: this.assignee,
-	                    create_time: now.toISOString(),
-	                    update_time: now.toISOString(),
-	                    finish_time: now.toISOString()
-		        	}
-		            
-		            Ticket.insertMany(new_ticket ,function(err, result){
-		            	if(err) throw err
-		            })
-
-		        }
-		    )(i)
-		}
-	}
-
-	function generateId(){
-		var result           = ''
-		var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-		var charactersLength = characters.length
-		for ( var i = 0; i < 20; i++ ) {
-		  result += characters.charAt(Math.floor(Math.random() * charactersLength))
-		}
-		return result
-	}
-
-	loop_add()
+function exec_time(time){
+	var days = ['Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy', 'Chủ nhật']
+	var day = days[time.getDay() - 1]
+	var month = time.getMonth() + 1
+	var date = time.getDate()
+	var year = time.getFullYear()
+	var hour = time.getHours()
+	var min = time.getMinutes()
+    var str = `${day} ${date}/${month}/${year} ${hour}:${min}`
+    return str
 }
 
 module.exports.ticket = async function(req, res){
-	var result = await Ticket.find({}, ['id', 'update_time', 'status', 'priority'])
+	var result = await Ticket.find({}, ['id', 'type', 'assignee', 'update_time', 'status', 'priority'])
+	var array = ['new', 'assigned', 'recieved', 'resolved', 'closed']
+	var array2 = ['Mới', 'Đã gán', 'Đã nhận', 'Đã xử lý', 'Đã đóng']
+	for(let i of result){
+		i.update_time_string = (i.update_time)?exec_time(i.update_time):""
+		i.data_sort = array.indexOf(i.status)
+		i.status_string = array2[i.data_sort]
+	}
 	if(result){
-		res.render('ticket_table', {breadcrumb: [{href:'/manager/ticket', locate: 'Quản lý ticket'}], user: {username: "Bảo"}, tickets: result})
+		res.render('ticket_table', {breadcrumb: [{href:'/manager/ticket', locate: 'Quản lý ticket'}], user: req.user, tickets: result})
+	}
+}
+
+function customFilter(object){
+	for(let i of object.feedbacks){
+		if(i.attachments && i.attachments[0].type == 'file'){
+	        var path = require('path')
+	        , url = require('url')
+	        , URL_TO_REQUEST = i.attachments[0].payload.url
+	        , uri = url.parse(URL_TO_REQUEST)
+	        , filename = path.basename(uri.path)
+
+	        request(URL_TO_REQUEST, function(error, response, body){
+	        	if(error){
+	        		console.log(error)
+	        		return null
+	        	}
+	            var result = decodeURIComponent(filename)
+	            var reg = /^([\Da-zA-Z0-9]+)\?_nc_cat/g
+	            i.attachments[0].payload.url = reg.exec(result)[1]
+         	})
+		}
+	}
+}
+
+module.exports.tk_content = async function(req, res){
+	var ticket = await Ticket.findOne({id: req.params.id}).lean()
+ 	if(!ticket){
+		res.status(500).send("Có lỗi xảy ra khi tải nội dung ticket, vui lòng thử lại sau!")
+	}else{
+		customFilter(ticket.description)
+		setTimeout(function(){
+			res.status(200).send(ticket)
+		}, 1000)
 	}
 }
 
 module.exports.tk_properties = async function(req, res){
 
 	var ticket_id = parseInt(req.params.id)
-	var users = await User.find({}, ['username', 'role']).lean()
+	var users = await User.find({}, ['username', 'name', 'role']).lean()
 	var history = await Tk_history.find({ticket_id: ticket_id}).lean().sort({update_time: -1})
-	console.log(history)
+	if(history){
+		for(let i of history){
+			i.update_time_string = exec_time(i.update_time)
+			for(let j of i.change_description.content){
+				j.field_string = fields_array.find(x => x.en == j.field).vi
+				if(j.field != 'assignee'){
+					j.value_string = values_array.find(x => x.en == j.value).vi
+				}else{
+					j.value_string = j.value
+				}
+			}
+		}
+	}
 	Ticket.findOne({id: ticket_id}, function(err, ticket){
 
 		if(!ticket){
 			res.status(404).redirect('/404')
 		}else{
-			if(req.user.username == ticket.assignee && ticket.status == 'assigned'){
-				ticket.update({
-					status: 'recieved'
-				}, function(err, result){
-					if(!err){
-						console.log("Update this ticket's status to recieved...")
-						res.status(200).render('ticket_properties', {breadcrumb: [{href: `/manager/ticket/read/${ticket_id}`, locate: 'Chi tiết ticket'}], user: {username: 'Bảo', role: 'admin'}, ticket: ticket, history: history ,users: users})
-						return
-					}
-				})
+			Notify.findOneAndUpdate({username: req.user.username, status: false, ticket_id: ticket_id}, {$set:{status: true}},  {new: true, upsert: false, useFindAndModify: false}, function(err, result){
+				if(err){
+					console.error(err)
+				}
+			})
+			ticket.update_time_string = (ticket.update_time)?exec_time(ticket.update_time):""
+			ticket.create_time_string = (ticket.create_time)?exec_time(ticket.create_time):""
+			ticket.finish_time_string = (ticket.finish_time)?exec_time(ticket.finish_time):""
+			ticket.status_num = values_array.findIndex(x => x.en == ticket.status)
+			if(req.user.role == 'user' && req.user.username != ticket.assignee){
+				res.redirect('/403')
+				return				
 			}
-			res.status(200).render('ticket_properties', {breadcrumb: [{href: `/manager/ticket/read/${ticket_id}`, locate: 'Chi tiết ticket'}], user: {username: 'Bảo', role: 'admin'}, ticket: ticket, history: history ,users: users})
+
+			if(req.user.username == ticket.assignee && ticket.status == 'assigned'){
+				if(true){
+					ticket.update({
+						status: 'recieved'
+					}, function(err, result){
+						if(!err){
+							console.log("Update this ticket's status to recieved...")
+							res.status(200).render('ticket_properties', {breadcrumb: [{href: `/manager/ticket/read/${ticket_id}`, locate: 'Chi tiết ticket'}], user: {username: 'Bảo', role: 'admin'}, ticket: ticket, history: history ,users: users})
+							return
+						}
+					})
+				}
+			}
+			res.status(200).render('ticket_properties', {breadcrumb: [{href: `/manager/ticket/read/${ticket_id}`, locate: 'Chi tiết ticket'}], ticket: ticket, history: history ,user: req.user, users: users})
 		}
 	})
 }
@@ -94,6 +127,9 @@ module.exports.tk_properties = async function(req, res){
 module.exports.tk_update = function(req, res){
 
 	var update = req.body.data
+	update.update_time = new Date().toISOString()
+	update.update_by = req.user.username
+	if(update.status == 'closed') update.finish_time = new Date().toISOString()
 	if(!update.comment || update.comment == ""){
 		delete update['comment']
 	}
@@ -110,7 +146,7 @@ module.exports.tk_update = function(req, res){
 				values.push(result[i])
 			}
 			for(let i in fields){
-				if(fields[i] != 'comment')
+				if(['comment', 'update_time', 'update_by', 'finish_time'].indexOf(fields[i]) == -1)
 				content.push({field: fields[i], value: values[i]})
 			}
 			Tk_history.insertMany({
@@ -128,6 +164,18 @@ module.exports.tk_update = function(req, res){
 				}
 			})
 			res.status(200).send('Update successfully')
+		}
+	})
+}
+
+module.exports.tk_delete = function(req, res){
+	var array = req.body.data
+	Ticket.deleteMany({ id: { $in: array}}, function(err) {
+
+		if(err){
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+		}else{
+			res.status(200).end()
 		}
 	})
 }

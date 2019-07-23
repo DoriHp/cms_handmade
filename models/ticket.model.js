@@ -4,7 +4,9 @@ var member_profileSchema = new mongoose.Schema({
 	_id: false,
 	member_code: String,
 	fb_linkChat: String,
-	fb_id: String
+	fb_id: String,
+	name: String, 
+	contact_phone: String
 })
 
 var ticketSchema = new mongoose.Schema({
@@ -19,7 +21,8 @@ var ticketSchema = new mongoose.Schema({
 	update_by: String,
 	create_time: Date,
 	update_time: Date,
-	finish_time: Date
+	finish_time: Date,
+	description: Object
 })
 
 var Ticket = mongoose.model('Ticket', ticketSchema, 'tickets')

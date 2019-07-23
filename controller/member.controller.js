@@ -42,6 +42,18 @@ module.exports.add = function(req, res){
 	})
 }
 
+module.exports.delete = function(req, res){
+	var member_code = req.params.member_code
+	console.log(member_code)
+	Member.findOneAndDelete({member_code: member_code}, function(err, result){
+		if(err){
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+		}else{
+			res.status(200).end()
+		}
+	})
+}
+
 function generateId(){
 	var result           = ''
 	var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

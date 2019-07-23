@@ -79,8 +79,22 @@
                                 			<td><%= data[i].office_address %></td>
                                 			<td><%= data[i].hotline %></td>
                                 			<td>
-                                				<i title="Xem chi tiết & chỉnh sửa" class="fas fa-info-circle a_pro" style="color: #3598dc;" id='<%= data[i]._id %>'></i>
-                                                <i title="Xóa bản ghi" class="fas fa-trash a_del" style="color: red;" id=<%= data[i]._id%>></i>
+                                				<div class="btn-group">
+                                                    <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Thao tác
+                                                            <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu pull-left" role="menu">
+                                                        <li>
+                                                            <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
+                                                                <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
+                                                                <i class="fas fa-trash a_del"></i> Xóa bản ghi </a>
+                                                        </li>
+                                                        <li class="divider"> </li>
+                                                    </ul>
+                                                </div>
                                 			</td>
                                 		</tr>
                                 	<% } -%>
@@ -588,6 +602,7 @@
 
 </script>
 <% include _layouts/global_plugin %>
+<% include _layouts/socket %>
 <!-- BEGIN PAGE LEVEL PLUGINS -->
 <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>
 <script src="/assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>

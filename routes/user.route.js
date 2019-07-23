@@ -6,5 +6,6 @@ router.post('/forgotpw', controller.forgotpw)
 router.post('/register', controller.register)
 router.get('/profile', controller.profile)
 router.post('/change-password', controller.changepw)
+router.get('/notification', controller.notify)
 
 module.exports = router

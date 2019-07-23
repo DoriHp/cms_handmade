@@ -22,7 +22,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Main page
+                            <h1>Hồ sơ người dùng
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -42,7 +42,7 @@
                                     <!-- END SIDEBAR USERPIC -->
                                     <!-- SIDEBAR USER TITLE -->
                                     <div class="profile-usertitle">
-                                        <div class="profile-usertitle-name"> <%= user.username %> </div>
+                                        <div class="profile-usertitle-name"> <%= user.name %> </div>
                                         <div class="profile-usertitle-job"> <%= user.role %> </div>
                                     </div>
                                     <!-- END SIDEBAR USER TITLE -->
@@ -52,10 +52,6 @@
                                             <li class="active">
                                                 <a href="page_user_profile_1_account.html">
                                                     <i class="icon-settings"></i> Cài đặt tài khoản </a>
-                                            </li>
-                                            <li>
-                                                <a href="page_user_profile_1_help.html">
-                                                    <i class="icon-info"></i> Trợ giúp </a>
                                             </li>
                                         </ul>
                                     </div>
@@ -90,13 +86,13 @@
                                                         <form role="form" id="per_info_form">
                                                             <div class="form-group">
                                                                 <label class="control-label">Tên tài khoản</label>
-                                                                <input type="text" placeholder="Account" class="form-control" name="account" value=<%= user.username %>> </div>
+                                                                <input type="text" placeholder="Account" class="form-control" name="account" value="<%= user.username %>" disabled> </div>
                                                             <div class="form-group">
                                                                 <label class="control-label">Tên người dùng</label>
-                                                                <input type="text" placeholder="Username" class="form-control" name="username" value=<%= user.name %> > </div>
+                                                                <input type="text" placeholder="Username" class="form-control" name="username" value="<%= user.name %>" disabled> </div>
                                                             <div class="form-group">
                                                                 <label class="control-label">Email</label>
-                                                                <input type="text" placeholder="User's email" class="form-control" name="email" value=<%= user.email %> > </div>
+                                                                <input type="text" placeholder="Email người dùng" class="form-control" name="email" value="<%= user.email %>" disabled> </div>
                                                         </form>
                                                     </div>
                                                     <!-- END PERSONAL INFO TAB -->
@@ -114,7 +110,6 @@
                                                                 <input type="password" class="form-control" name="reEnterPW" id="reNewPW" /> </div>
                                                             <div class="margin-top-10">
                                                                 <a href="javascript:;" onclick="change_pw()" class="btn green"> Đổi mật khẩu </a>
-                                                                <a href="javascript:;" class="btn default"> Hủy bỏ </a>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -136,6 +131,7 @@
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
+    <% include _layouts/socket %>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>

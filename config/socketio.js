@@ -2,10 +2,11 @@ var Script = require('../models/script.model.js')
 var Feedback = require('../models/feedback.model.js')
 var Ticket = require('../models/ticket.model.js')
 var Tk_history = require('../models/ticket_history.model.js')
+var Notify = require('../models/notify.model.js')
 
 module.exports = function(server){
     var io = require('socket.io')(server);
-    var clientList = [];
+    var clientList = []
     
     io.on('connection', function(socket){
         console.log('add client ' + socket.id);
@@ -61,35 +62,6 @@ module.exports = function(server){
         }
     })
 
-    const changeStream_fb = Feedback.watch({fullDocument: 'updateLookup'})
-    changeStream_fb.on('change', function (change) {
-        console.log('Feedback document change with type is ' + change.operationType)
-
-        switch(change.operationType) {
-            case "insert":
-                Feedback.findById(change.documentKey._id, function(err, feedback){
-                    if(err)
-                        console.log(err)
-                    
-                    clientList.forEach((client) => {
-                        console.log('emit event "recieve new feedback" to client ' + feedback._id)
-                        client.socket.emit('recieve new feedback',  {feedback: feedback})
-                    })
-                });
-                break;
-            case "update":
-                Feedback.findById(change.documentKey._id, function(err, feedback){
-                    if(err)
-                        console.log(err)
-                    clientList.forEach((client) => {
-                        console.log('emit event "update feedback" to client ' + client.id)
-                        client.socket.emit('update feedback', {feedback: feedback})
-                    })
-                })
-                break
-        }
-    }) 
-
     const changeStream_tk = Ticket.watch({fullDocument: 'updateLookup'})
     changeStream_tk.on('change', function(change){
         ('Ticket document change with type is' + change.operationType)
@@ -97,34 +69,48 @@ module.exports = function(server){
             case 'insert':
                 Ticket.findById(change.documentKey._id, function(err, ticket){
                     if(err){
-                        console.log(err)
+                        console.error(err)
                         return
                     }
                     var now = new Date()
-                    Tk_history.insertMany({
+                    Notify.insertMany({
                         ticket_id: ticket.id,
-                        update_time: now.toISOString(),
-                        update_by: "System",
-                        change_description: ""
+                        time: now.toISOString(),
+                        category: 'new',
+                        status: false,
+                        username: "admin"
                     }, function(err, result){
-                        if(err)
-                            console.log('Error when update ticket history')
-                    })                    
+                        if(err){
+                            console.error(err)
+                            return
+                        }
+                    })
                     clientList.forEach((client) => {
                         console.log('emit event "recieve new ticket" to client ' + ticket._id)
                         client.socket.emit('recieve new ticket',  {ticket: ticket})
                     })
-                });
+                })
                 break;
             case 'update':
-                Ticket.findById(change.documentKey._id, function(err, ticket){
-                    if(err)
-                        console.log(err);
-                    
-                    clientList.forEach((client) => {
-                        console.log('emit event "update ticket" to client ' + client.id)
-                        client.socket.emit('update ticket', {ticket: ticket})
+                //Tạo một notify mới
+                if(change.updateDescription.updatedFields.status != null && change.updateDescription.updatedFields.assignee != null){
+                    var now = new Date()
+                    Notify.insertMany({
+                        ticket_id: change.fullDocument.id,
+                        time: now.toISOString(),
+                        category: 'assigned',
+                        status: false,
+                        username: change.updateDescription.updatedFields.assignee
+                    }, function(err, result){
+                        console.error(err)
+                        return
                     })
+                }
+
+                var ticket = change.fullDocument
+                clientList.forEach((client) => {
+                    console.log('emit event "update ticket" to client ' + client.id)
+                    client.socket.emit('update ticket', {ticket: ticket})
                 })
 
                 break
@@ -132,6 +118,21 @@ module.exports = function(server){
                 clientList.forEach((client) => {
                     console.log('emit event "delete ticket" to client ' + client.id)
                     client.socket.emit('delete ticket', {_id: change.documentKey._id})
+                })
+                break;
+            default:
+                // statements_def
+                break;
+        }
+    })
+
+    const changeStream_notify = Notify.watch({fullDocument: 'updateLookup'})
+    changeStream_notify.on('change', function(notify){
+        switch (notify.operationType) {
+            case 'insert':
+                clientList.forEach(client => {
+                    console.log('emit event "insert notify" to client ' + client.id)
+                    client.socket.emit('insert notify')
                 })
                 break;
             default:

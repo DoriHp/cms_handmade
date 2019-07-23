@@ -4,6 +4,85 @@
 <link href="/assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
 <link href="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
 <link href="/assets/apps/css/inbox.min.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    #preview-div ul .generic_template{
+        position: relative;
+        min-width: 382px;
+        min-height: 200px;
+        max-height: 400px;
+        display:inline-block;
+        clear: both;
+        border-radius: 20px !important;
+        margin-bottom: 150px;
+    }
+    .generic_template .gen_template_img{
+        height: 200px;
+    }
+
+    .generic_template .btn_group{
+        width: 382px;
+    }
+
+    #preview-div .bot {
+        border-radius: 20px !important;
+    }
+    
+    #preview-div{
+        border: none;
+    }
+
+    #preview-div:before{
+        display: none;
+    }
+
+    #nav_tpl_next, #nav_tpl_pre{
+        top: 180px;
+    }
+
+    #preview-div .div_image_3, #preview-div .div_image_2{
+        background-color: transparent;
+        height: 150px;
+        width: 459px;
+        clear: both;
+        display: inline-block;
+        margin-bottom: 15px; 
+        position: relative;
+    }
+
+    #preview-div .div_image_2{
+        width: 306px;
+    }
+
+    #preview-div .div_image_3 div:nth-of-type(1), #preview-div .div_image_2 div:nth-of-type(1){
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #preview-div .div_image_3 div:nth-of-type(2){
+        position: absolute;
+        top: 0;
+        left: 153px;   
+    }
+
+    #preview-div .div_image_3 div:nth-of-type(3), #preview-div .div_image_2 div:nth-of-type(3){
+        position: absolute;
+        right: 0;
+        top: 0;
+    }    
+
+    #preview-div .div_image_3 div, #preview-div .div_image_2 div{
+        height: 150px;
+        width: 150px; 
+        margin-left: 2px;
+        margin-right: 2px;
+        border-radius: 5px !important;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+</style>
 <!-- END PAGE LEVEL PLUGINS -->
 </head>
 <body class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo">
@@ -46,9 +125,6 @@
                                             <li>
                                                 <a href="#tab_1_2" data-toggle="tab">Thay đổi thông tin ticket</a>
                                             </li>
-                                            <li>
-                                                <a href="#tab_1_3" data-toggle="tab">Lịch sử chỉnh sửa</a>
-                                            </li>
                                         </ul>
                                     </div>
                                     <div class="portlet-body">
@@ -68,7 +144,7 @@
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">1
                                                             </div>
-                                                            <div class="mt-step-title uppercase font-grey-cascade">Init
+                                                            <div class="mt-step-title uppercase font-grey-cascade">Mới
                                                             </div>
                                                             <div class="mt-step-content font-grey-cascade">Hệ thống nhận được ticket
                                                             </div>
@@ -84,7 +160,7 @@
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">2
                                                             </div>
-                                                            <div class="mt-step-title uppercase font-grey-cascade">Assigned
+                                                            <div class="mt-step-title uppercase font-grey-cascade">Đã giao
                                                             </div>
                                                             <div class="mt-step-content font-grey-cascade">Admin/supervisor chỉ định người trả lời ticket
                                                             </div>
@@ -100,9 +176,9 @@
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">3
                                                             </div>
-                                                            <div class="mt-step-title uppercase font-grey-cascade">Recieved
+                                                            <div class="mt-step-title uppercase font-grey-cascade">Đã nhận
                                                             </div>
-                                                            <div class="mt-step-content font-grey-cascade">Người được chỉ định xác nhận đã nhận được ticket
+                                                            <div class="mt-step-content font-grey-cascade">Người được giao xác nhận đã nhận được ticket
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2 mt-step-col <% if ( ticket.status == 'resolved' ) { -%>
@@ -115,49 +191,57 @@
                                                                 <% } -%>
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">4</div>
-                                                            <div class="mt-step-title uppercase font-grey-cascade">Resolved</div>
-                                                            <div class="mt-step-content font-grey-cascade">Người được chỉ định xác nhận đã xử lý xong ticket</div>
+                                                            <div class="mt-step-title uppercase font-grey-cascade">Đã xử lý</div>
+                                                            <div class="mt-step-content font-grey-cascade">Người được giao xác nhận đã xử lý xong ticket</div>
                                                         </div>
                                                         <div class="col-md-2 mt-step-col last <% if ( ticket.status == 'closed' ) { -%>
                                                                 active
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">5</div>
-                                                            <div class="mt-step-title uppercase font-grey-cascade">Closed</div>
-                                                            <div class="mt-step-content font-grey-cascade">Admin/supervisor xác nhận ticket đã được xử lý, đóng yêu cầu xử lý</div>
+                                                            <div class="mt-step-title uppercase font-grey-cascade">Đã đóng</div>
+                                                            <div class="mt-step-content font-grey-cascade">Admin/supervisor đóng yêu cầu xử lý ticket</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Ticket ID</p>
-                                                            <p class="col-md-8"><%= ticket.id %></p>
+                                                            <p class="col-md-4" style="font-weight: bold;">Ticket Number</p>
+                                                            <p class="col-md-8" id="ticket-id"><%= ticket.id %></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Loại</p>
                                                             <p class="col-md-8"><%= ticket.type %></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Assignee</p>
-                                                            <p class="col-md-8"><%= ticket.assignee %></p>
+                                                            <p class="col-md-4" style="font-weight: bold;">Người được gán</p>
+                                                            <p class="col-md-8"><% if (ticket.assignee) { -%>
+                                                                <%= ticket.assignee %>
+                                                            <% } else { -%>
+                                                                -
+                                                            <% } -%></p>
                                                         </div>  
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Member code</p>
-                                                            <p class="col-md-8"><%= ticket.member_profile.member_code %></p>
+                                                            <p class="col-md-4" style="font-weight: bold;">Tên điểm bán</p>
+                                                            <p class="col-md-8"> <%= ticket.member_profile.name %> </p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Member link chat</p>
-                                                            <a class="col-md-8" style="text-decoration: none;" href=<%= ticket.member_profile.fb_linkChat%> > <%= ticket.member_profile.fb_linkChat%> </a>
-                                                        </div>
-                                                        <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Member's facebook ID</p>
-                                                            <p class="col-md-8"><%= ticket.member_profile.fb_id%></p>
+                                                            <p class="col-md-4" style="font-weight: bold;">Số điện thoại liên hệ</p>
+                                                            <p class="col-md-8"> <%= ticket.member_profile.contact_phone %> </p>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="ticket_info row col-md-12">
+                                                            <p class="col-md-4" style="font-weight: bold;">Độ ưu tiên</p>
+                                                            <% if(ticket.priority == 'high') { -%> 
+                                                                <span class="label label-sm label-danger"> Cao </span>
+                                                            <% } else { -%>
+                                                                <span class="label label-sm label-warning"> Bình thường </span>
+                                                            <% } -%>
+                                                        </div>
+                                                        <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Thời gian khởi tạo</p>
-                                                            <p class="col-md-8"><%= ticket.create_time %></p>
+                                                            <p class="col-md-8"><%= ticket.create_time_string %></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Cập nhật gần nhất bởi</p>
@@ -169,19 +253,76 @@
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Cập nhật gần nhất vào lúc</p>
-                                                            <p class="col-md-8"><% if (ticket.update_time) { -%>
-                                                                <%= ticket.update_time %>
+                                                            <p class="col-md-8"><% if (ticket.update_time_string) { -%>
+                                                                <%= ticket.update_time_string %>
                                                             <% } else { -%>
                                                                 -
                                                             <% } -%></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Thời gian hoàn thành</p>
-                                                            <p class="col-md-8"><% if (ticket.finish_time) { -%>
-                                                                <%= ticket.finish_time %>
+                                                            <p class="col-md-8"><% if (ticket.finish_time_string) { -%>
+                                                                <%= ticket.finish_time_string %>
                                                             <% } else { -%>
                                                                 -
                                                             <% } -%></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4 font-dark bold uppercase" style="margin-bottom: 20px;">Nội dung ticket
+                                                        </div>
+                                                        <br />
+                                                        <div class="col-md-12" id="preview-div" <% if (ticket.type != 'feedback') { -%>
+                                                                style="display: none;"
+                                                            <% } -%>>
+                                                            <ul>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="col-md-12" id="text-content" <% if (ticket.type != 'asking_for_information') { -%>
+                                                            style="display: none;"
+                                                        <% } -%>>
+                                                        <% if (ticket.type == 'asking_for_information') { -%>
+                                                            <p style="font-style: italic;">"<%= ticket.description.texts.join(', ') %>"</p>"
+                                                        <% } -%>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr/>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="col-md-4 font-dark bold uppercase" style="margin-bottom: 20px;">Lịch sử chỉnh sửa
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="mt-comments">
+                                                                <% for (var i = 0; i < history.length; i++) { -%>
+                                                                    <div class="mt-comment">
+                                                                        <div class="mt-comment-img">
+                                                                            <img src="/image/user.png" style="width: 50px; height: 50px;" /> </div>
+                                                                        <div class="mt-comment-body">
+                                                                            <div class="mt-comment-info">
+                                                                                <span class="mt-comment-author"><%= history[i].update_by %></span>
+                                                                                <span class="mt-comment-date"><%= history[i].update_time_string %></span>
+                                                                            </div>
+                                                                            <% if (history[i].change_description.comment) { -%>
+                                                                                <div class="mt-comment-text" style="font-style: italic;"> "<%= history[i].change_description.comment %>" </div>
+                                                                            <% } -%>
+                                                                            <div class="mt-comment-details">
+                                                                                <span class="mt-comment-status mt-comment-status-pending">
+                                                                                <% if (history[i].change_description.content.length != 0) { -%>
+                                                                                    <%= history[i].update_by%> đã cập nhật <% for (var j = 0; j < history[i].change_description.content.length; j++) { -%>
+                                                                                        <%= history[i].change_description.content[j].field_string %> <%= history[i].change_description.content[j].value_string %>.
+                                                                                    <% } -%>
+                                                                                <% } -%>
+                                                                                </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <% } -%>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -210,19 +351,35 @@
                                                                 <select class="form-control" id="select_status" name="status">
                                                                     <option value="new" <% if (ticket.status == 'new') { -%>
                                                                             selected
-                                                                        <% } -%>>New
+                                                                        <% } else { -%>
+                                                                            <% if (ticket.status_num > 0) { -%>
+                                                                                hidden
+                                                                            <% } -%>
+                                                                        <% } -%>>Mới
                                                                     </option>
                                                                     <option value="assigned" <% if (ticket.status == 'assigned') { -%>
                                                                             selected
-                                                                        <% } -%>>Assigned
+                                                                        <% } else { -%>
+                                                                            <% if (ticket.status_num > 1) { -%>
+                                                                                hidden
+                                                                            <% } -%>
+                                                                        <% } -%>>Đã gán
                                                                     </option>
-                                                                    <option value="recieved" <% if (ticket.status == 'recieved') { -%>
+                                                                    <option value="received" <% if (ticket.status == 'assigned') { -%>
                                                                             selected
-                                                                        <% } -%> disabled>Recieved
+                                                                        <% } else { -%>
+                                                                            <% if (ticket.status_num > 2) { -%>
+                                                                                hidden
+                                                                            <% } -%>
+                                                                        <% } -%>>Đã nhận
                                                                     </option>
                                                                     <option value="resolved" <% if (ticket.status == 'resolved') { -%>
                                                                             selected
-                                                                        <% } -%>>Resolved
+                                                                        <% } else { -%>
+                                                                            <% if (ticket.status_num > 3) { -%>
+                                                                                hidden
+                                                                            <% } -%>
+                                                                        <% }  -%>>Đã xử lý
                                                                     </option>
                                                                     <option value="closed" <% if (ticket.status == 'closed') { -%>
                                                                             selected
@@ -230,13 +387,13 @@
                                                                         <% if (user.role == 'user') { -%>
                                                                             hidden
                                                                         <% } -%>
-                                                                        >Closed
+                                                                        >Đã đóng
                                                                     </option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Assign to</label>
+                                                            <label class="control-label col-md-3">Chỉ định người xử lý</label>
                                                             <div class="col-md-4">
                                                                 <% if (ticket.status != 'new' || user.role == 'user' || ticket.assignee != "") { -%>
                                                                     <select name="assignee" class="form-control" id="select_assignee" disabled>
@@ -250,14 +407,14 @@
                                                                     <select name="assignee" class="form-control" id="select_assignee">
                                                                         <option hidden>-Select one from list-</option>
                                                                         <% for (var i = 0; i < users.length ; i++) { -%>
-                                                                            <option value="<%= users[i].username%>" > <%= users[i].username%> </option>
+                                                                            <option value="<%= users[i].username%>" > <%= users[i].name%> </option>
                                                                         <% } -%>
                                                                     </select>    
                                                                 <% } -%>
                                                             </div> 
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Comment</label>
+                                                            <label class="control-label col-md-3">Ghi chú</label>
                                                             <div class="col-md-4">
                                                                 <textarea name="comment" form="change_ticket_info" style="width: 100%;"></textarea>
                                                             </div>
@@ -273,32 +430,6 @@
                                                 </form>
                                             </div>
                                             <!-- END TICKET HISTORY TAB -->
-                                            <!-- TICKET HISTORY TAB -->
-                                            <div class="tab-pane" id="tab_1_3">
-                                                <div class="mt-comments">
-                                                    <% for (var i = 0; i < history.length; i++) { -%>
-                                                    <div class="mt-comment">
-                                                        <div class="mt-comment-img">
-                                                            <img src="/assets/pages/media/users/avatar1.jpg" /> </div>
-                                                        <div class="mt-comment-body">
-                                                            <div class="mt-comment-info">
-                                                                <span class="mt-comment-author"><%= history[i].update_by %></span>
-                                                                <span class="mt-comment-date"><%= history[i].update_time %></span>
-                                                            </div>
-                                                            <% if (history[i].change_description.comment) { -%>
-                                                                <div class="mt-comment-text" style="font-style: italic;"> "<%= history[i].change_description.comment %>" </div>
-                                                            <% } -%>
-                                                            <div class="mt-comment-details">
-                                                                <span class="mt-comment-status mt-comment-status-pending"><%= history[i].update_by%> đã update <% for (var j = 0; j < history[i].change_description.content.length; j++) { -%>
-                                                                    ticket <%= history[i].change_description.content[j].field %> thành <%= history[i].change_description.content[j].value %>.
-                                                                <% } -%></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <% } -%>
-                                                </div>
-                                            </div>
-                                            <!-- END TICKET HISTORY TAB -->
                                         </div>
                                     </div>
                                 </div>
@@ -309,10 +440,16 @@
                 </div>
                 <!-- END CONTENT BODY -->
             </div>
+            <div id="myModal" class="modal">
+                <i class="far fa-times-circle close-modal"></i>
+                <img class="modal-content" id="img01">
+                <div id="caption"></div>
+            </div>
             <!-- END CONTENT -->
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
+    <% include _layouts/socket %>
     <!-- SELF ADDING SCRIPT -->
     <!-- END OF SELF ADDING SCRIPT -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
@@ -341,7 +478,6 @@
                 document.getElementById('select_status').value = 'assigned'
             }
         })
-        console.log(orignal)
         function updateTicket(){
             var formData = new FormData(document.getElementById('change_ticket_info'))
             var id = document.getElementById('change_ticket_info').getAttribute('data-ticket')
@@ -497,5 +633,308 @@
               return true;
         }
     </script>
+     <!-- Zoom hình ảnh -->
+    <script>
+        //phóng to hình ảnh trong phần đọc feedback
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        function zoom(e){
+            if(this.tagName == 'DIV'){
+                var style = this.currentStyle || window.getComputedStyle(this, false)
+                var bi = style.backgroundImage.slice(4, -1).replace(/"/g, "")
+                modal.style.display = "block"
+                modalImg.src = bi
+            }
+            if(this.tagName == 'IMG'){
+                modal.style.display = "block"
+                captionText.style.display = 'block'
+                modalImg.src = this.src
+                captionText.innerHTML = this.alt
+            }
+            // 
+        }
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-modal")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+          modal.style.display = "none";
+        }
+    </script>
     <!-- END PAGE LEVEL SCRIPTS -->
+    <!-- Xử lý xem nội dung ticket với type là feedback -->
+    <% if (ticket.type == 'feedback') { -%>
+        <script type="text/javascript">
+            const feedback_content = document.getElementById('preview-div')
+            //hiển thị tin nhắn text
+            function display_text_message(ul, from ,text ){
+                var li = document.createElement('li')
+                li.innerHTML = text
+                li.classList.add(from)
+                ul.appendChild(li)
+            }
+
+            //hiển thị tin nhắn hình ảnh
+            function display_image_message(ul, from, url, num_of_pic){
+                console.log(url)
+                if(num_of_pic == 1){
+                    var img = document.createElement('img')
+                    img.src = url[0].payload.url
+                    img.classList.add(from)
+                    img.addEventListener('click', zoom)
+                    ul.appendChild(img)
+                }else{
+                    var container = document.createElement('div')
+                    
+                    for(let i of url){
+                        var div = document.createElement('div')
+                        div.style.backgroundImage = `url(${i.payload.url})`
+                        container.classList.add(from)
+                        div.addEventListener('click', zoom)
+                        container.appendChild(div)
+                        container.classList.add(`div_image_${num_of_pic}`)
+                    }
+                    ul.appendChild(container)
+                }
+            }
+
+            //hiển thị tin nhắn đính kèm file (khác img)
+            function display_file_message(ul, from, url){
+
+                var li = document.createElement('li')
+                var i = document.createElement('i')
+                var span = document.createElement('span')
+                span.innerHTML = url
+                i.classList.add('fas', "fa-arrow-circle-down")
+                li.classList.add(from)
+                li.append(i)
+                li.append(span)
+                ul.appendChild(li)
+            }
+
+            //hiển thị fb template button type
+            function display_template_button(ul, from, data){
+                var container = document.createElement('div')
+                container.classList.add('button_template', from)
+                var title = document.createElement('div')
+                title.classList.add('btn_template_title')
+                title.innerHTML = data.text
+                container.appendChild(title)
+                var btn_group = document.createElement('div')
+                btn_group.classList.add('btn_group')
+                for(let i of data.buttons){
+                    let button = document.createElement('button')
+                    button.innerHTML = i.title
+                    btn_group.appendChild(button)
+                }
+                container.appendChild(btn_group)
+                ul.appendChild(container)
+            }
+
+            //display generic template, suport multi template
+            function display_template_generic(ul, from, data){
+                var container = document.createElement('div')
+                container.classList.add('generic_template')
+                container.style.float = 'right'
+                container.style.position = 'relative'
+                ul.appendChild(container)
+                for(let i in data){
+                    var div = document.createElement('div')
+                    div.id = `template${i}`
+                    div.classList.add('div_template')
+                    if(i == 0){
+                        div.style.display = 'block'
+                    }else{
+                        div.style.display = 'none'
+                    }
+                    add_content_tab(div, i, data)
+                    container.appendChild(div)
+                }
+                //tạo div chứa template
+                if(data.length > 1){
+                    //khu vực hiển thị điều hướng
+                    var tpl_next = document.createElement('button')
+                    tpl_next.id = 'nav_tpl_next'
+                    tpl_next.classList.add('nav_template')
+                    tpl_next.innerHTML = '<i class="fas fa-angle-right"></i>'
+                    tpl_next.addEventListener('click', preview_next, false)
+                    
+                    var tpl_pre = document.createElement('button')
+                    tpl_pre.id = 'nav_tpl_pre'
+                    tpl_pre.classList.add('nav_template')
+                    tpl_pre.innerHTML = '<i class="fas fa-angle-left"></i>'
+                    tpl_pre.addEventListener('click', preview_pre, false)
+                    container.appendChild(tpl_next)
+                    container.appendChild(tpl_pre)
+                }
+            }
+
+            var pre_tab = 0
+            function preview_next(e){
+                pre_tab++
+                var templates = document.getElementsByClassName('div_template')
+                for(let i = 0; i < templates.length; i++){
+                    if(i == pre_tab && i != 'length'){
+                        templates[i].style.display = 'block'
+                    }else{
+                        templates[i].style.display = 'none'
+                    }
+                }
+                if(pre_tab == templates.length - 1){
+                    document.getElementById('nav_tpl_next').disabled = true
+                }else if(pre_tab > 0 && pre_tab < templates.length - 1){
+                    document.getElementById('nav_tpl_pre').disabled = false
+                    document.getElementById('nav_tpl_next').disabled = false
+                }else{
+                    document.getElementById('nav_tpl_next').disabled = false
+                }
+            }
+
+            function preview_pre(e){
+                if(pre_tab == 0){
+                    return
+                }
+                pre_tab--
+                var templates = document.getElementsByClassName('div_template')
+                for(let i = 0; i < templates.length; i++){
+                    if(i == pre_tab){
+                        templates[i].style.display = 'block'
+                    }else{
+                        templates[i].style.display = 'none'
+                    }
+                }
+                if(pre_tab == 0){
+                    document.getElementById('nav_tpl_pre').disabled = true
+                }else if(pre_tab > 0 && pre_tab < templates.length - 1){
+                    document.getElementById('nav_tpl_pre').disabled = false
+                    document.getElementById('nav_tpl_next').disabled = false
+                }else{
+                    document.getElementById('nav_tpl_pre').disabled = false
+                }
+            }
+
+            function add_content_tab(container, n, data){
+                //khu vực hiển thị hình ảnh
+                var image = document.createElement('div')
+                image.classList.add('gen_template_img')
+                image.style.backgroundImage = `url(${data[n].image_url})`
+                image.style.backgroundSize = 'cover'
+                image.style.backgroundRepeat = 'no-repeat'
+                container.appendChild(image)
+
+                //khu vực hiển thị tiêu đề
+                var title = document.createElement('div')
+                title.classList.add('gen_template_title')
+                var p = document.createElement('p')
+                p.innerHTML = data[n].title
+                var span = document.createElement('span')
+                span.innerHTML = data[n].subtitle
+                title.appendChild(p)
+                title.appendChild(span)
+                container.appendChild(title)
+
+                //hiển thị các nút nhấn
+                var btn_group = document.createElement('div')
+                btn_group.classList.add('btn_group', 'bot')
+                for(let i of data[n].buttons){
+                    let button = document.createElement('button')
+                    button.innerHTML = i.title
+                    btn_group.appendChild(button)
+                }
+                container.appendChild(btn_group)
+            }
+
+            function get_feedback(){
+                var ticket_id = document.getElementById('ticket-id').textContent
+                axios.get(`/manager/ticket/read-content/${ticket_id}`)
+                .then(function(response){
+                    if(response.status == 200){
+                        display_feedback(response.data.description)
+                    }
+                })
+                .catch(function(error){
+                    console.error(error)
+                    swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                })
+            }
+            get_feedback()
+
+            //hiển thị dữ liệu về một feedback
+            function display_feedback(data){
+                var feedback_ul = document.querySelector('#preview-div ul')
+                while (feedback_ul.firstChild) {
+                    feedback_ul.removeChild(feedback_ul.firstChild);
+                }
+                for(let i of data.feedbacks){
+                    if(i.from == 'member'){
+                        if(i.text || i.postback)
+                            display_text_message(feedback_ul, 'him', i.text || i.postback.title)
+                        if(i.attachments && i.attachments[0].type == 'image'){
+                            var num_of_pic = i.attachments.length
+                            display_image_message(feedback_ul, 'him', i.attachments, num_of_pic)
+                        }
+                        if(i.attachments && i.attachments[0].type == 'file'){
+                            display_file_message(feedback_ul, 'him', i.attachments[0].payload.url)
+                        }
+                    }else if(i.from == 'fanpage'){
+                        if(i.text){
+                            display_text_message(feedback_ul, 'me', i.text)
+                        }
+                        if(i.attachments && i.attachments[0].type == 'image'){
+                            var num_of_pic = i.attachments.length
+                            display_image_message(feedback_ul, 'me', i.attachments, num_of_pic)
+                        }
+                        if(i.attachments && i.attachments[0].type == 'file'){
+                            display_file_message(feedback_ul, 'me', i.attachments[0].payload.url)
+                        }
+                    }else{
+                        if(i.text){
+                            display_text_message(feedback_ul, 'bot', i.text)
+                        }
+                        if(i.attachments && i.attachments[0].type == 'image'){
+                            var num_of_pic = i.attachments.length
+                            display_image_message(feedback_ul, 'bot', i.attachments, num_of_pic)
+                        }
+                        if(i.attachments && i.attachments[0].type == 'file'){
+                            display_file_message(feedback_ul, 'bot', i.attachments[0].payload.url)
+                        }
+                        if(i.attachment && i.attachment.type == 'template'){
+                            switch (i.attachment.payload.template_type) {
+                                case 'generic':
+                                    display_template_generic(feedback_ul, 'bot', i.attachment.payload.elements)
+                                    break;
+                                case 'button':
+                                    display_template_button(feedback_ul, 'bot', i.attachment.payload)
+                                    break
+                                default:
+                                    // statements_def
+                                    break;
+                            }
+                        }
+                    }
+                }
+                scrollTo(document.body, document.getElementById('preview-div'), 200)
+                // axios.post('/manager/feedback/update/' + encodeURIComponent(data._id),{
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     data:{'status.read': true}
+                // })
+                // .then(function(response){
+                //     if(response.status == 200){
+                //         console.log('Updated feedback status')
+                //     }
+                // })
+                // .catch(function(error){
+                //     console.log('Failed to update feedback status! \n' + error)
+                // })
+
+            }
+        </script>
+    <% } -%>
 <% include _layouts/footer %>

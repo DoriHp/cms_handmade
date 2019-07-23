@@ -132,6 +132,7 @@
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
+    <% include _layouts/socket %>
     <!-- SELF ADDING SCRIPT -->
     <!-- <script src="/js/lib/jquery-1.11.2.min.js"></script> -->
     <script src="/slickGrid/lib/firebugx.js"></script>
@@ -170,6 +171,14 @@
         columns.push({id: "fb_name", name: "Facebook name", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
         columns.push({id: "fb_gender", name: "Facebook gender", field: "fb_gender", minWidth: 120, cssClass: "cell-title"})
         columns.push({id: "fb_linkChat", name: "Link to chat box", field: "fb_linkChat", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "del", field:'del', name:'Delete', maxWidth: 80, formatter: buttonFormatter})
+
+        function buttonFormatter(row,cell,value,columnDef,dataContext){  
+            var button = "<button class='del' type='button' id='"+ dataContext.id +"'>Xóa</button>";
+            //the id is so that you can identify the row when the particular button is clicked
+            return button;
+            //Now the row will display your button
+        }
 
         var options = {
             columnPicker: {
@@ -198,7 +207,6 @@
                 return false;
             } 
         
-
             return true;
         }
 
@@ -272,6 +280,38 @@
             a.innerHTML = "Link"
             i.append(a)
         }
+
+        grid.onClick.subscribe( function (e, args) {
+            // if the delete column (where field was assigned 'del' in the column definition)
+            if (args.grid.getColumns()[args.cell].field == 'del') {
+               swal({
+                    title: "Xác nhận",
+                    text: "Bạn chắc chắn muốn xóa bản ghi này?", 
+                    showCancelButton: true,
+                    confirmButtonText: "Tiếp tục",
+                    calcelButtonText: "Hủy bỏ",
+                    confirmButtonColor: 'orange',
+                    type: "warning",
+                    allowOutsideClick: false
+                })
+                .then(function(result){
+                    if(result.value){
+                        axios.delete('/manager/member/delete/' + encodeURIComponent(args.grid.getDataItem(args.row).member_code))
+                        .then(function(response){
+                            if(response.status == 200){
+                                swal("Thành công!", "Xóa bản ghi thành công!", "success")
+                                dataView.deleteItem(args.grid.getDataItem(args.row).id)
+                                args.grid.invalidate()
+                            }
+                        })
+                        .catch(function(error){
+                            console.error(error)
+                            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                        })
+                    }
+                })
+            }
+        })
 
         // move the filter panel defined in a hidden div into grid top panel
         $("#inlineFilterPanel")
@@ -360,7 +400,7 @@
 
         // wire up the search textbox to apply the filter to the model
         $("#txtSearch,#txtSearch2").keyup(function (e) {
-            Slick.GlobalEditorLock.cancelCurrentEdit();
+            Slick.GlobalEditorLock.cancelCurrentEdit()
 
             // clear on Esc
             if (e.which == 27) {
@@ -369,7 +409,7 @@
 
             searchString = this.value;
             updateFilter()
-        });
+        })
 
         function updateFilter() {
             dataView.setFilterArgs({
