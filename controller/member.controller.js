@@ -36,7 +36,7 @@ module.exports.add = function(req, res){
 	var new_member = {
 		member_code: req.body.data.member_code,
 		otp: otp,
-		auto_reply: false,
+		auto_reply: true,
 		fb_id: "",
 		fb_firstName: "",
 		fb_lastName: "",
