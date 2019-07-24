@@ -86,7 +86,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(compression())
-app.use(timeout(20000))
+app.use(timeout(60000))
 app.use(responseTime())
 
 // Setup View engine

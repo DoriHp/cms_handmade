@@ -128,7 +128,7 @@
                     </div>
                     <div class="portlet-body">
                         <div class="col-md-4" id="pk_image">
-                            <img id="display_img" src="" onError="this.onerror=null;this.src='/image/noimageavailable.png';">
+                            <img id="display_img" src="/image/noimageavailable.png;">
                         </div>
                         <div class="col-md-8 form" id="pk_info">
                             <form action="#" class="form-horizontal" id="image_data">
@@ -265,8 +265,12 @@
                     document.getElementById("image_name").value = (res.image_name)?res.image_name:"Chưa có hình ảnh nào"
                     document.getElementById("des_link").value = (res.description_link)?res.description_link:""
                     document.getElementById("priority").value = res.priority
-                    var img = document.querySelector("#pk_image img")
+                    var img = document.getElementById('display_img')
                     img.src = response.data.image_link
+                    img.addEventListener('error', function(e){
+                        this.onerror=null;
+                        this.src='/image/noimageavailable.png';
+                    })
                     pk_code = res.package_code
                 })
                 .catch(function(error){
@@ -486,6 +490,7 @@
         function add_new(){
             //xóa toàn bộ dữ liệu sẵn có trong form
             reset()
+            document.getElementById('display_img').src = '/image/noimageavailable.png'
             var modal = document.getElementById("myEditor")
             modal.style.display = 'block'
             var old_element = document.getElementById("chooseFile")
