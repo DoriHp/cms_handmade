@@ -75,8 +75,16 @@
                                                         <a href="#tab_1_1" data-toggle="tab">Thông tin người dùng</a>
                                                     </li>
                                                     <li>
-                                                        <a href="#tab_1_3" data-toggle="tab">Đổi mật khẩu</a>
+                                                        <a href="#tab_1_2" data-toggle="tab">Đổi mật khẩu</a>
                                                     </li>
+                                                    <% if (user.role == 'admin') { -%>
+                                                        <li>
+                                                            <a href="#tab_1_3" data-toggle="tab">Thêm mới tài khoản</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_1_4" data-toggle="tab">Reset mật khẩu người dùng</a>
+                                                        </li>
+                                                    <% } -%>
                                                 </ul>
                                             </div>
                                             <div class="portlet-body">
@@ -97,7 +105,7 @@
                                                     </div>
                                                     <!-- END PERSONAL INFO TAB -->
                                                     <!-- CHANGE PASSWORD TAB -->
-                                                    <div class="tab-pane" id="tab_1_3">
+                                                    <div class="tab-pane" id="tab_1_2">
                                                         <form action="#" id="change_pw_form">
                                                             <div class="form-group">
                                                                 <label class="control-label">Mật khẩu hiện tại</label>
@@ -114,6 +122,52 @@
                                                         </form>
                                                     </div>
                                                     <!-- END CHANGE PASSWORD TAB -->
+                                                    <!-- ADD NEW USER TAB -->
+                                                    <% if (user.role == 'admin') { -%>
+                                                        <div class="tab-pane" id="tab_1_3">
+                                                            <form action="#" id="adding_form">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Tên đăng nhập</label>
+                                                                    <input type="text" class="form-control" name="username" id="username" pattern="[a-zA-Z0-9]{5,20}" title="Tên đăng nhập phải có độ dài 5 ~ 20 kí tự, không chứa kí tự đặc biệt"/> 
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Tên người dùng</label>
+                                                                    <input type="text" class="form-control" name="name" id="name"> 
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Mật khẩu</label>
+                                                                    <input type="password" class="form-control" name="password" id="password" pattern="[\Da-zA-Z0-9]{8,20}" title="Mật khẩu phải có độ dài 8 ~ 20 kí tự, có thể sử dụng kí tự đặc biệt"/> 
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Email</label>
+                                                                    <input type="email" class="form-control" name="email" id="email"/> </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Chọn quyền</label>
+                                                                    <select class="form-control" id="role" name="role">
+                                                                            <option value="supervisor">Supervisor</option>
+                                                                            <option value="user">User</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="margin-top-10">
+                                                                    <a href="javascript:;" onclick="add_user()" class="btn green"> Thêm người dùng </a>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <!-- END OF ADDING FORM -->
+                                                        <!-- RESET PASSWORD TAB -->
+                                                        <div class="tab-pane" id="tab_1_4">
+                                                            <form action="#" id="reset_form">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Tên đăng nhập</label>
+                                                                    <input type="text" class="form-control" name="username" id="username" pattern="[a-zA-Z0-9]{5,20}" title="Tên đăng nhập phải có độ dài 5 ~ 20 kí tự, không chứa kí tự đặc biệt"/> 
+                                                                </div>
+                                                                <div class="margin-top-10">
+                                                                    <a href="javascript:;" onclick="reset_pw()" class="btn green"> Reset mật khẩu </a>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    <!-- END OF RESET PASSWORD TAB -->
+                                                    <% } -%>
                                                 </div>
                                             </div>
                                         </div>
@@ -210,6 +264,66 @@
                             swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
                         }
                     })    
+                }
+            })
+        }
+
+        function add_user(){
+            var formData = new FormData(document.getElementById('adding_form'))
+
+            var data = {}
+            for (var pair of formData.entries()) {
+              data[pair[0]] = pair[1]
+            }
+            axios.post('/user/register', {
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            })
+            .then(function(response){
+                if(response.status == 200){
+                    swal("Thành công!", "Thêm mới người dùng thành công!", "success", {showConfirmButton: false})
+                }
+            })
+            .catch(function(error){
+                console.error(error)
+                error_alert()
+                // swal("Đã có lỗi", error.response, "error", {confirmButtonColor: 'red'})
+            })
+        }
+
+        function reset_pw(){
+            var username = document.querySelector('#reset_form #username').value
+            if(!username){
+                swal("Chú ý!", "Điền ít nhất một tên tài khoản để tiếp tục!", "info")
+                return
+            }
+            swal({
+                title: "Xác nhận",
+                text: "Reset mật khẩu người dùng này về mặc định?", 
+                showCancelButton: true,
+                confirmButtonText: "Tiếp tục",
+                cancelButtonText: "Hủy bỏ",
+                confirmButtonColor: 'orange',
+                type: "warning",
+                allowOutsideClick: false
+            })
+            .then(function(result){
+                if(result.value){
+                    axios.post(`/user/forgotpw`, {
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        data: username
+                    }).then(function(res){
+                        if(res.status == 200){
+                            swal("Thành công!", "Đã reset mật khẩu người dùng về mặc định!", "success")
+                        }
+                    }).catch(function(error){
+                        console.error(error)
+                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                    })
                 }
             })
         }

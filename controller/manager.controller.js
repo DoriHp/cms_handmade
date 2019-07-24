@@ -14,7 +14,7 @@ var client = require('./redis.client.js')
 module.exports.district = async function(req, res){
 	var data = await District.find().lean()
 	var province = await Province.find().lean()
-	res.status(200).render('district_table', {breadcrumb: [{href:'/manager/province' ,locate: 'Quản lý danh sách quận huyện'}], data: data, province: province, user: req.user})
+	res.status(200).render('district_table', {breadcrumb: [{href:'/manager/province' ,locate: 'Danh sách quận huyện'}], data: data, province: province, user: req.user})
 }
 
 module.exports.dt_list = async function(req, res){
@@ -71,7 +71,7 @@ module.exports.dt_delete = function(req, res){
 //Province management module
 module.exports.province = async function(req, res){
 	var data = await Province.find().lean()
-	res.status(200).render('province_table', {breadcrumb: [{href: '/manager/province', locate: 'Quản lý danh sách tỉnh thành'}], data: data, user: req.user})
+	res.status(200).render('province_table', {breadcrumb: [{href: '/manager/province', locate: 'Danh sách tỉnh thành'}], data: data, user: req.user})
 }
 
 module.exports.pv_list = async function(req, res){
@@ -137,7 +137,11 @@ module.exports.pv_dt = async function(req, res){
 //Product management modules
 module.exports.product = async function(req, res){
 	var result = await Product.find().lean()
-	res.status(200).render('product_table', {breadcrumb:[{href: '/manager/product', locate: 'Quản lý danh sách sản phẩm'}], data: result, user: {username: 'admin'}})
+	for(let i of result){
+		i.gia_goi_string = (i.gia_goi)?i.gia_goi.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND':""
+		i.hoa_hong_msocial_string = (i.hoa_hong_msocial)?i.hoa_hong_msocial.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND':""
+	}
+	res.status(200).render('product_table', {breadcrumb:[{href: '/manager/product', locate: 'Quản lý sản phẩm'}], data: result, user: {username: 'admin'}})
 }
 
 module.exports.pd_list = async function(req, res){

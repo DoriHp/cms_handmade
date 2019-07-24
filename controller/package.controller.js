@@ -10,7 +10,7 @@ module.exports.package_image_list = async (req, res) => {
 	data.forEach(ele => {
 		image_link.push('http://' + req.headers.host + '/public/image/' + ele.image_name)			
 	})
-	res.status(200).render('package', {breadcrumb: [{href: '/manager/package/image' ,locate: 'Hình ảnh mô tả VAS'}], data: data, link: image_link, user: req.user})
+	res.status(200).render('package', {breadcrumb: [{href: '/manager/package/image' ,locate: 'Danh sách gói VAS'}], data: data, link: image_link, user: req.user})
 }
 
 module.exports.add_image = (req, res) => {
@@ -81,4 +81,23 @@ module.exports.add_new_pk = function(req, res){
 			}
 		})
 	})
+}
+
+module.exports.delete = function(req, res){
+	console.log(req.body.data)
+	var arr = req.body.data.list
+	var test = true
+	for(let _id of arr){
+		Package.findByIdAndDelete(_id, function(err, result){
+			if(err){
+				console.log(err)
+				test = false
+			}
+		})
+	}
+	if(!test){
+		res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+	}else{
+		res.status(200).end()
+	}
 }

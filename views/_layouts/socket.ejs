@@ -49,7 +49,7 @@
 
     var socket = io()
 
-    socket.on('insert notify', function(){
+    socket.on('insert notify', function(data){
         console.log("New notification was inserted!")
         get_user_notifications(data)
     })

@@ -64,6 +64,7 @@ router.post('/package/image/upload/:pc_code', upload.single('package_image'), co
 router.get('/package/image/properties/:_id', controller2.get_image_pro)
 router.post('/package/image/update/:pk_code', controller2.update_pk_image)
 router.post('/package/add-new', controller2.add_new_pk)
+router.post('/package/delete', controller2.delete)
 // Member management route
 router.get('/member', controller3.member)
 router.get('/member/list', controller3.list)

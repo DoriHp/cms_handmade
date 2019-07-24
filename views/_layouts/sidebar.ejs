@@ -83,56 +83,59 @@
                     </li>
                 </ul>
             </li> -->
-            <li class="heading">
-                <h3 class="uppercase">Quản lý danh mục</h3>
-            </li>
-            <li class="nav-item  ">
-                <a href="/manager/member" class="nav-link">
-                    <i class="far fa-address-book"></i>
-                    <span class="title">Danh sách điểm bán</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="javascript;" class="nav-link nav-toggle">
-                    <i class="fab fa-product-hunt"></i>
-                    <span class="title">Danh mục sản phẩm</span>
-                    <span class="arrow"></span>
-                </a>
-                <ul class="sub-menu">
-                    <li class="nav-tem">
-                        <a href="/manager/product" class="nav-link ">
-                            <span class="title">Quản lý danh sách sản phẩm</span>
-                        </a>
-                    </li>
-                    <li class="nav-tem">
-                        <a href="/manager/package/image" class="nav-link ">
-                            <span class="title">Hình ảnh mô tả sản phẩm</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item  ">
-                <a href="/manager/province" class="nav-link">
-                    <i class="fas fa-building"></i>
-                    <span class="title">Danh mục tỉnh thành</span>
-                </a>
-            </li>
-            <li class="nav-item  ">
-                <a href="/manager/district" class="nav-link">
-                    <i class="far fa-hospital"></i>
-                    <span class="title">Danh mục quận huyện</span>
-                </a>
-            </li>
-            <li class="heading">
-                <h3 class="uppercase">Ticket</h3>
-            </li>
-            <li class="nav-item  ">
-                <a href="/manager/ticket" class="nav-link">
-                    <i class="far fa-check-square"></i>
-                    <span class="title">Quản lý ticket</span>
-                    <span id="notify_ticket" class="badge badge-danger" style="display: none;"><i class="fas fa-exclamation"></i></span>
-                </a>
-            </li>
+            <% if (user.role != 'user') { -%>
+                <li class="heading">
+                    <h3 class="uppercase">Quản lý danh mục</h3>
+                </li>
+                <li class="nav-item  ">
+                    <a href="/manager/member" class="nav-link">
+                        <i class="far fa-address-book"></i>
+                        <span class="title">Danh sách điểm bán</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript;" class="nav-link nav-toggle">
+                        <i class="fab fa-product-hunt"></i>
+                        <span class="title">Danh mục sản phẩm</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-tem">
+                            <a href="/manager/product" class="nav-link ">
+                                <span class="title">Quản lý danh sách sản phẩm</span>
+                            </a>
+                        </li>
+                        <li class="nav-tem">
+                            <a href="/manager/package/image" class="nav-link ">
+                                <span class="title">Hình ảnh mô tả sản phẩm</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="/manager/province" class="nav-link">
+                        <i class="fas fa-building"></i>
+                        <span class="title">Danh mục tỉnh thành</span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="/manager/district" class="nav-link">
+                        <i class="far fa-hospital"></i>
+                        <span class="title">Danh mục quận huyện</span>
+                    </a>
+                </li>
+                <li class="heading">
+                    <h3 class="uppercase">Ticket</h3>
+                </li>
+                <li class="nav-item  ">
+                    <a href="/manager/ticket" class="nav-link">
+                        <i class="far fa-check-square"></i>
+                        <span class="title">Quản lý ticket</span>
+                        <span id="notify_ticket" class="badge badge-danger" style="display: none;"><i class="fas fa-exclamation"></i></span>
+                    </a>
+                </li>
+            <% } -%>
+            
             <li class="heading">
                 <h3 class="uppercase">Người dùng</h3>
             </li>

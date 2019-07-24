@@ -20,7 +20,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý danh sách sản phẩm
+                            <h1>Quản lý sản phẩm
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -55,7 +55,7 @@
                                         <table class="table table-striped table-bordered table-hover table-checkable order-column" id="sample_1_2">
                                             <thead>
                                                 <tr>
-                                                    <th>
+                                                    <th style="display: none;">
                                                         <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                         <input type="checkbox" class="checkboxes" value="1" disabled />
                                                         <span></span>
@@ -66,22 +66,22 @@
                                                     <th> Chu kỳ gói </th>
                                                     <th> Hoa hồng </th>
                                                     <th> Thao tác </th>
-                                                    <th> Public </th>
+                                                    <th> Công khai </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <% for (var i = 0; i < data.length; i++) { -%>
                                                     <tr class="odd gradeX" id="<%= data[i]._id %>" >
-                                                        <td>
+                                                        <td style="display: none;">
                                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                 <input id="<%= data[i]._id %>" type="checkbox" class="checkboxes" value="1"/>
                                                                 <span></span>
                                                             </label>
                                                         </td>
                                                         <td><%= data[i].ten_goi_cuoc %></td>
-                                                        <td><%= data[i].gia_goi %> VND</td>
+                                                        <td><%= data[i].gia_goi_string %></td>
                                                         <td><%= data[i].chu_ky %></td>
-                                                        <td><%= data[i].hoa_hong_msocial %> VND </td>
+                                                        <td><%= data[i].hoa_hong_msocial_string %></td>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button class="btn btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Thao tác
@@ -94,14 +94,14 @@
                                                                     </li>
                                                                     <li>
                                                                         <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
-                                                                            <i class="fas fa-trash a_del"></i> Xóa bản ghi </a>
+                                                                            <i class="fas fa-trash"></i> Xóa sản phẩm </a>
                                                                     </li>
                                                                     <li class="divider"> </li>
                                                                 </ul>
                                                             </div>
                                                         </td>
                                                         <td style="text-align: center;">
-                                                            <label class="switch"><input class="input_status" type="checkbox" <% if (data[i].public) { -%>
+                                                            <label class="switch"><input id="<%= data[i]._id %>" class="input_status" type="checkbox" <% if (data[i]._id) { -%>
                                                                 checked
                                                             <% } -%> ><span class="slide round"></span></label>
                                                         </td>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        <form action="#" class="form-horizontal" id="product_data">
+                        <form action="#" class="form-horizontal" id="product_data_edit">
                             <div class="form-body" style="position: relative;">
                                 
                                     <div class="form-group">
@@ -156,8 +156,8 @@
                                             <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
                                         </div>
                                         <div class="col-md-1" style="padding-left: 0;">
-                                            <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;">
-                                                    <option value="day">Ngày</option>
+                                            <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;" disabled>
+                                                    <option value="day" selected>Ngày</option>
                                                     <option value="month">Tháng</option>
                                                     <option value="year">Năm</option>
                                             </select>
@@ -169,8 +169,8 @@
                                             <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
                                         </div>
                                         <div class="col-md-1" style="padding-left: 0;">
-                                            <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;">
-                                                    <option value="day">Ngày</option>
+                                            <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;" disabled>
+                                                    <option value="day" selected>Ngày</option>
                                                     <option value="month">Tháng</option>
                                                     <option value="year">Năm</option>
                                             </select>
@@ -208,7 +208,7 @@
                                     <div class="col-md-4">
                                         <input type="text" id="uu_dai_khac" name="uu_dai_khac" class="form-control input-circle" placeholder="Ưu đãi khác">
                                     </div>
-                                    <label class="col-md-3 control-label">Cho phép trả lời bằng chatbot</label>
+                                    <label class="col-md-3 control-label">Cho phép trả lời công khai trên facebook</label>
                                     <div class="col-md-1" style="padding-left: 0;">
                                         <select id="public" name="public" class="form-control input-circle" style="padding: 0;">
                                             <option value="true">Có</option>
@@ -238,7 +238,7 @@
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
-                        <form action="#" class="form-horizontal" id="product_data">
+                        <form action="#" class="form-horizontal" id="product_data_add">
                             <div class="form-body">
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên gói cước</label>
@@ -258,10 +258,10 @@
                                         <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
                                     </div>
                                     <div class="col-md-1" style="padding-left: 0;">
-                                        <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;">
-                                                <option value="day">Ngày</option>
-                                                <option value="month">Tháng</option>
-                                                <option value="year">Năm</option>
+                                        <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;" disabled>
+                                                <option value="day" selected>Ngày</option>
+                                                <option value="month" hidden>Tháng</option>
+                                                <option value="year" hidden>Năm</option>
                                         </select>
                                     </div>
                                 </div>
@@ -271,8 +271,8 @@
                                         <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
                                     </div>
                                     <div class="col-md-1" style="padding-left: 0;">
-                                        <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;">
-                                                <option value="day">Ngày</option>
+                                        <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;" disabled>
+                                                <option value="day" selected>Ngày</option>
                                                 <option value="month">Tháng</option>
                                                 <option value="year">Năm</option>
                                         </select>
@@ -310,7 +310,7 @@
                                     <div class="col-md-4">
                                         <input type="text" id="uu_dai_khac" name="uu_dai_khac" class="form-control input-circle" placeholder="Ưu đãi khác">
                                     </div>
-                                    <label class="col-md-3 control-label">Cho phép trả lời bằng chatbot</label>
+                                    <label class="col-md-3 control-label">Cho phép trả lời công khai trên facebook</label>
                                     <div class="col-md-1" style="padding-left: 0;">
                                         <select id="public" name="public" class="form-control input-circle" style="padding: 0;">
                                             <option value="true">Có</option>
@@ -334,22 +334,10 @@
             <!-- END CONTENT -->
     </div>
     <!-- END CONTAINER -->
+
 <script type="text/javascript">
+    const arr = [{vi: "ngày", en: "day"}]
     // location.hash = "main"
-    const arr = [
-            {
-                en: 'day',
-                vi: 'ngày'
-            },
-            {
-                en: 'month',
-                vi: 'tháng'
-            },
-            {
-                en: 'year',
-                vi: 'name'
-            }
-        ]
     var cb_select = []
     var select_id
     var i_trash = document.getElementsByClassName('a_del')
@@ -392,14 +380,12 @@
                 myEditor.querySelector('#ten_goi').value = data.ten_goi_cuoc
                 myEditor.querySelector('#gia_goi').value = data.gia_goi
                 myEditor.querySelector('#chu_ky').value = exec_time(data.chu_ky)[0]
-                myEditor.querySelector('#don_vi_1').value = exec_time(data.chu_ky)[1]
                 myEditor.querySelector('#hoa_hong_msocial').value = data.hoa_hong_msocial
                 myEditor.querySelector('#khuyen_mai_chu_ky_dau').value = exec_time(data.khuyen_mai_chu_ky_dau)[0]
-                myEditor.querySelector('#don_vi_2').value = exec_time(data.khuyen_mai_chu_ky_dau)[1]
-                myEditor.querySelector('#uu_dai_noi_mang').value = (!data.uu_dai_noi_mang)?"N/A":data.uu_dai_noi_mang
-                myEditor.querySelector('#uu_dai_ngoai_mang').value = (!data.uu_dai_ngoai_mang)?"N/A":data.uu_dai_ngoai_mang
-                myEditor.querySelector('#uu_dai_data').value = (!data.uu_dai_data)?"N/A":data.uu_dai_data
-                myEditor.querySelector('#uu_dai_khac').value = (!data.uu_dai_khac)?"N/A":data.uu_dai_khac
+                myEditor.querySelector('#uu_dai_noi_mang').value = (!data.uu_dai_noi_mang)?"":data.uu_dai_noi_mang
+                myEditor.querySelector('#uu_dai_ngoai_mang').value = (!data.uu_dai_ngoai_mang)?"":data.uu_dai_ngoai_mang
+                myEditor.querySelector('#uu_dai_data').value = (!data.uu_dai_data)?"":data.uu_dai_data
+                myEditor.querySelector('#uu_dai_khac').value = (!data.uu_dai_khac)?"":data.uu_dai_khac
                 myEditor.querySelector('#public').value = data.public
                 myEditor.querySelectorAll('input').forEach(input => input.disabled = true)
                 myEditor.querySelectorAll('select').forEach(select => select.disabled = true)
@@ -412,8 +398,7 @@
     }
 
     function updateProduct(){
-        var new_data = getData()
-        console.log(new_data)
+        var new_data = getData(document.getElementById('product_data_edit'))
         axios.get('/manager/product/properties/' + encodeURIComponent(select_id))
         .then(function(response){
             if(response.status == 200){
@@ -421,33 +406,47 @@
                 delete(response.data._id)
                 console.log(response.data)
                 if(deepCompare(response.data, new_data)){
-                    alert('Dữ liệu không thay đổi!')
+                    swal("Chú ý", "Dữ liệu không thay đổi", "info")
                     return
                 }else{
-                    var conf = confirm("Bạn chắc chắn muốn lưu thay đổi?")
-                    if(!conf) return
-                    axios.post('/manager/product/update/' + encodeURIComponent(select_id), {
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                        data: new_data
-                    }).then(function(res){
-                        if(res.status == 200){
-                            alert('Thay đổi dữ liệu thành công!')
-                            location.reload()
-                        }else{
-                            alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
+                    swal({
+                        title: "Xác nhận",
+                        text: "Bạn chắc chắn muốn lưu thay đổi?", 
+                        showCancelButton: true,
+                        confirmButtonText: "Tiếp tục",
+                        cancelButtonText: "Hủy bỏ",
+                        confirmButtonColor: 'orange',
+                        type: "warning",
+                        allowOutsideClick: false
+                    })
+                    .then(function(result){
+                        if(result.value){
+                            axios.post('/manager/product/update/' + encodeURIComponent(select_id), {
+                                headers:{
+                                    'Content-Type': 'application/json'
+                                },
+                                data: new_data
+                            }).then(function(res){
+                                if(res.status == 200){
+                                    swal("Thành công!", "Thay đổi dữ liệu sản phẩm thành công!", "success", {showConfirmButton: false})
+                                    setTimeout(function(){
+                                        location.reload()
+                                    }, 500)
+                                }
+                            }).catch(function(error){
+                                console.error(error)
+                                if(error.response.data) 
+                                    swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                            })
                         }
-                    }).catch(function(error){
-                        alert('Request 2: Đã có lỗi xảy ra, vui lòng thử lại sau!' + error)
                     })
                 }
-            }else{
-                alert('Đã có lỗi xảy ra, vui lòng thử lại sau!')
             }
         })
         .catch(function(error){
-            alert('Request 1: Đã có lỗi xảy ra, vui lòng thử lại sau!' + error)
+            console.error(error)
+            if(error.response.data) 
+                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
         })
     }
 
@@ -469,17 +468,12 @@
             }
         }).then(function(response){
             if(response.status == 200){
-                alert('Đã thay đổi trạng thái tư vấn của sản phầm')
-            }else{
-                alert('Đã có lỗi xảy ra, vui lòng thử lại!')
-                if(this.checked){
-                    this.checked = false
-                }else{
-                    this.checked = true
-                }
+                swal("Thành công!", "Thêm mới sản phẩm thành công!", "success", {showConfirmButton: false})
             }
         }).catch(function(error){
-            alert('Đã có lỗi xảy ra' + error )
+            console.error(error)
+            if(error.response.data) 
+                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
             if(this.checked){
                 this.checked = false
             }else{
@@ -490,37 +484,69 @@
     //xóa sản phẩm
     function delProduct(e){
         var _id = this.id
-        var conf = confirm('Bạn chắc chắn muốn xóa sản phẩm này?')
-        if(!conf) return
-        axios.delete(`/manager/product/delete/${_id}`)
-        .then(function(response){
-            if(response.status == 200){
-                alert('Xóa sản phẩm khỏi danh sách thành công!')
-                location.reload()
-            }else{
-                alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+        swal({
+            title: "Xác nhận",
+            text: "Bạn chắc chắn muốn xóa sản phẩm này?", 
+            showCancelButton: true,
+            confirmButtonText: "Tiếp tục",
+            cancelButtonText: "Hủy bỏ",
+            confirmButtonColor: 'orange',
+            type: "warning",
+            allowOutsideClick: false
+        })
+        .then(function(result){
+            if(result.value){
+                axios.delete(`/manager/product/delete/${_id}`)
+                .then(function(response){
+                    if(response.status == 200){
+                        swal("Thành công!", "Xóa sản phẩm thành công!", "success", {showConfirmButton: false})
+                        setTimeout(function(){
+                            location.reload()
+                        }, 500)
+                    }
+                })
+                .catch(function(error){
+                    console.error(error)
+                    if(error.response.data) 
+                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                })
             }
         })
-        .catch(function(error){
-            alert('Đã có lỗi xảy ra, vui lòng thử lại!')
-        })
+
+    }
+
+    function validate(form){
+        var test = true
+        if(!form.querySelector('#ten_goi').value){
+            form.querySelector('#ten_goi').style.backgroundColor = '#F29999'
+            test = false
+        }
+        if(!form.querySelector('#gia_goi').value){
+            form.querySelector('#gia_goi').style.backgroundColor = '#F29999'
+            test = false
+        }
+        if(!form.querySelector('#hoa_hong_msocial').value){
+            form.querySelector('#hoa_hong_msocial').style.backgroundColor = '#F29999'
+            test = false
+        }
+        return test
+
     }
     //thêm sản phẩm
-    function getData(){
-        var formData = new FormData(document.getElementById('product_data'))
+    function getData(form){
+        if(!validate(form)){
+            swal("Chú ý!", "Bạn nhập thiếu thông tin!", "info")
+            return null
+        }
+        var formData = new FormData(form)
         var data = {}
         for (var pair of formData.entries()) {
-            data[pair[0]] = (pair[1] == 'N/A' || pair[1] == "")?"":pair[1]
+            data[pair[0]] = pair[1]
         }   
         var submit_data = {}
 
-        var don_vi_1, don_vi_2
-        for(let i of arr){
-            if(i.en == data.don_vi_1) don_vi_1 = i.vi
-            if(i.en == data.don_vi_2) don_vi_2 = i.vi
-        }
-        submit_data.chu_ky = data.chu_ky + " " + don_vi_1
-        submit_data.khuyen_mai_chu_ky_dau = data.khuyen_mai_chu_ky_dau + " " + don_vi_2
+        submit_data.chu_ky = (data.chu_ky)?data.chu_ky + " ngày":""
+        submit_data.khuyen_mai_chu_ky_dau = (data.khuyen_mai_chu_ky_dau)?data.khuyen_mai_chu_ky_dau + " ngày": ""
         submit_data.ten_goi_cuoc = data.ten_goi
         submit_data.gia_goi = parseInt(data.gia_goi)
         submit_data.hoa_hong_msocial = parseInt(data.hoa_hong_msocial)
@@ -529,11 +555,16 @@
         submit_data.uu_dai_khac = data.uu_dai_khac
         submit_data.uu_dai_data = data.uu_dai_data
         submit_data.public = (data.public)?true:false
+        var now = new Date().toISOString()
+        submit_data.update_time = now
+        console.log(submit_data)
         return submit_data
     }
 
     function addProduct(){
-        var submit_data = getData()
+        var submit_data = getData(document.getElementById('product_data_add'))
+        if(!submit_data) return
+        submit_data.creat_time = new Date().toISOString()
         axios.post('/manager/product/adding',{
             headers:{
                 'Content-Type': 'application/json'
@@ -541,13 +572,15 @@
             data: submit_data
         }).then(function(response){
             if(response.status == 200){
-                alert('Thêm dữ liệu sản phẩm thành công!')
-                location.reload()
-            }else{
-                alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+                swal("Thành công!", "Thêm mới sản phẩm thành công!", "success", {showConfirmButton: false})
+                setTimeout(function(){
+                    location.reload()
+                }, 500)
             }
         }).catch(function(error){
-            alert('Đã có lỗi xảy ra, vui lòng thử lại!')
+            console.error(error)
+            if(error.response.data) 
+                swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
         })
     }
 

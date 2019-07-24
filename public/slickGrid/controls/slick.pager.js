@@ -3,7 +3,7 @@
     var $status;
     var _options;
     var _defaults = {
-      showAllText: "Hiển thị tất cả {rowCount} bản ghi",
+      showAllText: "Hiển thị tất cả {rowCount} điểm bán",
       showPageText: "Hiển thị trang {pageNum} trong tổng số {pageCount}"
     };
     

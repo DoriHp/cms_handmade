@@ -20,7 +20,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý danh sách quận, huyện
+                            <h1>Danh sách quận, huyện
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -39,7 +39,9 @@
                             <div class="table-toolbar">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="btn-group">
+                                        <div class="btn-group" <% if (user.role != "admin") { -%>
+                                            style="display: none;"
+                                        <% } -%>>
                                             <button id="sample_editable_1_2_new" type="button" onclick="displayAdd()" class="btn sbold green"> Thêm mới
                                                 <i class="fa fa-plus"></i>
                                             </button>
@@ -89,8 +91,10 @@
                                                                 <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
                                                         </li>
                                                         <li>
-                                                            <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
-                                                                <i class="fas fa-trash a_del"></i> Xóa bản ghi </a>
+                                                            <a href="javascript:;" class="a_del" id='<%= data[i]._id %>' <% if (user.role != "admin") { -%>
+                                                                    style="display: none;"
+                                                                <% } -%>>
+                                                                <i class="fas fa-trash"></i> Xóa bản ghi </a>
                                                         </li>
                                                         <li class="divider"> </li>
                                                     </ul>
@@ -114,9 +118,11 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fas fa-info-circle"></i> Dữ liệu về quận, huyện</div>
-                        <div class="actions" style="margin-right: 50px;">
-                            <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
-                                <i class="far fa-edit"></i> Cho phép sửa đổi </button>
+                        <div class="actions" style="margin-right: 50px;" >
+                            <button <% if (user.role != "admin") { -%>
+                                            style="display: none;"
+                                        <% } -%> type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
+                                <i class="far fa-edit"></i> Sửa </button>
                         </div>
                     </div>
                     <div class="portlet-body form">
@@ -134,8 +140,8 @@
                                 <div class="col-md-4">
                                     <select class="form-control input-circle" id="province_code" name="province_code">
                                             <option hidden>--Lựa chọn một tỉnh thành--</option>
-                                            <<% for (var i = 0; i < province.length; i++) { -%>
-                                                <option value="<%= province[i].province_code %>"><%= province[i].province_code %> (<%= province[i].name %>)</option>
+                                            <% for (var i = 0; i < province.length; i++) { -%>
+                                                <option value=<%= province[i].province_code %>><%= province[i].province_code %> (<%= province[i].name %>)</option>
                                             <% } -%>
                                     </select>
                                 </div>
@@ -143,29 +149,29 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tên quận, huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Name">
+                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Tên quận, huyện">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic name</label>
+                                <label class="col-md-3 control-label">Tên trưởng Quận/Huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Pic name">
+                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Tên trưởng Quận/Huyện">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic phone</label>
+                                <label class="col-md-3 control-label">SĐT trưởng Quận/Huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="Pic phone">
+                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="SĐT trưởng Quận/Huyện">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Địa chỉ chi nhánh</label>
+                                <label class="col-md-3 control-label">Địa chỉ trụ sở</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
+                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Địa chỉ trụ sở">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại đường dây nóng</label>
+                                <label class="col-md-3 control-label">SĐT đường dây nóng</label>
                                 <div class="col-md-4">
                                     <input type="text" id="hotline" name="hotline" class="form-control input-circle" placeholder="Hotline">
                                 </div>
@@ -197,13 +203,13 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mã quận, huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="District code">
+                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="Mã quận, huyện">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mã tỉnh thành</label>
                                 <div class="col-md-4">
-                                    <select class="form-control input-circle" id="province_code" name="province_code">
+                                    <select class="form-control input-circle" id="province_code" name="province_code" onchange="change_pv_code()">
                                             <option hidden>--Lựa chọn một tỉnh thành--</option>
                                             <<% for (var i = 0; i < province.length; i++) { -%>
                                                 <option value="<%= province[i].province_code %>"><%= province[i].province_code %> (<%= province[i].name %>)</option>
@@ -214,29 +220,29 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tên quận, huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Name">
+                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Tên quận, huyện">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic name</label>
+                                <label class="col-md-3 control-label">Tên trưởng Quận/Huyện</label>
                                 <div class="col-md-4">
                                     <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Pic name">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic phone</label>
+                                <label class="col-md-3 control-label">SĐT trưởng Quận/Huyện</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="Pic phone">
+                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="SĐT trưởng Quận/Huyện">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Địa chỉ chi nhánh</label>
+                                <label class="col-md-3 control-label">Địa chỉ trụ sở</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
+                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Địa chỉ trụ sở">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại đường dây nóng</label>
+                                <label class="col-md-3 control-label">SĐT đường dây nóng</label>
                                 <div class="col-md-4">
                                     <input type="text" id="hotline" name="hotline" class="form-control input-circle" placeholder="Hotline">
                                 </div>
@@ -280,6 +286,11 @@
         .catch(function(error){
             alert('Tải dữ liệu thất bại, đã có lỗi xảy ra!' + error)
         })
+    }
+
+    function change_pv_code(e){
+        var id = this.value
+        myAdding.querySelector('#district_code').value = id
     }
 
     function showOut(items){
@@ -365,6 +376,7 @@
         .then(function(response){
             if(response.status == 200){
             	var data = response.data
+                console.log(response.data)
                 displayEdit()
                 var input = myEditor.querySelectorAll('input[type="text"]')
                 input[0].value = data.district_code

@@ -6,14 +6,14 @@ var fs = require('fs')
 var client = require('./redis.client.js')
 
 module.exports.member = async function(req, res){
-	res.status(200).render('member_table', {breadcrumb: [{href:'/manager/member', locate: 'Quản lý danh sách điểm bán'}], user:req.user})
+	res.status(200).render('member_table', {breadcrumb: [{href:'/manager/member', locate: 'Danh sách điểm bán'}], user:req.user})
 }
 
 module.exports.list = async function(req, res){
 	var start = process.hrtime()
 	console.log('start:')
 	console.log(start)
-	var result = await Member.find({}, ['member_code', 'fb_id', 'fb_firstName', 'fb_lastName', 'fb_gender', 'fb_linkChat']).lean()
+	var result = await Member.find({}, ['member_code', 'otp', 'fb_firstName', 'fb_lastName', 'fb_gender', 'fb_linkChat', 'auto_reply']).lean()
 	var end = process.hrtime(start)
     console.log("end:")
     console.log(end)
@@ -21,16 +21,30 @@ module.exports.list = async function(req, res){
 }
 
 module.exports.add = function(req, res){
+	var crypto = require('crypto');
+
+	function randomValueHex(len) {
+		return crypto
+		  .randomBytes(Math.ceil(len / 2))
+		  .toString('hex') // convert to hexadecimal format
+		  .slice(0, len) // return required number of characters
+	}
+
+
+	var otp = randomValueHex(6)
+	var now = new Date().toISOString()
 	var new_member = {
 		member_code: req.body.data.member_code,
-		otp: "",
+		otp: otp,
 		auto_reply: false,
 		fb_id: "",
 		fb_firstName: "",
 		fb_lastName: "",
 		fb_gender: "",
 		fb_linkChat: "",
-		lastTimeQueryVAS: ""
+		lastTimeQueryVAS: now,
+		create_time: now,
+		update_time: now
 	}
 	Member.insertMany(new_member, function(err, result){
 		if(err){

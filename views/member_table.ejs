@@ -27,7 +27,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý danh sách điểm bán
+                            <h1>Danh sách điểm bán
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -85,7 +85,7 @@
                                     </div>
                                     &nbsp; Tìm kiếm theo &nbsp;
                                     <select id="set_search_field" onchange="change_field()">
-                                        <option value="member_code">Mã thành viên</option>
+                                        <option value="member_code">Mã điểm bán</option>
                                         <option value="fb_name" selected>Tên facebook</option>
                                     </select>
                                 </div>
@@ -148,7 +148,7 @@
     <script src="/slickGrid/controls/slick.pager.js"></script>
     <script src="/slickGrid/controls/slick.columnpicker.js"></script>
     <script>
-        var searchField = "fb_name"
+        var searchField = "member_code"
         function change_field(e){
             var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this)
             var value = elem.value || elem.options[elem.selectedIndex].value
@@ -166,12 +166,13 @@
         var columns = []
 
         columns.push({id: "id", name: "STT", field: "id", maxWidth: 80, cssClass: "cell-title", sortable: true})
-        columns.push({id: "member_code", name: "Member_code", field: "member_code", minWidth: 120, cssClass: "cell-title", sortable: true})
-        columns.push({id: "fb_id", name: "Facebook ID", field: "fb_id", width: 120, minWidth: 120, cssClass: "cell-title"})
-        columns.push({id: "fb_name", name: "Facebook name", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
-        columns.push({id: "fb_gender", name: "Facebook gender", field: "fb_gender", minWidth: 120, cssClass: "cell-title"})
-        columns.push({id: "fb_linkChat", name: "Link to chat box", field: "fb_linkChat", minWidth: 120, cssClass: "cell-title"})
-        columns.push({id: "del", field:'del', name:'Delete', maxWidth: 80, formatter: buttonFormatter})
+        columns.push({id: "member_code", name: "Mã điểm bán", field: "member_code", minWidth: 120, cssClass: "cell-title", sortable: true})
+        columns.push({id: "otp", name: "OTP", field: "otp", width: 120, minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "fb_name", name: "Tên facebook", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
+        columns.push({id: "fb_gender", name: "Giới tính", field: "fb_gender", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "fb_linkChat", name: "Đường dẫn messenger", field: "fb_linkChat", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "auto_reply", name: "Trả lời tự động", field: "auto_reply", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "del", field:'del', name:'Xóa', maxWidth: 80, formatter: buttonFormatter})
 
         function buttonFormatter(row,cell,value,columnDef,dataContext){  
             var button = "<button class='del' type='button' id='"+ dataContext.id +"'>Xóa</button>";
@@ -196,7 +197,7 @@
             topPanelHeight: 25
         }
 
-        var sortcol = "fb_id"
+        var sortcol = "id"
         var sortdir = 1
         var percentCompleteThreshold = 0
         var searchString = ""
@@ -261,10 +262,10 @@
     .then(function(response){
         var data = response.data
         for(let i = 0; i < data.length; i++ ){
-            data[i].id = i
+            data[i].id = i + 1
             data[i].fb_id = data[i].fb_id
-            data[i].fb_name = data[i].fb_firstName + " " + data[i].fb_lastName
-            data[i].fb_gender = data[i].fb_gender
+            data[i].fb_name = data[i].fb_lastName + " " + data[i].fb_firstName
+            data[i].auto_replay = (data[i].fb_gender)?"Có":"Không"
         }
         dataView = new Slick.Data.DataView({ inlineFilters: true })
         grid = new Slick.Grid("#myGrid", dataView, columns, options)
@@ -286,10 +287,10 @@
             if (args.grid.getColumns()[args.cell].field == 'del') {
                swal({
                     title: "Xác nhận",
-                    text: "Bạn chắc chắn muốn xóa bản ghi này?", 
+                    text: "Bạn chắc chắn muốn xóa điểm bán này?", 
                     showCancelButton: true,
                     confirmButtonText: "Tiếp tục",
-                    calcelButtonText: "Hủy bỏ",
+                    cancelButtonText: "Hủy bỏ",
                     confirmButtonColor: 'orange',
                     type: "warning",
                     allowOutsideClick: false

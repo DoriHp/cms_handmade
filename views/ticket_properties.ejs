@@ -178,7 +178,7 @@
                                                             </div>
                                                             <div class="mt-step-title uppercase font-grey-cascade">Đã nhận
                                                             </div>
-                                                            <div class="mt-step-content font-grey-cascade">Người được giao xác nhận đã nhận được ticket
+                                                            <div class="mt-step-content font-grey-cascade">Người được giao đã nhận được ticket
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2 mt-step-col <% if ( ticket.status == 'resolved' ) { -%>
@@ -199,7 +199,7 @@
                                                             <% } -%>">
                                                             <div class="mt-step-number bg-white">5</div>
                                                             <div class="mt-step-title uppercase font-grey-cascade">Đã đóng</div>
-                                                            <div class="mt-step-content font-grey-cascade">Admin/supervisor đóng yêu cầu xử lý ticket</div>
+                                                            <div class="mt-step-content font-grey-cascade">Admin/supervisor đóng ticket</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -211,16 +211,25 @@
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Loại</p>
-                                                            <p class="col-md-8"><%= ticket.type %></p>
+                                                            <p class="col-md-8">
+                                                            <% if (ticket.type == 'feedback') { -%>
+                                                                Phản ánh
+                                                            <% } else { -%>
+                                                                Hỏi thông tin
+                                                            <% } -%></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Người được gán</p>
-                                                            <p class="col-md-8"><% if (ticket.assignee) { -%>
-                                                                <%= ticket.assignee %>
+                                                            <p class="col-md-4" style="font-weight: bold;">Người được giao</p>
+                                                            <p class="col-md-8"><% if (ticket.assignee_string) { -%>
+                                                                <%= ticket.assignee_string %>
                                                             <% } else { -%>
                                                                 -
                                                             <% } -%></p>
                                                         </div>  
+                                                        <div class="ticket_info row col-md-12">
+                                                            <p class="col-md-4" style="font-weight: bold;">Mã điểm bán</p>
+                                                            <p class="col-md-8"> <%= ticket.member_profile.member_code %> </p>
+                                                        </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Tên điểm bán</p>
                                                             <p class="col-md-8"> <%= ticket.member_profile.name %> </p>
@@ -245,8 +254,8 @@
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Cập nhật gần nhất bởi</p>
-                                                            <p class="col-md-8"><% if (ticket.assignee) { -%>
-                                                                <%= ticket.assignee %>
+                                                            <p class="col-md-8"><% if (ticket.update_by) { -%>
+                                                                <%= ticket.update_by %>
                                                             <% } else { -%>
                                                                 -
                                                             <% } -%></p>
@@ -285,7 +294,9 @@
                                                             style="display: none;"
                                                         <% } -%>>
                                                         <% if (ticket.type == 'asking_for_information') { -%>
-                                                            <p style="font-style: italic;">"<%= ticket.description.texts.join(', ') %>"</p>"
+                                                            <% for (var i = 0; i < ticket.description.texts.length ; i++) { -%>
+                                                                <p style="font-style: italic;">"<%= ticket.description.texts[i] %>"</p>
+                                                            <% } -%>
                                                         <% } -%>
                                                             
                                                         </div>
@@ -360,15 +371,15 @@
                                                                     <option value="assigned" <% if (ticket.status == 'assigned') { -%>
                                                                             selected
                                                                         <% } else { -%>
-                                                                            <% if (ticket.status_num > 1) { -%>
+                                                                            <% if (ticket.status_num > 1 || user.role == 'user') { -%>
                                                                                 hidden
                                                                             <% } -%>
                                                                         <% } -%>>Đã gán
                                                                     </option>
-                                                                    <option value="received" <% if (ticket.status == 'assigned') { -%>
+                                                                    <option value="received" <% if (ticket.status == 'recieved') { -%>
                                                                             selected
                                                                         <% } else { -%>
-                                                                            <% if (ticket.status_num > 2) { -%>
+                                                                            <% if (ticket.status_num > 2 || user.role == 'user') { -%>
                                                                                 hidden
                                                                             <% } -%>
                                                                         <% } -%>>Đã nhận
@@ -393,14 +404,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label class="control-label col-md-3">Chỉ định người xử lý</label>
+                                                            <label class="control-label col-md-3">Chỉ định người được giao</label>
                                                             <div class="col-md-4">
                                                                 <% if (ticket.status != 'new' || user.role == 'user' || ticket.assignee != "") { -%>
                                                                     <select name="assignee" class="form-control" id="select_assignee" disabled>
                                                                         <% for (var i = 0; i < users.length ; i++) { -%>
                                                                             <option value="<%= users[i].username%>" <% if (users[i].username == ticket.assignee) { -%>
                                                                                     selected
-                                                                            <% } -%>> <%= users[i].username %> </option>
+                                                                            <% } -%>> <%= users[i].name %> </option>
                                                                         <% } -%>
                                                                     </select>    
                                                                 <% } else { -%>

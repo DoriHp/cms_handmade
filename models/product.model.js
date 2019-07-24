@@ -11,7 +11,9 @@ var productSchema = new mongoose.Schema({
 	uu_dai_ngoai_mang: String,
 	uu_dai_data: String,
 	uu_dai_khac: String,
-	public: Boolean
+	public: Boolean,
+	create_time: Date,
+	update_time: Date
 })
 
 var Product = mongoose.model('Product', productSchema, 'products')

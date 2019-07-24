@@ -20,7 +20,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý danh sách tỉnh thành
+                            <h1>Danh sách tỉnh thành
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -29,7 +29,7 @@
                     <% include _layouts/breadcrumb %>
                     <!-- BEGIN PAGE BASE CONTENT -->
                      <!-- BEGIN TABLE OF DISTRICT -->
-                    <div class="row" id="district_div" style="display: none;">
+                    <!-- <div class="row" id="district_div" style="display: none;">
                         <div class="col-md-12">
                             <div class="portlet box green">
                                 <div class="portlet-title">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>  
                         </div>
-                    </div>
+                    </div> -->
                     <!-- END OF TABLE OF DISTRICT -->
                     <div class="portlet light bordered">
                         <div class="portlet-title">
@@ -71,7 +71,9 @@
                             <div class="table-toolbar">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <div class="btn-group">
+                                        <div class="btn-group" <% if (user.role != 'admin') { -%>
+                                                            style= "display: none;"
+                                                        <% } -%>>
                                             <button id="sample_editable_1_2_new" type="button" onclick="displayAdd()" class="btn sbold green"> Thêm mới
                                                 <i class="fa fa-plus"></i>
                                             </button>
@@ -118,13 +120,17 @@
                                                             <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
                                                                 <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
                                                         </li>
-                                                        <li>
+                                                        <li <% if (user.role != 'admin') { -%>
+                                                            style= "display: none;"
+                                                        <% } -%>>
                                                             <a href="javascript:;" class="a_dt" id='<%= data[i]._id %>'>
                                                                 <i class="far fa-file a_dt"></i> Danh sách quận, huyện trực thuộc </a>
                                                         </li>
-                                                        <li>
+                                                        <li <% if (user.role != 'admin') { -%>
+                                                            style= "display: none;"
+                                                        <% } -%>>
                                                             <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
-                                                                <i class="fas fa-trash a_del"></i> Xóa bản ghi </a>
+                                                                <i class="fas fa-trash"></i> Xóa bản ghi </a>
                                                         </li>
                                                         <li class="divider"> </li>
                                                     </ul>
@@ -149,7 +155,7 @@
                             <i class="fas fa-info-circle"></i> Dữ liệu tỉnh thành </div>
                         <div class="actions" style="margin-right: 50px;">
                             <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
-                                <i class="far fa-edit"></i> Cho phép sửa đổi </button>
+                                <i class="far fa-edit"></i> Sửa </button>
                         </div>
                     </div>
                     <div class="portlet-body form">
@@ -159,7 +165,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tên tỉnh thành</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Name">
+                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Tên tỉnh thành">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -169,25 +175,25 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic name</label>
+                                <label class="col-md-3 control-label">Tên lãnh đạo</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Pic name">
+                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Tên lãnh đạo">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic phone</label>
+                                <label class="col-md-3 control-label">SĐT lãnh đạo</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="Pic phone">
+                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="SĐT lãnh đạo">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Địa chỉ chi nhánh</label>
+                                <label class="col-md-3 control-label">Địa chỉ trụ sở</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
+                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Địa chỉ trụ sở">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại đường dây nóng</label>
+                                <label class="col-md-3 control-label">SĐT đường dây nóng</label>
                                 <div class="col-md-4">
                                     <input type="text" id="hotline" name="hotline" class="form-control input-circle" placeholder="Hotline">
                                 </div>
@@ -219,35 +225,35 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tên tỉnh thành</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Name">
+                                    <input type="text" id="name" name="name" class="form-control input-circle" placeholder="Tên tỉnh thành">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mã tỉnh thành</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="province_code" name="province_code" class="form-control input-circle" placeholder="District code">
+                                    <input type="text" id="province_code" name="province_code" class="form-control input-circle" placeholder="Mã tỉnh thành">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic name</label>
+                                <label class="col-md-3 control-label">Tên lãnh đạo</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Pic name">
+                                    <input type="text" id="pic_name" name="pic_name" class="form-control input-circle" placeholder="Tên lãnh đạo">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Pic phone</label>
+                                <label class="col-md-3 control-label">SĐT lãnh đạo</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="Pic phone">
+                                    <input type="text" id="pic_phone" name="pic_phone" class="form-control input-circle" placeholder="SĐT lãnh đạo">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Địa chỉ chi nhánh</label>
+                                <label class="col-md-3 control-label">Địa chỉ trụ sở</label>
                                 <div class="col-md-4">
                                     <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại đường dây nóng</label>
+                                <label class="col-md-3 control-label">SĐT đường dây nóng</label>
                                 <div class="col-md-4">
                                     <input type="text" id="hotline" name="hotline" class="form-control input-circle" placeholder="Hotline">
                                 </div>
@@ -273,25 +279,11 @@
     var myEditor = document.getElementById('myEditor')
     var myAdding = document.getElementById('myAdding')
     var a_pro = document.getElementsByClassName('a_pro')
-    var a_dt = document.getElementsByClassName('a_dt')
     var a_del = document.getElementsByClassName('a_del')
     var select_id
     for(let i = 0; i < a_pro.length; i++){
         a_pro[i].addEventListener('click', getProperties)
-        a_dt[i].addEventListener('click', getDistrict)
         a_del[i].addEventListener('click', delProvince)
-    }
-    function getDistrict(){
-        axios.get('/manager/province/list')
-        .then(function(response){
-            if(response.status == 200){
-                showOut(response.data)
-            }
-        })
-        .catch(function(error){
-            console.error(error)
-            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-        })
     }
 
     function showOut(items){
@@ -340,32 +332,44 @@
 
     function delProvince(e){
         var _id = this.id
-        swal({
-            title: "Xác nhận",
-            text: "Bạn chắc chắn muốn xóa bản ghi này?", 
-            showCancelButton: true,
-            confirmButtonText: "Tiếp tục",
-            calcelButtonText: "Hủy bỏ",
-            confirmButtonColor: 'orange',
-            type: "warning",
-            allowOutsideClick: false
-        })
-        .then(function(result){
-            if(result.value){
-                axios.delete('/manager/province/delete/' + encodeURIComponent(_id))
-                .then(function(response){
-                    if(response.status == 200){
-                        swal("Thành công!", "Xóa bản ghi thành công!", "success", {showConfirmButton: false})
-                        setTimeout(function(){
-                            location.reload()
-                        }, 500)
+        axios.get('/manager/province/districtlist/' + encodeURIComponent(this.id))
+        .then(function(response){
+            if(response.data){
+                console.log(response.data)
+                swal("Chú ý", "Có dữ liệu quận, huyện trực thuộc. Không thể thực hiện thao tác này.", "warning")
+            }else{
+                swal({
+                    title: "Xác nhận",
+                    text: "Bạn chắc chắn muốn xóa bản ghi này?", 
+                    showCancelButton: true,
+                    confirmButtonText: "Tiếp tục",
+                    calcelButtonText: "Hủy bỏ",
+                    confirmButtonColor: 'orange',
+                    type: "warning",
+                    allowOutsideClick: false
+                })
+                .then(function(result){
+                    if(result.value){
+                        axios.delete('/manager/province/delete/' + encodeURIComponent(_id))
+                        .then(function(response){
+                            if(response.status == 200){
+                                swal("Thành công!", "Xóa bản ghi thành công!", "success", {showConfirmButton: false})
+                                setTimeout(function(){
+                                    location.reload()
+                                }, 500)
+                            }
+                        })
+                        .catch(function(error){
+                            console.error(error)
+                            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                        })
                     }
                 })
-                .catch(function(error){
-                    console.error(error)
-                    swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-                })
             }
+        })  
+        .catch(function(error){
+            console.error(error)
+            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
         })
     }
 
@@ -515,55 +519,6 @@
             console.error(error)
             swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
         })
-    }
-
-    function getDistrict(e){
-        document.getElementById('district_div').style.display = 'block'
-        axios.get('/manager/province/districtlist/' + encodeURIComponent(this.id))
-        .then(function(response){
-            var table = document.querySelector('#district_table')
-            table.style.display = 'inline-table'
-            var table_body = table.querySelector('tbody')
-            var index = 0
-            if(!response.data){
-                let row = table_body.insertRow(index)
-                var cell0 = row.insertCell(0)
-                cell0.innerHTML = 'Không có dữ liệu để hiển thị!'
-                return
-            }
-            for(let i of response.data){
-                let row = table_body.insertRow(index)
-                row.id = i._id
-                
-                var cell0 = row.insertCell(0)
-                var cell1 = row.insertCell(1)
-                var cell2 = row.insertCell(2)
-                var cell3 = row.insertCell(3)
-                var cell4 = row.insertCell(4)
-                var cell5 = row.insertCell(5)
-                
-                cell0.innerHTML = index + 1
-                cell1.innerHTML = (!i.district_code)?"N/A":i.district_code
-                cell2.innerHTML = (!i.name)?"N/A":i.name
-                cell3.innerHTML = (!i.office_address)?"N/A":i.office_address
-                cell4.innerHTML = (!i.hotline)?"N/A":i.hotline
-                cell5.innerHTML = `<div class="btn-group">
-                                        <button class="btn btn_open btn-xs green dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false"> Chi tiết
-                                        </button>
-                                    </div>`
-            
-                index++
-                var btn_open = document.getElementsByClassName('btn_open')
-                for(let i of btn_open){
-                    i.addEventListener('click', open_tab)
-                }
-            }   
-        })  
-        .catch(function(error){
-            console.error(error)
-            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-        })
-        setTimeout(scrollTo(document.body, document.getElementById('district_div'), 200), 1000)
     }
 
     function open_tab(){

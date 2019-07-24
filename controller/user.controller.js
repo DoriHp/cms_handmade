@@ -28,59 +28,32 @@ const transporter = nodemailer.createTransport({
 var Notify = require('../models/notify.model.js')
 
 module.exports.forgotpw = function(req, res){
-	var str = generator.generate({
-    	length: 10,
-    	numbers: true,
-    	symbols: true
-	})
+	var str = '12345678'
 	var password = bcrypt.hashSync(str, saltRounds)
-	var mailOptions = {
-	  from: process.env.EMAIL,
-	  to: req.body.email,
-	  subject: 'New passsword',
-	  text: 'Here is new password for you: ' + password
-	}
-	transporter.sendMail(mailOptions, function(error, info){
-		if (error) {
-			console.log(error)
-			req.flash('error', 'Đã có lỗi xảy ra, vui lòng thử lại sau!')
-			res.status(500).redirect('../../login')
-		} else {
-			User.findOneAndUpdate({email: req.body.email}, {$set: {password: password}}, {upsert: false}, function(err, user){
-				if(err){
-					req.flash('error', 'Đã có lỗi xảy ra, vui lòng thử lại sau!')
-					res.status(500).redirect('../../login')
-				}else{
-					res.status(200).redirect('../../login')
-				}
-			})
+	User.findOneAndUpdate({username: req.body.data}, {$set: {password: password}}, {upsert: false}, function(err, user){
+		if(err){
+			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+		}else{
+			res.status(200).end()
 		}
 	})
 }
 
 module.exports.register = async function(req, res){
-	var username = req.body.username
-	console.log(username)
+	var username = req.body.data.username
 	User.findOne({username: username}, function(err, result){
 		if(result){
-			req.flash('error', 'Tên đăng nhập đã tồn tại! Hãy chọn tên khác!')
-			res.status(500).redirect('../../login')
+			res.status(500).send("Tên đăng nhập đã tồn tại, vui lòng chọn tên khác!")
+			return
 		}else{
-			var password = bcrypt.hashSync(req.body.password, saltRounds)
-			User.insertMany({
-				name: req.body.fullname,
-				username: req.body.username,
-				password: password,
-				page_token: '',
-				email: req.body.email,
-				role: 'admin'
-			}, function(err, result){
+			var save = req.body.data
+			console.log(save)
+			save.password = bcrypt.hashSync(req.body.data.password, saltRounds)
+			User.insertMany(save, function(err, result){
 				if(err){
-					req.flash('error', 'Đã có lỗi xảy ra, vui lòng thử lại sau!')
-					res.status(500).redirect('../../login')
+					res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 				}else{
-					req.flash('error', 'Tạo tài khoản thành công! Sử dụng tài khoản vừa tạo để đăng nhập!')
-					res.status(200).redirect('../')
+					res.status(200).end()
 				}
 			})
 		}

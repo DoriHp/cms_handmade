@@ -57,6 +57,7 @@
                                                                 </th>
                                                                 <th> Ticket ID </th>
                                                                 <th> Loại </th>
+                                                                <th> Mã điểm bán </th>
                                                                 <th> Người xử lý </th>
                                                                 <th> Trạng thái </th>
                                                                 <th> Cập nhật gần nhất </th>
@@ -81,6 +82,9 @@
                                                                             <% } else { -%>
                                                                                 Hỏi thông tin                              
                                                                             <% } -%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= tickets[i].member_profile.member_code %>
                                                                         </td>
                                                                         <td> <% if (tickets[i].assignee) { -%>
                                                                             <%= tickets[i].assignee %>

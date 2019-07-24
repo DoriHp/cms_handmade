@@ -22,7 +22,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý hình mô tả VAS
+                            <h1>Danh sách gói VAS
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -65,7 +65,7 @@
                                                                 </th>
                                                                 <th> Tên gói </th>
                                                                 <th> Hình ảnh </th>
-                                                                <th> Đường dẫn mô tả </th>
+                                                                <th> Website mô tả chi tiết </th>
                                                                 <th> Độ ưu tiên </th>
                                                                 <th> Hành động </th>
                                                             </tr>
@@ -75,7 +75,7 @@
                                                                 	<tr class="odd gradeX" id="<%= data[i]._id %>">
 	                                                                    <td>
 	                                                                        <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
-	                                                                            <input type="checkbox" class="checkboxes" value="<%= data[i].package_code %>"/>
+	                                                                            <input id="<%= data[i]._id %>" type="checkbox" class="checkboxes" value="<%= data[i].package_code %>"/>
 	                                                                            <span></span>
 	                                                                        </label>
 	                                                                    </td>
@@ -152,7 +152,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label">Description link</label>
+                                        <label class="col-md-4 control-label">Website mô tả chi tiết</label>
                                         <div class="col-md-7">
                                             <input type="text" id="des_link" name="des_link" class="form-control input-circle" placeholder="Đường dẫn mô tả">
                                         </div>
@@ -213,11 +213,12 @@
             save.image_name = data.image_name
             save.description_link = data.des_link
             save.priority = parseInt(data.priority)
+            save.update_time = new Date()
             console.log(save, currentPK)
             if(!deepCompare(save, currentPK)){
                 swal({
                     title: "Xác nhận",
-                    text: "Hãy xác nhận hành động của bạn",
+                    text: "Bạn có muốn lưu lại không?",
                     type: "warning",
                     showCancelButton: true,
                     cancelButtonText: "Hủy bỏ",
@@ -239,9 +240,6 @@
                                 setTimeout(function(){
                                     location.reload()
                                 }, 1000) 
-                            }else{
-                                error_alert()
-                                return null
                             }
                         })
                         .catch(function(error){
@@ -324,18 +322,6 @@
             modal.style.display = "none"
             var other = document.getElementsByClassName("page-content")[0]
             other.style.filter = "blur(0)"
-            var save = {}
-            var formData = new FormData(document.getElementById('image_data'))
-
-            var data = {}
-            for (var pair of formData.entries()) {
-              data[pair[0]] = pair[1]
-            }
-            save.package_code = data.ten_pk
-            save.image_name = data.image_name
-            save.description_link = data.des_link
-            save.priority = data.priority
-
         }
 
         //compare before and after
@@ -447,26 +433,41 @@
         //xóa
         function del_vas(){
             if(cb_select.length < 1){
-                swal("Chú ý", "Hãy chọn ít nhất một hàng dữ liệu để tiếp tục!", "info")
+                swal("Chú ý", "Hãy chọn ít nhất một gói VAS để tiếp tục!", "info")
                 return
             }
-            axios.delete('/manager/package/delete/', {
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                data: cb_select
+
+            swal({
+                title: "Xác nhận",
+                text: "Bạn có chắc chắn muốn xóa sản phẩm này?",
+                type: "warning",
+                showCancelButton: true,
+                cancelButtonText: "Hủy bỏ",
+                confirmButtonText: "Tiếp tục"
             })
-            .then(function(response){
-                if(response.status == 200){
-                    swal("Thành công", "Đã xóa dữ liệu", "success", {showConfirmButton: false})
-                    setTimeout(function(){
-                        location.reload()
-                    }, 500)
+            .then(function(result){
+                if(result.value){
+                    axios.post('/manager/package/delete/', {
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        data: {
+                            list: cb_select
+                        }
+                    })
+                    .then(function(response){
+                        if(response.status == 200){
+                            swal("Thành công", "Đã xóa dữ liệu", "success", {showConfirmButton: false})
+                            setTimeout(function(){
+                                location.reload()
+                            }, 500)
+                        }
+                    })
+                    .catch(function(error){
+                        console.error(error)
+                        error_alert()
+                    })
                 }
-            })
-            .catch(function(error){
-                console.error(error)
-                error_alert()
             })
         }
 
@@ -497,6 +498,7 @@
                 var display = document.getElementById('image_name')
                 var formData = new FormData()
                 formData.append("package_image", e.target.files[0])
+                var now = new Date().toISOString()
                 axios.post('/manager/package/image/upload/' + encodeURIComponent(code), formData,
                     {
                         headers:{
@@ -509,9 +511,6 @@
                         display.value = response.data.filename
                         document.querySelector("#pk_image img").src = response.data.filelink
                     }
-                    else{
-                        swal('Tải ảnh lên thất bại!', "", "error")
-                    }       
                 })
                 .catch(function(error){
                     error_alert()
@@ -562,6 +561,9 @@
             save.image_name = data.image_name
             save.description_link = data.des_link
             save.priority = parseInt(data.priority)
+            var now = new Date()
+            save.create_time = now
+            save.update_time = now
             axios.post('/manager/package/add-new', {
                 headers:{
                     'Content-Type': 'multipart/form-data'
@@ -591,6 +593,6 @@
     <script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="/assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <script src="/assets/pages/scripts/table-datatables-managed.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 <% include _layouts/footer %>
