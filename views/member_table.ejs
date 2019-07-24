@@ -167,11 +167,11 @@
 
         columns.push({id: "id", name: "STT", field: "id", maxWidth: 80, cssClass: "cell-title", sortable: true})
         columns.push({id: "member_code", name: "Mã điểm bán", field: "member_code", minWidth: 120, cssClass: "cell-title", sortable: true})
-        columns.push({id: "otp", name: "OTP", field: "otp", width: 120, minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "otp", name: "OTP", field: "otp", width: 80, minWidth: 120, cssClass: "cell-title"})
         columns.push({id: "fb_name", name: "Tên facebook", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
         columns.push({id: "fb_gender", name: "Giới tính", field: "fb_gender", minWidth: 120, cssClass: "cell-title"})
-        columns.push({id: "fb_linkChat", name: "Đường dẫn messenger", field: "fb_linkChat", minWidth: 120, cssClass: "cell-title"})
-        columns.push({id: "auto_reply", name: "Trả lời tự động", field: "auto_reply", minWidth: 120, cssClass: "cell-title"})
+        columns.push({id: "fb_linkChat", name: "Đường dẫn messenger", field: "fb_linkChat", minWidth: 160, cssClass: "cell-title"})
+        columns.push({id: "auto_reply_string", name: "Trả lời tự động", field: "auto_reply_string", minWidth: 120, cssClass: "cell-title"})
         columns.push({id: "del", field:'del', name:'Xóa', maxWidth: 80, formatter: buttonFormatter})
 
         function buttonFormatter(row,cell,value,columnDef,dataContext){  
@@ -265,7 +265,7 @@
             data[i].id = i + 1
             data[i].fb_id = data[i].fb_id
             data[i].fb_name = data[i].fb_lastName + " " + data[i].fb_firstName
-            data[i].auto_replay = (data[i].fb_gender)?"Có":"Không"
+            data[i].auto_reply_string = (data[i].auto_reply)?"Có":"Không"
         }
         dataView = new Slick.Data.DataView({ inlineFilters: true })
         grid = new Slick.Grid("#myGrid", dataView, columns, options)
@@ -300,7 +300,7 @@
                         axios.delete('/manager/member/delete/' + encodeURIComponent(args.grid.getDataItem(args.row).member_code))
                         .then(function(response){
                             if(response.status == 200){
-                                swal("Thành công!", "Xóa bản ghi thành công!", "success")
+                                swal("Thành công!", "Xóa điểm bán thành công!", "success")
                                 dataView.deleteItem(args.grid.getDataItem(args.row).id)
                                 args.grid.invalidate()
                             }

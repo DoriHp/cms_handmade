@@ -141,7 +141,7 @@
                                     <select class="form-control input-circle" id="province_code" name="province_code">
                                             <option hidden>--Lựa chọn một tỉnh thành--</option>
                                             <% for (var i = 0; i < province.length; i++) { -%>
-                                                <option value=<%= province[i].province_code %>><%= province[i].province_code %> (<%= province[i].name %>)</option>
+                                                <option value="<%= province[i].province_code %>"><%= province[i].province_code %> (<%= province[i].name %>)</option>
                                             <% } -%>
                                     </select>
                                 </div>
@@ -212,7 +212,9 @@
                                     <select class="form-control input-circle" id="province_code" name="province_code" onchange="change_pv_code()">
                                             <option hidden>--Lựa chọn một tỉnh thành--</option>
                                             <<% for (var i = 0; i < province.length; i++) { -%>
-                                                <option value="<%= province[i].province_code %>"><%= province[i].province_code %> (<%= province[i].name %>)</option>
+                                                <option value="<%= province[i].province_code %>">
+                                                    <%= province[i].province_code %> (<%= province[i].name %>)
+                                                </option>
                                             <% } -%>
                                     </select>
                                 </div>
@@ -289,7 +291,7 @@
     }
 
     function change_pv_code(e){
-        var id = this.value
+        var id = myAdding.querySelector('#province_code').value
         myAdding.querySelector('#district_code').value = id
     }
 
@@ -385,7 +387,7 @@
                 input[3].value = data.pic_phone
                 input[4].value = data.office_address
                 input[5].value = data.hotline
-                myEditor.querySelector('select').value = data.province_code
+                myEditor.querySelector('#province_code').value = data.province_code
                 myEditor.querySelectorAll('input').forEach(input => input.disabled = true)
                 myEditor.querySelectorAll('select').forEach(select => select.disabled = true)
             }

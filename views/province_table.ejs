@@ -334,7 +334,7 @@
         var _id = this.id
         axios.get('/manager/province/districtlist/' + encodeURIComponent(this.id))
         .then(function(response){
-            if(response.data){
+            if(response.data.length != 0){
                 console.log(response.data)
                 swal("Chú ý", "Có dữ liệu quận, huyện trực thuộc. Không thể thực hiện thao tác này.", "warning")
             }else{
