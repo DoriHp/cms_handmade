@@ -46,9 +46,9 @@
                                                 <% if (user.role == 'admin') { -%>
                                                     <div class="actions" style="align-content: left">
                                                     <button type="button" class="btn btn-default btn-sm" id="adding_button" onclick="add_new()">
-                                                        <i class="fas fa-plus"></i> Thêm mới hình ảnh </button>
+                                                        <i class="fas fa-plus"></i> Thêm mới gói VAS </button>
                                                     <button type="button" class="btn btn-default btn-sm" id="delete_button" onclick="del_vas()">
-                                                        <i class="fas fa-trash"></i> Xóa hình ảnh mô tả </button>
+                                                        <i class="fas fa-trash"></i> Xóa gói VAS </button>
                                                     </div> 
                                                 <% } -%>
                                             </div>
@@ -213,7 +213,7 @@
             save.image_name = data.image_name
             save.description_link = data.des_link
             save.priority = parseInt(data.priority)
-            save.update_time = new Date()
+            save.update_time = new Date().toISOString()
             console.log(save, currentPK)
             if(!deepCompare(save, currentPK)){
                 swal({

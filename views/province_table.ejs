@@ -123,12 +123,6 @@
                                                         <li <% if (user.role != 'admin') { -%>
                                                             style= "display: none;"
                                                         <% } -%>>
-                                                            <a href="javascript:;" class="a_dt" id='<%= data[i]._id %>'>
-                                                                <i class="far fa-file a_dt"></i> Danh sách quận, huyện trực thuộc </a>
-                                                        </li>
-                                                        <li <% if (user.role != 'admin') { -%>
-                                                            style= "display: none;"
-                                                        <% } -%>>
                                                             <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
                                                                 <i class="fas fa-trash"></i> Xóa bản ghi </a>
                                                         </li>
@@ -453,7 +447,10 @@
     }
 
     function enableEdit(){
-        myEditor.querySelectorAll('input').forEach(input => input.disabled = false)
+        myEditor.querySelectorAll('input').forEach(input => {
+            if(input.id != 'province_code')
+                input.disabled = false
+        })
         myEditor.querySelectorAll('select').forEach(select => select.disabled = false)
         myEditor.querySelector('#save_change').disabled = false
     }

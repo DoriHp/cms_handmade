@@ -65,17 +65,19 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <% if (user.role == 'user') { -%>
                                                                 <% for (var i = 0; i < tickets.length ; i++) { -%>
-                                                                	<tr class="odd gradeX" id="<%= tickets[i].id %>">
-	                                                                    <td style="display: none;">
+                                                                    <% if (tickets[i].assignee == user.username) { -%>
+                                                                        <tr class="odd gradeX" id="<%= tickets[i].id %>">
+                                                                        <td style="display: none;">
                                                                             <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
                                                                                 <input id="<%= tickets[i].id %>" type="checkbox" class="checkboxes" value="<%= tickets[i].id %>" <% if (tickets[i].status != 'closed') { -%>
                                                                                     disabled
                                                                                 <% } -%>/>
                                                                                 <span></span>
                                                                             </label>
-	                                                                    </td>
-	                                                                    <td> <%= tickets[i].id %> </td>
+                                                                        </td>
+                                                                        <td> <%= tickets[i].id %> </td>
                                                                         <td> 
                                                                             <% if (tickets[i].type == 'feedback') { -%>
                                                                                 Phản hồi
@@ -86,15 +88,15 @@
                                                                         <td>
                                                                             <%= tickets[i].member_profile.member_code %>
                                                                         </td>
-                                                                        <td> <% if (tickets[i].assignee) { -%>
-                                                                            <%= tickets[i].assignee %>
+                                                                        <td> <% if (tickets[i].assignee_string) { -%>
+                                                                            <%= tickets[i].assignee_string %>
                                                                         <% } else { -%>
                                                                             -
                                                                         <% } -%> </td>
-	                                                                    <td data-sort=<%= tickets[i].data_sort %>> 
+                                                                        <td data-sort=<%= tickets[i].data_sort %>> 
                                                                             <%= tickets[i].status_string %> 
                                                                         </td>
-	                                                                    <td> <% if (tickets[i].update_time_string) { -%>
+                                                                        <td> <% if (tickets[i].update_time_string) { -%>
                                                                             <%= tickets[i].update_time_string %>
                                                                         <% } else { -%>
                                                                             -
@@ -106,8 +108,54 @@
                                                                                 <span class="label label-sm label-warning"> Bình thường </span>
                                                                             <% } -%>
                                                                         </td>
-                                                                	</tr>
+                                                                    </tr>
+                                                                    <% } -%>
                                                                 <% } -%>
+                                                            <% } else { -%>
+                                                                <% for (var i = 0; i < tickets.length ; i++) { -%>
+                                                                    <tr class="odd gradeX" id="<%= tickets[i].id %>">
+                                                                        <td style="display: none;">
+                                                                            <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                                                                <input id="<%= tickets[i].id %>" type="checkbox" class="checkboxes" value="<%= tickets[i].id %>" <% if (tickets[i].status != 'closed') { -%>
+                                                                                    disabled
+                                                                                <% } -%>/>
+                                                                                <span></span>
+                                                                            </label>
+                                                                        </td>
+                                                                        <td> <%= tickets[i].id %> </td>
+                                                                        <td> 
+                                                                            <% if (tickets[i].type == 'feedback') { -%>
+                                                                                Phản hồi
+                                                                            <% } else { -%>
+                                                                                Hỏi thông tin                              
+                                                                            <% } -%>
+                                                                        </td>
+                                                                        <td>
+                                                                            <%= tickets[i].member_profile.member_code %>
+                                                                        </td>
+                                                                        <td> <% if (tickets[i].assignee_string) { -%>
+                                                                            <%= tickets[i].assignee_string %>
+                                                                        <% } else { -%>
+                                                                            -
+                                                                        <% } -%> </td>
+                                                                        <td data-sort=<%= tickets[i].data_sort %>> 
+                                                                            <%= tickets[i].status_string %> 
+                                                                        </td>
+                                                                        <td> <% if (tickets[i].update_time_string) { -%>
+                                                                            <%= tickets[i].update_time_string %>
+                                                                        <% } else { -%>
+                                                                            -
+                                                                        <% } -%>  </td>
+                                                                        <td> 
+                                                                            <% if (tickets[i].priority == "high") { -%>
+                                                                                <span class="label label-sm label-danger"> Cao </span>
+                                                                            <% } else { -%>
+                                                                                <span class="label label-sm label-warning"> Bình thường </span>
+                                                                            <% } -%>
+                                                                        </td>
+                                                                    </tr>
+                                                                <% } -%>
+                                                            <% } -%>
                                                         </tbody>
                                                     </table>
                                                 </div>

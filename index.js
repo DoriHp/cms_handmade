@@ -15,65 +15,23 @@ var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
 var fs = require('fs')
 var readline = require('readline')
-var {google} = require('googleapis')
-var TOKEN_PATH = 'token.json'
-var CREDENTIAL_FILE = 'credentials.json'
 var request = require('request')
 var saltRounds = 10
 var client = require('./controller/redis.client.js')
 var compression = require('compression')
+var logger = require('./config/logger.js')
 
 // If modifying these scopes, delete token.json.
-const SCOPES = [
-  'https://mail.google.com/'
-]
-
-fs.readFile(CREDENTIAL_FILE, (err, content) => {
-  if(err) throw err
-  checkToken(JSON.parse(content))
-})
-
-// check token exist in token file
-function checkToken(credential) {
-  let clientSecret = credential.installed.client_secret
-  let clientId = credential.installed.client_id
-  let redirectUrl = credential.installed.redirect_uris[0]
-  let oauth2Client = new google.auth.OAuth2(clientId, clientSecret, redirectUrl)
-
-  fs.readFile(TOKEN_PATH, (err, token) => {
-    if(err) return getNewToken(oauth2Client)
-    oauth2Client.setCredentials(JSON.parse(token))
-  })
-}
-
-function getNewToken(oauth2Client) {
-  const authUrl = oauth2Client.generateAuthUrl({
-    access_type: 'offline',
-    scope: SCOPES,
-  })
-  console.log('Authorize this app by visiting this url:', authUrl)
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
-  rl.question('Enter the code from that page here: ', (code) => {
-    rl.close();
-    oauth2Client.getToken(code, (err, token) => {
-      if (err) return console.error('Error retrieving access token', err)
-      oauth2Client.setCredentials(token)
-      // Store the token to disk for later program executions
-      fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
-        if (err) return console.error(err)
-        console.log('Token stored to', TOKEN_PATH)
-      })
-    })
-  })
-}
-
 require('dotenv').config()
 
 mongoose.connect(process.env.MONGODB_URL_2, { useNewUrlParser: true }, function(error){
-  if(error) throw error
+  if(error){
+    throw error
+    logger.error("Failed in connection to MongoDB server \n" + error)
+    logger.error(Error('Bị lỗi từ hệ thống'))
+  }else {
+    logger.info("Connected to MongoDB server.")
+  }
 })
 
 var app = express(),
@@ -124,6 +82,7 @@ app.use(passport.session())
 var port = 5000
 server.listen(port, () => {
 	console.log('Server is listening on port: ' + port)
+  logger.info('Server has started! Listening on port ' + port)
 })
 
 //Serve file in public image folder
@@ -150,13 +109,20 @@ passport.deserializeUser(function(_id, done) {
 passport.use(new LocalStrategy(
     function(username, password, done) {
       User.findOne({username: username}, function(err, user) {
-      	if(err) return done(err)
+      	if(err){
+          logger.error("Lỗi khi xác thực thông tin người dùng \n" + err)
+          logger.error(Error("Truy vấn không tìm thấy kết quả phù hợp"))
+          return done(err)
+        }
       	if(!user) return done(null, false, {message: 'Thông tin đăng nhập không đúng!'})
           bcrypt.compare(password, user.password, function (err, result) {
             if (err) { return done(err) }
             if(!result) {
-                return done(null, false, { message: 'Thông tin đăng nhập không đúng!' });
+              logger.error("Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng")
+              logger.error(Error("Truy vấn không tìm thấy kết quả phù hợp"))
+              return done(null, false, { message: 'Thông tin đăng nhập không đúng!' })
             }
+            logger.info("Người dùng " + user.username + " đã đăng nhập vào hệ thống.")
             return done(null, user)
           })
       })
@@ -189,6 +155,8 @@ app.get('', function(req, res){
     await request(`https://graph.facebook.com/${process.env.PAGE_ID}/?fields=fan_count,name,picture,rating_count,link&access_token=${process.env.PAGE_ACCESS_TOKEN}`, function(error, response, body){
       if(error){
         console.log(error)
+        logger.error("Lỗi khi request tới Facebook graph API \n" + error)
+        logger.error(Error("Bị lỗi từ hệ thống"))
         return
       }
       if(response.statusCode == 200){
@@ -205,6 +173,7 @@ app.get('', function(req, res){
 
   client.get('page_info', (err, result) => {
     if (result) {
+      logger.info(`Client send request ${req.method} ${req.url}`)
       res.render('index', {breadcrumb: [{href: '/', locate: 'Dashboard'}] ,user: req.user, data:{
           new_user: 100,
           new_mes: 1000,
@@ -241,6 +210,7 @@ app.use('/user', userRoute)
 app.use('/manager', managerRoute)
 app.use(haltOnTimedout)
 app.use(function(req, res, next){
+  logger.error(`Client gửi request ${req.method} tới route không tồn tại: ${req.url}`)
   res.status(404)
   res.format({
     html: function () {

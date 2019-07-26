@@ -254,8 +254,8 @@
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Cập nhật gần nhất bởi</p>
-                                                            <p class="col-md-8"><% if (ticket.update_by) { -%>
-                                                                <%= ticket.update_by %>
+                                                            <p class="col-md-8"><% if (ticket.update_by_string) { -%>
+                                                                <%= ticket.update_by_string %>
                                                             <% } else { -%>
                                                                 -
                                                             <% } -%></p>
@@ -315,7 +315,7 @@
                                                                             <img src="/image/user.png" style="width: 50px; height: 50px;" /> </div>
                                                                         <div class="mt-comment-body">
                                                                             <div class="mt-comment-info">
-                                                                                <span class="mt-comment-author"><%= history[i].update_by %></span>
+                                                                                <span class="mt-comment-author"><%= history[i].update_by_string %></span>
                                                                                 <span class="mt-comment-date"><%= history[i].update_time_string %></span>
                                                                             </div>
                                                                             <% if (history[i].change_description.comment) { -%>
@@ -324,7 +324,7 @@
                                                                             <div class="mt-comment-details">
                                                                                 <span class="mt-comment-status mt-comment-status-pending">
                                                                                 <% if (history[i].change_description.content.length != 0) { -%>
-                                                                                    <%= history[i].update_by%> đã cập nhật <% for (var j = 0; j < history[i].change_description.content.length; j++) { -%>
+                                                                                    <%= history[i].update_by_string %> đã cập nhật <% for (var j = 0; j < history[i].change_description.content.length; j++) { -%>
                                                                                         <%= history[i].change_description.content[j].field_string %> <%= history[i].change_description.content[j].value_string %>.
                                                                                     <% } -%>
                                                                                 <% } -%>

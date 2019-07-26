@@ -39,7 +39,9 @@
     "slickgrid": "^2.4.10",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0",
-    "sweetalert2": "^8.13.4"
+    "sweetalert2": "^8.13.4",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.10.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

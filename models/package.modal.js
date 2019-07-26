@@ -7,7 +7,7 @@ var packageSchema = new mongoose.Schema({
 	description_link: String,
 	priority: Number,
 	create_time: Date,
-	upadate_time: Date
+	update_time: Date
 })
 
 var Package = mongoose.model('Package', packageSchema, 'vas_packages')

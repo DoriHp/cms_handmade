@@ -20,7 +20,7 @@
                     <div class="page-head">
                         <!-- BEGIN PAGE TITLE -->
                         <div class="page-title">
-                            <h1>Quản lý sản phẩm
+                            <h1>Danh sách sản phẩm
                             </h1>
                         </div>
                         <!-- END PAGE TITLE -->
@@ -101,7 +101,7 @@
                                                             </div>
                                                         </td>
                                                         <td style="text-align: center;">
-                                                            <label class="switch"><input id="<%= data[i]._id %>" class="input_status" type="checkbox" <% if (data[i]._id) { -%>
+                                                            <label class="switch"><input id="<%= data[i]._id %>" class="input_status" type="checkbox" <% if (data[i].public) { -%>
                                                                 checked
                                                             <% } -%> ><span class="slide round"></span></label>
                                                         </td>
@@ -152,37 +152,20 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Chu kỳ</label>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 0;">
-                                            <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;" disabled>
-                                                    <option value="day" selected>Ngày</option>
-                                                    <option value="month">Tháng</option>
-                                                    <option value="year">Năm</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Khuyến mại chu kỳ đầu</label>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
-                                        </div>
-                                        <div class="col-md-1" style="padding-left: 0;">
-                                            <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;" disabled>
-                                                    <option value="day" selected>Ngày</option>
-                                                    <option value="month">Tháng</option>
-                                                    <option value="year">Năm</option>
-                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-3 control-label">Hoa hồng</label>
-                                        <div class="col-md-3">
+                                        <div class="col-md-4">
                                             <input type="text" id="hoa_hong_msocial" name="hoa_hong_msocial" class="form-control input-circle" placeholder="Hoa hồng msocial">
-                                        </div>
-                                        <div class="col-md-1"  style="padding-left: 0;">
-                                            <input type="text" class="form-control input-circle" placeholder="VND" disabled>
                                         </div>
                                     </div>
                                 <div class="form-group">
@@ -254,37 +237,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Chu kỳ</label>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <input type="text" id="chu_ky" name="chu_ky" class="form-control input-circle" placeholder="Chu kỳ gói">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0;">
-                                        <select class="form-control input-circle" id="don_vi_1" name="don_vi_1" style="padding: 0;" disabled>
-                                                <option value="day" selected>Ngày</option>
-                                                <option value="month" hidden>Tháng</option>
-                                                <option value="year" hidden>Năm</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Khuyến mại chu kỳ đầu</label>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <input type="text" id="khuyen_mai_chu_ky_dau" name="khuyen_mai_chu_ky_dau" class="form-control input-circle" placeholder="Khuyến mại chu kỳ đầu">
-                                    </div>
-                                    <div class="col-md-1" style="padding-left: 0;">
-                                        <select class="form-control input-circle" id="don_vi_2" name="don_vi_2" style="padding: 0;" disabled>
-                                                <option value="day" selected>Ngày</option>
-                                                <option value="month">Tháng</option>
-                                                <option value="year">Năm</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Hoa hồng</label>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <input type="text" id="hoa_hong_msocial" name="hoa_hong_msocial" class="form-control input-circle" placeholder="Hoa hồng msocial">
-                                    </div>
-                                    <div class="col-md-1"  style="padding-left: 0;">
-                                        <input type="text" class="form-control input-circle" placeholder="VND" disabled>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -379,9 +345,9 @@
                 displayEdit()
                 myEditor.querySelector('#ten_goi').value = data.ten_goi_cuoc
                 myEditor.querySelector('#gia_goi').value = data.gia_goi
-                myEditor.querySelector('#chu_ky').value = exec_time(data.chu_ky)[0]
+                myEditor.querySelector('#chu_ky').value = data.chu_ky
                 myEditor.querySelector('#hoa_hong_msocial').value = data.hoa_hong_msocial
-                myEditor.querySelector('#khuyen_mai_chu_ky_dau').value = exec_time(data.khuyen_mai_chu_ky_dau)[0]
+                myEditor.querySelector('#khuyen_mai_chu_ky_dau').value = data.khuyen_mai_chu_ky_dau
                 myEditor.querySelector('#uu_dai_noi_mang').value = (!data.uu_dai_noi_mang)?"":data.uu_dai_noi_mang
                 myEditor.querySelector('#uu_dai_ngoai_mang').value = (!data.uu_dai_ngoai_mang)?"":data.uu_dai_ngoai_mang
                 myEditor.querySelector('#uu_dai_data').value = (!data.uu_dai_data)?"":data.uu_dai_data
@@ -545,8 +511,8 @@
         }   
         var submit_data = {}
 
-        submit_data.chu_ky = (data.chu_ky)?data.chu_ky + " ngày":""
-        submit_data.khuyen_mai_chu_ky_dau = (data.khuyen_mai_chu_ky_dau)?data.khuyen_mai_chu_ky_dau + " ngày": ""
+        submit_data.chu_ky = data.chu_ky 
+        submit_data.khuyen_mai_chu_ky_dau = data.khuyen_mai_chu_ky_dau 
         submit_data.ten_goi_cuoc = data.ten_goi
         submit_data.gia_goi = parseInt(data.gia_goi)
         submit_data.hoa_hong_msocial = parseInt(data.hoa_hong_msocial)
@@ -554,7 +520,7 @@
         submit_data.uu_dai_ngoai_mang = data.uu_dai_ngoai_mang
         submit_data.uu_dai_khac = data.uu_dai_khac
         submit_data.uu_dai_data = data.uu_dai_data
-        submit_data.public = (data.public)?true:false
+        submit_data.public = (data.public == "true")?true:false
         var now = new Date().toISOString()
         submit_data.update_time = now
         console.log(submit_data)
@@ -582,19 +548,6 @@
             if(error.response.data) 
                 swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
         })
-    }
-
-    function exec_time(data){
-        var result = []
-        var numberPattern = /\d+/g
-        result[0] = data.match(numberPattern)
-        for(let i of arr){
-            if(data.search(i.vi) != -1){
-                result[1] = i.en
-                break
-            }
-        }
-        return result
     }
 
     function displayAdd(){

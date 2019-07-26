@@ -68,7 +68,9 @@
                                             </div>
                                             <div class="btn-group" style="float:right;margin-bottom: 10px;">
                                                 <button class="btn btn-info" onclick="toggleFilterRow()" style="margin-right: 5px; font-weight: bold;"><i class="fas fa-search"></i> Tìm kiếm </button>
-                                                <button class="btn btn-danger" style="font-weight: bold;" onclick="toggleAddingForm()"><i class="fas fa-plus"></i> Thêm mới </button>    
+                                                <% if (user.role == 'admin') { -%>
+                                                    <button class="btn btn-danger" style="font-weight: bold;" onclick="toggleAddingForm()"><i class="fas fa-plus"></i> Thêm mới </button> 
+                                                <% } -%>   
                                             </div>
                                         </div>
                                         <div id="myGrid" style="width:100%;height:400px; border: 1px solid #ccc"></div>
@@ -98,37 +100,6 @@
                 <!-- END CONTENT BODY -->
             </div>
             <!-- END CONTENT -->
-            <div id="myEditor" class="modal col-md-8 col-md-offset-2" style="background-color: transparent !important;">
-                <i class="far fa-times-circle close-modal"></i>
-                <div class="portlet box red">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="fas fa-info-circle"></i>Thông tin sản phẩm</div>
-                        <div class="actions" style="margin-right: 50px;">
-                            <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
-                                <i class="far fa-edit"></i> Cho phép sửa đổi </button>
-                        </div>
-                    </div>
-                    <div class="portlet-body form">
-                        <!-- BEGIN FORM-->
-                        <form action="#" class="form-horizontal" id="product_data">
-                            <div class="form-body">
-                                <div class="form-group">
-                                    
-                                </div>
-                            </div>
-                            <div class="form-actions">
-                                <div class="row">
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle red" disabled>Lưu thay đổi</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                        <!-- END FORM-->
-                    </div>
-                </div>
-            </div>
     </div>
     <!-- END CONTAINER -->
     <% include _layouts/global_plugin %>
@@ -236,10 +207,15 @@
             })
             .then(function(response){
                 if(response.status == 200){
-                    swal("Thành công!", "Thêm mới dữ liệu thành công!", "success", {showConfirmButton: false})
-                    setTimeout(function(){
+                    swal({
+                        title: "Thành công!",
+                        text: "Thêm điểm bán mới thành công! Mã OTP là " + response.data,
+                        type: "success",
+                        timer: 10000
+                    })
+                    .then(function(result){
                         location.reload()
-                    }, 500)
+                    })
                 }
             })
             .catch(function(error){
@@ -461,166 +437,6 @@
 
 
     </script>
-    <script type="text/javascript">
-        var myEditor = document.getElementById('myEditor')
-        var myAdding = document.getElementById('myAdding')
-        function displayAdd(){
-            myAdding.style.display = 'block'
-            var other = document.getElementsByClassName("page-content")[0]
-            other.style.filter = "blur(10px)"
-            other.blur()
-            myAdding.focus()
-            myAdding.querySelectorAll('input').forEach(input => input.value = "")
-            myAdding.querySelectorAll('select').forEach(select => select.selectedIndex = 0)
-            myAdding.style.display = 'block'
-        }
-
-        function displayEdit(){
-            myEditor.style.display = 'block'
-            var other = document.getElementsByClassName("page-content")[0]
-            other.style.filter = "blur(10px)"
-            other.blur()
-            myEditor.focus()
-            myEditor.querySelectorAll('input').forEach(input => input.value = "")
-            myEditor.querySelectorAll('select').forEach(select => select.selectedIndex = 0)
-            myEditor.style.display = 'block'
-        }
-
-        function deepCompare () {
-          var i, l, leftChain, rightChain;
-
-          function compare2Objects (x, y) {
-            var p;
-
-            if (isNaN(x) && isNaN(y) && typeof x === 'number' && typeof y === 'number') {
-                 return true;
-            }
-
-            if (x === y) {
-                return true;
-            }
-
-            if ((typeof x === 'function' && typeof y === 'function') ||
-               (x instanceof Date && y instanceof Date) ||
-               (x instanceof RegExp && y instanceof RegExp) ||
-               (x instanceof String && y instanceof String) ||
-               (x instanceof Number && y instanceof Number)) {
-                return x.toString() === y.toString();
-            }
-
-            // At last checking prototypes as good as we can
-            if (!(x instanceof Object && y instanceof Object)) {
-                return false;
-            }
-
-            if (x.isPrototypeOf(y) || y.isPrototypeOf(x)) {
-                return false;
-            }
-
-            if (x.constructor !== y.constructor) {
-                return false;
-            }
-
-            if (x.prototype !== y.prototype) {
-                return false;
-            }
-
-            // Check for infinitive linking loops
-            if (leftChain.indexOf(x) > -1 || rightChain.indexOf(y) > -1) {
-                 return false;
-            }
-
-            for (p in y) {
-                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
-                    return false;
-                }
-                else if (typeof y[p] !== typeof x[p]) {
-                    return false;
-                }
-            }
-
-            for (p in x) {
-                if (y.hasOwnProperty(p) !== x.hasOwnProperty(p)) {
-                    return false;
-                }
-                else if (typeof y[p] !== typeof x[p]) {
-                    return false;
-                }
-
-                switch (typeof (x[p])) {
-                    case 'object':
-                    case 'function':
-
-                        leftChain.push(x);
-                        rightChain.push(y);
-
-                        if (!compare2Objects (x[p], y[p])) {
-                            return false;
-                        }
-
-                        leftChain.pop();
-                        rightChain.pop();
-                        break;
-
-                    default:
-                        if (x[p] !== y[p]) {
-                            return false;
-                        }
-                        break;
-                }
-            }
-
-                return true;
-              }
-
-              if (arguments.length < 1) {
-                return true; //Die silently? Don't know how to handle such case, please help...
-                // throw "Need two or more arguments to compare";
-              }
-
-              for (i = 1, l = arguments.length; i < l; i++) {
-
-                  leftChain = []; //Todo: this can be cached
-                  rightChain = [];
-
-                  if (!compare2Objects(arguments[0], arguments[i])) {
-                      return false;
-                  }
-              }
-
-              return true;
-        }
-
-        //span close modal
-        // Get the <span> element that closes the modal
-        var spans = document.getElementsByClassName("close-modal")
-        var modals = document.getElementsByClassName("modal")
-        for(let i in spans){
-            spans[i].onclick = function() { 
-                modals[i].style.display = "none"
-                var other = document.getElementsByClassName("page-content")[0]
-                other.style.filter = "blur(0)"
-            }
-        }
-        // When the user clicks on <span> (x), close the modal
-    </script>
-    <script type="text/javascript">
-        socket.on('update feedback', function(data){   
-            var row = document.getElementById(data.feedback._id)
-            var labels = row.querySelectorAll('.label-feedback')
-            if(data.feedback.status.read){
-                labels[0].innerHTML = 'Đã đọc'
-                labels[0].classList.remove('label-warning')
-                labels[0].classList.add('label-success')
-            }
-            if(data.feedback.status.reply){
-                labels[1].innerHTML = 'Đã trả lời'
-                labels[1].classList.remove('label-danger')
-                labels[1].classList.add('label-info')   
-            }
-            change_num()
-        })
-    </script>  
     <!-- END OF SELF ADDING SCRIPT -->
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>

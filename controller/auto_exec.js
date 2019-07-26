@@ -2,10 +2,11 @@ var Member = require('../models/member.modal.js')
 var graph = require('fbgraph')
 graph.setVersion("3.3")
 var schedule = require('node-schedule')
+var logger = require('../config/logger.js')
 
 module.exports.update_linkChat = function(){
 	var job = schedule.scheduleJob('0 1 * * *' , function(fireDate){
-		console.log("Bắt đầu update fb_linkChat của member vào lúc " + fireDate)
+		logger.info("Bắt đầu update fb_linkChat của member vào lúc " + fireDate)
 		var result = []
 
 		//gọi đến api của fbgraph
@@ -30,6 +31,8 @@ module.exports.update_linkChat = function(){
 		        var promise = await new Promise(function(resolve, reject){
 		            graph.get(previousRes.paging.next, function(err, currentRes) {
 		                if (err) {
+		                	logger.error("Lỗi khi thực hiện truy vấn tới Facebook graph API \n" + rejectError)
+                    		logger.error(Error("Bị lỗi từ hệ thống"))
 		                    reject(err);
 		                } else {
 		                    resolve(currentRes);
@@ -41,7 +44,8 @@ module.exports.update_linkChat = function(){
 		            })
 		            recursion(resolveData)
 		        }, rejectError => {
-		            console.log(rejectError);
+		            logger.error("Lỗi khi thực hiện truy vấn tới Facebook graph API \n" + rejectError)
+                    logger.error(Error("Bị lỗi từ hệ thống"))
 		        })
 		    } else {
 		    	//update linkChat trong csdl
@@ -51,7 +55,8 @@ module.exports.update_linkChat = function(){
                         if(i.id != process.env.PAGE_ID){
                             await Member.findOneAndUpdate({fb_id: i.id}, {$set:{fb_linkChat: linkChat}}, {new: true, upsert: false, useFindAndModify: false},function(err, result){
                                 if(err){
-                                    console.log('Fail to update')
+                                    logger.error("Lỗi khi thực hiện update link chat của điểm bán trong CSDL \n" + err)
+                                    logger.error(Error("Bị lỗi từ hệ thống"))
                                     return
                                 }
                             })

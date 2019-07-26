@@ -400,8 +400,10 @@
     }
 
     function enableEdit(){
-        myEditor.querySelectorAll('input').forEach(input => input.disabled = false)
-        myEditor.querySelectorAll('select').forEach(select => select.disabled = false)
+        myEditor.querySelectorAll('input').forEach(input => {
+            if(input.id != 'district_code')
+                input.disabled = false
+        })
         myEditor.querySelector('#save_change').disabled = false
     }
 
@@ -431,43 +433,37 @@
         var formData = new FormData(document.querySelector('#myEditor #district_data'))
         var new_data = {}
         for (var pair of formData.entries()) {
-            new_data[pair[0]] = (pair[1])?pair[1]:""
-        }   
-        console.log(new_data)
-        axios.get('/manager/district/properties/' + encodeURIComponent(select_id))
-        .then(function(response){
-            if(response.status == 200){
-                var _id = response.data._id
-                delete(response.data._id)
-                console.log(response.data)
-                if(deepCompare(response.data, new_data)){
-                    alert('Dữ liệu không thay đổi!')
-                    return
-                }else{
-                    var conf = confirm("Bạn chắc chắn muốn lưu thay đổi?")
-                    if(!conf) return
-                    axios.post('/manager/district/update/' + encodeURIComponent(select_id), {
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                        data: new_data
-                    }).then(function(res){
-                        if(res.status == 200){
-                            swal("Thành công", "Thay đổi dữ liệu thành công!", "success", {showConfirmButton: false})
-                            setTimeout(function(){
-                                location.reload()
-                            }, 500)
-                        }
-                    }).catch(function(error){
-                        console.error(error)
-                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-                    })
-                }
-            }
+            new_data[pair[0]] = pair[1]
+        }
+        swal({
+            title: "Xác nhận",
+            text: "Bạn chắc chắn muốn lưu thay đổi?", 
+            showCancelButton: true,
+            confirmButtonText: "Tiếp tục",
+            calcelButtonText: "Hủy bỏ",
+            confirmButtonColor: 'orange',
+            type: "warning",
+            allowOutsideClick: false
         })
-        .catch(function(error){
-            console.error(error)
-            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+        .then(function(result){
+            if(result.value){
+                axios.post('/manager/district/update/' + encodeURIComponent(select_id), {
+                    headers:{
+                        'Content-Type': 'application/json'
+                    },
+                    data: new_data
+                }).then(function(res){
+                    if(res.status == 200){
+                        swal("Thành công", "Thay đổi dữ liệu thành công!", "success", {showConfirmButton: false})
+                        setTimeout(function(){
+                            location.reload()
+                        }, 500)
+                    }
+                }).catch(function(error){
+                    console.error(error)
+                    swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                })
+            }
         })
     }
 

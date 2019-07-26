@@ -6,7 +6,10 @@ var notifySchema = new mongoose.Schema({
 	time: Date,
 	status: Boolean,
 	category: String,
-	username: String
+	username: String,
+	member_profile:{
+		member_code: String
+	}
 })
 
 var Notify = mongoose.model('Notify', notifySchema, 'notifications')

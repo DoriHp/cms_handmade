@@ -6,6 +6,7 @@ var request = require('request')
 var fs = require('fs')
 
 module.exports.sendBroadcastForm = async function(req, res){
+	logger.info(`Client send request ${req.method} ${req.url}`)
 	var result = []
 	var members = await Member.find().lean()
 	//gọi đến api của fbgraph
@@ -29,6 +30,8 @@ module.exports.sendBroadcastForm = async function(req, res){
 	        var promise = await new Promise(function(resolve, reject){
 	            graph.get(previousRes.paging.next, function(err, currentRes) {
 	                if (err) {
+	                	logger.error("Lỗi khi thực hiện truy vấn tới Facebook graph API \n" + err)
+                    	logger.error(Error("Bị lỗi từ hệ thống"))
 	                    reject(err)
 	                } else {
 	                    resolve(currentRes);
@@ -41,22 +44,25 @@ module.exports.sendBroadcastForm = async function(req, res){
 	            })
 	            recursion(resolveData)
 	        }, rejectError => {
-	            console.log(rejectError)
+	            logger.error("Lỗi khi thực hiện truy vấn tới Facebook graph API \n" + rejectError)
+                logger.error(Error("Bị lỗi từ hệ thống"))
 	        })
 	    } else {
 	    	//update linkChat trong csdl
-	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: {username: "Bảo"}, labels: result, members: members})
+	        res.render('broadcast_form', {breadcrumb: [{href: "#", locate: "Tin nhắn 24 + 1" }, {href: "/message241/brodacast", locate: 'Tin nhắn hàng loạt'}], user: user.req, labels: result, members: members})
 		}
 	}
 }
 
 module.exports.execUpload = function(req, res){
+	logger.info(`Client send request ${req.method} ${req.url}`)
 	var filename = req.file.filename
 	var response = 'http://' + req.headers.host + '/public/image/' + filename
 	res.status(200).send(response)
 }
 
 module.exports.add_psid_to_label = function(req, res){
+	logger.info(`Client send request ${req.method} ${req.url}`)
 	var psid = req.body.data.psid
 	var label = req.body.data.label
 	var option = {
@@ -72,15 +78,18 @@ module.exports.add_psid_to_label = function(req, res){
 		if(error) res.status(500).end()
 		console.log(body)
 		if(!body.error){
+			looger.info("Thêm thành công người dùng vào nhãn facebook")
 			res.status(200).end()
 		}else{
+			logger.error("Lỗi khi thực hiện truy vấn tới Facebook graph API \n" + rejectError)
+            logger.error(Error("Bị lỗi từ hệ thống"))
 			res.status(500).end()
 		}
 	})
 }
 
 module.exports.execBroadcast = function(req, res){
-	console.log(req.body.data)
+	logger.info(`Client send request ${req.method} ${req.url}`)
 	var timer
 	var label 
 	if(req.body.data.timer){
@@ -106,8 +115,9 @@ module.exports.execBroadcast = function(req, res){
 	var message_creative_id, error1
 	request(option1, function(err, response, body){
 		if(err){
-			console.log(err)
-			throw err
+			logger.error("Lỗi khi thực hiện truy vấn lấy message_creative_id \n" + err)
+            logger.error(Error("Bị lỗi từ hệ thống"))
+            return
 		}
 		message_creative_id = body.message_creative_id
 		error1 = body
@@ -131,8 +141,11 @@ module.exports.execBroadcast = function(req, res){
 				throw err
 			}
 			if(!body.error){
+				logger.info(`Gửi tin nhắn quảng bá thành công: message_creative_id = ${message_creative_id}`)
 				res.status(200).send('OK')
 			}else{
+				logger.error(`Lỗi khi thực hiện gửi tin nhắn quảng bá: message_creative_id = ${message_creative_id} \n` + err)
+            	logger.error(Error("Bị lỗi từ hệ thống"))
 				res.status(503).end()
 			}
 	

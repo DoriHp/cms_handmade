@@ -57,7 +57,7 @@ router.get('/district/list', controller.dt_list)
 router.post('/district/adding', controller.dt_adding)
 router.get('/district/properties/:_id', controller.dt_properties)
 router.delete('/district/delete/:_id', controller.dt_delete)
-router.post('/province/update/:_id', controller.dt_update)
+router.post('/district/update/:_id', controller.dt_update)
 //Package management route
 router.get('/package/image', controller2.package_image_list)
 router.post('/package/image/upload/:pc_code', upload.single('package_image'), controller2.add_image)

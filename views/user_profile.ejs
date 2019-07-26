@@ -82,7 +82,10 @@
                                                             <a href="#tab_1_3" data-toggle="tab">Thêm mới tài khoản</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#tab_1_4" data-toggle="tab">Reset mật khẩu người dùng</a>
+                                                            <a href="#tab_1_4" data-toggle="tab">Reset mật khẩu</a>
+                                                        </li>
+                                                         <li>
+                                                            <a href="#tab_1_5" data-toggle="tab">Cấu hình hệ thống</a>
                                                         </li>
                                                     <% } -%>
                                                 </ul>
@@ -163,6 +166,21 @@
                                                                 </div>
                                                                 <div class="margin-top-10">
                                                                     <a href="javascript:;" onclick="reset_pw()" class="btn green"> Reset mật khẩu </a>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="tab-pane" id="tab_1_5">
+                                                            <form action="#" id="config_form">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Thời gian tối thiểu giữa mỗi lần thực hiện tra cứu gói VAS (phút)</label>
+                                                                    <input type="text" class="form-control" name="minMinuteBetweenEachVasQuery" id="minMinuteBetweenEachVasQuery" value="<%= config.minMinuteBetweenEachVasQuery %>"/> 
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Mật khẩu mặc định khi reset</label>
+                                                                    <input type="text" class="form-control" name="defaultPassword" id="defaultPassword" value="<%= config.defaultPassword %>" /> 
+                                                                </div>
+                                                                <div class="margin-top-10">
+                                                                    <a href="javascript:;" onclick="save_config()" class="btn green"> Lưu cài đặt </a>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -326,6 +344,48 @@
                     })
                 }
             })
+        }
+
+        function save_config(){
+            var formData = new FormData(document.querySelector('#config_form'))
+
+            var data = {}
+            for (var pair of formData.entries()) {
+                data[pair[0]] = pair[1]
+            }
+
+            data.minMinuteBetweenEachVasQuery = parseInt(data.minMinuteBetweenEachVasQuery)
+            swal({
+                title: "Xác nhận",
+                text: "Lưu cấu hình hệ thống?", 
+                showCancelButton: true,
+                confirmButtonText: "Tiếp tục",
+                cancelButtonText: "Hủy bỏ",
+                confirmButtonColor: 'orange',
+                type: "warning",
+                allowOutsideClick: false
+            })
+            .then(function(result){
+                if(result.value){
+                    axios.post(`/user/config`, {
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        data: data
+                    }).then(function(res){
+                        if(res.status == 200){
+                            swal("Thành công!", "Đã lưu lại cấu hình hệ thống!", "success")
+                        }
+                        setTimeout(function(){
+                            location.reload()
+                        }, 500)
+                    }).catch(function(error){
+                        console.error(error)
+                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                    })
+                }
+            })
+
         }
     </script>
     <!-- END OF SELF ADDING SCRIPT -->
