@@ -29,10 +29,10 @@
 <script src="/assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 <script>
-    function error_alert(){
+    function error_alert(content = {response:{data: 'Đã có lỗi xảy ra! Vui lòng thử lại sau.'}}){
         swal({
             title: "Thất bại!",
-            text: "Đã có lỗi xảy ra, vui lòng thử lại sau!",
+            text: content.response.data,
             type: "error",
             confirmButtonColor: 'red'
         })

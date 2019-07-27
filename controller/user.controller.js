@@ -41,7 +41,7 @@ module.exports.forgotpw = async function(req, res){
 			res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
 		}else{
 			logger.info("Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:" + JSON.stringify(user))
-			res.status(200).end()
+			res.status(200).send(config[0].defaultPassword)
 		}
 	})
 }
@@ -77,7 +77,7 @@ module.exports.profile = async function (req, res) {
 	logger.info(`Client send request ${req.method} ${req.url}`)
 	res.status(200).render('user_profile', {breadcrumb: [{href: '/user/profile', locate: "Hồ sơ người dùng"}], user: req.user, config: config[0] })
 }
-
+//người dùng đổi mật khẩu
 module.exports.changepw = function(req, res){
 	logger.info(`Client send request ${req.method} ${req.url}`)
 	var username = req.user.username
@@ -107,13 +107,13 @@ module.exports.changepw = function(req, res){
 		})
 	})
 }
-
+//tải thông báo cho người dùng
 module.exports.notify = async function(req, res){
 	logger.info(`Client send request ${req.method} ${req.url}`)
 	var user = req.user
 	//Trả về các notification dựa theo người dùng
 	if(user.role == 'admin' || user.role == 'supervisor'){
-		var result = await Notify.find({username: 'admin', status: false}).sort([['time', -1]]).lean()
+		var result = await Notify.find({username: 'admin'}).sort([['time', -1]]).lean()
 		if(result){
 			res.status(200).send(result)
 			return

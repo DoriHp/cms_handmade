@@ -219,14 +219,6 @@
                                                             <% } -%></p>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
-                                                            <p class="col-md-4" style="font-weight: bold;">Người được giao</p>
-                                                            <p class="col-md-8"><% if (ticket.assignee_string) { -%>
-                                                                <%= ticket.assignee_string %>
-                                                            <% } else { -%>
-                                                                -
-                                                            <% } -%></p>
-                                                        </div>  
-                                                        <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Mã điểm bán</p>
                                                             <p class="col-md-8"> <%= ticket.member_profile.member_code %> </p>
                                                         </div>
@@ -238,6 +230,10 @@
                                                             <p class="col-md-4" style="font-weight: bold;">Số điện thoại liên hệ</p>
                                                             <p class="col-md-8"> <%= ticket.member_profile.contact_phone %> </p>
                                                         </div>
+                                                        <div class="ticket_info row col-md-12">
+                                                            <p class="col-md-4" style="font-weight: bold;">Đường dẫn messenger</p>
+                                                            <a class="col-md-8 overme" style="text-decoration: none;"> <%= ticket.member_profile.fb_linkChat %> </a>
+                                                        </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="ticket_info row col-md-12">
@@ -248,6 +244,14 @@
                                                                 <span class="label label-sm label-warning"> Bình thường </span>
                                                             <% } -%>
                                                         </div>
+                                                        <div class="ticket_info row col-md-12">
+                                                            <p class="col-md-4" style="font-weight: bold;">Người được giao</p>
+                                                            <p class="col-md-8"><% if (ticket.assignee_string) { -%>
+                                                                <%= ticket.assignee_string %>
+                                                            <% } else { -%>
+                                                                -
+                                                            <% } -%></p>
+                                                        </div>  
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Thời gian khởi tạo</p>
                                                             <p class="col-md-8"><%= ticket.create_time_string %></p>
@@ -357,6 +361,27 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
+                                                            <label class="control-label col-md-3">Chỉ định người được giao</label>
+                                                            <div class="col-md-4">
+                                                                <% if (ticket.status != 'new' || user.role == 'user' || ticket.assignee != "") { -%>
+                                                                    <select name="assignee" class="form-control" id="select_assignee" disabled>
+                                                                        <% for (var i = 0; i < users.length ; i++) { -%>
+                                                                            <option value="<%= users[i].username%>" <% if (users[i].username == ticket.assignee) { -%>
+                                                                                    selected
+                                                                            <% } -%>> <%= users[i].name %> </option>
+                                                                        <% } -%>
+                                                                    </select>    
+                                                                <% } else { -%>
+                                                                    <select name="assignee" class="form-control" id="select_assignee">
+                                                                        <option hidden>-Select one from list-</option>
+                                                                        <% for (var i = 0; i < users.length ; i++) { -%>
+                                                                            <option value="<%= users[i].username%>" > <%= users[i].name%> </option>
+                                                                        <% } -%>
+                                                                    </select>    
+                                                                <% } -%>
+                                                            </div> 
+                                                        </div>
+                                                        <div class="form-group">
                                                             <label class="control-label col-md-3">Trạng thái</label>
                                                             <div class="col-md-4">
                                                                 <select class="form-control" id="select_status" name="status">
@@ -402,27 +427,6 @@
                                                                     </option>
                                                                 </select>
                                                             </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label class="control-label col-md-3">Chỉ định người được giao</label>
-                                                            <div class="col-md-4">
-                                                                <% if (ticket.status != 'new' || user.role == 'user' || ticket.assignee != "") { -%>
-                                                                    <select name="assignee" class="form-control" id="select_assignee" disabled>
-                                                                        <% for (var i = 0; i < users.length ; i++) { -%>
-                                                                            <option value="<%= users[i].username%>" <% if (users[i].username == ticket.assignee) { -%>
-                                                                                    selected
-                                                                            <% } -%>> <%= users[i].name %> </option>
-                                                                        <% } -%>
-                                                                    </select>    
-                                                                <% } else { -%>
-                                                                    <select name="assignee" class="form-control" id="select_assignee">
-                                                                        <option hidden>-Select one from list-</option>
-                                                                        <% for (var i = 0; i < users.length ; i++) { -%>
-                                                                            <option value="<%= users[i].username%>" > <%= users[i].name%> </option>
-                                                                        <% } -%>
-                                                                    </select>    
-                                                                <% } -%>
-                                                            </div> 
                                                         </div>
                                                         <div class="form-group">
                                                             <label class="control-label col-md-3">Ghi chú</label>

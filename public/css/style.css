@@ -697,11 +697,9 @@ input.invalid {
 }
 
 .overme {
-    width: 300px;
     overflow:hidden; 
     white-space:nowrap; 
     text-overflow: ellipsis;
-    color: blue;
 }
 
 #sample_1_2 tbody tr td a{

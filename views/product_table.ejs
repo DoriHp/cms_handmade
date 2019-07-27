@@ -44,9 +44,11 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="btn-group">
-                                                    <button id="sample_editable_1_2_new" type="button" onclick="displayAdd()" class="btn sbold blue"> Thêm mới
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
+                                                    <% if (user.role == 'admin') { -%>
+                                                        <button id="sample_editable_1_2_new" type="button" onclick="displayAdd()" class="btn sbold blue"> Thêm mới
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                    <% } -%>
                                                 </div>
                                             </div>
                                         </div>
@@ -88,14 +90,21 @@
                                                                         <i class="fa fa-angle-down"></i>
                                                                 </button>
                                                                 <ul class="dropdown-menu pull-left" role="menu">
-                                                                    <li>
-                                                                        <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
-                                                                            <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
-                                                                            <i class="fas fa-trash"></i> Xóa sản phẩm </a>
-                                                                    </li>
+                                                                    <% if (user.role == 'admin') { -%>
+                                                                        <li>
+                                                                            <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
+                                                                                <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="javascript:;" class="a_del" id='<%= data[i]._id %>'>
+                                                                                <i class="fas fa-trash"></i> Xóa sản phẩm </a>
+                                                                        </li>
+                                                                    <% } else { -%>
+                                                                        <li>
+                                                                            <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
+                                                                            <i class="fas fa-info-circle"></i> Xem chi tiết </a>
+                                                                        </li>
+                                                                    <% } -%>
                                                                     <li class="divider"> </li>
                                                                 </ul>
                                                             </div>
@@ -103,7 +112,10 @@
                                                         <td style="text-align: center;">
                                                             <label class="switch"><input id="<%= data[i]._id %>" class="input_status" type="checkbox" <% if (data[i].public) { -%>
                                                                 checked
-                                                            <% } -%> ><span class="slide round"></span></label>
+                                                            <% } -%> 
+                                                            <% if (user.role != 'admin') { -%>
+                                                                disabled
+                                                            <% } -%>><span class="slide round"></span></label>
                                                         </td>
                                                     </tr>
                                                 <% } -%>
@@ -530,7 +542,7 @@
     function addProduct(){
         var submit_data = getData(document.getElementById('product_data_add'))
         if(!submit_data) return
-        submit_data.creat_time = new Date().toISOString()
+        submit_data.create_time = new Date().toISOString()
         axios.post('/manager/product/adding',{
             headers:{
                 'Content-Type': 'application/json'

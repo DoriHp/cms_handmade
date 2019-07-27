@@ -50,7 +50,7 @@
                                     <div class="profile-usermenu">
                                         <ul class="nav">
                                             <li class="active">
-                                                <a href="page_user_profile_1_account.html">
+                                                <a href="#">
                                                     <i class="icon-settings"></i> Cài đặt tài khoản </a>
                                             </li>
                                         </ul>
@@ -172,8 +172,13 @@
                                                         <div class="tab-pane" id="tab_1_5">
                                                             <form action="#" id="config_form">
                                                                 <div class="form-group">
-                                                                    <label class="control-label">Thời gian tối thiểu giữa mỗi lần thực hiện tra cứu gói VAS (phút)</label>
-                                                                    <input type="text" class="form-control" name="minMinuteBetweenEachVasQuery" id="minMinuteBetweenEachVasQuery" value="<%= config.minMinuteBetweenEachVasQuery %>"/> 
+                                                                    <label class="control-label">Thời gian tối thiểu giữa mỗi lần thực hiện tra cứu gói VAS</label>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" name="minMinuteBetweenEachVasQuery" id="minMinuteBetweenEachVasQuery" value="<%= config.minMinuteBetweenEachVasQuery %>" aria-describedby="sizing-addon1"/> 
+                                                                            <span class="input-group-addon" id="sizing-addon1">
+                                                                            phút
+                                                                        </div>
+                                                                    </span>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">Mật khẩu mặc định khi reset</label>
@@ -236,7 +241,7 @@
 
         function change_pw(){
             if(!isSame()) return
-
+            var form = document.querySelector('#change_pw_form')
             var formData = new FormData(document.querySelector('#change_pw_form'))
 
             var submit_data = {}
@@ -278,16 +283,36 @@
                         }
                     })
                     .catch(function(error){
-                        if(error.response){
-                            swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
-                        }
+                        error_alert(error)
                     })    
                 }
             })
         }
 
+        function validate(form){
+            var test = true
+            form.querySelectorAll('input').forEach(input => {
+                if(!input.value){
+                    // input.style.backgroundColor = '#F29999'
+                    test = false
+                }
+                // +
+            })
+            return test
+        }
+
         function add_user(){
-            var formData = new FormData(document.getElementById('adding_form'))
+            var form = document.getElementById('adding_form')
+            if(!validate(form)){
+                swal({
+                    title: "Chú ý!",
+                    text: "Hãy điền đầy đủ thông tin để tiếp tục",
+                    type: 'warning',
+                    confirmButtonColor: 'orange'
+                })
+                return
+            }
+            var formData = new FormData(form)
 
             var data = {}
             for (var pair of formData.entries()) {
@@ -306,8 +331,7 @@
             })
             .catch(function(error){
                 console.error(error)
-                error_alert()
-                // swal("Đã có lỗi", error.response, "error", {confirmButtonColor: 'red'})
+                error_alert(error)
             })
         }
 
@@ -334,13 +358,21 @@
                             'Content-Type': 'application/json'
                         },
                         data: username
-                    }).then(function(res){
-                        if(res.status == 200){
-                            swal("Thành công!", "Đã reset mật khẩu người dùng về mặc định!", "success")
+                    }).then(function(response){
+                        if(response.status == 200){
+                            swal({
+                                title: "Thành công!",
+                                text: "Reset mật khẩu thành công! Mật khẩu mặc định là: " + response.data,
+                                type: "success",
+                                timer: 10000
+                            })
+                            .then(function(result){
+                                location.reload()
+                            })
                         }
                     }).catch(function(error){
                         console.error(error)
-                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                        error_alert(error)
                     })
                 }
             })
@@ -381,7 +413,7 @@
                         }, 500)
                     }).catch(function(error){
                         console.error(error)
-                        swal("Lỗi!", error.response.data, "error", {confirmButtonColor: 'red'})
+                        error_alert(error)
                     })
                 }
             })

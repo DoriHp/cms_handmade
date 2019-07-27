@@ -207,7 +207,7 @@ module.exports.product = async function(req, res){
 		i.gia_goi_string = (i.gia_goi)?i.gia_goi.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND':""
 		i.hoa_hong_msocial_string = (i.hoa_hong_msocial)?i.hoa_hong_msocial.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") + ' VND':""
 	}
-	res.status(200).render('product_table', {breadcrumb:[{href: '/manager/product', locate: 'Danh sách sản phẩm'}], data: result, user: {username: 'admin'}})
+	res.status(200).render('product_table', {breadcrumb:[{href: '/manager/product', locate: 'Danh sách sản phẩm'}], data: result, user: req.user })
 }
 
 module.exports.pd_list = async function(req, res){

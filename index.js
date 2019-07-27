@@ -114,13 +114,13 @@ passport.use(new LocalStrategy(
           logger.error(Error("Truy vấn không tìm thấy kết quả phù hợp"))
           return done(err)
         }
-      	if(!user) return done(null, false, {message: 'Thông tin đăng nhập không đúng!'})
+      	if(!user) return done(null, false, {message: 'Tên tài khoản/ mật khẩu không đúng!'})
           bcrypt.compare(password, user.password, function (err, result) {
             if (err) { return done(err) }
             if(!result) {
               logger.error("Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng")
               logger.error(Error("Truy vấn không tìm thấy kết quả phù hợp"))
-              return done(null, false, { message: 'Thông tin đăng nhập không đúng!' })
+              return done(null, false, { message: 'Tên tài khoản/ mật khẩu không đúng!' })
             }
             logger.info("Người dùng " + user.username + " đã đăng nhập vào hệ thống.")
             return done(null, user)

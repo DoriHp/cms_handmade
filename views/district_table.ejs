@@ -88,7 +88,13 @@
                                                     <ul class="dropdown-menu pull-left" role="menu">
                                                         <li>
                                                             <a href="javascript:;" class="a_pro" id='<%= data[i]._id %>'>
-                                                                <i class="fas fa-info-circle"></i> Xem chi tiết & chỉnh sửa </a>
+                                                                <i class="fas fa-info-circle"></i>
+                                                                <% if (user.role == 'admin') { -%>
+                                                                    Xem chi tiết & chỉnh sửa
+                                                                <% } else { -%>
+                                                                    Xem chi tiết
+                                                                <% } -%>
+                                                                 </a>
                                                         </li>
                                                         <li>
                                                             <a href="javascript:;" class="a_del" id='<%= data[i]._id %>' <% if (user.role != "admin") { -%>
@@ -127,14 +133,8 @@
                     </div>
                     <div class="portlet-body form">
                     <!-- BEGIN FORM-->
-                    <form action="#" class="form-horizontal" id="district_data" >
+                    <form action="#" class="form-horizontal" id="district_data">
                         <div class="form-body">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Mã quận, huyện</label>
-                                <div class="col-md-4">
-                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="District code">
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mã tỉnh thành</label>
                                 <div class="col-md-4">
@@ -144,6 +144,12 @@
                                                 <option value="<%= province[i].province_code %>"><%= province[i].province_code %> (<%= province[i].name %>)</option>
                                             <% } -%>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mã quận, huyện</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="District code">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -180,7 +186,12 @@
                         <div class="form-actions">
                             <div class="row">
                                 <div class="col-md-offset-3 col-md-9">
-                                    <button id="save_change" type="button" onclick="updateDistrict()" class="btn btn-circle green" disabled>Lưu thay đổi</button>
+                                    <button id="save_change" type="button" onclick="updateDistrict()" class="btn btn-circle green" disabled <% if (user.role != 'admin') { -%>
+                                        style="display: none;"
+                                    <% } -%>>Lưu thay đổi</button>
+                                    <button type="button" class="btn btn-circle green" <% if (user.role == 'admin') { -%>
+                                        style="display: none;"
+                                    <% } -%> onclick="document.getElementsByClassName('close-modal')[0].click()"> Đóng </button>
                                 </div>
                             </div>
                         </div>
@@ -201,12 +212,6 @@
                     <form action="#" class="form-horizontal" id="district_data" >
                         <div class="form-body">
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Mã quận, huyện</label>
-                                <div class="col-md-4">
-                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="Mã quận, huyện">
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-md-3 control-label">Mã tỉnh thành</label>
                                 <div class="col-md-4">
                                     <select class="form-control input-circle" id="province_code" name="province_code" onchange="change_pv_code()">
@@ -217,6 +222,12 @@
                                                 </option>
                                             <% } -%>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mã quận, huyện</label>
+                                <div class="col-md-4">
+                                    <input type="text" id="district_code" name="district_code" class="form-control input-circle" placeholder="Mã quận, huyện">
                                 </div>
                             </div>
                             <div class="form-group">

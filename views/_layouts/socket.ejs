@@ -1,7 +1,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <style type="text/css">
     
-    .unread{
+    .read{
         background-color: #153354;
     }
 </style>
@@ -10,6 +10,21 @@
     var notice_dropdown = document.getElementById('notice_dropdown')
     var bell = document.getElementById('bell')
     var bell_num = document.getElementById('bell_num')
+    $('#notice_dropdown').on('mousewheel DOMMouseScroll', function(e) {
+        var scrollTo = null;
+
+        if(e.type === 'mousewheel') {
+            scrollTo = (e.originalEvent.wheelDelta * -1);
+        }
+        else if(e.type === 'DOMMouseScroll') {
+            scrollTo = 40 * e.originalEvent.detail;
+        }
+
+        if(scrollTo) {
+            e.preventDefault();
+            $(this).scrollTop(scrollTo + $(this).scrollTop());
+        }
+    });
 
     function get_user_notifications(data){
         while(notice_dropdown.firstChild){
@@ -23,7 +38,6 @@
                     if(i.category == 'new'){
                         add_to_notice_dropdown(`Hệ thống mới nhận được ticket ${i.ticket_id} từ điểm bán ${i.member_profile.member_code}`, `/manager/ticket/read/${i.ticket_id}`, i.ticket_id,'fa-ticket-alt', cLass)
                     }else if(i.category == 'assigned'){
-                        console.log(cLass)
                         add_to_notice_dropdown(`Bạn được giao xử lý ticket ${i.ticket_id}. Click để xem chi tiết`, `/manager/ticket/read/${i.ticket_id}`, 'fa-ticket-alt',  i.ticket_id, cLass)
                     }
                 }

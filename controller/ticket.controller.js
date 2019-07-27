@@ -13,7 +13,7 @@ var fields_array = [{vi: 'trạng thái ticket sang', en: 'status'}, {vi: 'chỉ
 function exec_time(time){
 	var days = ['Thứ hai', 'Thứ ba', 'Thứ tư', 'Thứ năm', 'Thứ sáu', 'Thứ bảy', 'Chủ nhật']
 	var day = days[time.getDay() - 1]
-	var month = (time.getMonth() < 10)?"0" + time.getMonth():time.getMonth()
+	var month = (time.getMonth() < 10)?"0" + (time.getMonth() + 1):(time.getMonth() + 1)
 	var date = (time.getDate() < 10)?"0" + time.getDate():time.getDate()
 	var year = time.getFullYear()
 	var hour = (time.getHours() < 10)?"0" + time.getHours():time.getHours()

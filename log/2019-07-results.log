@@ -2655,3 +2655,1497 @@ null
 
 2019-07-26 10:47:40 info: Đã update số lượng ticket. Tổng số ticket hiện giờ: 14  
 
+2019-07-26 10:49:19 info: Server has started! Listening on port 5000  
+
+2019-07-26 10:49:20 info: Connected to MongoDB server.  
+
+2019-07-26 10:49:45 info: Đã update số lượng ticket. Tổng số ticket hiện giờ: 12  
+
+2019-07-26 10:50:30 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 10:50:30 info: Client send request GET /profile  
+
+2019-07-26 10:50:31 info: Client send request GET /notification  
+
+2019-07-26 10:50:33 info: Client send request GET /ticket/read/4  
+
+2019-07-26 10:50:34 info: Client send request GET /ticket/read-content/4  
+
+2019-07-26 10:50:34 info: Client send request GET /notification  
+
+2019-07-26 10:53:50 info: Server has started! Listening on port 5000  
+
+2019-07-26 10:53:51 info: Connected to MongoDB server.  
+
+2019-07-26 10:56:47 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 10:56:47 info: Client send request GET /profile  
+
+2019-07-26 10:56:47 info: Client send request GET /notification  
+
+2019-07-26 10:56:56 info: Client send request POST /forgotpw  
+
+2019-07-26 10:56:56 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d2d232750f4bb1da47db472","name":"bao","username":"user1234","password":"$2b$10$ffdovf65H3XFrf/aU3ZXS.IwecJUkgJNXSDkK3uFYxB1UD88IXC2u","email":"noobforever1502@gmail.com","role":"user","__v":0}  
+
+2019-07-26 10:57:24 info: Client send request GET /profile  
+
+2019-07-26 10:57:25 info: Client send request GET /notification  
+
+2019-07-26 10:57:32 info: Client send request POST /forgotpw  
+
+2019-07-26 10:57:32 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d2d232750f4bb1da47db472","name":"bao","username":"user1234","password":"$2b$10$LmHwLz8unwzqmbWWvTU6UOUXHu6aET8fIfvNIyeUoHlTjuUGn7vae","email":"noobforever1502@gmail.com","role":"user","__v":0}  
+
+2019-07-26 10:57:40 info: Client send request GET /profile  
+
+2019-07-26 10:57:40 info: Client send request GET /notification  
+
+2019-07-26 11:20:51 info: Client send request GET /profile  
+
+2019-07-26 11:20:52 info: Client send request GET /notification  
+
+2019-07-26 11:21:54 info: Client send request GET /profile  
+
+2019-07-26 11:21:55 info: Client send request GET /notification  
+
+2019-07-26 11:22:47 info: Client send request GET /profile  
+
+2019-07-26 11:22:47 info: Client send request GET /notification  
+
+2019-07-26 11:22:53 info: [object Object]  
+
+2019-07-26 11:22:53 info: { _id: 5d3a469e51aa6a10dcf330a1,
+  ticketCounter: 11,
+  synchronizationCounter: 33,
+  minMinuteBetweenEachVasQuery: 5,
+  lastTimeSynchronizeData: 2018-12-31T17:00:00.000Z,
+  defaultPassword: 'a12345678' }  
+
+2019-07-26 11:22:54 info: Client send request GET /profile  
+
+2019-07-26 11:22:54 info: Client send request GET /notification  
+
+2019-07-26 11:23:19 info: Client send request POST /register  
+
+2019-07-26 11:23:20 info: Thêm mới dữ liệu thành công vào bảng users trong CSDL:[{"username":"","name":"","password":"$2b$10$8Au2sWXABjObY64NUV1XQOy8IB4dl72U29AJOqzWz5MQ/olJRv/K.","email":"","role":"supervisor","__v":0}]  
+
+2019-07-26 11:28:05 info: Client send request GET /profile  
+
+2019-07-26 11:28:05 info: Client send request GET /notification  
+
+2019-07-26 11:28:08 info: Client send request POST /register  
+
+2019-07-26 11:28:08 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:  
+
+2019-07-26 11:29:11 info: Client send request GET /profile  
+
+2019-07-26 11:29:12 info: Client send request GET /notification  
+
+2019-07-26 11:30:24 info: Client send request GET /profile  
+
+2019-07-26 11:30:25 info: Client send request GET /notification  
+
+2019-07-26 11:39:44 info: Client send request GET /profile  
+
+2019-07-26 11:39:45 info: Client send request GET /notification  
+
+2019-07-26 11:41:11 info: Client send request GET /profile  
+
+2019-07-26 11:41:12 info: Client send request GET /notification  
+
+2019-07-26 11:41:38 info: Client send request GET /profile  
+
+2019-07-26 11:41:39 info: Client send request GET /notification  
+
+2019-07-26 14:18:05 info: Server has started! Listening on port 5000  
+
+2019-07-26 14:18:05 info: Connected to MongoDB server.  
+
+2019-07-26 14:19:54 error: Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng  
+
+2019-07-26 14:19:54 error: Truy vấn không tìm thấy kết quả phù hợp Error: Truy vấn không tìm thấy kết quả phù hợp
+    at C:\cms_handmade\index.js:122:28 
+
+2019-07-26 14:22:24 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:22:26 info: Client send request GET /notification  
+
+2019-07-26 14:23:11 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:23:11 info: Client send request GET /  
+
+2019-07-26 14:23:12 info: Client send request GET /notification  
+
+2019-07-26 14:23:16 info: Client send request GET /profile  
+
+2019-07-26 14:23:16 info: Client send request GET /notification  
+
+2019-07-26 14:23:19 error: Client gửi request GET tới route không tồn tại: /user/page_user_profile_1_account.html  
+
+2019-07-26 14:23:20 info: Client send request GET /notification  
+
+2019-07-26 14:24:27 info: Client send request POST /register  
+
+2019-07-26 14:24:27 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 14:26:26 info: Client send request POST /register  
+
+2019-07-26 14:26:26 info: Thêm mới dữ liệu thành công vào bảng users trong CSDL:[{"username":"manh2","name":"Mạnh","password":"$2b$10$pqqVOQbZ8xAxxZoAa1qybOzpyJKCdkZWhC.DY.IFrmHnsKjdNdzB6","email":"manh@abc.com","role":"supervisor","__v":0}]  
+
+2019-07-26 14:27:28 info: Người dùng manh2 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:27:28 info: Client send request GET /  
+
+2019-07-26 14:27:29 info: Client send request GET /notification  
+
+2019-07-26 14:27:45 info: Client send request POST /forgotpw  
+
+2019-07-26 14:27:45 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3aab223949bf12f8770af7","username":"manh2","name":"Mạnh","password":"$2b$10$mXXLTGPtDmPCkXRyzjtRBOp7I3QRPQrHyLrF2dsQw9vOLEyJ5lhlS","email":"manh@abc.com","role":"supervisor","__v":0}  
+
+2019-07-26 14:27:56 info: Client send request GET /profile  
+
+2019-07-26 14:27:56 info: Client send request GET /notification  
+
+2019-07-26 14:28:11 info: Người dùng manh2 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:28:11 info: Client send request GET /  
+
+2019-07-26 14:28:11 info: Client send request GET /notification  
+
+2019-07-26 14:28:35 info: Client send request POST /forgotpw  
+
+2019-07-26 14:28:35 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3aab223949bf12f8770af7","username":"manh2","name":"Mạnh","password":"$2b$10$t.lkyXksRYCCmrBp2rCh4.MZ9IIb2trlON7NjALwAp/n1TpISTJJe","email":"manh@abc.com","role":"supervisor","__v":0}  
+
+2019-07-26 14:28:37 info: Client send request GET /profile  
+
+2019-07-26 14:28:38 info: Client send request GET /notification  
+
+2019-07-26 14:28:43 info: Người dùng manh2 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:28:43 info: Client send request GET /  
+
+2019-07-26 14:28:43 info: Client send request GET /notification  
+
+2019-07-26 14:28:54 info: Client send request GET /profile  
+
+2019-07-26 14:28:54 info: Client send request GET /notification  
+
+2019-07-26 14:29:10 info: Client send request POST /change-password  
+
+2019-07-26 14:29:10 info: Cập nhật dữ liệu thành công vào bảng users trong CSDL:true  
+
+2019-07-26 14:29:11 info: Client send request GET /profile  
+
+2019-07-26 14:29:11 info: Client send request GET /notification  
+
+2019-07-26 14:29:18 info: Người dùng manh2 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:29:18 info: Client send request GET /  
+
+2019-07-26 14:29:18 info: Client send request GET /notification  
+
+2019-07-26 14:32:26 info: Client send request GET /  
+
+2019-07-26 14:32:27 info: Client send request GET /notification  
+
+2019-07-26 14:32:43 info: Client send request GET /member  
+
+2019-07-26 14:32:44 info: Client send request GET /member/list  
+
+2019-07-26 14:32:44 info: Client send request GET /notification  
+
+2019-07-26 14:39:05 info: Client send request GET /member  
+
+2019-07-26 14:39:05 info: Client send request GET /member/list  
+
+2019-07-26 14:39:06 info: Client send request GET /notification  
+
+2019-07-26 14:39:37 info: Client send request POST /member/add  
+
+2019-07-26 14:39:37 info: Genarate new otp successfully!  
+
+2019-07-26 14:39:37 info: Thêm mới dữ liệu thành công vào bảng members trong CSDL:[{"member_code":"manhtest","otp":"4708a8","auto_reply":true,"fb_id":"","fb_firstName":"","fb_lastName":"","fb_gender":"","fb_linkChat":"","lastTimeQueryVAS":"2019-07-26T07:39:37.477Z","create_time":"2019-07-26T07:39:37.477Z","update_time":"2019-07-26T07:39:37.477Z","__v":0}]  
+
+2019-07-26 14:39:42 info: Client send request GET /member  
+
+2019-07-26 14:39:43 info: Client send request GET /member/list  
+
+2019-07-26 14:39:43 info: Client send request GET /notification  
+
+2019-07-26 14:39:57 info: Client send request DELETE /member/delete/manhtest  
+
+2019-07-26 14:39:57 info: Đã xóa dữ liệu từ bảng members trong CSDL:{"_id":"5d3aae393949bf12f8770af8","member_code":"manhtest","otp":"4708a8","auto_reply":true,"fb_id":"","fb_firstName":"","fb_lastName":"","fb_gender":"","fb_linkChat":"","lastTimeQueryVAS":"2019-07-26T07:39:37.477Z","create_time":"2019-07-26T07:39:37.477Z","update_time":"2019-07-26T07:39:37.477Z","__v":0}  
+
+2019-07-26 14:40:33 info: Client send request GET /member  
+
+2019-07-26 14:40:33 info: Client send request GET /member/list  
+
+2019-07-26 14:40:34 info: Client send request GET /notification  
+
+2019-07-26 14:40:58 info: Client send request GET /product  
+
+2019-07-26 14:40:59 info: Client send request GET /notification  
+
+2019-07-26 14:41:12 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-26 14:41:36 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-26 14:41:37 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-26 14:41:37 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"320 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieu","public":false,"update_time":"2019-07-26T07:41:36.492Z"}  
+
+2019-07-26 14:41:38 info: Client send request GET /product  
+
+2019-07-26 14:41:39 info: Client send request GET /notification  
+
+2019-07-26 14:41:43 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-26 14:42:40 info: Client send request POST /product/adding  
+
+2019-07-26 14:42:40 info: Thêm mới dữ liệu thành công vào bảng districts trong CSDL:[{"chu_ky":"100","khuyen_mai_chu_ky_dau":"1","ten_goi_cuoc":"manhtest","gia_goi":100000,"hoa_hong_msocial":19876,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_khac":"12","uu_dai_data":"2GB/ngày","public":false,"update_time":"2019-07-26T07:42:40.276Z","__v":0}]  
+
+2019-07-26 14:42:40 info: Client send request GET /product  
+
+2019-07-26 14:42:41 info: Client send request GET /notification  
+
+2019-07-26 14:43:36 info: Client send request DELETE /product/delete/5d3aaef03949bf12f8770af9  
+
+2019-07-26 14:43:36 info: Đã xóa dữ liệu từ bảng products trong CSDL:{"_id":"5d3aaef03949bf12f8770af9","chu_ky":"100","khuyen_mai_chu_ky_dau":"1","ten_goi_cuoc":"manhtest","gia_goi":100000,"hoa_hong_msocial":19876,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_khac":"12","uu_dai_data":"2GB/ngày","public":false,"update_time":"2019-07-26T07:42:40.276Z","__v":0}  
+
+2019-07-26 14:43:36 info: Client send request GET /product  
+
+2019-07-26 14:43:37 info: Client send request GET /notification  
+
+2019-07-26 14:43:48 info: Client send request GET /package/image  
+
+2019-07-26 14:43:48 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:43:49 info: Client send request GET /notification  
+
+2019-07-26 14:43:50 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 14:44:48 info: Client send request POST /package/image/upload/undefined  
+
+2019-07-26 14:44:54 info: Client send request POST /package/add-new  
+
+2019-07-26 14:44:54 info: Thêm mới dữ liệu thành công vào bảng vas_packages trong CSDL:null  
+
+2019-07-26 14:44:55 info: Client send request GET /package/image  
+
+2019-07-26 14:44:55 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:44:56 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 14:44:56 info: Client send request GET /notification  
+
+2019-07-26 14:45:02 info: Client send request GET /package/image/properties/5d3aaf763949bf12f8770afa  
+
+2019-07-26 14:45:08 info: Client send request POST /package/image/upload/manhtest  
+
+2019-07-26 14:45:10 info: Client send request POST /package/image/update/manhtest  
+
+2019-07-26 14:45:10 info: Đã xóa file:image20190726_144448.png  
+
+2019-07-26 14:45:10 info: Cập nhật dữ liệu thành công vào bảng vas_packages trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6717874788531961857","t":8},"electionId":"7fffffff0000000000000008","ok":1,"operationTime":"6717874788531961857","$clusterTime":{"clusterTime":"6717874788531961857","signature":{"hash":"TPjvpkNV5o+qua14XJBw9MCR3ZA=","keyId":"6668167087610920962"}}}  
+
+2019-07-26 14:45:12 info: Client send request GET /package/image  
+
+2019-07-26 14:45:12 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:45:12 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 14:45:12 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:45:13 info: Client send request GET /notification  
+
+2019-07-26 14:45:19 info: Client send request GET /package/image/properties/5d3aaf763949bf12f8770afa  
+
+2019-07-26 14:45:26 info: Client send request POST /package/delete/  
+
+2019-07-26 14:45:26 info: Đã xóa dữ liệu từ bảng vas_packages trong CSDL  
+
+2019-07-26 14:45:26 info: Client send request GET /package/image  
+
+2019-07-26 14:45:27 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:45:27 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 14:45:27 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 14:45:27 info: Client send request GET /notification  
+
+2019-07-26 14:45:33 info: Client send request GET /province  
+
+2019-07-26 14:45:34 info: Client send request GET /notification  
+
+2019-07-26 14:45:51 info: Client send request POST /province/adding  
+
+2019-07-26 14:45:51 info: Thêm mới dữ liệu thành công vào bảng provinces trong CSDL:[{"name":"manhtest","province_code":"MT","pic_name":"a","pic_phone":"a","office_address":"a","hotline":"a","__v":0}]  
+
+2019-07-26 14:45:51 info: Client send request GET /province  
+
+2019-07-26 14:45:52 info: Client send request GET /notification  
+
+2019-07-26 14:46:01 info: Client send request GET /province/properties/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:46:09 info: Client send request GET /province/properties/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:46:10 info: Client send request POST /province/update/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:46:10 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d3aafaf3949bf12f8770afb","name":"manhtest","province_code":"MT","pic_name":"ab","pic_phone":"ab","office_address":"ab","hotline":"ab","__v":0}  
+
+2019-07-26 14:46:10 info: Client send request GET /province  
+
+2019-07-26 14:46:11 info: Client send request GET /notification  
+
+2019-07-26 14:46:20 info: Client send request GET /province/properties/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:46:25 info: Client send request GET /district  
+
+2019-07-26 14:46:26 info: Client send request GET /notification  
+
+2019-07-26 14:47:43 info: Client send request POST /district/adding  
+
+2019-07-26 14:47:43 info: Thêm mới dữ liệu thành công vào bảng districts trong CSDL:[{"district_code":"MTT2","province_code":"MT","name":"manhtest","pic_name":"a","pic_phone":"a","office_address":"a","hotline":"a","__v":0}]  
+
+2019-07-26 14:47:44 info: Client send request GET /district  
+
+2019-07-26 14:47:46 info: Client send request GET /notification  
+
+2019-07-26 14:47:50 info: Client send request GET /district/properties/5d3ab01f3949bf12f8770afc  
+
+2019-07-26 14:47:56 info: Client send request POST /district/update/5d3ab01f3949bf12f8770afc  
+
+2019-07-26 14:47:56 info: Cập nhật dữ liệu thành công vào bảng districts trong CSDL:{"_id":"5d3ab01f3949bf12f8770afc","district_code":"MTT2","province_code":"MT","name":"manhtestb","pic_name":"ab","pic_phone":"ab","office_address":"ab","hotline":"ab","__v":0}  
+
+2019-07-26 14:47:57 info: Client send request GET /district  
+
+2019-07-26 14:47:58 info: Client send request GET /notification  
+
+2019-07-26 14:48:07 info: Client send request GET /province  
+
+2019-07-26 14:48:08 info: Client send request GET /notification  
+
+2019-07-26 14:48:12 info: Client send request GET /province/districtlist/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:48:17 info: Client send request DELETE /district/delete/5d3ab01f3949bf12f8770afc  
+
+2019-07-26 14:48:17 info: Đã xóa dữ liệu từ bảng districts trong CSDL:{"_id":"5d3ab01f3949bf12f8770afc","district_code":"MTT2","province_code":"MT","name":"manhtestb","pic_name":"ab","pic_phone":"ab","office_address":"ab","hotline":"ab","__v":0}  
+
+2019-07-26 14:48:18 info: Client send request GET /district  
+
+2019-07-26 14:48:20 info: Client send request GET /notification  
+
+2019-07-26 14:48:24 info: Client send request GET /province/districtlist/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:48:25 info: Client send request DELETE /province/delete/5d3aafaf3949bf12f8770afb  
+
+2019-07-26 14:48:25 info: Đã xóa dữ liệu từ bảng provinces trong CSDL:{"_id":"5d3aafaf3949bf12f8770afb","name":"manhtest","province_code":"MT","pic_name":"ab","pic_phone":"ab","office_address":"ab","hotline":"ab","__v":0}  
+
+2019-07-26 14:48:25 info: Client send request GET /province  
+
+2019-07-26 14:48:26 info: Client send request GET /notification  
+
+2019-07-26 14:48:30 info: Client send request GET /ticket  
+
+2019-07-26 14:48:31 info: Client send request GET /notification  
+
+2019-07-26 14:48:40 info: Client send request GET /ticket/read/2  
+
+2019-07-26 14:48:41 info: Client send request GET /ticket/read-content/2  
+
+2019-07-26 14:48:41 info: Client send request GET /notification  
+
+2019-07-26 14:50:04 info: Client send request GET /ticket/read/4  
+
+2019-07-26 14:50:05 info: Client send request GET /ticket/read-content/4  
+
+2019-07-26 14:50:05 info: Client send request GET /notification  
+
+2019-07-26 14:51:19 info: Client send request POST /ticket/update/4  
+
+2019-07-26 14:51:19 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3587e4fd20bc127028fa25","type":"feedback","status":"assigned","priority":"normal","assignee":"manh2","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563789308652,"text":"test ticket with new feedback and member name"}]},"member_profile":{"fb_id":"2195115180579005","name":"Cửa khẩu Quốc tế Móng Cái","contact_phone":"974879288","member_code":"5QNI2MCA0175"},"comment":"123123","update_by":"admin","create_time":"2019-07-22T09:54:44.000Z","update_time":"2019-07-26T07:51:19.847Z","finish_time":null,"id":4,"__v":0}  
+
+2019-07-26 14:51:19 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":4,"update_time":"2019-07-26T07:51:19.899Z","update_by":"admin","change_description":{"content":[{"_id":"5d3ab0f73949bf12f8770afe","field":"status","value":"assigned"},{"_id":"5d3ab0f73949bf12f8770afd","field":"assignee","value":"manh2"}],"comment":"123123"},"__v":0}]  
+
+2019-07-26 14:51:20 info: Client send request GET /notification  
+
+2019-07-26 14:51:20 info: Client send request GET /notification  
+
+2019-07-26 14:51:20 info: Client send request GET /notification  
+
+2019-07-26 14:51:20 info: Client send request GET /ticket/read/4  
+
+2019-07-26 14:51:22 info: Client send request GET /ticket/read-content/4  
+
+2019-07-26 14:51:22 info: Client send request GET /notification  
+
+2019-07-26 14:51:39 info: Client send request GET /  
+
+2019-07-26 14:51:39 info: Client send request GET /notification  
+
+2019-07-26 14:52:42 info: Người dùng manh2 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:52:42 info: Client send request GET /  
+
+2019-07-26 14:52:43 info: Client send request GET /notification  
+
+2019-07-26 14:52:45 info: Client send request GET /ticket  
+
+2019-07-26 14:52:45 info: Client send request GET /notification  
+
+2019-07-26 14:54:49 info: Đã update số lượng ticket. Tổng số ticket hiện giờ: 12  
+
+2019-07-26 14:54:49 info: Client send request GET /notification  
+
+2019-07-26 14:54:49 info: Client send request GET /notification  
+
+2019-07-26 14:54:49 info: Client send request GET /notification  
+
+2019-07-26 14:55:17 info: Client send request GET /ticket/read/24  
+
+2019-07-26 14:55:17 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 14:55:17 info: Client send request GET /notification  
+
+2019-07-26 14:55:25 info: Client send request GET /  
+
+2019-07-26 14:55:26 info: Client send request GET /notification  
+
+2019-07-26 14:56:05 info: Client send request GET /ticket  
+
+2019-07-26 14:56:06 info: Client send request GET /notification  
+
+2019-07-26 14:56:12 info: Client send request GET /ticket/read/24  
+
+2019-07-26 14:56:13 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 14:56:13 info: Client send request GET /notification  
+
+2019-07-26 14:56:38 error: Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng  
+
+2019-07-26 14:56:38 error: Truy vấn không tìm thấy kết quả phù hợp Error: Truy vấn không tìm thấy kết quả phù hợp
+    at C:\cms_handmade\index.js:122:28 
+
+2019-07-26 14:56:49 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:56:49 info: Client send request GET /  
+
+2019-07-26 14:56:50 info: Client send request GET /notification  
+
+2019-07-26 14:56:54 info: Client send request GET /profile  
+
+2019-07-26 14:56:54 info: Client send request GET /notification  
+
+2019-07-26 14:57:00 info: Client send request POST /forgotpw  
+
+2019-07-26 14:57:00 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d2d232750f4bb1da47db472","name":"bao","username":"user1234","password":"$2b$10$sstHNzP1qLQOIaRZpIGSiOi6wm1SpHFob8EZ0axh7nVHWaRNKXQUa","email":"noobforever1502@gmail.com","role":"user","__v":0}  
+
+2019-07-26 14:57:06 info: Client send request GET /profile  
+
+2019-07-26 14:57:06 info: Client send request GET /notification  
+
+2019-07-26 14:57:14 info: Người dùng user1234 đã đăng nhập vào hệ thống.  
+
+2019-07-26 14:57:14 info: Client send request GET /  
+
+2019-07-26 14:57:15 info: Client send request GET /notification  
+
+2019-07-26 14:57:23 info: Client send request POST /ticket/update/24  
+
+2019-07-26 14:57:23 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3ab1c803dc0a15eceff787","type":"feedback","status":"assigned","priority":"normal","assignee":"user1234","description":{"type":"previousMessages","feedbacks":[{"_id":"5d35293c78d35e0e30a620ad","id":"2195115180579005_1563765052172","from":"member","text":"xin chao"},{"_id":"5d35293d78d35e0e30a620af","id":"2195115180579005_1563765053539","from":"bot","text":"Xin mời bạn nhắn tin theo cú pháp: \n\"otp mã_otp_của_bạn\"\nđể xác thực với hệ thống. 🔐"},{"_id":"5d35294878d35e0e30a620b3","id":"2195115180579005_1563765064678","from":"member","text":"otp 9d2996"},{"_id":"5d35294a78d35e0e30a620b4","id":"2195115180579005_1563765066569","from":"bot","text":"Cảm ơn bạn đã xác thực. Tài khoản Facebook của bạn đã được liên kết với điểm bán Cửa khẩu Quốc tế Móng Cái số điện thoại 0974879288  ✅✅✅"},{"_id":"5d35297d78d35e0e30a620b8","id":"2195115180579005_1563765117374","from":"member","postback":{"title":"📘 Thông tin của tôi","payload":"thong_tin_cua_toi"}},{"_id":"5d35297d78d35e0e30a620b9","id":"2195115180579005_1563765117518","from":"bot","text":"Thông tin về điểm bán của bạn: \nTên điểm bán: Cửa khẩu Quốc tế Móng Cái\nĐịa chỉ điểm bán: Trần Phú, Móng Cái\nSĐT liên hệ: 0974879288\nSố ez nhận khuyến khích: 0783132389\nMã truy cập mSale: 5QNI2MCA0175"},{"_id":"5d35298c78d35e0e30a620bd","id":"2195115180579005_1563765132895","from":"member","postback":{"title":"📈 Kết quả nhập hàng","payload":"ket_qua_nhap_hang"}},{"_id":"5d35298e78d35e0e30a620be","id":"2195115180579005_1563765134072","from":"bot","text":"Bạn muốn xem thông tin về kết quả nhập hàng của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"30 ngày trước","payload":"kqnh_last30days"},{"content_type":"text","title":"90 ngày trước","payload":"kqnh_last90days"},{"content_type":"text","title":"180 ngày trước","payload":"kqnh_last180days"}]},{"_id":"5d35299378d35e0e30a620c2","id":"2195115180579005_1563765139908","from":"member","text":"90 ngày trước","quick_reply":{"payload":"kqnh_last90days"}},{"_id":"5d35299578d35e0e30a620c3","id":"2195115180579005_1563765141029","from":"bot","text":"Từ ngày 23/04/2019 đến ngày 22/07/2019 bạn đã nhập: \nTiền thẻ 4,300,000 đ\n"},{"_id":"5d3529a178d35e0e30a620c7","id":"2195115180579005_1563765153862","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529a378d35e0e30a620c8","id":"2195115180579005_1563765155072","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529a978d35e0e30a620cc","id":"2195115180579005_1563765161165","from":"member","text":"Bán VAS","quick_reply":{"payload":"hh_vas"}},{"_id":"5d3529aa78d35e0e30a620cd","id":"2195115180579005_1563765162575","from":"bot","text":"Bạn muốn xem thông tin về hoa hồng bán VAS của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"1 ngày trước","payload":"hh_vas_last1day"},{"content_type":"text","title":"7 ngày trước","payload":"hh_vas_last7days"},{"content_type":"text","title":"30 ngày trước","payload":"hh_vas_last30days"}]},{"_id":"5d3529b078d35e0e30a620d1","id":"2195115180579005_1563765168363","from":"member","text":"30 ngày trước","quick_reply":{"payload":"hh_vas_last30days"}},{"_id":"5d3529b778d35e0e30a620d2","id":"2195115180579005_1563765175911","from":"bot","text":"Hoa hồng bán VAS từ ngày 22/06/2019 đến ngày 22/07/2019 của bạn là 10,061,218 đ."},{"_id":"5d3529c578d35e0e30a620d6","id":"2195115180579005_1563765189178","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529c578d35e0e30a620d7","id":"2195115180579005_1563765189584","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529ca78d35e0e30a620db","id":"2195115180579005_1563765194925","from":"member","text":"Phát triển thực","quick_reply":{"payload":"hh_ptt"}},{"_id":"5d3529cc78d35e0e30a620dc","id":"2195115180579005_1563765196263","from":"bot","text":"Hoa hồng Phát triển thực trong tháng 07/2019 của bạn là 0 đ."},{"_id":"5d3529d778d35e0e30a620e0","id":"2195115180579005_1563765207278","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529d778d35e0e30a620e1","id":"2195115180579005_1563765207589","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529db78d35e0e30a620e5","id":"2195115180579005_1563765211533","from":"member","text":"Tích điểm","quick_reply":{"payload":"hh_td"}},{"_id":"5d3529dc78d35e0e30a620e6","id":"2195115180579005_1563765212027","from":"bot","text":"Tổng số điểm mà bạn đã tích được là 6636 điểm."},{"_id":"5d3529ef78d35e0e30a620ea","id":"2195115180579005_1563765231217","from":"member","postback":{"title":"🔍 Tra cứu VAS","payload":"tra_cuu_vas"}},{"_id":"5d3529ef78d35e0e30a620eb","id":"2195115180579005_1563765231594","from":"bot","text":"Xin mời bạn nhập số thuê bao cần tra cứu!"},{"_id":"5d3529f678d35e0e30a620ef","id":"2195115180579005_1563765238768","from":"member","text":"0904383138"},{"_id":"5d352a1078d35e0e30a620f0","id":"2195115180579005_1563765264608","from":"bot","text":"Một số gói cước mà thuê bao 0904383138 được hưởng là:"},{"_id":"5d352a1278d35e0e30a620f1","id":"2195115180579005_1563765266116","from":"bot","attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"12M200","image_url":"https://bot.mobifone5.vn/images/12M200.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M200","payload":"regis_vas_904383138_3_12M200"},{"type":"web_url","url":"https://mobifone.net.vn/goi-cuoc-12m200-mobifone.html","title":"Xem chi tiết"}]},{"title":"FIM30","image_url":"https://bot.mobifone5.vn/images/FIM30.jpg","subtitle":"Hoa hồng: 28,926 đ","buttons":[{"type":"postback","title":"Đăng ký gói FIM30","payload":"regis_vas_904383138_523_FIM30"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-fim30-mobifone.html","title":"Xem chi tiết"}]},{"title":"DP1500","image_url":"https://bot.mobifone5.vn/images/DP1500.jpg","subtitle":"Hoa hồng: 0","buttons":[{"type":"postback","title":"Đăng ký gói DP1500","payload":"regis_vas_904383138_3_DP1500"},{"type":"web_url","url":"http://dichvu3gmobifone.vn/dang-ky-goi-dp1500-mobifone.html","title":"Xem chi tiết"}]},{"title":"12BMIU","image_url":"https://bot.mobifone5.vn/images/12BMIU.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12BMIU","payload":"regis_vas_904383138_3_12BMIU"},{"type":"web_url","url":"https://dichvumobifone.com/goi-cuoc-12bmiu-mobifone","title":"Xem chi tiết"}]},{"title":"12M120","image_url":"https://bot.mobifone5.vn/images/12M120.png","subtitle":"Hoa hồng: 155,782 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M120","payload":"regis_vas_904383138_3_12M120"},{"type":"web_url","url":"https://mobifone4g.net/goi-cuoc-12m120-mobifone","title":"Xem chi tiết"}]},{"title":"HD70","image_url":"https://bot.mobifone5.vn/images/HD70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói HD70","payload":"regis_vas_904383138_582_HD70"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-4g-hd70-mobifone.html","title":"Xem chi tiết"}]},{"title":"MIU","image_url":"https://bot.mobifone5.vn/images/MIU.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"},{"type":"web_url","url":"https://mobifone3g.info/dang-ky-goi-miu-mobifone","title":"Xem chi tiết"}]},{"title":"MIU90","image_url":"https://bot.mobifone5.vn/images/MIU90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU90","payload":"regis_vas_904383138_3_MIU90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-miu90-mobifone","title":"Xem chi tiết"}]},{"title":"M90","image_url":"https://bot.mobifone5.vn/images/M90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói M90","payload":"regis_vas_904383138_3_M90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m90-mobifone","title":"Xem chi tiết"}]},{"title":"M70","image_url":"https://bot.mobifone5.vn/images/M70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói M70","payload":"regis_vas_904383138_3_M70"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m70-mobifone","title":"Xem chi tiết"}]}]}}},{"_id":"5d352a2e78d35e0e30a620f9","id":"2195115180579005_1563765294202","from":"member","postback":{"title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"}},{"_id":"5d352a2e78d35e0e30a620fa","id":"2195115180579005_1563765294834","from":"bot","text":"Mã điểm bán chưa được kích hoạt trên hệ thống. Mời bạn liên hệ với nhân viên chăm sóc để được hỗ trợ!"},{"_id":"5d352a3878d35e0e30a620fe","id":"2195115180579005_1563765304581","from":"member","postback":{"title":"ℹ️ MobiFone tại địa bàn","payload":"thong_tin_dia_ban"}},{"_id":"5d352a3878d35e0e30a620ff","id":"2195115180579005_1563765304863","from":"bot","text":"Thông tin về MobiFone tại Tỉnh Quảng Ninh:\nLãnh đạo: \nSĐT lãnh đạo: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a3878d35e0e30a62100","id":"2195115180579005_1563765304864","from":"bot","text":"Thông tin về MobiFone tại Thành phố Móng Cái:\nTrưởng Quận/Huyện: \nSĐT trưởng Quận/Huyện: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a4f78d35e0e30a62107","id":"2195115180579005_1563765327846","from":"member","postback":{"title":"👩 Nhân viên chăm sóc","payload":"nhan_vien_cham_soc"}},{"_id":"5d352a5078d35e0e30a62108","id":"2195115180579005_1563765328210","from":"bot","text":"Thông tin về nhân viên chăm sóc của bạn: \nTên: Trần Thị Thu Huyền\nSĐT liên hệ: 0936812223\nEmail:  "},{"_id":"5d352b0578d35e0e30a6210c","id":"2195115180579005_1563765509848","from":"member","text":"gửi một số ảnh 😁"},{"_id":"5d352b0578d35e0e30a6210d","id":"2195115180579005_1563765509928","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b0878d35e0e30a6210e","id":"2195115180579005_1563765512100","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}}]},{"_id":"5d352b1878d35e0e30a62112","id":"2195115180579005_1563765528072","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png","sticker_id":2041012262792914}}]},{"_id":"5d352b3778d35e0e30a62113","id":"2195115180579005_1563765559930","from":"member","text":"gửi file text test"},{"_id":"5d352b3878d35e0e30a62114","id":"2195115180579005_1563765560008","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b3978d35e0e30a62115","id":"2195115180579005_1563765561098","from":"member","attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"_id":"5d356d2343880a1a684ba6ed","id":"2195115180579005_1563782435153","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d2443880a1a684ba6ef","id":"2195115180579005_1563782436415","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d3143880a1a684ba6f4","id":"2195115180579005_1563782449826","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}},{"_id":"5d356d6543880a1a684ba6f6","id":"2195115180579005_1563782501819","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d6643880a1a684ba6f8","id":"2195115180579005_1563782502426","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d6f43880a1a684ba6fd","id":"2195115180579005_1563782511873","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"12a","update_by":"manh2","create_time":"2019-07-22T08:01:51.000Z","update_time":"2019-07-26T07:57:23.089Z","finish_time":null,"id":24,"__v":0}  
+
+2019-07-26 14:57:23 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":24,"update_time":"2019-07-26T07:57:23.175Z","update_by":"manh2","change_description":{"content":[{"_id":"5d3ab2633949bf12f8770b03","field":"status","value":"assigned"},{"_id":"5d3ab2633949bf12f8770b02","field":"assignee","value":"user1234"}],"comment":"12a"},"__v":0}]  
+
+2019-07-26 14:57:23 info: Client send request GET /notification  
+
+2019-07-26 14:57:23 info: Client send request GET /notification  
+
+2019-07-26 14:57:23 info: Client send request GET /notification  
+
+2019-07-26 14:57:23 info: Client send request GET /notification  
+
+2019-07-26 14:57:23 info: Client send request GET /ticket/read/24  
+
+2019-07-26 14:57:24 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 14:57:24 info: Client send request GET /notification  
+
+2019-07-26 15:00:38 info: Client send request GET /  
+
+2019-07-26 15:00:39 info: Client send request GET /notification  
+
+2019-07-26 15:00:43 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:00:43 error: Lỗi khi thực hiện cập nhật dữ liệu vào bảng tickets trong CSDL 
+null  
+
+2019-07-26 15:00:43 error: Bị lỗi từ hệ thống Error: Bị lỗi từ hệ thống
+    at C:\cms_handmade\controller\ticket.controller.js:127:26
+    at callback (C:\cms_handmade\node_modules\mongoose\lib\query.js:4005:9)
+    at C:\cms_handmade\node_modules\mongoose\lib\query.js:4239:12
+    at result (C:\cms_handmade\node_modules\mongodb\lib\utils.js:410:17)
+    at session.endSession (C:\cms_handmade\node_modules\mongodb\lib\utils.js:398:11)
+    at ClientSession.endSession (C:\cms_handmade\node_modules\mongodb-core\lib\sessions.js:134:41)
+    at executeCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:395:17)
+    at handleCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:128:55)
+    at coll.s.topology.update (C:\cms_handmade\node_modules\mongodb\lib\operations\collection_ops.js:1467:5)
+    at handler (C:\cms_handmade\node_modules\mongodb-core\lib\topologies\replset.js:1155:22)
+    at C:\cms_handmade\node_modules\mongodb-core\lib\connection\pool.js:397:18
+    at process._tickCallback (internal/process/next_tick.js:61:11) 
+
+2019-07-26 15:00:44 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:00:44 info: Client send request GET /notification  
+
+2019-07-26 15:01:25 info: Client send request POST /ticket/update/24  
+
+2019-07-26 15:01:25 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3ab1c803dc0a15eceff787","type":"feedback","status":"recieved","priority":"normal","assignee":"user1234","description":{"type":"previousMessages","feedbacks":[{"_id":"5d35293c78d35e0e30a620ad","id":"2195115180579005_1563765052172","from":"member","text":"xin chao"},{"_id":"5d35293d78d35e0e30a620af","id":"2195115180579005_1563765053539","from":"bot","text":"Xin mời bạn nhắn tin theo cú pháp: \n\"otp mã_otp_của_bạn\"\nđể xác thực với hệ thống. 🔐"},{"_id":"5d35294878d35e0e30a620b3","id":"2195115180579005_1563765064678","from":"member","text":"otp 9d2996"},{"_id":"5d35294a78d35e0e30a620b4","id":"2195115180579005_1563765066569","from":"bot","text":"Cảm ơn bạn đã xác thực. Tài khoản Facebook của bạn đã được liên kết với điểm bán Cửa khẩu Quốc tế Móng Cái số điện thoại 0974879288  ✅✅✅"},{"_id":"5d35297d78d35e0e30a620b8","id":"2195115180579005_1563765117374","from":"member","postback":{"title":"📘 Thông tin của tôi","payload":"thong_tin_cua_toi"}},{"_id":"5d35297d78d35e0e30a620b9","id":"2195115180579005_1563765117518","from":"bot","text":"Thông tin về điểm bán của bạn: \nTên điểm bán: Cửa khẩu Quốc tế Móng Cái\nĐịa chỉ điểm bán: Trần Phú, Móng Cái\nSĐT liên hệ: 0974879288\nSố ez nhận khuyến khích: 0783132389\nMã truy cập mSale: 5QNI2MCA0175"},{"_id":"5d35298c78d35e0e30a620bd","id":"2195115180579005_1563765132895","from":"member","postback":{"title":"📈 Kết quả nhập hàng","payload":"ket_qua_nhap_hang"}},{"_id":"5d35298e78d35e0e30a620be","id":"2195115180579005_1563765134072","from":"bot","text":"Bạn muốn xem thông tin về kết quả nhập hàng của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"30 ngày trước","payload":"kqnh_last30days"},{"content_type":"text","title":"90 ngày trước","payload":"kqnh_last90days"},{"content_type":"text","title":"180 ngày trước","payload":"kqnh_last180days"}]},{"_id":"5d35299378d35e0e30a620c2","id":"2195115180579005_1563765139908","from":"member","text":"90 ngày trước","quick_reply":{"payload":"kqnh_last90days"}},{"_id":"5d35299578d35e0e30a620c3","id":"2195115180579005_1563765141029","from":"bot","text":"Từ ngày 23/04/2019 đến ngày 22/07/2019 bạn đã nhập: \nTiền thẻ 4,300,000 đ\n"},{"_id":"5d3529a178d35e0e30a620c7","id":"2195115180579005_1563765153862","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529a378d35e0e30a620c8","id":"2195115180579005_1563765155072","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529a978d35e0e30a620cc","id":"2195115180579005_1563765161165","from":"member","text":"Bán VAS","quick_reply":{"payload":"hh_vas"}},{"_id":"5d3529aa78d35e0e30a620cd","id":"2195115180579005_1563765162575","from":"bot","text":"Bạn muốn xem thông tin về hoa hồng bán VAS của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"1 ngày trước","payload":"hh_vas_last1day"},{"content_type":"text","title":"7 ngày trước","payload":"hh_vas_last7days"},{"content_type":"text","title":"30 ngày trước","payload":"hh_vas_last30days"}]},{"_id":"5d3529b078d35e0e30a620d1","id":"2195115180579005_1563765168363","from":"member","text":"30 ngày trước","quick_reply":{"payload":"hh_vas_last30days"}},{"_id":"5d3529b778d35e0e30a620d2","id":"2195115180579005_1563765175911","from":"bot","text":"Hoa hồng bán VAS từ ngày 22/06/2019 đến ngày 22/07/2019 của bạn là 10,061,218 đ."},{"_id":"5d3529c578d35e0e30a620d6","id":"2195115180579005_1563765189178","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529c578d35e0e30a620d7","id":"2195115180579005_1563765189584","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529ca78d35e0e30a620db","id":"2195115180579005_1563765194925","from":"member","text":"Phát triển thực","quick_reply":{"payload":"hh_ptt"}},{"_id":"5d3529cc78d35e0e30a620dc","id":"2195115180579005_1563765196263","from":"bot","text":"Hoa hồng Phát triển thực trong tháng 07/2019 của bạn là 0 đ."},{"_id":"5d3529d778d35e0e30a620e0","id":"2195115180579005_1563765207278","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529d778d35e0e30a620e1","id":"2195115180579005_1563765207589","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529db78d35e0e30a620e5","id":"2195115180579005_1563765211533","from":"member","text":"Tích điểm","quick_reply":{"payload":"hh_td"}},{"_id":"5d3529dc78d35e0e30a620e6","id":"2195115180579005_1563765212027","from":"bot","text":"Tổng số điểm mà bạn đã tích được là 6636 điểm."},{"_id":"5d3529ef78d35e0e30a620ea","id":"2195115180579005_1563765231217","from":"member","postback":{"title":"🔍 Tra cứu VAS","payload":"tra_cuu_vas"}},{"_id":"5d3529ef78d35e0e30a620eb","id":"2195115180579005_1563765231594","from":"bot","text":"Xin mời bạn nhập số thuê bao cần tra cứu!"},{"_id":"5d3529f678d35e0e30a620ef","id":"2195115180579005_1563765238768","from":"member","text":"0904383138"},{"_id":"5d352a1078d35e0e30a620f0","id":"2195115180579005_1563765264608","from":"bot","text":"Một số gói cước mà thuê bao 0904383138 được hưởng là:"},{"_id":"5d352a1278d35e0e30a620f1","id":"2195115180579005_1563765266116","from":"bot","attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"12M200","image_url":"https://bot.mobifone5.vn/images/12M200.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M200","payload":"regis_vas_904383138_3_12M200"},{"type":"web_url","url":"https://mobifone.net.vn/goi-cuoc-12m200-mobifone.html","title":"Xem chi tiết"}]},{"title":"FIM30","image_url":"https://bot.mobifone5.vn/images/FIM30.jpg","subtitle":"Hoa hồng: 28,926 đ","buttons":[{"type":"postback","title":"Đăng ký gói FIM30","payload":"regis_vas_904383138_523_FIM30"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-fim30-mobifone.html","title":"Xem chi tiết"}]},{"title":"DP1500","image_url":"https://bot.mobifone5.vn/images/DP1500.jpg","subtitle":"Hoa hồng: 0","buttons":[{"type":"postback","title":"Đăng ký gói DP1500","payload":"regis_vas_904383138_3_DP1500"},{"type":"web_url","url":"http://dichvu3gmobifone.vn/dang-ky-goi-dp1500-mobifone.html","title":"Xem chi tiết"}]},{"title":"12BMIU","image_url":"https://bot.mobifone5.vn/images/12BMIU.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12BMIU","payload":"regis_vas_904383138_3_12BMIU"},{"type":"web_url","url":"https://dichvumobifone.com/goi-cuoc-12bmiu-mobifone","title":"Xem chi tiết"}]},{"title":"12M120","image_url":"https://bot.mobifone5.vn/images/12M120.png","subtitle":"Hoa hồng: 155,782 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M120","payload":"regis_vas_904383138_3_12M120"},{"type":"web_url","url":"https://mobifone4g.net/goi-cuoc-12m120-mobifone","title":"Xem chi tiết"}]},{"title":"HD70","image_url":"https://bot.mobifone5.vn/images/HD70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói HD70","payload":"regis_vas_904383138_582_HD70"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-4g-hd70-mobifone.html","title":"Xem chi tiết"}]},{"title":"MIU","image_url":"https://bot.mobifone5.vn/images/MIU.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"},{"type":"web_url","url":"https://mobifone3g.info/dang-ky-goi-miu-mobifone","title":"Xem chi tiết"}]},{"title":"MIU90","image_url":"https://bot.mobifone5.vn/images/MIU90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU90","payload":"regis_vas_904383138_3_MIU90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-miu90-mobifone","title":"Xem chi tiết"}]},{"title":"M90","image_url":"https://bot.mobifone5.vn/images/M90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói M90","payload":"regis_vas_904383138_3_M90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m90-mobifone","title":"Xem chi tiết"}]},{"title":"M70","image_url":"https://bot.mobifone5.vn/images/M70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói M70","payload":"regis_vas_904383138_3_M70"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m70-mobifone","title":"Xem chi tiết"}]}]}}},{"_id":"5d352a2e78d35e0e30a620f9","id":"2195115180579005_1563765294202","from":"member","postback":{"title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"}},{"_id":"5d352a2e78d35e0e30a620fa","id":"2195115180579005_1563765294834","from":"bot","text":"Mã điểm bán chưa được kích hoạt trên hệ thống. Mời bạn liên hệ với nhân viên chăm sóc để được hỗ trợ!"},{"_id":"5d352a3878d35e0e30a620fe","id":"2195115180579005_1563765304581","from":"member","postback":{"title":"ℹ️ MobiFone tại địa bàn","payload":"thong_tin_dia_ban"}},{"_id":"5d352a3878d35e0e30a620ff","id":"2195115180579005_1563765304863","from":"bot","text":"Thông tin về MobiFone tại Tỉnh Quảng Ninh:\nLãnh đạo: \nSĐT lãnh đạo: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a3878d35e0e30a62100","id":"2195115180579005_1563765304864","from":"bot","text":"Thông tin về MobiFone tại Thành phố Móng Cái:\nTrưởng Quận/Huyện: \nSĐT trưởng Quận/Huyện: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a4f78d35e0e30a62107","id":"2195115180579005_1563765327846","from":"member","postback":{"title":"👩 Nhân viên chăm sóc","payload":"nhan_vien_cham_soc"}},{"_id":"5d352a5078d35e0e30a62108","id":"2195115180579005_1563765328210","from":"bot","text":"Thông tin về nhân viên chăm sóc của bạn: \nTên: Trần Thị Thu Huyền\nSĐT liên hệ: 0936812223\nEmail:  "},{"_id":"5d352b0578d35e0e30a6210c","id":"2195115180579005_1563765509848","from":"member","text":"gửi một số ảnh 😁"},{"_id":"5d352b0578d35e0e30a6210d","id":"2195115180579005_1563765509928","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b0878d35e0e30a6210e","id":"2195115180579005_1563765512100","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}}]},{"_id":"5d352b1878d35e0e30a62112","id":"2195115180579005_1563765528072","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png","sticker_id":2041012262792914}}]},{"_id":"5d352b3778d35e0e30a62113","id":"2195115180579005_1563765559930","from":"member","text":"gửi file text test"},{"_id":"5d352b3878d35e0e30a62114","id":"2195115180579005_1563765560008","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b3978d35e0e30a62115","id":"2195115180579005_1563765561098","from":"member","attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"_id":"5d356d2343880a1a684ba6ed","id":"2195115180579005_1563782435153","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d2443880a1a684ba6ef","id":"2195115180579005_1563782436415","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d3143880a1a684ba6f4","id":"2195115180579005_1563782449826","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}},{"_id":"5d356d6543880a1a684ba6f6","id":"2195115180579005_1563782501819","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d6643880a1a684ba6f8","id":"2195115180579005_1563782502426","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d6f43880a1a684ba6fd","id":"2195115180579005_1563782511873","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"cần thêm thời gian","update_by":"user1234","create_time":"2019-07-22T08:01:51.000Z","update_time":"2019-07-26T08:01:25.386Z","finish_time":null,"id":24,"__v":0}  
+
+2019-07-26 15:01:25 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":24,"update_time":"2019-07-26T08:01:25.480Z","update_by":"user1234","change_description":{"content":[],"comment":"cần thêm thời gian"},"__v":0}]  
+
+2019-07-26 15:01:26 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:01:27 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:01:27 info: Client send request GET /notification  
+
+2019-07-26 15:01:41 info: Client send request POST /ticket/update/24  
+
+2019-07-26 15:01:41 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3ab1c803dc0a15eceff787","type":"feedback","status":"resolved","priority":"normal","assignee":"user1234","description":{"type":"previousMessages","feedbacks":[{"_id":"5d35293c78d35e0e30a620ad","id":"2195115180579005_1563765052172","from":"member","text":"xin chao"},{"_id":"5d35293d78d35e0e30a620af","id":"2195115180579005_1563765053539","from":"bot","text":"Xin mời bạn nhắn tin theo cú pháp: \n\"otp mã_otp_của_bạn\"\nđể xác thực với hệ thống. 🔐"},{"_id":"5d35294878d35e0e30a620b3","id":"2195115180579005_1563765064678","from":"member","text":"otp 9d2996"},{"_id":"5d35294a78d35e0e30a620b4","id":"2195115180579005_1563765066569","from":"bot","text":"Cảm ơn bạn đã xác thực. Tài khoản Facebook của bạn đã được liên kết với điểm bán Cửa khẩu Quốc tế Móng Cái số điện thoại 0974879288  ✅✅✅"},{"_id":"5d35297d78d35e0e30a620b8","id":"2195115180579005_1563765117374","from":"member","postback":{"title":"📘 Thông tin của tôi","payload":"thong_tin_cua_toi"}},{"_id":"5d35297d78d35e0e30a620b9","id":"2195115180579005_1563765117518","from":"bot","text":"Thông tin về điểm bán của bạn: \nTên điểm bán: Cửa khẩu Quốc tế Móng Cái\nĐịa chỉ điểm bán: Trần Phú, Móng Cái\nSĐT liên hệ: 0974879288\nSố ez nhận khuyến khích: 0783132389\nMã truy cập mSale: 5QNI2MCA0175"},{"_id":"5d35298c78d35e0e30a620bd","id":"2195115180579005_1563765132895","from":"member","postback":{"title":"📈 Kết quả nhập hàng","payload":"ket_qua_nhap_hang"}},{"_id":"5d35298e78d35e0e30a620be","id":"2195115180579005_1563765134072","from":"bot","text":"Bạn muốn xem thông tin về kết quả nhập hàng của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"30 ngày trước","payload":"kqnh_last30days"},{"content_type":"text","title":"90 ngày trước","payload":"kqnh_last90days"},{"content_type":"text","title":"180 ngày trước","payload":"kqnh_last180days"}]},{"_id":"5d35299378d35e0e30a620c2","id":"2195115180579005_1563765139908","from":"member","text":"90 ngày trước","quick_reply":{"payload":"kqnh_last90days"}},{"_id":"5d35299578d35e0e30a620c3","id":"2195115180579005_1563765141029","from":"bot","text":"Từ ngày 23/04/2019 đến ngày 22/07/2019 bạn đã nhập: \nTiền thẻ 4,300,000 đ\n"},{"_id":"5d3529a178d35e0e30a620c7","id":"2195115180579005_1563765153862","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529a378d35e0e30a620c8","id":"2195115180579005_1563765155072","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529a978d35e0e30a620cc","id":"2195115180579005_1563765161165","from":"member","text":"Bán VAS","quick_reply":{"payload":"hh_vas"}},{"_id":"5d3529aa78d35e0e30a620cd","id":"2195115180579005_1563765162575","from":"bot","text":"Bạn muốn xem thông tin về hoa hồng bán VAS của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"1 ngày trước","payload":"hh_vas_last1day"},{"content_type":"text","title":"7 ngày trước","payload":"hh_vas_last7days"},{"content_type":"text","title":"30 ngày trước","payload":"hh_vas_last30days"}]},{"_id":"5d3529b078d35e0e30a620d1","id":"2195115180579005_1563765168363","from":"member","text":"30 ngày trước","quick_reply":{"payload":"hh_vas_last30days"}},{"_id":"5d3529b778d35e0e30a620d2","id":"2195115180579005_1563765175911","from":"bot","text":"Hoa hồng bán VAS từ ngày 22/06/2019 đến ngày 22/07/2019 của bạn là 10,061,218 đ."},{"_id":"5d3529c578d35e0e30a620d6","id":"2195115180579005_1563765189178","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529c578d35e0e30a620d7","id":"2195115180579005_1563765189584","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529ca78d35e0e30a620db","id":"2195115180579005_1563765194925","from":"member","text":"Phát triển thực","quick_reply":{"payload":"hh_ptt"}},{"_id":"5d3529cc78d35e0e30a620dc","id":"2195115180579005_1563765196263","from":"bot","text":"Hoa hồng Phát triển thực trong tháng 07/2019 của bạn là 0 đ."},{"_id":"5d3529d778d35e0e30a620e0","id":"2195115180579005_1563765207278","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529d778d35e0e30a620e1","id":"2195115180579005_1563765207589","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529db78d35e0e30a620e5","id":"2195115180579005_1563765211533","from":"member","text":"Tích điểm","quick_reply":{"payload":"hh_td"}},{"_id":"5d3529dc78d35e0e30a620e6","id":"2195115180579005_1563765212027","from":"bot","text":"Tổng số điểm mà bạn đã tích được là 6636 điểm."},{"_id":"5d3529ef78d35e0e30a620ea","id":"2195115180579005_1563765231217","from":"member","postback":{"title":"🔍 Tra cứu VAS","payload":"tra_cuu_vas"}},{"_id":"5d3529ef78d35e0e30a620eb","id":"2195115180579005_1563765231594","from":"bot","text":"Xin mời bạn nhập số thuê bao cần tra cứu!"},{"_id":"5d3529f678d35e0e30a620ef","id":"2195115180579005_1563765238768","from":"member","text":"0904383138"},{"_id":"5d352a1078d35e0e30a620f0","id":"2195115180579005_1563765264608","from":"bot","text":"Một số gói cước mà thuê bao 0904383138 được hưởng là:"},{"_id":"5d352a1278d35e0e30a620f1","id":"2195115180579005_1563765266116","from":"bot","attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"12M200","image_url":"https://bot.mobifone5.vn/images/12M200.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M200","payload":"regis_vas_904383138_3_12M200"},{"type":"web_url","url":"https://mobifone.net.vn/goi-cuoc-12m200-mobifone.html","title":"Xem chi tiết"}]},{"title":"FIM30","image_url":"https://bot.mobifone5.vn/images/FIM30.jpg","subtitle":"Hoa hồng: 28,926 đ","buttons":[{"type":"postback","title":"Đăng ký gói FIM30","payload":"regis_vas_904383138_523_FIM30"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-fim30-mobifone.html","title":"Xem chi tiết"}]},{"title":"DP1500","image_url":"https://bot.mobifone5.vn/images/DP1500.jpg","subtitle":"Hoa hồng: 0","buttons":[{"type":"postback","title":"Đăng ký gói DP1500","payload":"regis_vas_904383138_3_DP1500"},{"type":"web_url","url":"http://dichvu3gmobifone.vn/dang-ky-goi-dp1500-mobifone.html","title":"Xem chi tiết"}]},{"title":"12BMIU","image_url":"https://bot.mobifone5.vn/images/12BMIU.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12BMIU","payload":"regis_vas_904383138_3_12BMIU"},{"type":"web_url","url":"https://dichvumobifone.com/goi-cuoc-12bmiu-mobifone","title":"Xem chi tiết"}]},{"title":"12M120","image_url":"https://bot.mobifone5.vn/images/12M120.png","subtitle":"Hoa hồng: 155,782 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M120","payload":"regis_vas_904383138_3_12M120"},{"type":"web_url","url":"https://mobifone4g.net/goi-cuoc-12m120-mobifone","title":"Xem chi tiết"}]},{"title":"HD70","image_url":"https://bot.mobifone5.vn/images/HD70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói HD70","payload":"regis_vas_904383138_582_HD70"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-4g-hd70-mobifone.html","title":"Xem chi tiết"}]},{"title":"MIU","image_url":"https://bot.mobifone5.vn/images/MIU.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"},{"type":"web_url","url":"https://mobifone3g.info/dang-ky-goi-miu-mobifone","title":"Xem chi tiết"}]},{"title":"MIU90","image_url":"https://bot.mobifone5.vn/images/MIU90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU90","payload":"regis_vas_904383138_3_MIU90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-miu90-mobifone","title":"Xem chi tiết"}]},{"title":"M90","image_url":"https://bot.mobifone5.vn/images/M90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói M90","payload":"regis_vas_904383138_3_M90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m90-mobifone","title":"Xem chi tiết"}]},{"title":"M70","image_url":"https://bot.mobifone5.vn/images/M70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói M70","payload":"regis_vas_904383138_3_M70"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m70-mobifone","title":"Xem chi tiết"}]}]}}},{"_id":"5d352a2e78d35e0e30a620f9","id":"2195115180579005_1563765294202","from":"member","postback":{"title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"}},{"_id":"5d352a2e78d35e0e30a620fa","id":"2195115180579005_1563765294834","from":"bot","text":"Mã điểm bán chưa được kích hoạt trên hệ thống. Mời bạn liên hệ với nhân viên chăm sóc để được hỗ trợ!"},{"_id":"5d352a3878d35e0e30a620fe","id":"2195115180579005_1563765304581","from":"member","postback":{"title":"ℹ️ MobiFone tại địa bàn","payload":"thong_tin_dia_ban"}},{"_id":"5d352a3878d35e0e30a620ff","id":"2195115180579005_1563765304863","from":"bot","text":"Thông tin về MobiFone tại Tỉnh Quảng Ninh:\nLãnh đạo: \nSĐT lãnh đạo: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a3878d35e0e30a62100","id":"2195115180579005_1563765304864","from":"bot","text":"Thông tin về MobiFone tại Thành phố Móng Cái:\nTrưởng Quận/Huyện: \nSĐT trưởng Quận/Huyện: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a4f78d35e0e30a62107","id":"2195115180579005_1563765327846","from":"member","postback":{"title":"👩 Nhân viên chăm sóc","payload":"nhan_vien_cham_soc"}},{"_id":"5d352a5078d35e0e30a62108","id":"2195115180579005_1563765328210","from":"bot","text":"Thông tin về nhân viên chăm sóc của bạn: \nTên: Trần Thị Thu Huyền\nSĐT liên hệ: 0936812223\nEmail:  "},{"_id":"5d352b0578d35e0e30a6210c","id":"2195115180579005_1563765509848","from":"member","text":"gửi một số ảnh 😁"},{"_id":"5d352b0578d35e0e30a6210d","id":"2195115180579005_1563765509928","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b0878d35e0e30a6210e","id":"2195115180579005_1563765512100","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}}]},{"_id":"5d352b1878d35e0e30a62112","id":"2195115180579005_1563765528072","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png","sticker_id":2041012262792914}}]},{"_id":"5d352b3778d35e0e30a62113","id":"2195115180579005_1563765559930","from":"member","text":"gửi file text test"},{"_id":"5d352b3878d35e0e30a62114","id":"2195115180579005_1563765560008","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b3978d35e0e30a62115","id":"2195115180579005_1563765561098","from":"member","attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"_id":"5d356d2343880a1a684ba6ed","id":"2195115180579005_1563782435153","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d2443880a1a684ba6ef","id":"2195115180579005_1563782436415","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d3143880a1a684ba6f4","id":"2195115180579005_1563782449826","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}},{"_id":"5d356d6543880a1a684ba6f6","id":"2195115180579005_1563782501819","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d6643880a1a684ba6f8","id":"2195115180579005_1563782502426","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d6f43880a1a684ba6fd","id":"2195115180579005_1563782511873","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"đã trả lời khách","update_by":"user1234","create_time":"2019-07-22T08:01:51.000Z","update_time":"2019-07-26T08:01:41.911Z","finish_time":null,"id":24,"__v":0}  
+
+2019-07-26 15:01:42 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":24,"update_time":"2019-07-26T08:01:41.994Z","update_by":"user1234","change_description":{"content":[{"_id":"5d3ab3663949bf12f8770b07","field":"status","value":"resolved"}],"comment":"đã trả lời khách"},"__v":0}]  
+
+2019-07-26 15:01:42 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:01:43 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:01:43 info: Client send request GET /notification  
+
+2019-07-26 15:03:46 info: Client send request GET /ticket  
+
+2019-07-26 15:03:47 info: Client send request GET /notification  
+
+2019-07-26 15:03:59 info: Client send request GET /ticket  
+
+2019-07-26 15:04:00 info: Client send request GET /notification  
+
+2019-07-26 15:04:09 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:04:10 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:04:10 info: Client send request GET /notification  
+
+2019-07-26 15:04:26 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:04:27 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:04:27 info: Client send request GET /notification  
+
+2019-07-26 15:04:34 info: Client send request POST /ticket/update/24  
+
+2019-07-26 15:04:34 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3ab1c803dc0a15eceff787","type":"feedback","status":"resolved","priority":"normal","assignee":"user1234","description":{"type":"previousMessages","feedbacks":[{"_id":"5d35293c78d35e0e30a620ad","id":"2195115180579005_1563765052172","from":"member","text":"xin chao"},{"_id":"5d35293d78d35e0e30a620af","id":"2195115180579005_1563765053539","from":"bot","text":"Xin mời bạn nhắn tin theo cú pháp: \n\"otp mã_otp_của_bạn\"\nđể xác thực với hệ thống. 🔐"},{"_id":"5d35294878d35e0e30a620b3","id":"2195115180579005_1563765064678","from":"member","text":"otp 9d2996"},{"_id":"5d35294a78d35e0e30a620b4","id":"2195115180579005_1563765066569","from":"bot","text":"Cảm ơn bạn đã xác thực. Tài khoản Facebook của bạn đã được liên kết với điểm bán Cửa khẩu Quốc tế Móng Cái số điện thoại 0974879288  ✅✅✅"},{"_id":"5d35297d78d35e0e30a620b8","id":"2195115180579005_1563765117374","from":"member","postback":{"title":"📘 Thông tin của tôi","payload":"thong_tin_cua_toi"}},{"_id":"5d35297d78d35e0e30a620b9","id":"2195115180579005_1563765117518","from":"bot","text":"Thông tin về điểm bán của bạn: \nTên điểm bán: Cửa khẩu Quốc tế Móng Cái\nĐịa chỉ điểm bán: Trần Phú, Móng Cái\nSĐT liên hệ: 0974879288\nSố ez nhận khuyến khích: 0783132389\nMã truy cập mSale: 5QNI2MCA0175"},{"_id":"5d35298c78d35e0e30a620bd","id":"2195115180579005_1563765132895","from":"member","postback":{"title":"📈 Kết quả nhập hàng","payload":"ket_qua_nhap_hang"}},{"_id":"5d35298e78d35e0e30a620be","id":"2195115180579005_1563765134072","from":"bot","text":"Bạn muốn xem thông tin về kết quả nhập hàng của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"30 ngày trước","payload":"kqnh_last30days"},{"content_type":"text","title":"90 ngày trước","payload":"kqnh_last90days"},{"content_type":"text","title":"180 ngày trước","payload":"kqnh_last180days"}]},{"_id":"5d35299378d35e0e30a620c2","id":"2195115180579005_1563765139908","from":"member","text":"90 ngày trước","quick_reply":{"payload":"kqnh_last90days"}},{"_id":"5d35299578d35e0e30a620c3","id":"2195115180579005_1563765141029","from":"bot","text":"Từ ngày 23/04/2019 đến ngày 22/07/2019 bạn đã nhập: \nTiền thẻ 4,300,000 đ\n"},{"_id":"5d3529a178d35e0e30a620c7","id":"2195115180579005_1563765153862","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529a378d35e0e30a620c8","id":"2195115180579005_1563765155072","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529a978d35e0e30a620cc","id":"2195115180579005_1563765161165","from":"member","text":"Bán VAS","quick_reply":{"payload":"hh_vas"}},{"_id":"5d3529aa78d35e0e30a620cd","id":"2195115180579005_1563765162575","from":"bot","text":"Bạn muốn xem thông tin về hoa hồng bán VAS của bạn trong khoảng thời gian nào dưới đây?","quick_replies":[{"content_type":"text","title":"1 ngày trước","payload":"hh_vas_last1day"},{"content_type":"text","title":"7 ngày trước","payload":"hh_vas_last7days"},{"content_type":"text","title":"30 ngày trước","payload":"hh_vas_last30days"}]},{"_id":"5d3529b078d35e0e30a620d1","id":"2195115180579005_1563765168363","from":"member","text":"30 ngày trước","quick_reply":{"payload":"hh_vas_last30days"}},{"_id":"5d3529b778d35e0e30a620d2","id":"2195115180579005_1563765175911","from":"bot","text":"Hoa hồng bán VAS từ ngày 22/06/2019 đến ngày 22/07/2019 của bạn là 10,061,218 đ."},{"_id":"5d3529c578d35e0e30a620d6","id":"2195115180579005_1563765189178","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529c578d35e0e30a620d7","id":"2195115180579005_1563765189584","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529ca78d35e0e30a620db","id":"2195115180579005_1563765194925","from":"member","text":"Phát triển thực","quick_reply":{"payload":"hh_ptt"}},{"_id":"5d3529cc78d35e0e30a620dc","id":"2195115180579005_1563765196263","from":"bot","text":"Hoa hồng Phát triển thực trong tháng 07/2019 của bạn là 0 đ."},{"_id":"5d3529d778d35e0e30a620e0","id":"2195115180579005_1563765207278","from":"member","postback":{"title":"💰 Hoa hồng của tôi","payload":"hoa_hong_cua_toi"}},{"_id":"5d3529d778d35e0e30a620e1","id":"2195115180579005_1563765207589","from":"bot","text":"Bạn muốn kiểm tra hoa hồng khuyến khích nào dưới đây?","quick_replies":[{"content_type":"text","title":"Bán VAS","payload":"hh_vas"},{"content_type":"text","title":"Phát triển thực","payload":"hh_ptt"},{"content_type":"text","title":"Tích điểm","payload":"hh_td"}]},{"_id":"5d3529db78d35e0e30a620e5","id":"2195115180579005_1563765211533","from":"member","text":"Tích điểm","quick_reply":{"payload":"hh_td"}},{"_id":"5d3529dc78d35e0e30a620e6","id":"2195115180579005_1563765212027","from":"bot","text":"Tổng số điểm mà bạn đã tích được là 6636 điểm."},{"_id":"5d3529ef78d35e0e30a620ea","id":"2195115180579005_1563765231217","from":"member","postback":{"title":"🔍 Tra cứu VAS","payload":"tra_cuu_vas"}},{"_id":"5d3529ef78d35e0e30a620eb","id":"2195115180579005_1563765231594","from":"bot","text":"Xin mời bạn nhập số thuê bao cần tra cứu!"},{"_id":"5d3529f678d35e0e30a620ef","id":"2195115180579005_1563765238768","from":"member","text":"0904383138"},{"_id":"5d352a1078d35e0e30a620f0","id":"2195115180579005_1563765264608","from":"bot","text":"Một số gói cước mà thuê bao 0904383138 được hưởng là:"},{"_id":"5d352a1278d35e0e30a620f1","id":"2195115180579005_1563765266116","from":"bot","attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"12M200","image_url":"https://bot.mobifone5.vn/images/12M200.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M200","payload":"regis_vas_904383138_3_12M200"},{"type":"web_url","url":"https://mobifone.net.vn/goi-cuoc-12m200-mobifone.html","title":"Xem chi tiết"}]},{"title":"FIM30","image_url":"https://bot.mobifone5.vn/images/FIM30.jpg","subtitle":"Hoa hồng: 28,926 đ","buttons":[{"type":"postback","title":"Đăng ký gói FIM30","payload":"regis_vas_904383138_523_FIM30"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-fim30-mobifone.html","title":"Xem chi tiết"}]},{"title":"DP1500","image_url":"https://bot.mobifone5.vn/images/DP1500.jpg","subtitle":"Hoa hồng: 0","buttons":[{"type":"postback","title":"Đăng ký gói DP1500","payload":"regis_vas_904383138_3_DP1500"},{"type":"web_url","url":"http://dichvu3gmobifone.vn/dang-ky-goi-dp1500-mobifone.html","title":"Xem chi tiết"}]},{"title":"12BMIU","image_url":"https://bot.mobifone5.vn/images/12BMIU.png","subtitle":"Hoa hồng: 259,636 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12BMIU","payload":"regis_vas_904383138_3_12BMIU"},{"type":"web_url","url":"https://dichvumobifone.com/goi-cuoc-12bmiu-mobifone","title":"Xem chi tiết"}]},{"title":"12M120","image_url":"https://bot.mobifone5.vn/images/12M120.png","subtitle":"Hoa hồng: 155,782 đ","buttons":[{"type":"postback","title":"Đăng ký gói 12M120","payload":"regis_vas_904383138_3_12M120"},{"type":"web_url","url":"https://mobifone4g.net/goi-cuoc-12m120-mobifone","title":"Xem chi tiết"}]},{"title":"HD70","image_url":"https://bot.mobifone5.vn/images/HD70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói HD70","payload":"regis_vas_904383138_582_HD70"},{"type":"web_url","url":"https://3gmobifone.vn/dang-ky-goi-cuoc-4g-hd70-mobifone.html","title":"Xem chi tiết"}]},{"title":"MIU","image_url":"https://bot.mobifone5.vn/images/MIU.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"},{"type":"web_url","url":"https://mobifone3g.info/dang-ky-goi-miu-mobifone","title":"Xem chi tiết"}]},{"title":"MIU90","image_url":"https://bot.mobifone5.vn/images/MIU90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói MIU90","payload":"regis_vas_904383138_3_MIU90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-miu90-mobifone","title":"Xem chi tiết"}]},{"title":"M90","image_url":"https://bot.mobifone5.vn/images/M90.jpg","subtitle":"Hoa hồng: 20,618 đ","buttons":[{"type":"postback","title":"Đăng ký gói M90","payload":"regis_vas_904383138_3_M90"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m90-mobifone","title":"Xem chi tiết"}]},{"title":"M70","image_url":"https://bot.mobifone5.vn/images/M70.jpg","subtitle":"Hoa hồng: 16,036 đ","buttons":[{"type":"postback","title":"Đăng ký gói M70","payload":"regis_vas_904383138_3_M70"},{"type":"web_url","url":"https://dichvudidong.vn/dang-ky-goi-m70-mobifone","title":"Xem chi tiết"}]}]}}},{"_id":"5d352a2e78d35e0e30a620f9","id":"2195115180579005_1563765294202","from":"member","postback":{"title":"Đăng ký gói MIU","payload":"regis_vas_904383138_3_MIU"}},{"_id":"5d352a2e78d35e0e30a620fa","id":"2195115180579005_1563765294834","from":"bot","text":"Mã điểm bán chưa được kích hoạt trên hệ thống. Mời bạn liên hệ với nhân viên chăm sóc để được hỗ trợ!"},{"_id":"5d352a3878d35e0e30a620fe","id":"2195115180579005_1563765304581","from":"member","postback":{"title":"ℹ️ MobiFone tại địa bàn","payload":"thong_tin_dia_ban"}},{"_id":"5d352a3878d35e0e30a620ff","id":"2195115180579005_1563765304863","from":"bot","text":"Thông tin về MobiFone tại Tỉnh Quảng Ninh:\nLãnh đạo: \nSĐT lãnh đạo: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a3878d35e0e30a62100","id":"2195115180579005_1563765304864","from":"bot","text":"Thông tin về MobiFone tại Thành phố Móng Cái:\nTrưởng Quận/Huyện: \nSĐT trưởng Quận/Huyện: \nSĐT đường dây nóng: \nĐịa chỉ trụ sở: "},{"_id":"5d352a4f78d35e0e30a62107","id":"2195115180579005_1563765327846","from":"member","postback":{"title":"👩 Nhân viên chăm sóc","payload":"nhan_vien_cham_soc"}},{"_id":"5d352a5078d35e0e30a62108","id":"2195115180579005_1563765328210","from":"bot","text":"Thông tin về nhân viên chăm sóc của bạn: \nTên: Trần Thị Thu Huyền\nSĐT liên hệ: 0936812223\nEmail:  "},{"_id":"5d352b0578d35e0e30a6210c","id":"2195115180579005_1563765509848","from":"member","text":"gửi một số ảnh 😁"},{"_id":"5d352b0578d35e0e30a6210d","id":"2195115180579005_1563765509928","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b0878d35e0e30a6210e","id":"2195115180579005_1563765512100","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}},{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png"}}]},{"_id":"5d352b1878d35e0e30a62112","id":"2195115180579005_1563765528072","from":"member","attachments":[{"type":"image","payload":{"url":"http://localhost:5000/public/image/image20190726_1454490d1e89.png","sticker_id":2041012262792914}}]},{"_id":"5d352b3778d35e0e30a62113","id":"2195115180579005_1563765559930","from":"member","text":"gửi file text test"},{"_id":"5d352b3878d35e0e30a62114","id":"2195115180579005_1563765560008","from":"bot","text":"Thông tin bạn tìm kiếm hiện không có trong cơ sở dữ liệu."},{"_id":"5d352b3978d35e0e30a62115","id":"2195115180579005_1563765561098","from":"member","attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"_id":"5d356d2343880a1a684ba6ed","id":"2195115180579005_1563782435153","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d2443880a1a684ba6ef","id":"2195115180579005_1563782436415","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d3143880a1a684ba6f4","id":"2195115180579005_1563782449826","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}},{"_id":"5d356d6543880a1a684ba6f6","id":"2195115180579005_1563782501819","from":"member","postback":{"title":"📭 Gửi phản ánh","payload":"gui_phan_anh"}},{"_id":"5d356d6643880a1a684ba6f8","id":"2195115180579005_1563782502426","from":"bot","attachment":{"type":"template","payload":{"template_type":"button","text":"Mời bạn ấn nút *Gửi tin nhắn cũ* để gửi các tin bạn đã nhắn trong ngày hôm nay cho MobiFone *hoặc* nhập nội dung bạn muốn phản ánh bên dưới 👇👇👇 và ấn nút *Gửi phản ánh* để gửi phản ánh mới cho MobiFone!","buttons":[{"type":"postback","title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"},{"type":"postback","title":"📭 Gửi phản ánh","payload":"send_feedback"},{"type":"postback","title":"❌ Hủy phản ánh","payload":"cancel_feedback"}]}}},{"_id":"5d356d6f43880a1a684ba6fd","id":"2195115180579005_1563782511873","from":"member","postback":{"title":"✔ Gửi tin nhắn cũ","payload":"send_today_messages"}}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"âccasc","update_by":"user1234","create_time":"2019-07-22T08:01:51.000Z","update_time":"2019-07-26T08:04:34.662Z","finish_time":null,"id":24,"__v":0}  
+
+2019-07-26 15:04:34 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":24,"update_time":"2019-07-26T08:04:34.754Z","update_by":"user1234","change_description":{"content":[],"comment":"âccasc"},"__v":0}]  
+
+2019-07-26 15:04:35 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:04:36 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:04:36 info: Client send request GET /notification  
+
+2019-07-26 15:04:43 info: Client send request GET /ticket/read/24  
+
+2019-07-26 15:04:44 info: Client send request GET /ticket/read-content/24  
+
+2019-07-26 15:04:44 info: Client send request GET /notification  
+
+2019-07-26 15:04:55 info: Client send request GET /ticket  
+
+2019-07-26 15:04:56 info: Client send request GET /notification  
+
+2019-07-26 15:04:57 info: Client send request GET /member  
+
+2019-07-26 15:04:58 info: Client send request GET /member/list  
+
+2019-07-26 15:04:58 info: Client send request GET /notification  
+
+2019-07-26 15:05:25 info: Client send request GET /product  
+
+2019-07-26 15:05:26 info: Client send request GET /notification  
+
+2019-07-26 15:05:42 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-26 15:05:42 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"320 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieu","public":true,"update_time":"2019-07-26T07:41:36.492Z"}  
+
+2019-07-26 15:06:28 info: Client send request GET /member  
+
+2019-07-26 15:06:28 info: Client send request GET /member/list  
+
+2019-07-26 15:06:28 info: Client send request GET /notification  
+
+2019-07-26 15:06:31 info: Client send request GET /package/image  
+
+2019-07-26 15:06:31 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:06:32 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:06:32 info: Client send request GET /notification  
+
+2019-07-26 15:06:34 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 15:06:40 info: Client send request POST /package/image/update/12BMIU  
+
+2019-07-26 15:06:40 info: Cập nhật dữ liệu thành công vào bảng vas_packages trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6717880329039773697","t":8},"electionId":"7fffffff0000000000000008","ok":1,"operationTime":"6717880329039773697","$clusterTime":{"clusterTime":"6717880329039773697","signature":{"hash":"plcbjUxvfJrwCflHVEdk6piSdMA=","keyId":"6668167087610920962"}}}  
+
+2019-07-26 15:06:41 info: Client send request GET /package/image  
+
+2019-07-26 15:06:41 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:06:42 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:06:42 info: Client send request GET /notification  
+
+2019-07-26 15:06:53 info: Client send request GET /province  
+
+2019-07-26 15:06:54 info: Client send request GET /notification  
+
+2019-07-26 15:06:56 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 15:07:06 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 15:07:07 info: Client send request POST /province/update/5d173f78c2c83200a6601b7d  
+
+2019-07-26 15:07:07 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d173f78c2c83200a6601b7d","province_id":"31796","province_code":"BGI","name":"Tỉnh Bắc Giang","pic_name":"a","pic_phone":"a","office_address":"a","hotline":"a"}  
+
+2019-07-26 15:07:08 info: Client send request GET /province  
+
+2019-07-26 15:07:08 info: Client send request GET /notification  
+
+2019-07-26 15:07:10 info: Client send request GET /district  
+
+2019-07-26 15:07:11 info: Client send request GET /notification  
+
+2019-07-26 15:07:16 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-26 15:07:22 info: Client send request GET /member  
+
+2019-07-26 15:07:22 info: Client send request GET /member/list  
+
+2019-07-26 15:07:22 info: Client send request GET /notification  
+
+2019-07-26 15:07:40 info: Client send request GET /product  
+
+2019-07-26 15:07:41 info: Client send request GET /notification  
+
+2019-07-26 15:07:43 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-26 15:07:47 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-26 15:07:48 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-26 15:07:48 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"320 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieua","public":true,"update_time":"2019-07-26T08:07:47.390Z"}  
+
+2019-07-26 15:07:49 info: Client send request GET /product  
+
+2019-07-26 15:07:49 info: Client send request GET /notification  
+
+2019-07-26 15:07:51 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-26 15:07:51 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"320 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieua","public":false,"update_time":"2019-07-26T08:07:47.390Z"}  
+
+2019-07-26 15:07:54 info: Client send request GET /package/image  
+
+2019-07-26 15:07:54 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:07:54 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:07:54 info: Client send request GET /notification  
+
+2019-07-26 15:07:56 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 15:07:59 info: Client send request POST /package/image/update/12BMIU2  
+
+2019-07-26 15:07:59 info: Cập nhật dữ liệu thành công vào bảng vas_packages trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6717880668342190084","t":8},"electionId":"7fffffff0000000000000008","ok":1,"operationTime":"6717880668342190084","$clusterTime":{"clusterTime":"6717880668342190084","signature":{"hash":"o92tPZvfDhCN95CdIuz5LoD5Pes=","keyId":"6668167087610920962"}}}  
+
+2019-07-26 15:08:00 info: Client send request GET /package/image  
+
+2019-07-26 15:08:01 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:08:01 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:08:01 info: Client send request GET /notification  
+
+2019-07-26 15:21:12 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:21:13 info: Connected to MongoDB server.  
+
+2019-07-26 15:22:03 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:22:03 info: Connected to MongoDB server.  
+
+2019-07-26 15:22:13 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:22:14 info: Connected to MongoDB server.  
+
+2019-07-26 15:23:00 info: Bắt đầu update fb_linkChat của member vào lúc Fri Jul 26 2019 15:23:00 GMT+0700 (Indochina Time)  
+
+2019-07-26 15:26:37 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:26:39 info: Connected to MongoDB server.  
+
+2019-07-26 15:27:08 info: Người dùng supervisor đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:27:09 info: Client send request GET /notification  
+
+2019-07-26 15:30:01 info: Client send request GET /member  
+
+2019-07-26 15:30:02 info: Client send request GET /member/list  
+
+2019-07-26 15:30:05 info: Client send request GET /notification  
+
+2019-07-26 15:30:32 info: Client send request GET /member  
+
+2019-07-26 15:30:33 info: Client send request GET /member/list  
+
+2019-07-26 15:30:33 info: Client send request GET /notification  
+
+2019-07-26 15:30:48 info: Client send request GET /member  
+
+2019-07-26 15:30:48 info: Client send request GET /member/list  
+
+2019-07-26 15:30:48 info: Client send request GET /notification  
+
+2019-07-26 15:33:29 info: Client send request GET /member  
+
+2019-07-26 15:33:29 info: Client send request GET /member/list  
+
+2019-07-26 15:33:29 info: Client send request GET /notification  
+
+2019-07-26 15:35:11 info: Client send request GET /member  
+
+2019-07-26 15:35:11 info: Client send request GET /member/list  
+
+2019-07-26 15:35:11 info: Client send request GET /notification  
+
+2019-07-26 15:35:41 info: Client send request GET /member  
+
+2019-07-26 15:35:42 info: Client send request GET /member/list  
+
+2019-07-26 15:35:42 info: Client send request GET /notification  
+
+2019-07-26 15:36:28 info: Client send request GET /member  
+
+2019-07-26 15:36:29 info: Client send request GET /member/list  
+
+2019-07-26 15:36:29 info: Client send request GET /notification  
+
+2019-07-26 15:37:07 info: Client send request GET /member  
+
+2019-07-26 15:37:07 info: Client send request GET /member/list  
+
+2019-07-26 15:37:08 info: Client send request GET /notification  
+
+2019-07-26 15:38:16 info: Client send request GET /product  
+
+2019-07-26 15:38:18 info: Client send request GET /notification  
+
+2019-07-26 15:39:00 info: Client send request GET /product  
+
+2019-07-26 15:39:01 info: Client send request GET /notification  
+
+2019-07-26 15:39:43 info: Client send request GET /product  
+
+2019-07-26 15:39:44 info: Client send request GET /notification  
+
+2019-07-26 15:41:10 info: Client send request GET /product  
+
+2019-07-26 15:41:11 info: Client send request GET /notification  
+
+2019-07-26 15:42:03 info: Client send request GET /product  
+
+2019-07-26 15:42:03 info: Client send request GET /notification  
+
+2019-07-26 15:42:24 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:42:24 info: Client send request GET /  
+
+2019-07-26 15:42:25 info: Client send request GET /notification  
+
+2019-07-26 15:45:14 info: Client send request GET /member  
+
+2019-07-26 15:45:15 info: Client send request GET /member/list  
+
+2019-07-26 15:45:15 info: Client send request GET /notification  
+
+2019-07-26 15:45:18 info: Client send request GET /product  
+
+2019-07-26 15:45:18 info: Client send request GET /notification  
+
+2019-07-26 15:45:25 info: Client send request GET /package/image  
+
+2019-07-26 15:45:25 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:45:26 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:45:26 info: Client send request GET /notification  
+
+2019-07-26 15:46:05 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:46:06 info: Client send request GET /  
+
+2019-07-26 15:46:06 info: Client send request GET /notification  
+
+2019-07-26 15:46:07 info: Client send request GET /member  
+
+2019-07-26 15:46:08 info: Client send request GET /member/list  
+
+2019-07-26 15:46:08 info: Client send request GET /notification  
+
+2019-07-26 15:46:09 info: Client send request GET /product  
+
+2019-07-26 15:46:09 info: Client send request GET /notification  
+
+2019-07-26 15:46:16 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 15:47:38 info: Client send request GET /profile  
+
+2019-07-26 15:47:39 info: Client send request GET /notification  
+
+2019-07-26 15:47:51 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 15:51:15 info: Client send request GET /product  
+
+2019-07-26 15:51:17 info: Client send request GET /notification  
+
+2019-07-26 15:51:25 info: Client send request GET /product  
+
+2019-07-26 15:51:26 info: Client send request GET /notification  
+
+2019-07-26 15:52:08 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:52:24 info: Connected to MongoDB server.  
+
+2019-07-26 15:52:24 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:52:24 info: Client send request GET /product  
+
+2019-07-26 15:52:26 info: Client send request GET /notification  
+
+2019-07-26 15:52:29 info: Client send request POST /product/update/5d23ea523ba9402928d93957  
+
+2019-07-26 15:52:29 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93957","ten_goi_cuoc":"12C90N","gia_goi":1080000,"chu_ky":"360 ngày","khuyen_mai_chu_ky_dau":"360 ngày","hoa_hong_msocial":175636,"uu_dai_noi_mang":"1000 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"4GB/ngày","uu_dai_khac":"","public":false}  
+
+2019-07-26 15:55:34 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:55:43 info: Connected to MongoDB server.  
+
+2019-07-26 15:55:51 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:55:51 info: Client send request GET /  
+
+2019-07-26 15:55:53 info: Client send request GET /notification  
+
+2019-07-26 15:56:04 info: Client send request GET /package/image  
+
+2019-07-26 15:56:05 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:56:05 info: Client send request GET /notification  
+
+2019-07-26 15:56:06 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:56:46 info: Client send request GET /package/image  
+
+2019-07-26 15:56:46 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:56:47 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:56:48 info: Client send request GET /notification  
+
+2019-07-26 15:57:03 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 15:57:11 info: Client send request POST /package/image/upload/12BMIU2  
+
+2019-07-26 15:57:13 info: Client send request POST /package/image/update/12BMIU2  
+
+2019-07-26 15:57:13 error: Lỗi khi thực hiện xóa một file hình ảnh, tên file: 12BMIU.png 
+null  
+
+2019-07-26 15:57:13 error: Bị lỗi từ hệ thống Error: Bị lỗi từ hệ thống
+    at C:\cms_handmade\controller\package.controller.js:60:25
+    at C:\cms_handmade\node_modules\mongoose\lib\model.js:4729:16
+    at C:\cms_handmade\node_modules\mongoose\lib\query.js:4239:12
+    at process.nextTick (C:\cms_handmade\node_modules\mongoose\lib\query.js:2751:28)
+    at process._tickCallback (internal/process/next_tick.js:61:11) 
+
+2019-07-26 15:57:13 info: Cập nhật dữ liệu thành công vào bảng vas_packages trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6717893355675582466","t":8},"electionId":"7fffffff0000000000000008","ok":1,"operationTime":"6717893355675582466","$clusterTime":{"clusterTime":"6717893355675582466","signature":{"hash":"B0/XRWI3adq3eCGUSOC3xaI/A60=","keyId":"6668167087610920962"}}}  
+
+2019-07-26 15:57:14 info: Client send request GET /package/image  
+
+2019-07-26 15:57:15 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:57:16 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:57:17 info: Client send request GET /notification  
+
+2019-07-26 15:57:36 info: Client send request GET /package/image  
+
+2019-07-26 15:57:37 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 15:57:40 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 15:57:42 info: Client send request GET /notification  
+
+2019-07-26 15:58:46 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:58:47 info: Connected to MongoDB server.  
+
+2019-07-26 15:59:02 info: Server has started! Listening on port 5000  
+
+2019-07-26 15:59:03 info: Connected to MongoDB server.  
+
+2019-07-26 15:59:08 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 15:59:08 info: Client send request GET /profile  
+
+2019-07-26 15:59:09 info: Client send request GET /notification  
+
+2019-07-26 15:59:32 info: Client send request POST /register  
+
+2019-07-26 15:59:32 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 15:59:57 info: Server has started! Listening on port 5000  
+
+2019-07-26 16:00:02 info: Connected to MongoDB server.  
+
+2019-07-26 16:00:43 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:00:43 info: Client send request GET /profile  
+
+2019-07-26 16:00:43 info: Client send request GET /notification  
+
+2019-07-26 16:00:51 info: Client send request POST /register  
+
+2019-07-26 16:00:51 info: Thêm mới dữ liệu thành công vào bảng users trong CSDL:[{"username":"as","name":"sas","password":"$2b$10$xwfccc4PVJRmLqqTFFfCGOJCs1TLM5y.MQlnu0bNQY3NOYbK86XKq","email":"noobforever1502@gmail.com","role":"supervisor","__v":0}]  
+
+2019-07-26 16:00:59 info: Client send request POST /register  
+
+2019-07-26 16:00:59 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 16:03:58 info: Client send request GET /profile  
+
+2019-07-26 16:03:59 info: Client send request GET /notification  
+
+2019-07-26 16:04:08 info: Client send request POST /register  
+
+2019-07-26 16:04:08 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 16:04:09 info: Client send request POST /register  
+
+2019-07-26 16:04:09 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 16:04:35 info: Client send request GET /profile  
+
+2019-07-26 16:04:36 info: Client send request GET /notification  
+
+2019-07-26 16:04:48 info: Client send request POST /register  
+
+2019-07-26 16:04:48 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 16:05:20 info: Client send request GET /profile  
+
+2019-07-26 16:05:22 info: Client send request GET /notification  
+
+2019-07-26 16:05:28 info: Client send request POST /register  
+
+2019-07-26 16:05:28 warn: Người dùng đăng kí mới sử dụng tên đăng nhập đã tồn tại:manh  
+
+2019-07-26 16:06:45 info: Người dùng supervisor đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:06:46 info: Client send request GET /profile  
+
+2019-07-26 16:06:49 error: Client gửi request GET tới route không tồn tại: /user/page_user_profile_1_account.html  
+
+2019-07-26 16:06:51 info: Client send request GET /profile  
+
+2019-07-26 16:06:52 info: Client send request GET /notification  
+
+2019-07-26 16:07:25 info: Client send request GET /profile  
+
+2019-07-26 16:07:29 info: Client send request GET /notification  
+
+2019-07-26 16:07:42 info: Client send request GET /profile  
+
+2019-07-26 16:07:45 info: Client send request GET /notification  
+
+2019-07-26 16:08:54 info: Client send request GET /ticket  
+
+2019-07-26 16:08:55 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:08:55 info: Client send request GET /notification  
+
+2019-07-26 16:08:56 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:08:57 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:08:57 info: Client send request GET /notification  
+
+2019-07-26 16:09:54 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:09:55 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:09:55 info: Client send request GET /notification  
+
+2019-07-26 16:10:33 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:10:34 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:10:34 info: Client send request GET /notification  
+
+2019-07-26 16:12:14 info: Server has started! Listening on port 5000  
+
+2019-07-26 16:12:14 info: Connected to MongoDB server.  
+
+2019-07-26 16:12:22 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:12:22 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:12:39 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:12:39 info: Client send request GET /notification  
+
+2019-07-26 16:15:53 info: Server has started! Listening on port 5000  
+
+2019-07-26 16:16:33 info: Server has started! Listening on port 5000  
+
+2019-07-26 16:16:50 info: Connected to MongoDB server.  
+
+2019-07-26 16:16:50 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:16:58 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:17:04 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:17:04 info: Client send request GET /notification  
+
+2019-07-26 16:17:12 info: Người dùng supervisor đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:17:13 info: Client send request GET /profile  
+
+2019-07-26 16:17:15 info: Client send request GET /notification  
+
+2019-07-26 16:21:54 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:22:17 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:22:19 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:22:19 info: Client send request GET /notification  
+
+2019-07-26 16:22:19 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:26:02 info: Client send request GET /ticket/read/3  
+
+2019-07-26 16:26:04 info: Client send request GET /ticket/read-content/3  
+
+2019-07-26 16:26:04 info: Client send request GET /notification  
+
+2019-07-26 16:31:41 info: Client send request GET /product  
+
+2019-07-26 16:31:42 info: Client send request GET /notification  
+
+2019-07-26 16:31:51 info: Client send request POST /product/adding  
+
+2019-07-26 16:31:51 info: Thêm mới dữ liệu thành công vào bảng districts trong CSDL:[{"chu_ky":"","khuyen_mai_chu_ky_dau":"","ten_goi_cuoc":"C100Test","gia_goi":100000,"hoa_hong_msocial":19876,"uu_dai_noi_mang":"","uu_dai_ngoai_mang":"","uu_dai_khac":"","uu_dai_data":"","public":true,"update_time":"2019-07-26T09:31:51.662Z","create_time":"2019-07-26T09:31:51.662Z","__v":0}]  
+
+2019-07-26 16:31:52 info: Client send request GET /product  
+
+2019-07-26 16:31:53 info: Client send request GET /notification  
+
+2019-07-26 16:32:42 info: Client send request GET /product  
+
+2019-07-26 16:32:43 info: Client send request GET /notification  
+
+2019-07-26 16:35:17 info: Client send request GET /profile  
+
+2019-07-26 16:35:17 info: Client send request GET /notification  
+
+2019-07-26 16:36:09 info: Client send request GET /member  
+
+2019-07-26 16:36:09 info: Client send request GET /member/list  
+
+2019-07-26 16:36:09 info: Client send request GET /notification  
+
+2019-07-26 16:36:14 info: Client send request GET /product  
+
+2019-07-26 16:36:15 info: Client send request GET /notification  
+
+2019-07-26 16:37:31 info: Client send request GET /package/image  
+
+2019-07-26 16:37:32 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:37:33 info: Client send request GET /notification  
+
+2019-07-26 16:37:33 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:37:34 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:37:45 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:40:57 info: Client send request GET /package/image  
+
+2019-07-26 16:40:58 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:40:58 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:40:58 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:40:59 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:40:59 info: Client send request GET /notification  
+
+2019-07-26 16:41:04 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4cb  
+
+2019-07-26 16:41:04 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:41:15 info: Client send request GET /profile  
+
+2019-07-26 16:41:16 info: Client send request GET /notification  
+
+2019-07-26 16:41:24 info: Client send request GET /ticket  
+
+2019-07-26 16:41:25 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:41:25 info: Client send request GET /notification  
+
+2019-07-26 16:41:37 info: Client send request GET /product  
+
+2019-07-26 16:41:38 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:41:38 info: Client send request GET /notification  
+
+2019-07-26 16:41:40 info: Client send request GET /package/image  
+
+2019-07-26 16:41:40 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:41:41 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:41:41 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:41:41 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:41:42 info: Client send request GET /notification  
+
+2019-07-26 16:41:44 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:42:05 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:42:19 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:46:21 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:49:14 info: Client send request GET /package/image  
+
+2019-07-26 16:49:15 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:49:16 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:49:16 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:49:17 info: Client send request GET /notification  
+
+2019-07-26 16:49:40 info: Client send request GET /package/image  
+
+2019-07-26 16:49:40 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:49:41 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:49:41 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:49:41 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:49:41 info: Client send request GET /notification  
+
+2019-07-26 16:49:43 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:50:22 info: Client send request GET /package/image  
+
+2019-07-26 16:50:23 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:50:23 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:50:24 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:50:24 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:50:24 info: Client send request GET /notification  
+
+2019-07-26 16:50:25 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:50:59 info: Client send request GET /package/image  
+
+2019-07-26 16:50:59 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:51:00 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:51:01 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:51:01 info: Client send request GET /notification  
+
+2019-07-26 16:51:02 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:53:22 info: Client send request GET /package/image  
+
+2019-07-26 16:53:22 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:53:23 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:53:23 info: Client send request GET /notification  
+
+2019-07-26 16:53:24 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:55:37 info: Client send request GET /package/image  
+
+2019-07-26 16:55:38 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:55:38 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:55:39 info: Client send request GET /notification  
+
+2019-07-26 16:55:40 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:55:44 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:55:57 info: Client send request GET /package/image  
+
+2019-07-26 16:55:57 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:55:58 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:55:58 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:55:58 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:55:59 info: Client send request GET /notification  
+
+2019-07-26 16:56:01 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:56:04 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4cb  
+
+2019-07-26 16:56:04 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:56:06 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b7  
+
+2019-07-26 16:56:10 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b7  
+
+2019-07-26 16:56:37 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 16:56:39 info: Client send request GET /notification  
+
+2019-07-26 16:56:44 info: Client send request GET /package/image  
+
+2019-07-26 16:56:44 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:56:45 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:56:45 info: Client send request GET /notification  
+
+2019-07-26 16:56:46 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:56:54 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:57:09 info: Client send request GET /package/image  
+
+2019-07-26 16:57:10 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:57:11 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:57:11 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 16:57:11 info: Client send request GET /notification  
+
+2019-07-26 16:57:20 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:57:28 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:57:36 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:57:45 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4ab  
+
+2019-07-26 16:57:47 info: Client send request GET /province  
+
+2019-07-26 16:57:48 info: Client send request GET /notification  
+
+2019-07-26 16:57:57 info: Client send request GET /province  
+
+2019-07-26 16:57:58 info: Client send request GET /notification  
+
+2019-07-26 16:58:05 info: Client send request GET /district  
+
+2019-07-26 16:58:07 info: Client send request GET /notification  
+
+2019-07-26 16:58:21 info: Client send request GET /province  
+
+2019-07-26 16:58:22 info: Client send request GET /notification  
+
+2019-07-26 16:58:23 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 16:58:33 info: Client send request GET /product  
+
+2019-07-26 16:58:34 info: Client send request GET /notification  
+
+2019-07-26 16:58:38 info: Client send request GET /package/image  
+
+2019-07-26 16:58:39 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-26 16:58:39 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-26 16:58:39 info: Client send request GET /notification  
+
+2019-07-26 16:58:40 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-26 16:58:44 info: Client send request GET /province  
+
+2019-07-26 16:58:45 info: Client send request GET /notification  
+
+2019-07-26 16:59:06 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:00:48 info: Client send request GET /province  
+
+2019-07-26 17:00:48 info: Client send request GET /notification  
+
+2019-07-26 17:00:50 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:05:24 info: Client send request GET /province  
+
+2019-07-26 17:05:25 info: Client send request GET /notification  
+
+2019-07-26 17:05:27 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:05:30 info: Client send request GET /province/properties/5d173f78c2c83200a6601b83  
+
+2019-07-26 17:05:37 info: Client send request GET /province/properties/5d173f78c2c83200a6601b86  
+
+2019-07-26 17:05:42 info: Client send request GET /province/properties/5d173f78c2c83200a6601b80  
+
+2019-07-26 17:05:47 info: Client send request GET /province  
+
+2019-07-26 17:05:48 info: Client send request GET /notification  
+
+2019-07-26 17:05:50 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:05:53 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:05:55 info: Client send request POST /province/update/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:05:55 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d173f78c2c83200a6601b7d","province_id":"31796","province_code":"BGI","name":"Tỉnh Bắc Giang","pic_name":"a","pic_phone":"a","office_address":"a","hotline":"a"}  
+
+2019-07-26 17:05:55 info: Client send request GET /province  
+
+2019-07-26 17:05:56 info: Client send request GET /notification  
+
+2019-07-26 17:06:01 info: Client send request POST /province/adding  
+
+2019-07-26 17:06:01 info: Thêm mới dữ liệu thành công vào bảng provinces trong CSDL:[{"name":"","province_code":"","pic_name":"","pic_phone":"","office_address":"","hotline":"","__v":0}]  
+
+2019-07-26 17:06:02 info: Client send request GET /province  
+
+2019-07-26 17:06:02 info: Client send request GET /notification  
+
+2019-07-26 17:06:16 info: Client send request GET /province/districtlist/5d3ad089f677f611c0f39a13  
+
+2019-07-26 17:06:17 info: Client send request DELETE /province/delete/5d3ad089f677f611c0f39a13  
+
+2019-07-26 17:06:17 info: Đã xóa dữ liệu từ bảng provinces trong CSDL:{"_id":"5d3ad089f677f611c0f39a13","name":"","province_code":"","pic_name":"","pic_phone":"","office_address":"","hotline":"","__v":0}  
+
+2019-07-26 17:06:18 info: Client send request GET /province  
+
+2019-07-26 17:06:18 info: Client send request GET /notification  
+
+2019-07-26 17:06:33 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:06:37 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:06:42 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:06:43 info: Client send request POST /province/update/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:06:43 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d173f78c2c83200a6601b7d","province_id":"31796","province_code":"BGI","name":"Tỉnh Bắc Giang","pic_name":" b","pic_phone":"a","office_address":"a","hotline":"a"}  
+
+2019-07-26 17:06:44 info: Client send request GET /province  
+
+2019-07-26 17:06:44 info: Client send request GET /notification  
+
+2019-07-26 17:06:50 info: Client send request GET /district  
+
+2019-07-26 17:06:52 info: Client send request GET /notification  
+
+2019-07-26 17:06:55 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-26 17:08:36 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-26 17:08:41 info: Client send request GET /district  
+
+2019-07-26 17:08:42 info: Client send request GET /notification  
+
+2019-07-26 17:08:44 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-26 17:08:52 info: Client send request GET /district/properties/5d173bdec2c83200a66012fc  
+
+2019-07-26 17:09:26 info: Client send request GET /district  
+
+2019-07-26 17:09:28 info: Client send request GET /notification  
+
+2019-07-26 17:09:29 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-26 17:09:36 info: Client send request GET /province  
+
+2019-07-26 17:09:36 info: Client send request GET /notification  
+
+2019-07-26 17:09:38 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:09:45 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-26 17:09:59 info: Client send request GET /district/properties/5d173bdec2c83200a66012fc  
+
+2019-07-26 17:10:12 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 17:14:59 info: Server has started! Listening on port 5000  
+
+2019-07-26 17:15:01 info: Connected to MongoDB server.  
+
+2019-07-26 17:15:25 info: Server has started! Listening on port 5000  
+
+2019-07-26 17:15:26 info: Connected to MongoDB server.  
+
+2019-07-26 17:15:33 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 17:15:34 info: Client send request GET /district  
+
+2019-07-26 17:15:35 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 17:15:35 info: Client send request GET /notification  
+
+2019-07-26 17:16:40 info: Server has started! Listening on port 5000  
+
+2019-07-26 17:16:41 info: Connected to MongoDB server.  
+
+2019-07-26 17:16:49 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 17:16:49 info: Client send request GET /district  
+
+2019-07-26 17:16:50 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 17:16:50 info: Client send request GET /notification  
+
+2019-07-26 17:18:56 info: Server has started! Listening on port 5000  
+
+2019-07-26 17:18:57 info: Connected to MongoDB server.  
+
+2019-07-26 17:19:03 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-26 17:19:03 info: Client send request GET /district  
+
+2019-07-26 17:19:05 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-26 17:19:05 info: Client send request GET /notification  
+
