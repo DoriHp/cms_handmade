@@ -69,53 +69,53 @@ module.exports = function(server){
         ('Ticket document change with type is' + change.operationType)
         switch (change.operationType) {
             case 'insert':
-            var _id = '5d3a469e51aa6a10dcf330a1'
-            Config.findByIdAndUpdate(_id, {$inc: {ticketCounter: 1}}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
+                var _id = '5d3a469e51aa6a10dcf330a1'
+                Config.findByIdAndUpdate(_id, {$inc: {ticketCounter: 1}}, {new: true, upsert: false, useFindAndModify: false}, function(err, result){
 
-                    if(err){
-                        logger.error("Lỗi khi update số lượng ticket \n" + err)
-                        logger.error(Error("Lỗi từ hệ thống"))
-                    }else{
-                        logger.info("Đã update số lượng ticket. Tổng số ticket hiện giờ: " + result.ticketCounter)
-                    }
-                })
-                Ticket.findById(change.documentKey._id, async function(err, ticket){
-                    if(err){
-                        console.error(err)
-                        return
-                    }
-                    var now = new Date()
-                    var object = ticket
-                    delete object['_id']
-                    customFilter(object)
-                    setTimeout(function(){
-                        ticket.updateOne({$set: object}, function(err){
-                            if(err){
-                                console.log("Lỗi xảy ra khi đổi url của file image")
-                            }
-                        })
-                    }, 2000)
-
-                    Notify.insertMany({
-                        ticket_id: ticket.id,
-                        time: now.toISOString(),
-                        category: 'new',
-                        status: false,
-                        username: "admin",
-                        member_profile:{
-                            member_code: ticket.member_profile.member_code
+                        if(err){
+                            logger.error("Lỗi khi update số lượng ticket \n" + err)
+                            logger.error(Error("Lỗi từ hệ thống"))
+                        }else{
+                            logger.info("Đã update số lượng ticket. Tổng số ticket hiện giờ: " + result.ticketCounter)
                         }
-                    }, function(err, result){
+                    })
+                    Ticket.findById(change.documentKey._id, async function(err, ticket){
                         if(err){
                             console.error(err)
                             return
                         }
+                        var now = new Date()
+                        var object = ticket
+                        delete object['_id']
+                        customFilter(object)
+                        setTimeout(function(){
+                            ticket.updateOne({$set: object}, function(err){
+                                if(err){
+                                    console.log("Lỗi xảy ra khi đổi url của file image")
+                                }
+                            })
+                        }, 2000)
+
+                        Notify.insertMany({
+                            ticket_id: ticket.id,
+                            time: now.toISOString(),
+                            category: 'new',
+                            status: false,
+                            username: "admin",
+                            member_profile:{
+                                member_code: ticket.member_profile.member_code
+                            }
+                        }, function(err, result){
+                            if(err){
+                                console.error(err)
+                                return
+                            }
+                        })
+                        clientList.forEach((client) => {
+                            console.log('emit event "recieve new ticket" to client ' + ticket._id)
+                            client.socket.emit('recieve new ticket',  {ticket: ticket})
+                        })
                     })
-                    clientList.forEach((client) => {
-                        console.log('emit event "recieve new ticket" to client ' + ticket._id)
-                        client.socket.emit('recieve new ticket',  {ticket: ticket})
-                    })
-                })
                 break;
             case 'update':
                 //Tạo một notify mới
@@ -142,7 +142,7 @@ module.exports = function(server){
                     client.socket.emit('update ticket', {ticket: ticket})
                 })
 
-                break
+                break;
             case "delete":
                 clientList.forEach((client) => {
                     console.log('emit event "delete ticket" to client ' + client.id)
@@ -151,7 +151,7 @@ module.exports = function(server){
                 break;
             default:
                 // statements_def
-                break;
+            break;
         }
     })
 

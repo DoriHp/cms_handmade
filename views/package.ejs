@@ -127,7 +127,11 @@
                 <div class="portlet box blue">
                     <div class="portlet-title">
                         <div class="caption">
-                            <i class="far fa-edit"></i> Chỉnh sửa thông tin hình ảnh 
+                            <% if (user.role == 'admin') { -%>
+                                <i class="far fa-edit"></i> Chỉnh sửa thông tin gói VAS
+                            <% } else { -%>
+                                <i class="far fa-edit"></i> Thông tin gói VAS
+                            <% } -%>
                         </div>
                     </div>
                     <div class="portlet-body">

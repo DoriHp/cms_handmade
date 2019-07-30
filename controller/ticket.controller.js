@@ -111,6 +111,8 @@ module.exports.tk_properties = async function(req, res){
 			await Notify.findOneAndUpdate({username: req.user.username, status: false, ticket_id: ticket_id}, {$set:{status: true}},  {new: true, upsert: false, useFindAndModify: false}, function(err, result){
 				if(err){
 					console.error(err)
+				}else{
+					logger.info("Updated notification!")
 				}
 			})
 			if(req.user.role == 'user' && req.user.username != ticket.assignee){
@@ -119,14 +121,14 @@ module.exports.tk_properties = async function(req, res){
 			}
 
 			if(req.user.username == ticket.assignee && ticket.status == 'assigned'){
-			    await ticket.update({
+			    await ticket.updateOne({
 					status: 'recieved'
 				}, function(err, result){
-					if(!err){
+					if(err){
 						logger.error(`Lỗi khi thực hiện cập nhật dữ liệu vào bảng tickets trong CSDL \n` + err)
 		        		logger.error(Error("Bị lỗi từ hệ thống"))
-						console.log("Update this ticket's status to recieved...")
 					}else{
+						console.log("Updated this ticket's status to recieved...")
 						logger.info("Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:" + JSON.stringify(result))
 					}
 				})
