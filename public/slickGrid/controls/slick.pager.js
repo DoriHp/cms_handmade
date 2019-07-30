@@ -74,7 +74,7 @@
       $status = $("<span class='slick-pager-status' />").appendTo($container);
 
       $settings
-          .append("<span class='slick-pager-settings-expanded'>Số bản ghi hiển thị: <a data=0>Tất cả</a><a data=10>10</a><a data=15>15</a><a data=20>20</a></span>");
+          .append("<span class='slick-pager-settings-expanded'>Số điểm bán hiển thị: <a data=0>Tất cả</a><a data=10>10</a><a data=15>15</a><a data=20>20</a></span>");
 
       $settings.find("a[data]").click(function (e) {
         var pagesize = $(e.target).attr("data");

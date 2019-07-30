@@ -4193,3 +4193,1240 @@ null
 
 2019-07-30 08:43:36 info: Client send request GET /notification  
 
+2019-07-30 08:55:09 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:55:10 info: Connected to MongoDB server.  
+
+2019-07-30 08:55:16 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 08:55:16 info: Client send request GET /ticket  
+
+2019-07-30 08:55:16 info: Client send request GET /notification  
+
+2019-07-30 08:59:11 info: Client send request GET /notification  
+
+2019-07-30 09:00:18 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:00:18 info: Client send request GET /  
+
+2019-07-30 09:00:18 info: Client send request GET /notification  
+
+2019-07-30 09:00:42 info: Client send request GET /member  
+
+2019-07-30 09:00:43 info: Client send request GET /member/list  
+
+2019-07-30 09:00:43 info: Client send request GET /notification  
+
+2019-07-30 09:00:45 info: Client send request GET /product  
+
+2019-07-30 09:00:46 info: Client send request GET /notification  
+
+2019-07-30 09:01:32 info: Client send request GET /profile  
+
+2019-07-30 09:01:32 info: Client send request GET /notification  
+
+2019-07-30 09:02:03 info: Client send request GET /profile  
+
+2019-07-30 09:02:03 info: Client send request GET /notification  
+
+2019-07-30 09:02:06 info: Client send request GET /ticket  
+
+2019-07-30 09:02:07 info: Client send request GET /notification  
+
+2019-07-30 09:02:09 info: Client send request GET /ticket/read/2  
+
+2019-07-30 09:02:10 info: Client send request GET /ticket/read-content/2  
+
+2019-07-30 09:02:10 info: Client send request GET /notification  
+
+2019-07-30 09:02:40 info: Client send request GET /province  
+
+2019-07-30 09:02:40 info: Client send request GET /notification  
+
+2019-07-30 09:02:46 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-30 09:02:54 info: Client send request GET /province  
+
+2019-07-30 09:02:55 info: Client send request GET /notification  
+
+2019-07-30 09:02:56 info: Client send request GET /district  
+
+2019-07-30 09:02:57 info: Client send request GET /notification  
+
+2019-07-30 09:04:05 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:04:05 info: Client send request GET /  
+
+2019-07-30 09:04:06 info: Client send request GET /notification  
+
+2019-07-30 09:04:07 info: Client send request GET /profile  
+
+2019-07-30 09:04:07 info: Client send request GET /notification  
+
+2019-07-30 09:04:59 info: Client send request GET /profile  
+
+2019-07-30 09:04:59 info: Client send request GET /notification  
+
+2019-07-30 09:05:18 info: Client send request GET /profile  
+
+2019-07-30 09:05:19 info: Client send request GET /notification  
+
+2019-07-30 09:10:53 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:10:53 info: Client send request GET /  
+
+2019-07-30 09:10:54 info: Client send request GET /notification  
+
+2019-07-30 09:10:56 info: Client send request GET /product  
+
+2019-07-30 09:10:57 info: Client send request GET /notification  
+
+2019-07-30 09:10:59 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:11:15 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:11:15 info: Client send request GET /  
+
+2019-07-30 09:11:15 info: Client send request GET /notification  
+
+2019-07-30 09:11:18 info: Client send request GET /product  
+
+2019-07-30 09:11:19 info: Client send request GET /notification  
+
+2019-07-30 09:11:23 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:12:41 info: Client send request GET /product  
+
+2019-07-30 09:12:42 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:12:42 info: Client send request GET /notification  
+
+2019-07-30 09:13:03 info: Client send request GET /  
+
+2019-07-30 09:13:04 info: Client send request GET /notification  
+
+2019-07-30 09:13:16 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:13:16 info: Client send request GET /  
+
+2019-07-30 09:13:17 info: Client send request GET /notification  
+
+2019-07-30 09:13:19 info: Client send request GET /product  
+
+2019-07-30 09:13:20 info: Client send request GET /notification  
+
+2019-07-30 09:13:23 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:14:56 info: Client send request GET /product  
+
+2019-07-30 09:14:57 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:14:57 info: Client send request GET /notification  
+
+2019-07-30 09:15:18 info: Client send request GET /product  
+
+2019-07-30 09:15:19 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:15:19 info: Client send request GET /notification  
+
+2019-07-30 09:15:53 info: Client send request GET /product  
+
+2019-07-30 09:15:54 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:15:55 info: Client send request GET /notification  
+
+2019-07-30 09:16:07 info: Client send request GET /product  
+
+2019-07-30 09:16:08 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:16:09 info: Client send request GET /notification  
+
+2019-07-30 09:16:58 info: Client send request GET /product  
+
+2019-07-30 09:16:59 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:16:59 info: Client send request GET /notification  
+
+2019-07-30 09:17:11 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:19:13 info: Client send request GET /member  
+
+2019-07-30 09:19:14 info: Client send request GET /member/list  
+
+2019-07-30 09:19:14 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:19:14 info: Client send request GET /notification  
+
+2019-07-30 09:20:31 info: Client send request GET /member  
+
+2019-07-30 09:20:32 info: Client send request GET /member/list  
+
+2019-07-30 09:20:32 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:20:32 info: Client send request GET /notification  
+
+2019-07-30 09:21:34 info: Client send request GET /member  
+
+2019-07-30 09:21:35 info: Client send request GET /member/list  
+
+2019-07-30 09:21:35 info: Client send request GET /notification  
+
+2019-07-30 09:21:35 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:23:50 info: Client send request GET /member  
+
+2019-07-30 09:23:52 info: Client send request GET /member/list  
+
+2019-07-30 09:23:52 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:23:52 info: Client send request GET /notification  
+
+2019-07-30 09:24:43 info: Client send request GET /member  
+
+2019-07-30 09:24:43 info: Client send request GET /member/list  
+
+2019-07-30 09:24:44 info: Client send request GET /notification  
+
+2019-07-30 09:24:44 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:25:31 info: Client send request GET /member  
+
+2019-07-30 09:25:31 info: Client send request GET /member/list  
+
+2019-07-30 09:25:32 info: Client send request GET /notification  
+
+2019-07-30 09:25:32 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:27:05 info: Client send request GET /member  
+
+2019-07-30 09:27:06 info: Client send request GET /member/list  
+
+2019-07-30 09:27:06 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:27:06 info: Client send request GET /notification  
+
+2019-07-30 09:28:48 info: Client send request GET /member  
+
+2019-07-30 09:28:48 info: Client send request GET /member/list  
+
+2019-07-30 09:28:48 info: Client send request GET /notification  
+
+2019-07-30 09:28:48 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:30:45 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:30:45 info: Client send request GET /  
+
+2019-07-30 09:30:46 info: Client send request GET /notification  
+
+2019-07-30 09:30:47 info: Client send request GET /member  
+
+2019-07-30 09:30:48 info: Client send request GET /notification  
+
+2019-07-30 09:30:48 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:32:28 info: Client send request GET /member  
+
+2019-07-30 09:32:29 info: Client send request GET /member/list  
+
+2019-07-30 09:32:29 info: Client send request GET /notification  
+
+2019-07-30 09:32:29 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:33:46 info: Client send request GET /member  
+
+2019-07-30 09:33:49 info: Client send request GET /member/list  
+
+2019-07-30 09:33:49 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:33:49 info: Client send request GET /notification  
+
+2019-07-30 09:34:50 info: Client send request GET /member  
+
+2019-07-30 09:34:51 error: Client gửi request GET tới route không tồn tại: /slickGrid/lib/jquery-ui-1.8.16.custom.min.js  
+
+2019-07-30 09:34:51 info: Client send request GET /member/list  
+
+2019-07-30 09:34:51 info: Client send request GET /notification  
+
+2019-07-30 09:34:51 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:36:14 info: Client send request GET /member  
+
+2019-07-30 09:36:15 info: Client send request GET /member/list  
+
+2019-07-30 09:36:15 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:36:16 info: Client send request GET /notification  
+
+2019-07-30 09:37:19 info: Client send request GET /member  
+
+2019-07-30 09:37:20 info: Client send request GET /member/list  
+
+2019-07-30 09:37:20 info: Client send request GET /notification  
+
+2019-07-30 09:37:21 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:39:03 info: Client send request GET /member  
+
+2019-07-30 09:39:04 info: Client send request GET /member/list  
+
+2019-07-30 09:39:04 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:39:05 info: Client send request GET /notification  
+
+2019-07-30 09:40:09 info: Client send request GET /member  
+
+2019-07-30 09:40:10 info: Client send request GET /member/list  
+
+2019-07-30 09:40:10 info: Client send request GET /notification  
+
+2019-07-30 09:40:10 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:45:49 info: Client send request GET /member  
+
+2019-07-30 09:45:50 info: Client send request GET /member/list  
+
+2019-07-30 09:45:50 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:45:51 info: Client send request GET /notification  
+
+2019-07-30 09:46:29 info: Client send request GET /member  
+
+2019-07-30 09:46:30 info: Client send request GET /member/list  
+
+2019-07-30 09:46:31 info: Client send request GET /notification  
+
+2019-07-30 09:46:31 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:47:22 info: Client send request GET /member  
+
+2019-07-30 09:47:23 info: Client send request GET /member/list  
+
+2019-07-30 09:47:23 info: Client send request GET /notification  
+
+2019-07-30 09:47:23 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:48:50 info: Client send request GET /member  
+
+2019-07-30 09:48:51 info: Client send request GET /member/list  
+
+2019-07-30 09:48:51 info: Client send request GET /notification  
+
+2019-07-30 09:48:51 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:49:16 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:49:16 info: Client send request GET /  
+
+2019-07-30 09:49:17 info: Client send request GET /notification  
+
+2019-07-30 09:49:17 info: Client send request GET /profile  
+
+2019-07-30 09:49:18 info: Client send request GET /notification  
+
+2019-07-30 09:49:33 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:49:33 info: Client send request GET /  
+
+2019-07-30 09:49:34 info: Client send request GET /notification  
+
+2019-07-30 09:49:36 info: Client send request GET /product  
+
+2019-07-30 09:49:38 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:49:38 info: Client send request GET /notification  
+
+2019-07-30 09:49:39 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:49:46 error: Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng  
+
+2019-07-30 09:49:46 error: Truy vấn không tìm thấy kết quả phù hợp Error: Truy vấn không tìm thấy kết quả phù hợp
+    at C:\cms_handmade\index.js:119:28 
+
+2019-07-30 09:49:50 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:49:50 info: Client send request GET /  
+
+2019-07-30 09:49:51 info: Client send request GET /notification  
+
+2019-07-30 09:49:54 info: Client send request GET /product  
+
+2019-07-30 09:49:55 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:49:55 info: Client send request GET /notification  
+
+2019-07-30 09:49:57 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:50:30 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:50:30 info: Client send request GET /  
+
+2019-07-30 09:50:31 info: Client send request GET /notification  
+
+2019-07-30 09:50:32 info: Client send request GET /product  
+
+2019-07-30 09:50:33 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:50:34 info: Client send request GET /notification  
+
+2019-07-30 09:50:35 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:51:19 info: Client send request GET /product  
+
+2019-07-30 09:51:20 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:51:21 info: Client send request GET /notification  
+
+2019-07-30 09:51:24 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:51:33 info: Client send request GET /profile  
+
+2019-07-30 09:51:33 info: Client send request GET /notification  
+
+2019-07-30 09:51:36 info: Client send request GET /profile  
+
+2019-07-30 09:51:37 info: Client send request GET /notification  
+
+2019-07-30 09:52:24 info: Client send request GET /profile  
+
+2019-07-30 09:52:25 info: Client send request GET /notification  
+
+2019-07-30 09:52:27 info: Client send request GET /product  
+
+2019-07-30 09:52:28 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:52:28 info: Client send request GET /notification  
+
+2019-07-30 09:52:30 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:52:33 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:52:48 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:52:48 info: Client send request GET /  
+
+2019-07-30 09:52:49 info: Client send request GET /notification  
+
+2019-07-30 09:52:50 info: Client send request GET /product  
+
+2019-07-30 09:52:51 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:52:51 info: Client send request GET /notification  
+
+2019-07-30 09:52:53 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:53:00 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:53:01 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-30 09:53:01 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"320 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieu qua","public":false,"update_time":"2019-07-30T02:53:00.308Z"}  
+
+2019-07-30 09:53:02 info: Client send request GET /product  
+
+2019-07-30 09:53:02 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:02 info: Client send request GET /notification  
+
+2019-07-30 09:53:07 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 09:53:14 info: Client send request GET /province  
+
+2019-07-30 09:53:14 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:14 info: Client send request GET /notification  
+
+2019-07-30 09:53:20 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:53:20 info: Client send request GET /  
+
+2019-07-30 09:53:21 info: Client send request GET /notification  
+
+2019-07-30 09:53:22 info: Client send request GET /province  
+
+2019-07-30 09:53:23 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:23 info: Client send request GET /notification  
+
+2019-07-30 09:53:24 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-30 09:53:28 info: Client send request GET /district  
+
+2019-07-30 09:53:29 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:29 info: Client send request GET /notification  
+
+2019-07-30 09:53:30 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-30 09:53:33 info: Client send request GET /package/image  
+
+2019-07-30 09:53:34 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-30 09:53:34 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-30 09:53:34 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-30 09:53:34 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:35 info: Client send request GET /notification  
+
+2019-07-30 09:53:36 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-30 09:53:38 info: Client send request GET /member  
+
+2019-07-30 09:53:39 info: Client send request GET /member/list  
+
+2019-07-30 09:53:39 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:53:40 info: Client send request GET /notification  
+
+2019-07-30 09:55:06 info: Client send request GET /ticket  
+
+2019-07-30 09:55:08 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:55:08 info: Client send request GET /notification  
+
+2019-07-30 09:55:10 info: Client send request GET /profile  
+
+2019-07-30 09:55:11 info: Client send request GET /notification  
+
+2019-07-30 09:55:16 info: Client send request GET /member  
+
+2019-07-30 09:55:16 info: Client send request GET /member/list  
+
+2019-07-30 09:55:17 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 09:55:17 info: Client send request GET /notification  
+
+2019-07-30 09:59:11 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:59:12 info: Client send request GET /notification  
+
+2019-07-30 09:59:43 info: Client send request GET /  
+
+2019-07-30 09:59:44 info: Client send request GET /notification  
+
+2019-07-30 09:59:58 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 09:59:58 info: Client send request GET /  
+
+2019-07-30 09:59:58 info: Client send request GET /notification  
+
+2019-07-30 10:00:00 info: Client send request GET /  
+
+2019-07-30 10:00:01 info: Client send request GET /notification  
+
+2019-07-30 10:00:03 info: Client send request GET /member  
+
+2019-07-30 10:00:03 info: Client send request GET /member/list  
+
+2019-07-30 10:00:03 info: Client send request GET /notification  
+
+2019-07-30 10:00:25 info: Client send request DELETE /member/delete/5TBITBI333  
+
+2019-07-30 10:00:25 info: Đã xóa dữ liệu từ bảng members trong CSDL:{"_id":"5d259f0cc914de1570daf2f8","member_code":"5TBITBI333","otp":"0f3563","auto_reply":true,"fb_id":"","fb_gender":"","fb_linkChat":"","lastTimeQueryVAS":"2019-07-10T08:17:16.000Z","createTime":"2019-07-10T08:17:16.000Z","updateTime":"2019-07-10T08:17:16.000Z","__v":0,"fb_firstName":"","fb_lastName":""}  
+
+2019-07-30 10:00:27 info: Client send request GET /province  
+
+2019-07-30 10:00:28 info: Client send request GET /notification  
+
+2019-07-30 10:00:34 info: Client send request GET /member  
+
+2019-07-30 10:00:34 info: Client send request GET /member/list  
+
+2019-07-30 10:00:34 info: Client send request GET /notification  
+
+2019-07-30 10:01:23 info: Client send request GET /member  
+
+2019-07-30 10:01:24 info: Client send request GET /member/list  
+
+2019-07-30 10:01:24 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:01:24 info: Client send request GET /notification  
+
+2019-07-30 10:01:32 info: Client send request GET /product  
+
+2019-07-30 10:01:33 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:01:33 info: Client send request GET /notification  
+
+2019-07-30 10:01:41 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 10:01:49 info: Client send request GET /package/image  
+
+2019-07-30 10:01:49 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-30 10:01:50 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:01:50 info: Client send request GET /notification  
+
+2019-07-30 10:01:50 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-30 10:01:52 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-30 10:02:30 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:03:37 info: Client send request GET /package/image  
+
+2019-07-30 10:03:37 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-30 10:03:38 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-30 10:03:38 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-30 10:03:39 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:03:39 info: Client send request GET /notification  
+
+2019-07-30 10:03:40 info: Client send request GET /member  
+
+2019-07-30 10:03:41 info: Client send request GET /member/list  
+
+2019-07-30 10:03:42 info: Client send request GET /notification  
+
+2019-07-30 10:03:42 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:04:49 info: Client send request GET /province  
+
+2019-07-30 10:04:50 info: Client send request GET /notification  
+
+2019-07-30 10:04:50 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:04:53 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-30 10:05:05 info: Client send request GET /ticket  
+
+2019-07-30 10:05:06 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:05:06 info: Client send request GET /notification  
+
+2019-07-30 10:05:12 info: Client send request GET /ticket/read/3  
+
+2019-07-30 10:05:13 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 10:05:13 info: Client send request GET /notification  
+
+2019-07-30 10:06:30 info: Client send request GET /ticket/read/3  
+
+2019-07-30 10:06:31 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 10:06:31 info: Client send request GET /notification  
+
+2019-07-30 10:06:43 info: Client send request GET /ticket/read/2  
+
+2019-07-30 10:06:44 info: Client send request GET /ticket/read-content/2  
+
+2019-07-30 10:06:44 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request POST /ticket/update/3  
+
+2019-07-30 10:07:05 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3577a08bfb8101ac74b622","type":"feedback","status":"assigned","priority":"normal","assignee":"user1234","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563785220555,"text":"test tạo ticket khi gửi feedback mới"},{"timestamp":1563785250751,"text":"gửi ảnh"},{"timestamp":1563785252307,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/58842442_2142162675865502_7262218149058052096_n.jpg?_nc_cat=105&_nc_oc=AQnNd1vn9qf4QF63DafZNJPMXmbS_K76STsxPQCDHsneKM7GwnJQJw58X6IYeYYmdANAICLY1uPauVVRWgB1qjvc&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=be5155820bf67fd62d0f00cd82edc13b&oe=5DA030E9"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59404735_1265241043623564_5978257510077825024_n.jpg?_nc_cat=105&_nc_oc=AQlpFk0adI5dxxBvcNWpF2Mdbj-UZHL3uxW0JtRXhrsjCGeOJfy5MvfNw1uK7bI-nJx7HRc2oKY6_DkLw8q5NwOs&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=15caa01625574ba3fe4837d36ed2ffa6&oe=5DAC53D7"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59332365_592976361181484_1955734760055635968_n.jpg?_nc_cat=105&_nc_oc=AQmHfIMk6RmDNEoczORU6DcXZGElgsTObzwWPHcFYFiczRf2CjZVxvTEVxHR1HKQDkEsP1JTICD4dYoAlXfW4nxe&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=72c956fba5e593a2b74682b62930945b&oe=5DE7CB26"}}]},{"timestamp":1563785266811,"text":"gửi file"},{"timestamp":1563785267890,"attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"timestamp":1563785275597,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t39.1997-6/p100x100/65996826_2331267576993725_7124001428548354048_n.png?_nc_cat=1&_nc_oc=AQlaRk6uuHjjT-Y3Q2EcsXOd75KFRyw8QOUD45_R_5iY1rYkJan_gWh5XEA95S9QTzHHYPbQ2KqYXqgaiFJQg6bm&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=c09a2a9065b2bb29f90b9560c8039b18&oe=5DE6D6BB","sticker_id":1313755408744952}}]},{"timestamp":1563785292419,"text":"icon  😒😔😫😣🙁😐🤓"},{"timestamp":1563785328114,"attachments":[{"type":"image","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/43827563_2438825262824408_1978300612718100480_n.gif?_nc_cat=101&_nc_oc=AQnpJhtmDlVhGOrSg91CkO78v2aQQEvtfhKr3KDRsp2mATtlMsjvzwdfmuKzwgarmznCp2Nt7dgVu2pCArkPHuzQ&_nc_ht=cdn.fbsbx.com&oh=dcf26d905dde8915f54c97b335892d45&oe=5D37D24F"}}]}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"sssss","update_by":"manh","create_time":"2019-07-22T08:45:20.000Z","update_time":"2019-07-30T03:07:05.499Z","finish_time":null,"id":3,"__v":0}  
+
+2019-07-30 10:07:05 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":3,"update_time":"2019-07-30T03:07:05.548Z","update_by":"manh","change_description":{"content":[{"_id":"5d3fb4596158f0331455aa94","field":"assignee","value":"user1234"},{"_id":"5d3fb4596158f0331455aa93","field":"status","value":"assigned"}],"comment":"sssss"},"__v":0}]  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:05 info: Client send request GET /notification  
+
+2019-07-30 10:07:06 info: Client send request GET /ticket/read/3  
+
+2019-07-30 10:07:07 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 10:07:07 info: Client send request GET /notification  
+
+2019-07-30 10:07:48 error: Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng  
+
+2019-07-30 10:07:48 error: Truy vấn không tìm thấy kết quả phù hợp Error: Truy vấn không tìm thấy kết quả phù hợp
+    at C:\cms_handmade\index.js:119:28 
+
+2019-07-30 10:08:00 error: Lỗi khi xác thực thông tin người dùng. Dữ liệu đăng nhập không đúng  
+
+2019-07-30 10:08:00 error: Truy vấn không tìm thấy kết quả phù hợp Error: Truy vấn không tìm thấy kết quả phù hợp
+    at C:\cms_handmade\index.js:119:28 
+
+2019-07-30 10:08:05 info: Client send request GET /profile  
+
+2019-07-30 10:08:05 info: Client send request GET /notification  
+
+2019-07-30 10:08:07 info: Client send request GET /ticket  
+
+2019-07-30 10:08:08 info: Client send request GET /notification  
+
+2019-07-30 10:08:14 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:08:14 info: Client send request GET /  
+
+2019-07-30 10:08:15 info: Client send request GET /notification  
+
+2019-07-30 10:08:19 info: Client send request GET /profile  
+
+2019-07-30 10:08:19 info: Client send request GET /notification  
+
+2019-07-30 10:08:25 info: Client send request POST /forgotpw  
+
+2019-07-30 10:08:25 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d2d232750f4bb1da47db472","name":"bao","username":"user1234","password":"$2b$10$2PHgtJdd5HtPzgW1ID9rTOEKasR68XrjEs/wpSCwLujsoBNVRmSWC","email":"noobforever1502@gmail.com","role":"user","__v":0}  
+
+2019-07-30 10:08:28 info: Client send request GET /profile  
+
+2019-07-30 10:08:29 info: Client send request GET /notification  
+
+2019-07-30 10:08:37 info: Người dùng user1234 đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:08:37 info: Client send request GET /  
+
+2019-07-30 10:08:38 info: Client send request GET /notification  
+
+2019-07-30 10:08:39 info: Client send request GET /ticket  
+
+2019-07-30 10:08:40 info: Client send request GET /notification  
+
+2019-07-30 10:08:44 info: Client send request GET /ticket/read/3  
+
+2019-07-30 10:08:44 error: Lỗi khi thực hiện cập nhật dữ liệu vào bảng tickets trong CSDL 
+null  
+
+2019-07-30 10:08:44 error: Bị lỗi từ hệ thống Error: Bị lỗi từ hệ thống
+    at C:\cms_handmade\controller\ticket.controller.js:127:26
+    at callback (C:\cms_handmade\node_modules\mongoose\lib\query.js:4005:9)
+    at C:\cms_handmade\node_modules\mongoose\lib\query.js:4239:12
+    at result (C:\cms_handmade\node_modules\mongodb\lib\utils.js:410:17)
+    at session.endSession (C:\cms_handmade\node_modules\mongodb\lib\utils.js:398:11)
+    at ClientSession.endSession (C:\cms_handmade\node_modules\mongodb-core\lib\sessions.js:134:41)
+    at executeCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:395:17)
+    at handleCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:128:55)
+    at coll.s.topology.update (C:\cms_handmade\node_modules\mongodb\lib\operations\collection_ops.js:1467:5)
+    at handler (C:\cms_handmade\node_modules\mongodb-core\lib\topologies\replset.js:1155:22)
+    at C:\cms_handmade\node_modules\mongodb-core\lib\connection\pool.js:397:18
+    at process._tickCallback (internal/process/next_tick.js:61:11) 
+
+2019-07-30 10:08:45 info: Client send request GET /notification  
+
+2019-07-30 10:08:45 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 10:08:50 info: Client send request GET /ticket/read/3  
+
+2019-07-30 10:08:51 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 10:08:51 info: Client send request GET /notification  
+
+2019-07-30 10:09:07 info: Client send request GET /  
+
+2019-07-30 10:09:07 info: Client send request GET /notification  
+
+2019-07-30 10:09:09 info: Client send request GET /profile  
+
+2019-07-30 10:09:09 info: Client send request GET /notification  
+
+2019-07-30 10:09:17 info: Client send request GET /ticket  
+
+2019-07-30 10:09:18 info: Client send request GET /notification  
+
+2019-07-30 10:09:24 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:09:24 info: Client send request GET /  
+
+2019-07-30 10:09:24 info: Client send request GET /notification  
+
+2019-07-30 10:09:26 info: Client send request GET /ticket  
+
+2019-07-30 10:09:26 info: Client send request GET /notification  
+
+2019-07-30 10:09:28 info: Client send request GET /ticket/read/5  
+
+2019-07-30 10:09:29 info: Client send request GET /ticket/read-content/5  
+
+2019-07-30 10:09:29 info: Client send request GET /notification  
+
+2019-07-30 10:09:41 info: Client send request POST /ticket/update/5  
+
+2019-07-30 10:09:42 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3588a1fd20bc127028fa2e","type":"feedback","status":"assigned","priority":"normal","assignee":"manh2","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563789483067,"text":"abc"}]},"member_profile":{"fb_id":"2195115180579005","name":"Cửa khẩu Quốc tế Móng Cái","contact_phone":"974879288","member_code":"5QNI2MCA0175"},"comment":"test","update_by":"admin","create_time":"2019-07-22T09:57:53.000Z","update_time":"2019-07-30T03:09:41.992Z","finish_time":null,"id":5,"__v":0}  
+
+2019-07-30 10:09:42 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":5,"update_time":"2019-07-30T03:09:42.037Z","update_by":"admin","change_description":{"content":[{"_id":"5d3fb4f66158f0331455aa98","field":"assignee","value":"manh2"},{"_id":"5d3fb4f66158f0331455aa97","field":"status","value":"assigned"}],"comment":"test"},"__v":0}]  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /notification  
+
+2019-07-30 10:09:42 info: Client send request GET /ticket/read/5  
+
+2019-07-30 10:09:43 info: Client send request GET /ticket/read-content/5  
+
+2019-07-30 10:09:43 info: Client send request GET /notification  
+
+2019-07-30 10:09:53 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:09:53 info: Client send request GET /  
+
+2019-07-30 10:09:54 info: Client send request GET /notification  
+
+2019-07-30 10:10:08 info: Client send request GET /ticket/read/5  
+
+2019-07-30 10:10:09 info: Client send request GET /ticket/read-content/5  
+
+2019-07-30 10:10:09 info: Client send request GET /notification  
+
+2019-07-30 10:10:21 info: Client send request GET /ticket  
+
+2019-07-30 10:10:21 info: Client send request GET /notification  
+
+2019-07-30 10:10:23 info: Client send request GET /ticket/read/6  
+
+2019-07-30 10:10:23 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request POST /ticket/update/6  
+
+2019-07-30 10:10:33 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3691fe1b7f991874c64e3c","type":"asking_for_information","status":"assigned","priority":"normal","assignee":"manh","description":{"texts":["Nội dung tin nhắn của điểm bán có liên quan đến sản phẩm M79. Sản phẩm này hiện tại không được trả lời công khai trên facebook.","Tin nhắn của điểm bán: gói m79 như nào ấy nhỉ"]},"member_profile":{"fb_id":"2195115180579005","name":"Cửa khẩu Quốc tế Móng Cái","contact_phone":"974879288","member_code":"5QNI2MCA0175"},"comment":"ssss","update_by":"admin","create_time":"2019-07-23T04:50:06.000Z","update_time":"2019-07-30T03:10:33.026Z","finish_time":null,"id":6,"__v":0}  
+
+2019-07-30 10:10:33 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":6,"update_time":"2019-07-30T03:10:33.055Z","update_by":"admin","change_description":{"content":[{"_id":"5d3fb5296158f0331455aa9c","field":"assignee","value":"manh"},{"_id":"5d3fb5296158f0331455aa9b","field":"status","value":"assigned"}],"comment":"ssss"},"__v":0}]  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:33 info: Client send request GET /notification  
+
+2019-07-30 10:10:34 info: Client send request GET /ticket/read/6  
+
+2019-07-30 10:10:35 info: Client send request GET /notification  
+
+2019-07-30 10:10:54 info: Người dùng user1234 đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:10:54 info: Client send request GET /  
+
+2019-07-30 10:10:55 info: Client send request GET /notification  
+
+2019-07-30 10:12:59 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:12:59 info: Client send request GET /  
+
+2019-07-30 10:12:59 info: Client send request GET /notification  
+
+2019-07-30 10:15:00 info: Server has started! Listening on port 5000  
+
+2019-07-30 10:15:00 info: Connected to MongoDB server.  
+
+2019-07-30 10:15:04 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:15:04 info: Client send request GET /  
+
+2019-07-30 10:15:05 info: Client send request GET /notification  
+
+2019-07-30 10:15:20 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 10:15:20 info: Client send request GET /ticket  
+
+2019-07-30 10:15:20 info: Client send request GET /notification  
+
+2019-07-30 10:16:12 info: Client send request GET /  
+
+2019-07-30 10:16:12 info: Client send request GET /notification  
+
+2019-07-30 10:16:14 info: Client send request GET /ticket/read/6  
+
+2019-07-30 10:16:14 error: Lỗi khi thực hiện cập nhật dữ liệu vào bảng tickets trong CSDL 
+null  
+
+2019-07-30 10:16:14 error: Bị lỗi từ hệ thống Error: Bị lỗi từ hệ thống
+    at C:\cms_handmade\controller\ticket.controller.js:127:26
+    at callback (C:\cms_handmade\node_modules\mongoose\lib\query.js:4005:9)
+    at C:\cms_handmade\node_modules\mongoose\lib\query.js:4239:12
+    at result (C:\cms_handmade\node_modules\mongodb\lib\utils.js:410:17)
+    at session.endSession (C:\cms_handmade\node_modules\mongodb\lib\utils.js:398:11)
+    at ClientSession.endSession (C:\cms_handmade\node_modules\mongodb-core\lib\sessions.js:134:41)
+    at executeCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:395:17)
+    at handleCallback (C:\cms_handmade\node_modules\mongodb\lib\utils.js:128:55)
+    at coll.s.topology.update (C:\cms_handmade\node_modules\mongodb\lib\operations\collection_ops.js:1467:5)
+    at handler (C:\cms_handmade\node_modules\mongodb-core\lib\topologies\replset.js:1155:22)
+    at C:\cms_handmade\node_modules\mongodb-core\lib\connection\pool.js:397:18
+    at process._tickCallback (internal/process/next_tick.js:61:11) 
+
+2019-07-30 10:16:15 info: Client send request GET /notification  
+
+2019-07-30 10:16:24 info: Client send request GET /member  
+
+2019-07-30 10:16:25 info: Client send request GET /member/list  
+
+2019-07-30 10:16:25 info: Client send request GET /notification  
+
+2019-07-30 10:17:10 info: Client send request POST /member/add  
+
+2019-07-30 10:17:10 info: Genarate new otp successfully!  
+
+2019-07-30 10:17:10 info: Thêm mới dữ liệu thành công vào bảng members trong CSDL:[{"member_code":"5LKMADFADAD","otp":"4479db","auto_reply":true,"fb_id":"","fb_firstName":"","fb_lastName":"","fb_gender":"","fb_linkChat":"","lastTimeQueryVAS":"2019-07-30T03:17:10.899Z","create_time":"2019-07-30T03:17:10.899Z","update_time":"2019-07-30T03:17:10.899Z","__v":0}]  
+
+2019-07-30 10:17:21 info: Client send request GET /member  
+
+2019-07-30 10:17:21 info: Client send request GET /member/list  
+
+2019-07-30 10:17:21 info: Client send request GET /notification  
+
+2019-07-30 10:19:38 info: Client send request GET /product  
+
+2019-07-30 10:19:38 info: Client send request GET /notification  
+
+2019-07-30 10:19:43 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 10:19:49 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 10:19:50 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-30 10:19:50 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"321 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieu qua","public":false,"update_time":"2019-07-30T03:19:49.594Z"}  
+
+2019-07-30 10:19:51 info: Client send request GET /product  
+
+2019-07-30 10:19:51 info: Client send request GET /notification  
+
+2019-07-30 10:19:56 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 10:20:34 info: Client send request POST /product/adding  
+
+2019-07-30 10:20:35 info: Thêm mới dữ liệu thành công vào bảng districts trong CSDL:[{"chu_ky":"100","khuyen_mai_chu_ky_dau":"100","ten_goi_cuoc":"C100Test","gia_goi":100000,"hoa_hong_msocial":19876,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_khac":"","uu_dai_data":"2GB/ngày","public":false,"update_time":"2019-07-30T03:20:34.950Z","create_time":"2019-07-30T03:20:34.950Z","__v":0}]  
+
+2019-07-30 10:20:35 info: Client send request GET /product  
+
+2019-07-30 10:20:36 info: Client send request GET /notification  
+
+2019-07-30 10:20:40 info: Client send request GET /product/properties/5d3fb782c6c5dd17fc0f5937  
+
+2019-07-30 10:20:44 info: Client send request GET /profile  
+
+2019-07-30 10:20:44 info: Client send request GET /notification  
+
+2019-07-30 10:22:43 info: Client send request GET /member  
+
+2019-07-30 10:22:43 info: Client send request GET /member/list  
+
+2019-07-30 10:22:43 info: Client send request GET /notification  
+
+2019-07-30 10:22:52 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:24:32 info: Client send request GET /member  
+
+2019-07-30 10:24:33 info: Client send request GET /member/list  
+
+2019-07-30 10:24:33 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:24:33 info: Client send request GET /notification  
+
+2019-07-30 10:24:56 info: Client send request GET /member  
+
+2019-07-30 10:24:57 info: Client send request GET /member/list  
+
+2019-07-30 10:24:57 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:24:57 info: Client send request GET /notification  
+
+2019-07-30 10:25:28 info: Client send request GET /member  
+
+2019-07-30 10:25:29 info: Client send request GET /member/list  
+
+2019-07-30 10:25:29 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:25:29 info: Client send request GET /notification  
+
+2019-07-30 10:25:31 info: Client send request GET /member  
+
+2019-07-30 10:25:32 info: Client send request GET /member/list  
+
+2019-07-30 10:25:32 info: Client send request GET /notification  
+
+2019-07-30 10:25:58 info: Client send request GET /member  
+
+2019-07-30 10:25:59 info: Client send request GET /member/list  
+
+2019-07-30 10:26:00 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:26:00 info: Client send request GET /notification  
+
+2019-07-30 10:26:34 info: Client send request GET /member  
+
+2019-07-30 10:26:34 info: Client send request GET /member/list  
+
+2019-07-30 10:26:34 info: Client send request GET /notification  
+
+2019-07-30 10:28:22 info: Client send request GET /district  
+
+2019-07-30 10:28:25 info: Client send request GET /notification  
+
+2019-07-30 10:29:12 info: Client send request GET /district  
+
+2019-07-30 10:29:14 info: Client send request GET /notification  
+
+2019-07-30 10:29:22 info: Client send request POST /district/adding  
+
+2019-07-30 10:29:22 info: Thêm mới dữ liệu thành công vào bảng districts trong CSDL:[{"province_code":"HYE","district_code":"HYEYMN","name":"","pic_name":"","pic_phone":"","office_address":"","hotline":"","__v":0}]  
+
+2019-07-30 10:29:23 info: Client send request GET /district  
+
+2019-07-30 10:29:24 info: Client send request GET /notification  
+
+2019-07-30 10:29:44 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-30 10:29:53 info: Client send request GET /district  
+
+2019-07-30 10:29:54 info: Client send request GET /notification  
+
+2019-07-30 10:29:56 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-30 10:30:05 info: Client send request POST /district/update/5d173bdec2c83200a66012e1  
+
+2019-07-30 10:30:05 info: Cập nhật dữ liệu thành công vào bảng districts trong CSDL:{"_id":"5d173bdec2c83200a66012e1","district_id":"32189","district_code":"BGIBGI","province_code":"BGI","name":"Thành phố Bắc Giang","pic_name":"","pic_phone":"0869071597","office_address":"163 Trại Lẻ","hotline":""}  
+
+2019-07-30 10:30:06 info: Client send request GET /district  
+
+2019-07-30 10:30:06 info: Client send request GET /notification  
+
+2019-07-30 10:30:19 info: Client send request GET /province  
+
+2019-07-30 10:30:20 info: Client send request GET /notification  
+
+2019-07-30 10:30:30 info: Client send request POST /province/adding  
+
+2019-07-30 10:30:30 info: Thêm mới dữ liệu thành công vào bảng provinces trong CSDL:[{"name":"tester123","province_code":"Hải Phòng","pic_name":"","pic_phone":"0869071597","office_address":"163 Trại Lẻ","hotline":"","__v":0}]  
+
+2019-07-30 10:30:30 info: Client send request GET /province  
+
+2019-07-30 10:30:31 info: Client send request GET /notification  
+
+2019-07-30 10:30:41 info: Client send request GET /province/districtlist/5d3fb9d6c6c5dd17fc0f5939  
+
+2019-07-30 10:30:42 info: Client send request DELETE /province/delete/5d3fb9d6c6c5dd17fc0f5939  
+
+2019-07-30 10:30:42 info: Đã xóa dữ liệu từ bảng provinces trong CSDL:null  
+
+2019-07-30 10:30:43 info: Client send request GET /province  
+
+2019-07-30 10:30:43 info: Client send request GET /notification  
+
+2019-07-30 10:30:48 info: Client send request POST /province/adding  
+
+2019-07-30 10:30:48 info: Thêm mới dữ liệu thành công vào bảng provinces trong CSDL:[{"name":"tester123","province_code":"Hải Phòng","pic_name":"","pic_phone":"0869071597","office_address":"163 Trại Lẻ","hotline":"","__v":0}]  
+
+2019-07-30 10:30:49 info: Client send request GET /province  
+
+2019-07-30 10:30:49 info: Client send request GET /notification  
+
+2019-07-30 10:30:53 info: Client send request GET /province/properties/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:10 info: Client send request GET /province/properties/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:11 info: Client send request POST /province/update/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:11 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d3fb9e8c6c5dd17fc0f593a","name":"tester123","province_code":"Hải Phòng","pic_name":"Đạt","pic_phone":"0869071597","office_address":"163 Trại Lẻ","hotline":"","__v":0}  
+
+2019-07-30 10:31:12 info: Client send request GET /province  
+
+2019-07-30 10:31:12 info: Client send request GET /notification  
+
+2019-07-30 10:31:15 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:19 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:25 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:31:44 info: Client send request GET /province  
+
+2019-07-30 10:31:45 info: Client send request GET /notification  
+
+2019-07-30 10:31:47 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:32:20 info: Client send request GET /province  
+
+2019-07-30 10:32:20 info: Client send request GET /notification  
+
+2019-07-30 10:32:22 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:33:06 info: Client send request GET /province  
+
+2019-07-30 10:33:06 info: Client send request GET /notification  
+
+2019-07-30 10:33:10 info: Client send request GET /province/districtlist/5d173f78c2c83200a6601b7d  
+
+2019-07-30 10:33:13 info: Client send request GET /province/districtlist/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:33:17 info: Client send request DELETE /province/delete/5d3fb9e8c6c5dd17fc0f593a  
+
+2019-07-30 10:33:17 info: Đã xóa dữ liệu từ bảng provinces trong CSDL:null  
+
+2019-07-30 10:33:17 info: Client send request GET /province  
+
+2019-07-30 10:33:18 info: Client send request GET /notification  
+
+2019-07-30 10:33:20 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-30 10:33:25 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-30 10:33:26 info: Client send request POST /province/update/5d173f78c2c83200a6601b7d  
+
+2019-07-30 10:33:27 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d173f78c2c83200a6601b7d","province_id":"31796","province_code":"BGI","name":"Tỉnh Bắc Giang","pic_name":" ba","pic_phone":"a","office_address":"a","hotline":"a"}  
+
+2019-07-30 10:33:27 info: Client send request GET /province  
+
+2019-07-30 10:33:28 info: Client send request GET /notification  
+
+2019-07-30 10:33:32 info: Client send request GET /district  
+
+2019-07-30 10:33:33 info: Client send request GET /notification  
+
+2019-07-30 10:33:38 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-30 10:34:01 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-30 10:34:10 info: Client send request GET /member  
+
+2019-07-30 10:34:11 info: Client send request GET /member/list  
+
+2019-07-30 10:34:11 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:34:11 info: Client send request GET /notification  
+
+2019-07-30 10:34:20 info: Client send request GET /member  
+
+2019-07-30 10:34:21 info: Client send request GET /member/list  
+
+2019-07-30 10:34:21 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:34:21 info: Client send request GET /notification  
+
+2019-07-30 10:34:22 info: Client send request GET /product  
+
+2019-07-30 10:34:24 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:34:25 info: Client send request GET /notification  
+
+2019-07-30 10:34:35 info: Client send request GET /product/properties/5d23ea523ba9402928d93968  
+
+2019-07-30 10:34:47 info: Client send request GET /product  
+
+2019-07-30 10:34:48 info: Client send request GET /notification  
+
+2019-07-30 10:34:51 info: Client send request GET /product/properties/5d23ea523ba9402928d93968  
+
+2019-07-30 10:34:55 info: Client send request GET /product/properties/5d23ea523ba9402928d93968  
+
+2019-07-30 10:35:06 info: Client send request GET /product/properties/5d23ea523ba9402928d93968  
+
+2019-07-30 10:35:08 info: Client send request POST /product/update/5d23ea523ba9402928d93968  
+
+2019-07-30 10:35:08 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93968","ten_goi_cuoc":"VDATA5","gia_goi":20000,"chu_ky":"30 ngày","khuyen_mai_chu_ky_dau":"30 ngày","hoa_hong_msocial":66666,"uu_dai_noi_mang":"100 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"4GB/ngày","uu_dai_khac":"","public":true,"update_time":"2019-07-30T03:35:06.687Z"}  
+
+2019-07-30 10:35:08 info: Client send request GET /product  
+
+2019-07-30 10:35:09 info: Client send request GET /notification  
+
+2019-07-30 10:35:14 info: Client send request POST /product/update/5d23ea523ba9402928d93960  
+
+2019-07-30 10:35:14 info: Cập nhật dữ liệu thành công vào bảng products trong CSDL:{"_id":"5d23ea523ba9402928d93960","ten_goi_cuoc":"12C90","gia_goi":1080000,"chu_ky":"340 ngày","khuyen_mai_chu_ky_dau":"321 ngày","hoa_hong_msocial":1756362,"uu_dai_noi_mang":"Miễn phí cuộc gọi nhỏ hơn 20 phút","uu_dai_ngoai_mang":"50 phút","uu_dai_data":"2GB/ngày","uu_dai_khac":"nhieu qua","public":true,"update_time":"2019-07-30T03:19:49.594Z"}  
+
+2019-07-30 10:35:19 info: Client send request GET /profile  
+
+2019-07-30 10:35:19 info: Client send request GET /notification  
+
+2019-07-30 10:35:35 info: Client send request GET /ticket  
+
+2019-07-30 10:35:36 info: Client send request GET /notification  
+
+2019-07-30 10:36:17 info: Client send request GET /ticket/read/7  
+
+2019-07-30 10:36:17 info: Client send request GET /ticket/read-content/7  
+
+2019-07-30 10:36:17 info: Client send request GET /notification  
+
+2019-07-30 10:36:32 info: Client send request GET /province  
+
+2019-07-30 10:36:32 info: Client send request GET /notification  
+
+2019-07-30 10:36:35 info: Client send request GET /district  
+
+2019-07-30 10:36:36 info: Client send request GET /notification  
+
+2019-07-30 10:36:47 info: Client send request GET /product  
+
+2019-07-30 10:36:48 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:36:48 info: Client send request GET /notification  
+
+2019-07-30 10:36:50 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-30 10:36:53 info: Client send request GET /province  
+
+2019-07-30 10:36:53 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:36:54 info: Client send request GET /notification  
+
+2019-07-30 10:37:34 info: Client send request GET /province  
+
+2019-07-30 10:37:35 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:37:35 info: Client send request GET /notification  
+
+2019-07-30 10:37:48 info: Client send request GET /ticket  
+
+2019-07-30 10:37:49 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:37:49 info: Client send request GET /notification  
+
+2019-07-30 10:37:52 info: Client send request GET /ticket/read/6  
+
+2019-07-30 10:37:53 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:37:53 info: Client send request GET /notification  
+
+2019-07-30 10:40:40 info: Client send request GET /ticket/read/6  
+
+2019-07-30 10:40:41 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:40:41 info: Client send request GET /notification  
+
+2019-07-30 10:40:53 info: Client send request GET /ticket  
+
+2019-07-30 10:40:54 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:40:54 info: Client send request GET /notification  
+
+2019-07-30 10:40:56 info: Client send request GET /profile  
+
+2019-07-30 10:40:57 info: Client send request GET /notification  
+
+2019-07-30 10:41:02 info: Client send request GET /member  
+
+2019-07-30 10:41:03 info: Client send request GET /member/list  
+
+2019-07-30 10:41:03 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-30 10:41:03 info: Client send request GET /notification  
+
+2019-07-30 10:41:30 info: Client send request GET /district  
+
+2019-07-30 10:41:32 info: Client send request GET /notification  
+

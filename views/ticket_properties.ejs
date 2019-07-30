@@ -239,9 +239,9 @@
                                                         <div class="ticket_info row col-md-12">
                                                             <p class="col-md-4" style="font-weight: bold;">Độ ưu tiên</p>
                                                             <% if(ticket.priority == 'high') { -%> 
-                                                                <span class="label label-sm label-danger"> Cao </span>
+                                                                <span class="label label-sm label-danger" style="margin-left: 15px;"> Cao </span>
                                                             <% } else { -%>
-                                                                <span class="label label-sm label-warning"> Bình thường </span>
+                                                                <span class="label label-sm label-warning" style="margin-left: 15px;"> Bình thường </span>
                                                             <% } -%>
                                                         </div>
                                                         <div class="ticket_info row col-md-12">
@@ -391,7 +391,7 @@
                                                                             <% if (ticket.status_num > 0) { -%>
                                                                                 hidden
                                                                             <% } -%>
-                                                                        <% } -%>>Mới
+                                                                        <% } -%> hidden>Mới
                                                                     </option>
                                                                     <option value="assigned" <% if (ticket.status == 'assigned') { -%>
                                                                             selected

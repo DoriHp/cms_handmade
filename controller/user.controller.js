@@ -92,30 +92,17 @@ module.exports.changepw = function(req, res){
 module.exports.notify = async function(req, res){
 	logger.info(`Client send request ${req.method} ${req.url}`)
 	var user = req.user
+	var username = user.username
 	//Trả về các notification dựa theo người dùng
-	if(user.role == 'admin' || user.role == 'supervisor'){
-		var result = await Notify.find({username: 'admin'}).sort([['time', -1]]).lean()
-		if(result){
-			res.status(200).send(result)
-			return
-		}else{
-			logger.error(`Lỗi khi thực hiện truy vấn dữ liệu trong bảng notifications trong CSDL \n` + err)
-        	logger.error(Error("Bị lỗi từ hệ thống"))
-        	res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
-			return		
-		}
-	}
-	if(user.role == 'user'){
-		var result = await Notify.find({username: user.username}).sort([['time', -1]]).lean()
-		if(result){
-			res.status(200).send(result)
-			return
-		}else{
-			logger.error(`Lỗi khi thực hiện truy vấn dữ liệu trong bảng notifications trong CSDL \n` + err)
-        	logger.error(Error("Bị lỗi từ hệ thống"))
-        	res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
-			return		
-		}
+	var result = await Notify.find({username: username}).sort([['time', -1]]).lean()
+	if(result){
+		res.status(200).send(result)
+		return
+	}else{
+		logger.error(`Lỗi khi thực hiện truy vấn dữ liệu trong bảng notifications trong CSDL \n` + err)
+    	logger.error(Error("Bị lỗi từ hệ thống"))
+    	res.status(500).send("Đã có lỗi xảy ra, vui lòng thử lại sau!")
+		return		
 	}
 }
 
