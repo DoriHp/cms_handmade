@@ -13,13 +13,7 @@ module.exports.member = async function(req, res){
 
 module.exports.list = async function(req, res){
 	logger.info(`Client send request ${req.method} ${req.url}`)
-	var start = process.hrtime()
-	console.log('start:')
-	console.log(start)
 	var result = await Member.find({}, ['member_code', 'otp', 'fb_firstName', 'fb_lastName', 'fb_gender', 'fb_linkChat', 'auto_reply']).lean()
-	var end = process.hrtime(start)
-    console.log("end:")
-    console.log(end)
     if(result){
     	res.status(200).send(result)
     }else{

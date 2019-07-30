@@ -4153,3 +4153,29 @@ null
 
 2019-07-30 08:19:13 info: Connected to MongoDB server.  
 
+2019-07-30 08:19:17 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:19:18 info: Connected to MongoDB server.  
+
+2019-07-30 08:38:27 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:38:27 info: Connected to MongoDB server.  
+
+2019-07-30 08:39:35 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:39:35 info: Connected to MongoDB server.  
+
+2019-07-30 08:39:46 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:39:46 info: Connected to MongoDB server.  
+
+2019-07-30 08:39:58 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 08:40:02 info: Client send request GET /notification  
+
+2019-07-30 08:40:09 info: Client send request GET /member  
+
+2019-07-30 08:40:09 info: Client send request GET /member/list  
+
+2019-07-30 08:40:10 info: Client send request GET /notification  
+

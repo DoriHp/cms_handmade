@@ -1,5 +1,4 @@
 var express = require('express')
-var timeout = require('connect-timeout')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var cookieParser = require('cookie-parser')
@@ -9,7 +8,6 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy
 var passport = require('passport')
 var bcrypt = require('bcrypt')
-var responseTime = require('response-time')
 var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
@@ -44,8 +42,7 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(compression())
-app.use(timeout(60000))
-app.use(responseTime())
+
 
 // Setup View engine
 app.set('views', path.join(__dirname, 'views'));
