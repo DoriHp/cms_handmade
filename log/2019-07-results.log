@@ -4149,3 +4149,7 @@ null
 
 2019-07-26 17:19:05 info: Client send request GET /notification  
 
+2019-07-30 08:19:12 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:19:13 info: Connected to MongoDB server.  
+

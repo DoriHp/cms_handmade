@@ -4,29 +4,10 @@ var mongoose = require('mongoose')
 require('dotenv').config()
 var bcrypt = require('bcrypt')
 const saltRounds = 10
-var nodemailer = require('nodemailer')
 var generator = require('generate-password')	
 var fs = require('fs')
-var tokens = JSON.parse(fs.readFileSync('token.json'))
-var credentials = JSON.parse(fs.readFileSync('credentials.json'))
 var logger = require('../config/logger.js')
 var Config = require('../models/config.model.js')
-const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-        type: 'OAuth2',
-        user: process.env.EMAIL,
-        pass: process.env.EMAILPW,
-        clientId: credentials.installed.client_id.toString(),
-        clientSecret: credentials.installed.client_secret.toString(),
-        refreshToken: tokens.refresh_token.toString(),
-        accessToken: tokens.access_token.toString(),
-        expires: tokens.expiry_date
-    }
-})
 var Notify = require('../models/notify.model.js')
 
 module.exports.forgotpw = async function(req, res){
