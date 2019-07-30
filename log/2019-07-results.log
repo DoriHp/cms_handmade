@@ -4183,3 +4183,13 @@ null
 
 2019-07-30 08:40:52 info: Connected to MongoDB server.  
 
+2019-07-30 08:42:18 info: Server has started! Listening on port 5000  
+
+2019-07-30 08:42:18 info: Connected to MongoDB server.  
+
+2019-07-30 08:43:35 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 08:43:35 info: Client send request GET /ticket  
+
+2019-07-30 08:43:36 info: Client send request GET /notification  
+

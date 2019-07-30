@@ -140,10 +140,12 @@
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fas fa-info-circle"></i>Thông tin sản phẩm</div>
-                        <div class="actions" style="margin-right: 50px;">
-                            <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
-                                <i class="far fa-edit"></i> Cho phép sửa đổi </button>
-                        </div>
+                        <% if (user.role == 'admin') { -%>
+                            <div class="actions" style="margin-right: 50px;">
+                                <button type="button" onclick="enableEdit()" class="btn btn-default btn-sm">
+                                    <i class="far fa-edit"></i> Sửa </button>
+                            </div>
+                        <% } -%>
                     </div>
                     <div class="portlet-body form">
                         <!-- BEGIN FORM-->
@@ -215,8 +217,13 @@
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle green" disabled>Lưu thay đổi</button>
-                                    </div>
+                                        <button id="save_change" type="button" onclick="updateProduct()" class="btn btn-circle green" disabled <% if (user.role != 'admin') { -%>
+                                            style="display: none;"
+                                        <% } -%>>Lưu thay đổi</button>
+                                        <button type="button" class="btn btn-circle green" <% if (user.role == 'admin') { -%>
+                                            style="display: none;"
+                                        <% } -%> onclick="document.getElementsByClassName('close-modal')[0].click()"> Đóng </button>
+                                        </div>
                                 </div>
                             </div>
                         </form>
@@ -322,8 +329,10 @@
     var i_info = document.getElementsByClassName('a_pro')
     var input_status = document.getElementsByClassName('input_status')
     var checkboxes = document.getElementsByClassName('checkboxes')
-    for(let i = 0; i < i_trash.length; i++){
-        i_trash[i].addEventListener('click', delProduct)
+    for(let i = 0; i < i_info.length; i++){
+        if(i_trash[i]){
+            i_trash[i].addEventListener('click', delProduct)
+        }
         i_info[i].addEventListener('click', getProperties)
         input_status[i].addEventListener('click', change_public_status)
         checkboxes[i].addEventListener('change', multi_select)

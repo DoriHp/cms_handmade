@@ -109,15 +109,21 @@
     <script src="/slickGrid/lib/firebugx.js"></script>
     <script src="/slickGrid/lib/jquery-ui-1.11.3.min.js"></script>
     <script src="/slickGrid/lib/jquery.event.drag-2.3.0.js"></script>
-
+    
     <script src="/slickGrid/slick.core.js"></script>
-    <script src="/slickGrid/slick.formatters.js"></script>
+    <script src="/slickGrid/plugins/slick.autotooltips.js"></script>
+    <script src="/slickGrid/plugins/slick.cellrangedecorator.js"></script>
+    <script src="/slickGrid/plugins/slick.cellrangeselector.js"></script>
+    <script src="/slickGrid/plugins/slick.cellcopymanager.js"></script>
+    <script src="/slickGrid/plugins/slick.cellselectionmodel.js"></script>
     <script src="/slickGrid/slick.editors.js"></script>
-    <script src="/slickGrid/plugins/slick.rowselectionmodel.js"></script>
     <script src="/slickGrid/slick.grid.js"></script>
+    <script src="/slickGrid/plugins/slick.cellrangeselector.js"></script>
+    <script src="/slickGrid/slick.formatters.js"></script>
+    <script src="/slickGrid/plugins/slick.rowselectionmodel.js"></script>
     <script src="/slickGrid/slick.dataview.js"></script>
     <script src="/slickGrid/controls/slick.pager.js"></script>
-    <script src="/slickGrid/controls/slick.columnpicker.js"></script>
+    <script src="/slickGrid/controls/slick.columnpicker.js"></script> -->
     <% if (user.role == 'admin') { -%>
          <script>
         var searchField = "member_code"
@@ -142,7 +148,7 @@
         columns.push({id: "otp", name: "OTP", field: "otp", minWidth: 60, cssClass: "cell-title"})
         columns.push({id: "fb_name", name: "Tên facebook", field: "fb_name", minWidth: 120, cssClass: "cell-title", sortable: true})
         columns.push({id: "fb_gender", name: "Giới tính", field: "fb_gender", minWidth: 60, cssClass: "cell-title"})
-        columns.push({id: "fb_linkChat", name: "Đường dẫn messenger", field: "fb_linkChat", minWidth: 160, cssClass: "cell-title"})
+        columns.push({id: "fb_linkChat", name: "Đường dẫn messenger", field: "fb_linkChat", minWidth: 160, cssClass: "cell-title", editor: FormulaEditor})
         columns.push({id: "auto_reply_string", name: "Trả lời tự động", field: "auto_reply_string", minWidth: 100, cssClass: "cell-title"})
         columns.push({id: "del", field:'del', name:'Xóa', maxWidth: 190, formatter: buttonFormatter})
 
@@ -153,6 +159,38 @@
             //Now the row will display your button
         }
 
+        function FormulaEditor(args) {
+            var _self = this;
+            var _editor = new Slick.Editors.Text(args);
+            var _selector;
+            $.extend(this, _editor);
+            function init() {
+                  // register a plugin to select a range and append it to the textbox
+                  // since events are fired in reverse order (most recently added are executed first),
+                  // this will override other plugins like moverows or selection model and will
+                  // not require the grid to not be in the edit mode
+                  _selector = new Slick.CellRangeSelector();
+                  _selector.onCellRangeSelected.subscribe(_self.handleCellRangeSelected);
+                  args.grid.registerPlugin(_selector);
+                }
+                this.destroy = function () {
+                  _selector.onCellRangeSelected.unsubscribe(_self.handleCellRangeSelected);
+                  grid.unregisterPlugin(_selector);
+                  _editor.destroy();
+                };
+                this.handleCellRangeSelected = function (e, args) {
+                  _editor.setValue(
+                      _editor.getValue() +
+                          grid.getColumns()[args.range.fromCell].name +
+                          args.range.fromRow +
+                          ":" +
+                          grid.getColumns()[args.range.toCell].name +
+                          args.range.toRow
+                  );
+                };
+                init();
+        }
+
         var options = {
             columnPicker: {
                 columnTitle: "Columns",
@@ -161,12 +199,14 @@
                 forceFitTitle: "Force fit columns",
                 syncResizeTitle: "Synchronous resize",
             },
-            editable: true,
+            editable: false,
             enableAddRow: false,
             enableCellNavigation: true,
+            enableTextSelectionOnCells: true,
             asyncEditorLoading: true,
             forceFitColumns: true,
-            topPanelHeight: 25
+            topPanelHeight: 25,
+            autoEdit: false
         }
 
         var sortcol = "id"
@@ -474,6 +514,7 @@
                 editable: true,
                 enableAddRow: false,
                 enableCellNavigation: true,
+                enableTextSelectionOnCells: true,
                 asyncEditorLoading: true,
                 forceFitColumns: true,
                 topPanelHeight: 25
