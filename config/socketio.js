@@ -79,7 +79,7 @@ module.exports = function(server){
                             logger.info("Đã update số lượng ticket. Tổng số ticket hiện giờ: " + result.ticketCounter)
                         }
                     })
-                    Ticket.findById(change.documentKey._id, async function(err, ticket){
+                    Ticket.findById(change.documnentKey._id, async function(err, ticket){
                         if(err){
                             console.error(err)
                             return
@@ -121,6 +121,7 @@ module.exports = function(server){
                 //Tạo một notify mới
                 if(change.updateDescription.updatedFields.status != null && change.updateDescription.updatedFields.assignee != null){
                     var now = new Date()
+                    logger.info("Insert new notification!")
                     Notify.insertMany({
                         ticket_id: change.fullDocument.id,
                         time: now.toISOString(),

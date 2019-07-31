@@ -6634,3 +6634,383 @@ null
 
 2019-07-30 11:53:25 info: Connected to MongoDB server.  
 
+2019-07-30 11:56:54 info: Server has started! Listening on port 5000  
+
+2019-07-30 11:56:55 info: Connected to MongoDB server.  
+
+2019-07-30 11:57:00 info: Người dùng user1234 đã đăng nhập vào hệ thống.  
+
+2019-07-30 11:57:00 info: Client send request GET /profile  
+
+2019-07-30 11:57:01 info: Client send request GET /notification  
+
+2019-07-30 11:57:13 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 11:57:13 info: Client send request GET /  
+
+2019-07-30 11:57:13 info: Client send request GET /notification  
+
+2019-07-30 11:57:15 info: Client send request GET /ticket  
+
+2019-07-30 11:57:16 info: Client send request GET /notification  
+
+2019-07-30 11:57:17 info: Client send request GET /ticket/read/3  
+
+2019-07-30 11:57:17 info: Updated notification!  
+
+2019-07-30 11:57:18 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 11:57:18 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request POST /ticket/update/3  
+
+2019-07-30 11:57:23 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3577a08bfb8101ac74b622","type":"feedback","status":"assigned","priority":"normal","assignee":"user1234","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563785220555,"text":"test tạo ticket khi gửi feedback mới"},{"timestamp":1563785250751,"text":"gửi ảnh"},{"timestamp":1563785252307,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/58842442_2142162675865502_7262218149058052096_n.jpg?_nc_cat=105&_nc_oc=AQnNd1vn9qf4QF63DafZNJPMXmbS_K76STsxPQCDHsneKM7GwnJQJw58X6IYeYYmdANAICLY1uPauVVRWgB1qjvc&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=be5155820bf67fd62d0f00cd82edc13b&oe=5DA030E9"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59404735_1265241043623564_5978257510077825024_n.jpg?_nc_cat=105&_nc_oc=AQlpFk0adI5dxxBvcNWpF2Mdbj-UZHL3uxW0JtRXhrsjCGeOJfy5MvfNw1uK7bI-nJx7HRc2oKY6_DkLw8q5NwOs&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=15caa01625574ba3fe4837d36ed2ffa6&oe=5DAC53D7"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59332365_592976361181484_1955734760055635968_n.jpg?_nc_cat=105&_nc_oc=AQmHfIMk6RmDNEoczORU6DcXZGElgsTObzwWPHcFYFiczRf2CjZVxvTEVxHR1HKQDkEsP1JTICD4dYoAlXfW4nxe&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=72c956fba5e593a2b74682b62930945b&oe=5DE7CB26"}}]},{"timestamp":1563785266811,"text":"gửi file"},{"timestamp":1563785267890,"attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"timestamp":1563785275597,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t39.1997-6/p100x100/65996826_2331267576993725_7124001428548354048_n.png?_nc_cat=1&_nc_oc=AQlaRk6uuHjjT-Y3Q2EcsXOd75KFRyw8QOUD45_R_5iY1rYkJan_gWh5XEA95S9QTzHHYPbQ2KqYXqgaiFJQg6bm&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=c09a2a9065b2bb29f90b9560c8039b18&oe=5DE6D6BB","sticker_id":1313755408744952}}]},{"timestamp":1563785292419,"text":"icon  😒😔😫😣🙁😐🤓"},{"timestamp":1563785328114,"attachments":[{"type":"image","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/43827563_2438825262824408_1978300612718100480_n.gif?_nc_cat=101&_nc_oc=AQnpJhtmDlVhGOrSg91CkO78v2aQQEvtfhKr3KDRsp2mATtlMsjvzwdfmuKzwgarmznCp2Nt7dgVu2pCArkPHuzQ&_nc_ht=cdn.fbsbx.com&oh=dcf26d905dde8915f54c97b335892d45&oe=5D37D24F"}}]}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"sssss","update_by":"admin","create_time":"2019-07-22T08:45:20.000Z","update_time":"2019-07-30T04:57:23.244Z","finish_time":null,"id":3,"__v":0}  
+
+2019-07-30 11:57:23 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":3,"update_time":"2019-07-30T04:57:23.296Z","update_by":"admin","change_description":{"content":[{"_id":"5d3fce33a8a550159c5747d3","field":"assignee","value":"user1234"},{"_id":"5d3fce33a8a550159c5747d2","field":"status","value":"assigned"}]},"__v":0}]  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /notification  
+
+2019-07-30 11:57:23 info: Client send request GET /ticket/read/3  
+
+2019-07-30 11:57:24 info: Updated notification!  
+
+2019-07-30 11:57:25 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 11:57:25 info: Client send request GET /notification  
+
+2019-07-30 11:57:33 info: Client send request GET /ticket/read/3  
+
+2019-07-30 11:57:34 info: Updated notification!  
+
+2019-07-30 11:57:34 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"n":1,"nModified":0,"opTime":{"ts":"6719315947628265475","t":9},"electionId":"7fffffff0000000000000009","ok":1,"operationTime":"6719315947628265475","$clusterTime":{"clusterTime":"6719315947628265475","signature":{"hash":"eczwzbA7wsZVhDKsHpShXj4fD88=","keyId":"6668167087610920962"}}}  
+
+2019-07-30 11:57:34 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 11:57:34 info: Client send request GET /notification  
+
+2019-07-30 11:58:28 info: Server has started! Listening on port 5000  
+
+2019-07-30 11:58:28 info: Connected to MongoDB server.  
+
+2019-07-30 11:58:35 info: Người dùng user1234 đã đăng nhập vào hệ thống.  
+
+2019-07-30 11:58:35 info: Client send request GET /  
+
+2019-07-30 11:58:35 info: Client send request GET /notification  
+
+2019-07-30 11:58:43 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-30 11:58:43 info: Client send request GET /  
+
+2019-07-30 11:58:43 info: Client send request GET /notification  
+
+2019-07-30 11:59:05 info: Client send request GET /ticket  
+
+2019-07-30 11:59:05 info: Client send request GET /notification  
+
+2019-07-30 11:59:06 info: Client send request GET /ticket/read/3  
+
+2019-07-30 11:59:07 info: Updated notification!  
+
+2019-07-30 11:59:07 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 11:59:07 info: Client send request GET /notification  
+
+2019-07-30 11:59:12 info: Client send request POST /ticket/update/3  
+
+2019-07-30 11:59:12 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3577a08bfb8101ac74b622","type":"feedback","status":"assigned","priority":"normal","assignee":"user1234","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563785220555,"text":"test tạo ticket khi gửi feedback mới"},{"timestamp":1563785250751,"text":"gửi ảnh"},{"timestamp":1563785252307,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/58842442_2142162675865502_7262218149058052096_n.jpg?_nc_cat=105&_nc_oc=AQnNd1vn9qf4QF63DafZNJPMXmbS_K76STsxPQCDHsneKM7GwnJQJw58X6IYeYYmdANAICLY1uPauVVRWgB1qjvc&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=be5155820bf67fd62d0f00cd82edc13b&oe=5DA030E9"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59404735_1265241043623564_5978257510077825024_n.jpg?_nc_cat=105&_nc_oc=AQlpFk0adI5dxxBvcNWpF2Mdbj-UZHL3uxW0JtRXhrsjCGeOJfy5MvfNw1uK7bI-nJx7HRc2oKY6_DkLw8q5NwOs&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=15caa01625574ba3fe4837d36ed2ffa6&oe=5DAC53D7"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59332365_592976361181484_1955734760055635968_n.jpg?_nc_cat=105&_nc_oc=AQmHfIMk6RmDNEoczORU6DcXZGElgsTObzwWPHcFYFiczRf2CjZVxvTEVxHR1HKQDkEsP1JTICD4dYoAlXfW4nxe&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=72c956fba5e593a2b74682b62930945b&oe=5DE7CB26"}}]},{"timestamp":1563785266811,"text":"gửi file"},{"timestamp":1563785267890,"attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"timestamp":1563785275597,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t39.1997-6/p100x100/65996826_2331267576993725_7124001428548354048_n.png?_nc_cat=1&_nc_oc=AQlaRk6uuHjjT-Y3Q2EcsXOd75KFRyw8QOUD45_R_5iY1rYkJan_gWh5XEA95S9QTzHHYPbQ2KqYXqgaiFJQg6bm&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=c09a2a9065b2bb29f90b9560c8039b18&oe=5DE6D6BB","sticker_id":1313755408744952}}]},{"timestamp":1563785292419,"text":"icon  😒😔😫😣🙁😐🤓"},{"timestamp":1563785328114,"attachments":[{"type":"image","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/43827563_2438825262824408_1978300612718100480_n.gif?_nc_cat=101&_nc_oc=AQnpJhtmDlVhGOrSg91CkO78v2aQQEvtfhKr3KDRsp2mATtlMsjvzwdfmuKzwgarmznCp2Nt7dgVu2pCArkPHuzQ&_nc_ht=cdn.fbsbx.com&oh=dcf26d905dde8915f54c97b335892d45&oe=5D37D24F"}}]}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"sssss","update_by":"admin","create_time":"2019-07-22T08:45:20.000Z","update_time":"2019-07-30T04:59:12.479Z","finish_time":null,"id":3,"__v":0}  
+
+2019-07-30 11:59:12 info: Insert new notification!  
+
+2019-07-30 11:59:12 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":3,"update_time":"2019-07-30T04:59:12.519Z","update_by":"admin","change_description":{"content":[{"_id":"5d3fcea00ef86b31f0efb1f7","field":"assignee","value":"user1234"},{"_id":"5d3fcea00ef86b31f0efb1f6","field":"status","value":"assigned"}]},"__v":0}]  
+
+2019-07-30 11:59:12 info: Client send request GET /notification  
+
+2019-07-30 11:59:12 info: Client send request GET /notification  
+
+2019-07-30 11:59:13 info: Client send request GET /ticket/read/3  
+
+2019-07-30 11:59:13 info: Client send request GET /notification  
+
+2019-07-30 11:59:13 info: Client send request GET /notification  
+
+2019-07-30 11:59:13 info: Client send request GET /notification  
+
+2019-07-30 11:59:13 info: Updated notification!  
+
+2019-07-30 11:59:14 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 11:59:14 info: Client send request GET /notification  
+
+2019-07-30 12:00:40 info: Client send request GET /  
+
+2019-07-30 12:00:40 info: Client send request GET /notification  
+
+2019-07-30 12:03:05 info: Client send request GET /  
+
+2019-07-30 12:03:05 info: Client send request GET /notification  
+
+2019-07-30 12:03:29 info: Client send request GET /ticket/read/3  
+
+2019-07-30 12:03:30 info: Updated notification!  
+
+2019-07-30 12:03:30 info: Client send request GET /ticket/read-content/3  
+
+2019-07-30 12:03:30 info: Client send request GET /notification  
+
+2019-07-30 12:04:47 info: Client send request GET /product  
+
+2019-07-30 12:04:48 info: Client send request GET /notification  
+
+2019-07-30 12:04:51 info: Client send request GET /province  
+
+2019-07-30 12:04:52 info: Client send request GET /notification  
+
+2019-07-30 12:05:10 info: Server has started! Listening on port 5000  
+
+2019-07-30 12:05:11 info: Connected to MongoDB server.  
+
+2019-07-31 05:32:33 info: Server has started! Listening on port 5000  
+
+2019-07-31 05:32:34 info: Connected to MongoDB server.  
+
+2019-07-31 05:32:41 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-31 05:33:55 info: Server has started! Listening on port 5000  
+
+2019-07-31 05:33:55 info: Connected to MongoDB server.  
+
+2019-07-31 05:34:01 info: Người dùng manh đã đăng nhập vào hệ thống.  
+
+2019-07-31 05:34:01 info: Client send request GET /  
+
+2019-07-31 05:34:02 info: Client send request GET /notification  
+
+2019-07-31 05:34:34 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-31 05:34:34 info: Client send request GET /  
+
+2019-07-31 05:34:35 info: Client send request GET /notification  
+
+2019-07-31 05:34:41 info: Client send request GET /ticket  
+
+2019-07-31 05:34:42 info: Client send request GET /notification  
+
+2019-07-31 05:34:58 info: Client send request GET /ticket/read/3  
+
+2019-07-31 05:35:00 info: Updated notification!  
+
+2019-07-31 05:35:01 info: Client send request GET /ticket/read-content/3  
+
+2019-07-31 05:35:01 info: Client send request GET /notification  
+
+2019-07-31 05:35:08 info: Client send request POST /ticket/update/3  
+
+2019-07-31 05:35:08 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3577a08bfb8101ac74b622","type":"feedback","status":"assigned","priority":"normal","assignee":"admin","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563785220555,"text":"test tạo ticket khi gửi feedback mới"},{"timestamp":1563785250751,"text":"gửi ảnh"},{"timestamp":1563785252307,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/58842442_2142162675865502_7262218149058052096_n.jpg?_nc_cat=105&_nc_oc=AQnNd1vn9qf4QF63DafZNJPMXmbS_K76STsxPQCDHsneKM7GwnJQJw58X6IYeYYmdANAICLY1uPauVVRWgB1qjvc&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=be5155820bf67fd62d0f00cd82edc13b&oe=5DA030E9"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59404735_1265241043623564_5978257510077825024_n.jpg?_nc_cat=105&_nc_oc=AQlpFk0adI5dxxBvcNWpF2Mdbj-UZHL3uxW0JtRXhrsjCGeOJfy5MvfNw1uK7bI-nJx7HRc2oKY6_DkLw8q5NwOs&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=15caa01625574ba3fe4837d36ed2ffa6&oe=5DAC53D7"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59332365_592976361181484_1955734760055635968_n.jpg?_nc_cat=105&_nc_oc=AQmHfIMk6RmDNEoczORU6DcXZGElgsTObzwWPHcFYFiczRf2CjZVxvTEVxHR1HKQDkEsP1JTICD4dYoAlXfW4nxe&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=72c956fba5e593a2b74682b62930945b&oe=5DE7CB26"}}]},{"timestamp":1563785266811,"text":"gửi file"},{"timestamp":1563785267890,"attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"timestamp":1563785275597,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t39.1997-6/p100x100/65996826_2331267576993725_7124001428548354048_n.png?_nc_cat=1&_nc_oc=AQlaRk6uuHjjT-Y3Q2EcsXOd75KFRyw8QOUD45_R_5iY1rYkJan_gWh5XEA95S9QTzHHYPbQ2KqYXqgaiFJQg6bm&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=c09a2a9065b2bb29f90b9560c8039b18&oe=5DE6D6BB","sticker_id":1313755408744952}}]},{"timestamp":1563785292419,"text":"icon  😒😔😫😣🙁😐🤓"},{"timestamp":1563785328114,"attachments":[{"type":"image","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/43827563_2438825262824408_1978300612718100480_n.gif?_nc_cat=101&_nc_oc=AQnpJhtmDlVhGOrSg91CkO78v2aQQEvtfhKr3KDRsp2mATtlMsjvzwdfmuKzwgarmznCp2Nt7dgVu2pCArkPHuzQ&_nc_ht=cdn.fbsbx.com&oh=dcf26d905dde8915f54c97b335892d45&oe=5D37D24F"}}]}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"sssss","update_by":"admin","create_time":"2019-07-22T08:45:20.000Z","update_time":"2019-07-30T22:35:08.342Z","finish_time":null,"id":3,"__v":0}  
+
+2019-07-31 05:35:08 info: Insert new notification!  
+
+2019-07-31 05:35:08 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":3,"update_time":"2019-07-30T22:35:08.422Z","update_by":"admin","change_description":{"content":[{"_id":"5d40c61c7d96ab11bc990b16","field":"assignee","value":"admin"},{"_id":"5d40c61c7d96ab11bc990b15","field":"status","value":"assigned"}]},"__v":0}]  
+
+2019-07-31 05:35:08 info: Client send request GET /notification  
+
+2019-07-31 05:35:08 info: Client send request GET /notification  
+
+2019-07-31 05:35:08 info: Client send request GET /notification  
+
+2019-07-31 05:35:09 info: Client send request GET /ticket/read/3  
+
+2019-07-31 05:35:10 info: Updated notification!  
+
+2019-07-31 05:35:10 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6719588476188098562","t":9},"electionId":"7fffffff0000000000000009","ok":1,"operationTime":"6719588476188098562","$clusterTime":{"clusterTime":"6719588476188098562","signature":{"hash":"LNS/iZ7d1+x3paeF4hPaAhSlSUk=","keyId":"6668167087610920962"}}}  
+
+2019-07-31 05:35:10 info: Client send request GET /ticket/read-content/3  
+
+2019-07-31 05:35:10 info: Client send request GET /notification  
+
+2019-07-31 05:35:35 info: Client send request GET /ticket  
+
+2019-07-31 05:35:36 info: Client send request GET /notification  
+
+2019-07-31 05:35:38 info: Client send request GET /ticket/read/3  
+
+2019-07-31 05:35:39 info: Updated notification!  
+
+2019-07-31 05:35:39 info: Client send request GET /ticket/read-content/3  
+
+2019-07-31 05:35:39 info: Client send request GET /notification  
+
+2019-07-31 05:35:52 info: Client send request POST /ticket/update/3  
+
+2019-07-31 05:35:52 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"_id":"5d3577a08bfb8101ac74b622","type":"feedback","status":"assigned","priority":"normal","assignee":"manh","description":{"type":"nextMessages","feedbacks":[{"timestamp":1563785220555,"text":"test tạo ticket khi gửi feedback mới"},{"timestamp":1563785250751,"text":"gửi ảnh"},{"timestamp":1563785252307,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/58842442_2142162675865502_7262218149058052096_n.jpg?_nc_cat=105&_nc_oc=AQnNd1vn9qf4QF63DafZNJPMXmbS_K76STsxPQCDHsneKM7GwnJQJw58X6IYeYYmdANAICLY1uPauVVRWgB1qjvc&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=be5155820bf67fd62d0f00cd82edc13b&oe=5DA030E9"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59404735_1265241043623564_5978257510077825024_n.jpg?_nc_cat=105&_nc_oc=AQlpFk0adI5dxxBvcNWpF2Mdbj-UZHL3uxW0JtRXhrsjCGeOJfy5MvfNw1uK7bI-nJx7HRc2oKY6_DkLw8q5NwOs&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=15caa01625574ba3fe4837d36ed2ffa6&oe=5DAC53D7"}},{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t1.15752-9/59332365_592976361181484_1955734760055635968_n.jpg?_nc_cat=105&_nc_oc=AQmHfIMk6RmDNEoczORU6DcXZGElgsTObzwWPHcFYFiczRf2CjZVxvTEVxHR1HKQDkEsP1JTICD4dYoAlXfW4nxe&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=72c956fba5e593a2b74682b62930945b&oe=5DE7CB26"}}]},{"timestamp":1563785266811,"text":"gửi file"},{"timestamp":1563785267890,"attachments":[{"type":"file","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/60858635_458310711637870_3170525667993321472_n.txt/select-random-user.txt?_nc_cat=100&_nc_oc=AQnbD5tfWPcJHGrOkoL55t-K2z3vn67sRPnIJW928pFrus3dNmX6emzq4vPgaEf1z_AIrEXNUAisrcXT2d2_c_dw&_nc_ht=cdn.fbsbx.com&oh=e7a7a2bc8ebce669d6f007834ac71b61&oe=5D382A72"}}]},{"timestamp":1563785275597,"attachments":[{"type":"image","payload":{"url":"https://scontent.xx.fbcdn.net/v/t39.1997-6/p100x100/65996826_2331267576993725_7124001428548354048_n.png?_nc_cat=1&_nc_oc=AQlaRk6uuHjjT-Y3Q2EcsXOd75KFRyw8QOUD45_R_5iY1rYkJan_gWh5XEA95S9QTzHHYPbQ2KqYXqgaiFJQg6bm&_nc_ad=z-m&_nc_cid=0&_nc_zor=9&_nc_ht=scontent.xx&oh=c09a2a9065b2bb29f90b9560c8039b18&oe=5DE6D6BB","sticker_id":1313755408744952}}]},{"timestamp":1563785292419,"text":"icon  😒😔😫😣🙁😐🤓"},{"timestamp":1563785328114,"attachments":[{"type":"image","payload":{"url":"https://cdn.fbsbx.com/v/t59.2708-21/43827563_2438825262824408_1978300612718100480_n.gif?_nc_cat=101&_nc_oc=AQnpJhtmDlVhGOrSg91CkO78v2aQQEvtfhKr3KDRsp2mATtlMsjvzwdfmuKzwgarmznCp2Nt7dgVu2pCArkPHuzQ&_nc_ht=cdn.fbsbx.com&oh=dcf26d905dde8915f54c97b335892d45&oe=5D37D24F"}}]}]},"member_profile":{"fb_id":"2195115180579005","member_code":"5QNI2MCA0175"},"comment":"ssss","update_by":"admin","create_time":"2019-07-22T08:45:20.000Z","update_time":"2019-07-30T22:35:52.149Z","finish_time":null,"id":3,"__v":0}  
+
+2019-07-31 05:35:52 info: Insert new notification!  
+
+2019-07-31 05:35:52 info: Cập nhật dữ liệu thành công vào bảng ticket_history trong CSDL:[{"ticket_id":3,"update_time":"2019-07-30T22:35:52.221Z","update_by":"admin","change_description":{"content":[{"_id":"5d40c6487d96ab11bc990b1a","field":"assignee","value":"manh"},{"_id":"5d40c6487d96ab11bc990b19","field":"status","value":"assigned"}],"comment":"ssss"},"__v":0}]  
+
+2019-07-31 05:35:52 info: Client send request GET /notification  
+
+2019-07-31 05:35:52 info: Client send request GET /notification  
+
+2019-07-31 05:35:52 info: Client send request GET /notification  
+
+2019-07-31 05:35:52 info: Client send request GET /ticket/read/3  
+
+2019-07-31 05:35:54 info: Updated notification!  
+
+2019-07-31 05:35:54 info: Client send request GET /ticket/read-content/3  
+
+2019-07-31 05:35:54 info: Client send request GET /notification  
+
+2019-07-31 05:35:59 info: Client send request GET /ticket/read/3  
+
+2019-07-31 05:36:00 info: Updated notification!  
+
+2019-07-31 05:36:00 info: Cập nhật dữ liệu thành công vào bảng tickets trong CSDL:{"n":1,"nModified":0,"opTime":{"ts":"6719588690936463362","t":9},"electionId":"7fffffff0000000000000009","ok":1,"operationTime":"6719588690936463362","$clusterTime":{"clusterTime":"6719588690936463362","signature":{"hash":"PDbq2c6bgOEqLPZjO9OtCk3iwMY=","keyId":"6668167087610920962"}}}  
+
+2019-07-31 05:36:01 info: Client send request GET /ticket/read-content/3  
+
+2019-07-31 05:36:01 info: Client send request GET /notification  
+
+2019-07-31 05:36:24 info: Client send request GET /  
+
+2019-07-31 05:36:25 info: Client send request GET /notification  
+
+2019-07-31 05:52:03 info: Client send request GET /member  
+
+2019-07-31 05:52:04 info: Client send request GET /member/list  
+
+2019-07-31 05:52:04 info: Client send request GET /notification  
+
+2019-07-31 06:21:18 info: Client send request POST /member/add  
+
+2019-07-31 06:21:18 info: Genarate new otp successfully!  
+
+2019-07-31 06:21:18 info: Thêm mới dữ liệu thành công vào bảng members trong CSDL:[{"member_code":"4GWWW1SSA","otp":"9d1822","auto_reply":true,"fb_id":"","fb_firstName":"","fb_lastName":"","fb_gender":"","fb_linkChat":"","lastTimeQueryVAS":"2019-07-30T23:21:18.720Z","create_time":"2019-07-30T23:21:18.720Z","update_time":"2019-07-30T23:21:18.720Z","__v":0}]  
+
+2019-07-31 06:21:23 info: Client send request GET /member  
+
+2019-07-31 06:21:24 info: Client send request GET /member/list  
+
+2019-07-31 06:21:24 info: Client send request GET /notification  
+
+2019-07-31 06:30:20 info: Client send request GET /product  
+
+2019-07-31 06:30:21 info: Client send request GET /notification  
+
+2019-07-31 06:41:49 info: Client send request GET /product/properties/5d23ea523ba9402928d93960  
+
+2019-07-31 06:52:58 info: Client send request GET /product  
+
+2019-07-31 06:52:59 info: Client send request GET /notification  
+
+2019-07-31 06:54:47 info: Client send request GET /package/image  
+
+2019-07-31 06:54:48 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-31 06:54:48 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-31 06:54:48 info: Client send request GET /notification  
+
+2019-07-31 06:54:52 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b7  
+
+2019-07-31 06:55:01 info: Client send request POST /package/image/upload/12M120  
+
+2019-07-31 06:55:03 info: Client send request POST /package/image/update/12M120  
+
+2019-07-31 06:55:03 info: Đã xóa file:image20190730_105415.jpg  
+
+2019-07-31 06:55:04 info: Cập nhật dữ liệu thành công vào bảng vas_packages trong CSDL:{"n":1,"nModified":1,"opTime":{"ts":"6719609066261315585","t":9},"electionId":"7fffffff0000000000000009","ok":1,"operationTime":"6719609066261315585","$clusterTime":{"clusterTime":"6719609066261315585","signature":{"hash":"s7x5/hxa6aofl0UB5UWbKctuvxw=","keyId":"6668167087610920962"}}}  
+
+2019-07-31 06:55:05 info: Client send request GET /package/image  
+
+2019-07-31 06:55:05 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-31 06:55:06 info: Client send request GET /notification  
+
+2019-07-31 06:55:06 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-31 07:04:55 info: Client send request GET /package/image/properties/5d27df0d5efa0b078c36c4b6  
+
+2019-07-31 07:07:20 info: Client send request POST /package/add-new  
+
+2019-07-31 07:07:20 info: Thêm mới dữ liệu thành công vào bảng vas_packages trong CSDL:null  
+
+2019-07-31 07:07:20 info: Client send request GET /package/image  
+
+2019-07-31 07:07:21 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-31 07:07:21 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-31 07:07:21 info: Client send request GET /notification  
+
+2019-07-31 07:07:27 info: Client send request POST /package/delete/  
+
+2019-07-31 07:07:27 info: Đã xóa dữ liệu từ bảng vas_packages trong CSDL  
+
+2019-07-31 07:07:27 info: Client send request GET /package/image  
+
+2019-07-31 07:07:28 error: Client gửi request GET tới route không tồn tại: /public/image/  
+
+2019-07-31 07:07:28 error: Client gửi request GET tới route không tồn tại: /image/noimageavailable.png;  
+
+2019-07-31 07:07:28 info: Client send request GET /notification  
+
+2019-07-31 07:18:54 info: Client send request GET /province  
+
+2019-07-31 07:18:54 info: Client send request GET /notification  
+
+2019-07-31 07:19:10 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-31 07:19:21 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-31 07:19:22 info: Client send request POST /province/update/5d173f78c2c83200a6601b7d  
+
+2019-07-31 07:19:22 info: Cập nhật dữ liệu thành công vào bảng provinces trong CSDL:{"_id":"5d173f78c2c83200a6601b7d","province_id":"31796","province_code":"BGI","name":"Tỉnh Bắc Giang","pic_name":"","pic_phone":"","office_address":"","hotline":""}  
+
+2019-07-31 07:19:23 info: Client send request GET /province  
+
+2019-07-31 07:19:24 info: Client send request GET /notification  
+
+2019-07-31 07:23:53 info: Client send request GET /product  
+
+2019-07-31 07:23:54 info: Client send request GET /notification  
+
+2019-07-31 07:23:58 info: Client send request GET /province  
+
+2019-07-31 07:23:59 info: Client send request GET /notification  
+
+2019-07-31 07:25:20 info: Client send request GET /province/properties/5d173f78c2c83200a6601b7d  
+
+2019-07-31 07:28:11 info: Client send request GET /province  
+
+2019-07-31 07:28:11 info: Client send request GET /notification  
+
+2019-07-31 07:29:54 info: Client send request POST /province/adding  
+
+2019-07-31 07:29:55 info: Thêm mới dữ liệu thành công vào bảng provinces trong CSDL:[{"name":"","province_code":"","pic_name":"","pic_phone":"","office_address":"","hotline":"","__v":0}]  
+
+2019-07-31 07:29:55 info: Client send request GET /province  
+
+2019-07-31 07:29:56 info: Client send request GET /notification  
+
+2019-07-31 07:30:03 info: Client send request GET /province/districtlist/5d40e1027d96ab11bc990b1f  
+
+2019-07-31 07:30:04 info: Client send request DELETE /province/delete/5d40e1027d96ab11bc990b1f  
+
+2019-07-31 07:30:04 info: Đã xóa dữ liệu từ bảng provinces trong CSDL:{"_id":"5d40e1027d96ab11bc990b1f","name":"","province_code":"","pic_name":"","pic_phone":"","office_address":"","hotline":"","__v":0}  
+
+2019-07-31 07:30:05 info: Client send request GET /province  
+
+2019-07-31 07:30:05 info: Client send request GET /notification  
+

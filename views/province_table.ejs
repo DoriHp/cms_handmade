@@ -256,7 +256,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Địa chỉ trụ sở</label>
                                 <div class="col-md-4">
-                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Office address">
+                                    <input type="text" id="office_address" name="office_address" class="form-control input-circle" placeholder="Địa chỉ trụ sở">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -347,7 +347,7 @@
             }else{
                 swal({
                     title: "Xác nhận",
-                    text: "Bạn chắc chắn muốn xóa bản ghi này?", 
+                    text: "Bạn chắc chắn muốn xóa dữ liệu về tỉnh thành này?", 
                     showCancelButton: true,
                     confirmButtonText: "Tiếp tục",
                     cancelButtonText: "Hủy bỏ",
@@ -360,7 +360,7 @@
                         axios.delete('/manager/province/delete/' + encodeURIComponent(_id))
                         .then(function(response){
                             if(response.status == 200){
-                                swal("Thành công!", "Xóa bản ghi thành công!", "success", {showConfirmButton: false})
+                                swal("Thành công!", "Xóa dữ liệu thành công!", "success", {showConfirmButton: false})
                                 setTimeout(function(){
                                     location.reload()
                                 }, 500)
