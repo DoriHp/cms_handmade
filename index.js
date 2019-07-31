@@ -11,10 +11,7 @@ var bcrypt = require('bcrypt')
 var User = require('./models/user.model.js')
 var ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn
 var flash = require('connect-flash')
-var fs = require('fs')
-var readline = require('readline')
 var request = require('request')
-var saltRounds = 10
 var client = require('./controller/redis.client.js')
 var compression = require('compression')
 var logger = require('./config/logger.js')
@@ -22,7 +19,7 @@ var logger = require('./config/logger.js')
 // If modifying these scopes, delete token.json.
 require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URL_2, { useNewUrlParser: true }, function(error){
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }, function(error){
   if(error){
     throw error
     logger.error("Failed in connection to MongoDB server \n" + error)
@@ -42,7 +39,6 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use(compression())
-
 
 // Setup View engine
 app.set('views', path.join(__dirname, 'views'));
@@ -76,7 +72,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 //start server
-var port = 5000
+var port = process.env.PORT
 server.listen(port, () => {
 	console.log('Server is listening on port: ' + port)
   logger.info('Server has started! Listening on port ' + port)
@@ -144,7 +140,7 @@ app.get('/404', function(req, res, next){
 })
 
 app.get('/403', function(req, res, next){
-  res.render('403page', {url: req.url, breadcrumb:[{href: req.url, locate: "Bạn không có quyền truy cập trang này!"}], user: {username: "Bảo"}})
+  res.render('403page', {url: req.url, breadcrumb:[{href: req.url, locate: "Bạn không có quyền truy cập trang này!"}], user: req.user})
 })
 
 app.get('', function(req, res){
@@ -211,7 +207,7 @@ app.use(function(req, res, next){
   res.status(404)
   res.format({
     html: function () {
-      res.render('404page', { url: req.url,breadcrumb:[{href: req.url, locate: "Page not found!"}], user: {username: "Bảo"} })
+      res.render('404page', { url: req.url,breadcrumb:[{href: req.url, locate: "Page not found!"}], user: req.user })
     }
   })
 })

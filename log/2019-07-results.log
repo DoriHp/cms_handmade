@@ -7014,3 +7014,129 @@ null
 
 2019-07-31 07:30:05 info: Client send request GET /notification  
 
+2019-07-31 08:00:25 info: Server has started! Listening on port 5000  
+
+2019-07-31 08:00:25 info: Connected to MongoDB server.  
+
+2019-07-31 08:03:11 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-31 08:03:13 info: Client send request GET /notification  
+
+2019-07-31 08:03:14 info: Client send request GET /province  
+
+2019-07-31 08:03:15 info: Client send request GET /notification  
+
+2019-07-31 08:07:53 info: Client send request GET /district  
+
+2019-07-31 08:07:54 info: Client send request GET /notification  
+
+2019-07-31 08:14:30 info: Client send request GET /district/properties/5d173bdec2c83200a66012e1  
+
+2019-07-31 08:14:34 info: Client send request GET /district/properties/5d173bdec2c83200a66012fc  
+
+2019-07-31 08:23:30 info: Client send request GET /ticket  
+
+2019-07-31 08:23:31 info: Client send request GET /notification  
+
+2019-07-31 08:35:17 info: Client send request GET /ticket/read/2  
+
+2019-07-31 08:35:18 info: Updated notification!  
+
+2019-07-31 08:35:19 info: Client send request GET /ticket/read-content/2  
+
+2019-07-31 08:35:19 info: Client send request GET /notification  
+
+2019-07-31 08:45:31 info: Client send request GET /ticket/read/6  
+
+2019-07-31 08:45:31 info: Updated notification!  
+
+2019-07-31 08:45:32 info: Client send request GET /notification  
+
+2019-07-31 09:01:36 info: Client send request GET /profile  
+
+2019-07-31 09:01:37 info: Client send request GET /notification  
+
+2019-07-31 09:18:03 info: Client send request GET /profile  
+
+2019-07-31 09:18:04 info: Client send request GET /notification  
+
+2019-07-31 10:08:17 info: Client send request GET /profile  
+
+2019-07-31 10:08:18 info: Client send request GET /notification  
+
+2019-07-31 10:08:31 info: Client send request GET /member  
+
+2019-07-31 10:08:32 info: Client send request GET /member/list  
+
+2019-07-31 10:08:33 info: Client send request GET /notification  
+
+2019-07-31 10:10:30 info: Client send request GET /member  
+
+2019-07-31 10:10:31 info: Client send request GET /notification  
+
+2019-07-31 10:10:35 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-31 10:10:48 info: Client send request GET /member  
+
+2019-07-31 10:10:50 info: Client send request GET /member/list  
+
+2019-07-31 10:10:50 info: Client send request GET /notification  
+
+2019-07-31 10:10:50 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-31 10:11:26 info: Client send request GET /member  
+
+2019-07-31 10:11:27 info: Client send request GET /member/list  
+
+2019-07-31 10:11:27 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-31 10:11:27 info: Client send request GET /notification  
+
+2019-07-31 10:11:43 info: Client send request GET /member  
+
+2019-07-31 10:11:44 info: Client send request GET /member/list  
+
+2019-07-31 10:11:44 info: Client send request GET /notification  
+
+2019-07-31 10:11:44 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-31 10:12:36 info: Server has started! Listening on port 5000  
+
+2019-07-31 10:12:38 info: Connected to MongoDB server.  
+
+2019-07-31 10:13:04 info: Server has started! Listening on port 5000  
+
+2019-07-31 10:13:05 info: Connected to MongoDB server.  
+
+2019-07-31 10:13:50 info: Server has started! Listening on port undefined  
+
+2019-07-31 10:13:50 info: Connected to MongoDB server.  
+
+2019-07-31 10:14:14 info: Server has started! Listening on port 5000  
+
+2019-07-31 10:14:15 info: Connected to MongoDB server.  
+
+2019-07-31 10:14:22 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-31 10:14:22 info: Client send request GET /member  
+
+2019-07-31 10:14:23 info: Client send request GET /member/list  
+
+2019-07-31 10:14:24 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+
+2019-07-31 10:14:24 info: Client send request GET /notification  
+
+2019-07-31 10:15:16 info: Server has started! Listening on port 5000  
+
+2019-07-31 10:15:16 info: Connected to MongoDB server.  
+
+2019-07-31 10:15:20 info: Người dùng admin đã đăng nhập vào hệ thống.  
+
+2019-07-31 10:15:20 info: Client send request GET /member  
+
+2019-07-31 10:15:21 info: Client send request GET /member/list  
+
+2019-07-31 10:15:21 info: Client send request GET /notification  
+
+2019-07-31 10:15:22 error: Client gửi request GET tới route không tồn tại: /assets/global/plugins/datatables/pdfmake.min.js.map  
+

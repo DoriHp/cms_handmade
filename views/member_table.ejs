@@ -123,7 +123,7 @@
     <script src="/slickGrid/plugins/slick.rowselectionmodel.js"></script>
     <script src="/slickGrid/slick.dataview.js"></script>
     <script src="/slickGrid/controls/slick.pager.js"></script>
-    <script src="/slickGrid/controls/slick.columnpicker.js"></script> -->
+    <script src="/slickGrid/controls/slick.columnpicker.js"></script> 
     <% if (user.role == 'admin') { -%>
         <script>
         var searchField = "member_code"
@@ -255,6 +255,7 @@
                 data[i].fb_id = data[i].fb_id
                 data[i].fb_name = data[i].fb_lastName + " " + data[i].fb_firstName
                 data[i].auto_reply_string = (data[i].auto_reply)?"Có":"Không"
+                if(data[i].fb_gender) data[i].fb_gender = (data[i].fb_gender == 'male')?"Nam":"Nữ"
             }
             dataView = new Slick.Data.DataView({ inlineFilters: true })
             grid = new Slick.Grid("#myGrid", dataView, columns, options)
